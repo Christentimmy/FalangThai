@@ -1,7 +1,8 @@
 // import 'package:falangthai/app/controller/storage_controller.dart';
 import 'package:falangthai/app/resources/colors.dart';
+import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -59,6 +60,7 @@ class _SplashScreenState extends State<SplashScreen>
       //   Get.offAllNamed(AppRoutes.login);
       //   return;
       // }
+      Get.toNamed(AppRoutes.welcome);
     });
   }
 
@@ -73,7 +75,7 @@ class _SplashScreenState extends State<SplashScreen>
     return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(color: AppColors.primary),
+        decoration: BoxDecoration(color: AppColors.primaryColor),
         child: Center(
           child: AnimatedBuilder(
             animation: _controller,
