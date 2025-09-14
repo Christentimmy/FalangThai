@@ -15,6 +15,7 @@ class CustomButton extends StatelessWidget {
   double? width;
   Widget? child;
   RxBool isLoading;
+  
   CustomButton({
     super.key,
     this.text,

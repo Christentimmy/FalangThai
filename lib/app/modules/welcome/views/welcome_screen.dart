@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:falangthai/app/modules/welcome/controller/welcome_controller.dart';
 import 'package:falangthai/app/resources/colors.dart';
+import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -58,7 +59,9 @@ class WelcomeScreen extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: CustomButton(
-            ontap: () {},
+            ontap: () {
+              Get.toNamed(AppRoutes.language);
+            },
             isLoading: false.obs,
             borderRadius: BorderRadius.circular(24),
             child: Text(
