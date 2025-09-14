@@ -1,3 +1,4 @@
+import 'package:falangthai/app/modules/auth/views/signup_screen.dart';
 import 'package:falangthai/app/modules/language/views/language_selection_screen.dart';
 import 'package:falangthai/app/modules/splash/splash_screen.dart';
 import 'package:falangthai/app/modules/welcome/views/welcome_screen.dart';
@@ -17,6 +18,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.language,
       page: () =>  LanguageSelectionScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.signup,
+      page: () =>  SignupScreen(),
     ),
   ]; 
 }

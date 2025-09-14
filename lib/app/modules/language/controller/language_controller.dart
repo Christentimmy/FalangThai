@@ -1,3 +1,4 @@
+import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -100,45 +101,39 @@ class LanguageController extends GetxController with GetSingleTickerProviderStat
   Future<void> continueToNext() async {
     if (selectedLanguage.value.isEmpty) return;
     
-    isLoading.value = true;
+    // isLoading.value = true;
     
     try {
       // Save selected language to local storage
-      await _saveSelectedLanguage();
+      // await saveSelectedLanguage();
       
-      // Update app locale
-      await _updateAppLocale();
+      // // Update app locale
+      // await updateAppLocale();
       
-      // Navigate to next screen (e.g., onboarding or main app)
-      // Get.offNamed('/onboarding');
-      // Or for now, just show a success message
-      Get.snackbar(
-        'Language Selected',
-        'Your language preference has been saved!',
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: const Color(0xFFFF9EE6).withOpacity(0.9),
-        colorText: Colors.white,
-        duration: const Duration(seconds: 2),
-      );
+      // // Navigate to next screen (e.g., onboarding or main app)
+      // // Get.offNamed('/onboarding');
+      // // Or for now, just show a success message
+      // Get.snackbar(
+      //   'Language Selected',
+      //   'Your language preference has been saved!',
+      //   snackPosition: SnackPosition.BOTTOM,
+      //   backgroundColor: const Color(0xFFFF9EE6).withOpacity(0.9),
+      //   colorText: Colors.white,
+      //   duration: const Duration(seconds: 2),
+      // );
       
-      // Simulate API call delay
-      await Future.delayed(const Duration(milliseconds: 1500));
-      
+      // // Simulate API call delay
+      // await Future.delayed(const Duration(milliseconds: 1500));
+      Get.toNamed(AppRoutes.signup);
       
     } catch (e) {
-      Get.snackbar(
-        'Error',
-        'Failed to save language preference. Please try again.',
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red.withOpacity(0.9),
-        colorText: Colors.white,
-      );
+      debugPrint(e.toString());
     } finally {
       isLoading.value = false;
     }
   }
 
-  Future<void> _saveSelectedLanguage() async {
+  Future<void> saveSelectedLanguage() async {
     // Save to SharedPreferences or local database
     // final prefs = await SharedPreferences.getInstance();
     // await prefs.setString('selected_language', selectedLanguage.value);
@@ -147,7 +142,7 @@ class LanguageController extends GetxController with GetSingleTickerProviderStat
     await Future.delayed(const Duration(milliseconds: 500));
   }
 
-  Future<void> _updateAppLocale() async {
+  Future<void> updateAppLocale() async {
     final selectedLang = languages.firstWhere(
       (lang) => lang['code'] == selectedLanguage.value,
     );
