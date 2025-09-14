@@ -86,16 +86,16 @@ class _SplashScreenState extends State<SplashScreen>
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
-                        'assets/images/falangLogo.png',
-                        fit: BoxFit.contain,
-                        width: MediaQuery.of(context).size.width * 0.45,
-                        height: MediaQuery.of(context).size.height * 0.45,
+                        'assets/images/logo.png',
+                        width: 180,
+                        height: 180,
+                        fit: BoxFit.cover,
                       ),
-                      SizedBox(height: 10),
                       Text(
                         "FalangThai",
                         style: GoogleFonts.poppins(
                           fontSize: 24,
+                          color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
