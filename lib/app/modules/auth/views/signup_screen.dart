@@ -1,12 +1,13 @@
-import 'dart:ui';
 import 'dart:math' as math;
 import 'package:falangthai/app/modules/auth/controller/signup_controller.dart';
 import 'package:falangthai/app/resources/colors.dart';
+import 'package:falangthai/app/utils/validator.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
 import 'package:falangthai/app/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SignupScreen extends StatelessWidget {
   SignupScreen({super.key});
@@ -158,71 +159,117 @@ class SignupScreen extends StatelessWidget {
     return Center(
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // _buildLogo(),
-            SizedBox(height: Get.height * 0.1),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Falang",
-                  style: GoogleFonts.fredoka(
-                    fontSize: 30,
-                    color: AppColors.primaryColor,
-                    fontWeight: FontWeight.w700,
+        child: Form(
+          key: signupController.formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(height: Get.height * 0.05),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Falang",
+                    style: GoogleFonts.fredoka(
+                      fontSize: 30,
+                      color: AppColors.primaryColor,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
-                ),
-                Text(
-                  "Thai",
-                  style: GoogleFonts.fredoka(
-                    fontSize: 30,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
+                  Text(
+                    "Thai",
+                    style: GoogleFonts.fredoka(
+                      fontSize: 30,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            // _buildSignupCard(),
-            _buildTitle(),
-            // SizedBox(height: Get.height * 0.02),
-            _buildSubtitle(),
-            const SizedBox(height: 32),
-            // _buildNameField(),
-            CustomTextField(
-              controller: signupController.nameController,
-              bgColor: Colors.white.withOpacity(0.05),
-              prefixIcon: Icons.person,
-              prefixIconColor: AppColors.primaryColor,
-              hintText: "Full Name",
-              hintStyle: GoogleFonts.fredoka(
-                color: Colors.white.withOpacity(0.5),
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
+                ],
               ),
-            ),
-            const SizedBox(height: 20),
-            _buildEmailField(),
-            const SizedBox(height: 20),
-            _buildPasswordField(),
-            const SizedBox(height: 20),
-            _buildConfirmPasswordField(),
-            const SizedBox(height: 12),
-            _buildTermsCheckbox(),
-            const SizedBox(height: 32),
-            _buildSignupButton(),
-            const SizedBox(height: 30),
-            _buildSocialLogin(),
-            const SizedBox(height: 20),
-            _buildLoginLink(),
-          ],
+              _buildTitle(),
+              _buildSubtitle(),
+              const SizedBox(height: 32),
+              CustomTextField(
+                controller: signupController.nameController,
+                bgColor: Colors.white.withOpacity(0.05),
+                prefixIcon: Icons.person,
+                prefixIconColor: AppColors.primaryColor,
+                hintText: "Full Name",
+                hintStyle: GoogleFonts.fredoka(
+                  color: Colors.white.withOpacity(0.5),
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                ),
+                validator: signupController.validateName,
+              ),
+              const SizedBox(height: 20),
+              CustomTextField(
+                controller: signupController.emailController,
+                bgColor: Colors.white.withValues(alpha: 0.05),
+                prefixIcon: Icons.email,
+                prefixIconColor: AppColors.primaryColor,
+                hintText: "Email",
+                hintStyle: GoogleFonts.fredoka(
+                  color: Colors.white.withValues(alpha: 0.5),
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                ),
+                validator: validateEmail,
+              ),
+              // _buildEmailField(),
+              const SizedBox(height: 20),
+              Obx(() {
+                return CustomTextField(
+                  controller: signupController.passwordController,
+                  bgColor: Colors.white.withValues(alpha: 0.05),
+                  prefixIcon: Icons.lock,
+                  prefixIconColor: AppColors.primaryColor,
+                  hintText: "Password",
+                  hintStyle: GoogleFonts.fredoka(
+                    color: Colors.white.withValues(alpha: 0.5),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  isObscure: signupController.isPasswordVisible.value,
+                  suffixIcon: signupController.isPasswordVisible.value
+                      ? Icons.visibility_off
+                      : Icons.visibility,
+                  suffixIconcolor: AppColors.primaryColor,
+                  validator: signupController.validatePassword,
+                  onSuffixTap: () {
+                    signupController.isPasswordVisible.value =
+                        !signupController.isPasswordVisible.value;
+                  },
+                );
+              }),
+              const SizedBox(height: 20),
+              _buildTermsCheckbox(),
+              const SizedBox(height: 32),
+              CustomButton(
+                ontap: () {},
+                isLoading: false.obs,
+                borderRadius: BorderRadius.circular(22),
+                child: Text(
+                  "Sign Up",
+                  style: GoogleFonts.fredoka(
+                    fontSize: 16,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 30),
+              _buildSocialLogin(),
+              const SizedBox(height: 20),
+              _buildLoginLink(),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget _buildLogo() {
+  Widget buildLogo() {
     return AnimatedBuilder(
       animation: signupController.logoAnimationController,
       builder: (context, child) {
@@ -261,57 +308,6 @@ class SignupScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSignupCard() {
-    return Container(
-      padding: const EdgeInsets.all(32),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(32),
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Colors.white.withOpacity(0.1),
-            Colors.white.withOpacity(0.05),
-          ],
-        ),
-        border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 20,
-            offset: const Offset(0, 8),
-          ),
-        ],
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(32),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildTitle(),
-              const SizedBox(height: 8),
-              _buildSubtitle(),
-              const SizedBox(height: 32),
-              _buildNameField(),
-              const SizedBox(height: 20),
-              _buildEmailField(),
-              const SizedBox(height: 20),
-              _buildPasswordField(),
-              const SizedBox(height: 20),
-              _buildConfirmPasswordField(),
-              const SizedBox(height: 12),
-              _buildTermsCheckbox(),
-              const SizedBox(height: 32),
-              _buildSignupButton(),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget _buildTitle() {
     return Text(
       "Create Account",
@@ -334,166 +330,12 @@ class SignupScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildNameField() {
-    return Obx(
-      () => _buildTextField(
-        controller: signupController.nameController,
-        hintText: "Full Name",
-        prefixIcon: Icons.person_outline,
-        errorText: signupController.nameError.value.isEmpty
-            ? null
-            : signupController.nameError.value,
-        onChanged: signupController.validateName,
-      ),
-    );
-  }
-
-  Widget _buildEmailField() {
-    return Obx(
-      () => _buildTextField(
-        controller: signupController.emailController,
-        hintText: "Email Address",
-        prefixIcon: Icons.email_outlined,
-        keyboardType: TextInputType.emailAddress,
-        errorText: signupController.emailError.value.isEmpty
-            ? null
-            : signupController.emailError.value,
-        onChanged: signupController.validateEmail,
-      ),
-    );
-  }
-
-  Widget _buildPasswordField() {
-    return Obx(
-      () => _buildTextField(
-        controller: signupController.passwordController,
-        hintText: "Password",
-        prefixIcon: Icons.lock_outline,
-        isPassword: true,
-        isPasswordVisible: signupController.isPasswordVisible.value,
-        onTogglePassword: signupController.togglePasswordVisibility,
-        errorText: signupController.passwordError.value.isEmpty
-            ? null
-            : signupController.passwordError.value,
-        onChanged: signupController.validatePassword,
-      ),
-    );
-  }
-
-  Widget _buildConfirmPasswordField() {
-    return Obx(
-      () => _buildTextField(
-        controller: signupController.confirmPasswordController,
-        hintText: "Confirm Password",
-        prefixIcon: Icons.lock_outline,
-        isPassword: true,
-        isPasswordVisible: signupController.isConfirmPasswordVisible.value,
-        onTogglePassword: signupController.toggleConfirmPasswordVisibility,
-        errorText: signupController.confirmPasswordError.value.isEmpty
-            ? null
-            : signupController.confirmPasswordError.value,
-        onChanged: signupController.validateConfirmPassword,
-      ),
-    );
-  }
-
-  Widget _buildTextField({
-    required TextEditingController controller,
-    required String hintText,
-    required IconData prefixIcon,
-    TextInputType? keyboardType,
-    bool isPassword = false,
-    bool isPasswordVisible = false,
-    VoidCallback? onTogglePassword,
-    String? errorText,
-    Function(String)? onChanged,
-  }) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 300),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: errorText != null
-              ? Colors.red.withOpacity(0.5)
-              : Colors.white.withOpacity(0.3),
-          width: 1,
-        ),
-        boxShadow: [
-          if (errorText != null)
-            BoxShadow(
-              color: Colors.red.withOpacity(0.2),
-              blurRadius: 8,
-              offset: const Offset(0, 2),
-            ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // CustomTextField(),
-          TextFormField(
-            controller: controller,
-            obscureText: isPassword && !isPasswordVisible,
-            keyboardType: keyboardType,
-            onChanged: onChanged,
-            style: GoogleFonts.fredoka(
-              color: Colors.white,
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-            ),
-            decoration: InputDecoration(
-              hintText: hintText,
-              hintStyle: GoogleFonts.fredoka(
-                color: Colors.white.withOpacity(0.5),
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
-              ),
-              prefixIcon: Icon(
-                prefixIcon,
-                color: AppColors.primaryColor.withOpacity(0.8),
-                size: 22,
-              ),
-              suffixIcon: isPassword
-                  ? IconButton(
-                      onPressed: onTogglePassword,
-                      icon: Icon(
-                        isPasswordVisible
-                            ? Icons.visibility_outlined
-                            : Icons.visibility_off_outlined,
-                        color: Colors.white.withOpacity(0.6),
-                        size: 22,
-                      ),
-                    )
-                  : null,
-              border: InputBorder.none,
-              contentPadding: const EdgeInsets.all(20),
-              fillColor: Colors.white.withOpacity(0.05),
-              filled: true,
-            ),
-          ),
-          if (errorText != null)
-            Padding(
-              padding: const EdgeInsets.only(left: 16, top: 8),
-              child: Text(
-                errorText,
-                style: GoogleFonts.fredoka(
-                  color: Colors.red.withOpacity(0.8),
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-        ],
-      ),
-    );
-  }
-
   Widget _buildTermsCheckbox() {
     return Obx(
       () => Row(
         children: [
           GestureDetector(
-            onTap: signupController.toggleTermsAcceptance,
+            onTap: signupController.acceptTerms.toggle,
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 200),
               width: 24,
@@ -503,7 +345,7 @@ class SignupScreen extends StatelessWidget {
                 border: Border.all(
                   color: signupController.acceptTerms.value
                       ? AppColors.primaryColor
-                      : Colors.white.withOpacity(0.5),
+                      : Colors.white.withValues(alpha: 0.5),
                   width: 2,
                 ),
                 color: signupController.acceptTerms.value
@@ -550,50 +392,6 @@ class SignupScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSignupButton() {
-    return Obx(
-      () => CustomButton(
-        ontap:
-            signupController.isFormValid && signupController.acceptTerms.value
-            ? signupController.signup
-            : () {},
-        isLoading: signupController.isLoading,
-        borderRadius: BorderRadius.circular(20),
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 4),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            gradient: LinearGradient(
-              colors:
-                  signupController.isFormValid &&
-                      signupController.acceptTerms.value
-                  ? [
-                      AppColors.primaryColor,
-                      AppColors.primaryColor.withOpacity(0.8),
-                    ]
-                  : [Colors.grey.shade600, Colors.grey.shade700],
-            ),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Create Account",
-                style: GoogleFonts.fredoka(
-                  fontSize: 18,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              const SizedBox(width: 8),
-              const Icon(Icons.arrow_forward, color: Colors.white, size: 20),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget _buildSocialLogin() {
     return Column(
       children: [
@@ -623,17 +421,15 @@ class SignupScreen extends StatelessWidget {
           children: [
             Expanded(
               child: _buildSocialButton(
-                icon: Icons.g_mobiledata,
+                icon: FontAwesomeIcons.google,
                 label: "Google",
-                onTap: signupController.signupWithGoogle,
               ),
             ),
             const SizedBox(width: 12),
             Expanded(
               child: _buildSocialButton(
-                icon: Icons.facebook,
+                icon: FontAwesomeIcons.facebook,
                 label: "Facebook",
-                onTap: signupController.signupWithFacebook,
               ),
             ),
           ],
@@ -645,7 +441,7 @@ class SignupScreen extends StatelessWidget {
   Widget _buildSocialButton({
     required IconData icon,
     required String label,
-    required VoidCallback onTap,
+    VoidCallback? onTap,
   }) {
     return GestureDetector(
       onTap: onTap,
@@ -653,8 +449,8 @@ class SignupScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
-          color: Colors.white.withOpacity(0.05),
+          border: Border.all(color: Colors.white.withValues(alpha: 0.2), width: 1),
+          color: Colors.white.withValues(alpha: 0.05),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -699,4 +495,5 @@ class SignupScreen extends StatelessWidget {
       ),
     );
   }
+
 }
