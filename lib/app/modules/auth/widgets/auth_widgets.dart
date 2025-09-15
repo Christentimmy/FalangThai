@@ -1,6 +1,7 @@
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -125,6 +126,74 @@ class AuthWidgets {
     );
   }
 
+  Widget buildSocialLogin() {
+    return Column(
+      children: [
+        Row(
+          children: [
+            Expanded(
+              child: Container(height: 1, color: Colors.white.withOpacity(0.3)),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                "Or continue with",
+                style: GoogleFonts.fredoka(
+                  fontSize: 14,
+                  color: Colors.white.withOpacity(0.6),
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
+            Expanded(
+              child: Container(height: 1, color: Colors.white.withOpacity(0.3)),
+            ),
+          ],
+        ),
+        const SizedBox(height: 20),
+        Row(
+          children: [
+            Expanded(
+              child: buildSocialButton(
+                icon: FontAwesomeIcons.google,
+                label: "Google",
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: buildSocialButton(
+                icon: FontAwesomeIcons.facebook,
+                label: "Facebook",
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
 
-
+  Widget buildSignupLink() {
+    return GestureDetector(
+      onTap: () => Get.toNamed('/signup'),
+      child: RichText(
+        text: TextSpan(
+          style: GoogleFonts.fredoka(
+            fontSize: 16,
+            color: Colors.white.withOpacity(0.7),
+            fontWeight: FontWeight.w400,
+          ),
+          children: [
+            const TextSpan(text: "Don't have an account? "),
+            TextSpan(
+              text: "Sign Up",
+              style: GoogleFonts.fredoka(
+                color: AppColors.primaryColor,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }

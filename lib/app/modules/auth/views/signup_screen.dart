@@ -1,13 +1,13 @@
 import 'package:falangthai/app/modules/auth/controller/signup_controller.dart';
 import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
 import 'package:falangthai/app/resources/colors.dart';
+import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:falangthai/app/utils/validator.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
 import 'package:falangthai/app/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SignupScreen extends StatelessWidget {
   SignupScreen({super.key});
@@ -211,7 +211,9 @@ class SignupScreen extends StatelessWidget {
               _buildTermsCheckbox(),
               const SizedBox(height: 32),
               CustomButton(
-                ontap: () {},
+                ontap: () {
+                  Get.toNamed(AppRoutes.gender);
+                },
                 isLoading: false.obs,
                 borderRadius: BorderRadius.circular(22),
                 child: Text(
@@ -224,7 +226,8 @@ class SignupScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 30),
-              _buildSocialLogin(),
+              // _buildSocialLogin(),
+              authWidgets.buildSocialLogin(),
               const SizedBox(height: 20),
               // _buildLoginLink(),
               authWidgets.buildLoginLink(),
@@ -297,50 +300,5 @@ class SignupScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSocialLogin() {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Expanded(
-              child: Container(height: 1, color: Colors.white.withOpacity(0.3)),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                "Or continue with",
-                style: GoogleFonts.fredoka(
-                  fontSize: 14,
-                  color: Colors.white.withOpacity(0.6),
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ),
-            Expanded(
-              child: Container(height: 1, color: Colors.white.withOpacity(0.3)),
-            ),
-          ],
-        ),
-        const SizedBox(height: 20),
-        Row(
-          children: [
-            Expanded(
-              child: authWidgets.buildSocialButton(
-                icon: FontAwesomeIcons.google,
-                label: "Google",
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: authWidgets.buildSocialButton(
-                icon: FontAwesomeIcons.facebook,
-                label: "Facebook",
-              ),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
 
 }

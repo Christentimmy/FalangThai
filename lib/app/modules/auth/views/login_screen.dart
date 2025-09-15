@@ -8,7 +8,6 @@ import 'package:falangthai/app/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -173,10 +172,8 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 40),
               _buildBrandName(),
               const SizedBox(height: 8),
-              // _buildTitle(),
               authWidgets.buildTitle(title: "Welcome Back"),
               const SizedBox(height: 6),
-              // _buildSubtitle(),
               authWidgets.buildSubtitle(subtitle: "Sign in to continue your journey"),
               const SizedBox(height: 40),
               CustomTextField(
@@ -244,9 +241,11 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 30),
-              _buildSocialLogin(),
+              // _buildSocialLogin(),
+              authWidgets.buildSocialLogin(),
               const SizedBox(height: 24),
-              _buildSignupLink(),
+              // _buildSignupLink(),
+              authWidgets.buildSignupLink(),
               const SizedBox(height: 20),
             ],
           ),
@@ -337,119 +336,5 @@ class LoginScreen extends StatelessWidget {
       ),
     );
   }
-
-  Widget _buildSocialLogin() {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Expanded(
-              child: Container(
-                height: 1,
-                color: Colors.white.withValues(alpha: 0.3),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                "Or sign in with",
-                style: GoogleFonts.fredoka(
-                  fontSize: 14,
-                  color: Colors.white.withValues(alpha: 0.6),
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ),
-            Expanded(
-              child: Container(
-                height: 1,
-                color: Colors.white.withValues(alpha: 0.3),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 20),
-        Row(
-          children: [
-            Expanded(
-              child: _buildSocialButton(
-                icon: FontAwesomeIcons.google,
-                label: "Google",
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: _buildSocialButton(
-                icon: FontAwesomeIcons.facebook,
-                label: "Facebook",
-              ),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-
-  Widget _buildSocialButton({
-    required IconData icon,
-    required String label,
-    VoidCallback? onTap,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-            color: Colors.white.withValues(alpha: 0.2),
-            width: 1,
-          ),
-          color: Colors.white.withValues(alpha: 0.05),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, color: Colors.white, size: 20),
-            const SizedBox(width: 8),
-            Text(
-              label,
-              style: GoogleFonts.fredoka(
-                fontSize: 15,
-                color: Colors.white,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSignupLink() {
-    return GestureDetector(
-      onTap: () => Get.toNamed('/signup'),
-      child: RichText(
-        text: TextSpan(
-          style: GoogleFonts.fredoka(
-            fontSize: 16,
-            color: Colors.white.withOpacity(0.7),
-            fontWeight: FontWeight.w400,
-          ),
-          children: [
-            const TextSpan(text: "Don't have an account? "),
-            TextSpan(
-              text: "Sign Up",
-              style: GoogleFonts.fredoka(
-                color: AppColors.primaryColor,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
 
 }

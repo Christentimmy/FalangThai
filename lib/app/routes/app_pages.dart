@@ -1,6 +1,7 @@
 import 'package:falangthai/app/modules/auth/views/login_screen.dart';
 import 'package:falangthai/app/modules/auth/views/signup_screen.dart';
 import 'package:falangthai/app/modules/language/views/language_selection_screen.dart';
+import 'package:falangthai/app/modules/profile/views/gender_screen.dart';
 import 'package:falangthai/app/modules/splash/splash_screen.dart';
 import 'package:falangthai/app/modules/welcome/views/welcome_screen.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
@@ -13,5 +14,6 @@ class AppPages {
     GetPage(name: AppRoutes.language, page: () => LanguageSelectionScreen()),
     GetPage(name: AppRoutes.signup, page: () => SignupScreen()),
     GetPage(name: AppRoutes.login, page: () => LoginScreen()),
+    GetPage(name: AppRoutes.gender, page: () => GenderScreen()),
   ];
 }
