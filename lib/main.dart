@@ -15,7 +15,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: "FalangThai",
-      initialRoute: AppRoutes.chatList,
+      initialRoute: AppRoutes.settings,
       getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

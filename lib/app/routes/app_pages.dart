@@ -8,10 +8,12 @@ import 'package:falangthai/app/modules/favorites/views/favorite_screen.dart';
 import 'package:falangthai/app/modules/favorites/views/matches_screen.dart';
 import 'package:falangthai/app/modules/home/views/home_screen.dart';
 import 'package:falangthai/app/modules/language/views/language_selection_screen.dart';
+import 'package:falangthai/app/modules/notification/views/notification_screen.dart';
 import 'package:falangthai/app/modules/profile/views/gender_screen.dart';
 import 'package:falangthai/app/modules/profile/views/hobby_screen.dart';
 import 'package:falangthai/app/modules/profile/views/profile_upload.dart';
 import 'package:falangthai/app/modules/profile/views/relationship_preference.dart';
+import 'package:falangthai/app/modules/settings/views/settings_screen.dart';
 import 'package:falangthai/app/modules/splash/splash_screen.dart';
 import 'package:falangthai/app/modules/welcome/views/welcome_screen.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
@@ -35,5 +37,7 @@ class AppPages {
     GetPage(name: AppRoutes.message, page: () => MessageScreen()),
     GetPage(name: AppRoutes.audioCall, page: () => AudioCallScreen()),
     GetPage(name: AppRoutes.videoCall, page: () => VideoCallScreen()),
+    GetPage(name: AppRoutes.settings, page: () => SettingsScreen()),
+    GetPage(name: AppRoutes.notification, page: () => NotificationScreen()),
   ];
 }
