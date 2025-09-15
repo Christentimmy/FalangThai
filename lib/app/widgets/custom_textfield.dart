@@ -17,6 +17,7 @@ class CustomTextField extends StatelessWidget {
   Color? prefixIconColor;
   IconData? suffixIcon;
   VoidCallback? onSuffixTap;
+  VoidCallback? onPrefixTap;
   bool? isObscure;
   Color? bgColor;
   String? Function(String?)? validator;
@@ -71,6 +72,7 @@ class CustomTextField extends StatelessWidget {
     this.inputFormatters,
     this.contentPadding,
     this.suffixIconcolor,
+    this.onPrefixTap,
   });
 
   @override
@@ -124,9 +126,12 @@ class CustomTextField extends StatelessWidget {
           prefix: prefix,
           prefixIcon: prefixIcon == null
               ? null
-              : Icon(
-                  prefixIcon,
-                  color: prefixIconColor ?? const Color(0xff36534F),
+              : IconButton(
+                  onPressed: onPrefixTap,
+                  icon: Icon(
+                    prefixIcon,
+                    color: prefixIconColor ?? const Color(0xff36534F),
+                  ),
                 ),
           suffixIcon: IconButton(
             onPressed: onSuffixTap,
@@ -141,7 +146,10 @@ class CustomTextField extends StatelessWidget {
               enabledBorder ??
               OutlineInputBorder(
                 borderRadius: BorderRadius.circular(9),
-                borderSide: BorderSide(width: 1, color: Colors.white.withOpacity(0.3)),
+                borderSide: BorderSide(
+                  width: 1,
+                  color: Colors.white.withOpacity(0.3),
+                ),
               ),
           focusedBorder:
               focusedBorder ??

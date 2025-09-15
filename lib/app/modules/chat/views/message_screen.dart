@@ -1,13 +1,25 @@
 import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
+import 'package:falangthai/app/widgets/custom_button.dart';
 import 'package:falangthai/app/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MessageScreen extends StatelessWidget {
-  const MessageScreen({super.key});
+  MessageScreen({super.key});
+
+  final List giftList = [
+    "assets/images/1.png",
+    "assets/images/2.png",
+    "assets/images/3.png",
+    "assets/images/4.png",
+    "assets/images/5.png",
+    "assets/images/6.png",
+    "assets/images/7.png",
+    "assets/images/8.png",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +60,96 @@ class MessageScreen extends StatelessWidget {
           child: CustomTextField(
             hintText: "Type something...",
             suffixIcon: Icons.add,
+            prefixIcon: Icons.card_giftcard_rounded,
+            prefixIconColor: Colors.grey,
+            onPrefixTap: () {
+              Get.bottomSheet(
+                Container(
+                  height: Get.height * 0.35,
+                  width: Get.width,
+                  decoration: const BoxDecoration(
+                    color: Color(0xFF1F1B2E),
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(25),
+                    ),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const SizedBox(height: 12),
+                      Container(
+                        width: 40,
+                        height: 4,
+                        decoration: BoxDecoration(
+                          color: Colors.white.withValues(alpha: 0.3),
+                          borderRadius: BorderRadius.circular(2),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Expanded(
+                        child: GridView.builder(
+                          itemCount: giftList.length,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 4,
+                              ),
+                          itemBuilder: (context, index) {
+                            return Column(
+                              children: [
+                                Image.asset(
+                                  giftList[index],
+                                  width: 50,
+                                  height: 50,
+                                ),
+                                // SizedBox(height: 5),
+                                Text(
+                                  "${index + 20} peeks",
+                                  style: GoogleFonts.fredoka(
+                                    fontSize: 12,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Row(
+                          children: [
+                            Text(
+                              "300 peeks",
+                              style: GoogleFonts.fredoka(
+                                fontSize: 17,
+                                color: Colors.white,
+                              ),
+                            ),
+                            const Spacer(),
+                            CustomButton(
+                              ontap: () {},
+                              isLoading: false.obs,
+                              width: Get.width * 0.25,
+                              height: 35,
+                              child: Text(
+                                "Send",
+                                style: GoogleFonts.fredoka(
+                                  fontSize: 12,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                    ],
+                  ),
+                ),
+                backgroundColor: Colors.transparent,
+              );
+            },
+            hintStyle: GoogleFonts.fredoka(fontSize: 14, color: Colors.grey),
           ),
         ),
         SizedBox(width: 5),
@@ -114,7 +216,10 @@ class MessageScreen extends StatelessWidget {
           onPressed: () => Get.toNamed(AppRoutes.audioCall),
           icon: Icon(Icons.call, color: Colors.white),
         ),
-        IconButton(onPressed: () {}, icon: Icon(Icons.more_vert, color: Colors.white)),
+        IconButton(
+          onPressed: () {},
+          icon: Icon(Icons.more_vert, color: Colors.white),
+        ),
       ],
     );
   }
