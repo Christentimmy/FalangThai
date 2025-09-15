@@ -101,38 +101,8 @@ class GenderController extends GetxController with GetSingleTickerProviderStateM
   }
 
   void selectGender(String gender) {
-    // Add haptic feedback
-    HapticFeedback.lightImpact();
-    
+    HapticFeedback.lightImpact();  
     selectedGender.value = gender;
-    
-    // Show selection feedback
-    _showSelectionFeedback(gender);
-    
-    // Track analytics
-    _trackGenderSelection(gender);
-  }
-
-  void _showSelectionFeedback(String gender) {
-    final option = genderOptions.firstWhere((g) => g['id'] == gender);
-    
-    Get.snackbar(
-      'Gender Selected',
-      option['description'],
-      snackPosition: SnackPosition.TOP,
-      backgroundColor: (option['gradient'] as List<Color>).first.withOpacity(0.9),
-      colorText: Colors.white,
-      duration: const Duration(seconds: 1),
-      margin: const EdgeInsets.only(top: 100, left: 20, right: 20),
-      borderRadius: 16,
-      animationDuration: const Duration(milliseconds: 300),
-    );
-  }
-
-  void _trackGenderSelection(String gender) {
-    // Analytics tracking for gender selection
-    // Example: Analytics.track('gender_selected', {'gender': gender});
-    print('Gender selected: $gender');
   }
 
   IconData get selectedGenderIcon {

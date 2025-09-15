@@ -229,7 +229,7 @@ class GenderScreen extends StatelessWidget {
       children: [
         _buildProgressDot(isActive: true),
         _buildProgressLine(),
-        _buildProgressDot(isActive: true),
+        _buildProgressDot(isActive: false),
         _buildProgressLine(),
         _buildProgressDot(isActive: false),
         _buildProgressLine(),
@@ -452,7 +452,7 @@ class GenderScreen extends StatelessWidget {
         child: CustomButton(
           ontap: () {},
           isLoading: false.obs,
-          borderRadius: BorderRadius.circular(24),
+          borderRadius: BorderRadius.circular(15),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
