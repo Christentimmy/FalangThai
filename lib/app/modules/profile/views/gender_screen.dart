@@ -1,5 +1,6 @@
 import 'package:falangthai/app/modules/profile/controllers/gender_controller.dart';
 import 'package:falangthai/app/resources/colors.dart';
+import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -450,7 +451,9 @@ class GenderScreen extends StatelessWidget {
         duration: const Duration(milliseconds: 300),
         opacity: genderController.selectedGender.value.isNotEmpty ? 1.0 : 0.5,
         child: CustomButton(
-          ontap: () {},
+          ontap: () {
+            Get.toNamed(AppRoutes.profileUpload);
+          },
           isLoading: false.obs,
           borderRadius: BorderRadius.circular(15),
           child: Row(

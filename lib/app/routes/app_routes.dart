@@ -6,4 +6,5 @@ class AppRoutes {
   static const String language = '/language';
   static const String signup = '/signup';
   static const String gender = '/gender';
+  static const String profileUpload = '/profile-upload';
 }

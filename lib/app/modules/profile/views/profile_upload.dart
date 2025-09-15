@@ -1,9 +1,11 @@
 import 'package:falangthai/app/modules/profile/controllers/profile_upload_controller.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
+import 'package:falangthai/app/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class ProfileUploadScreen extends StatelessWidget {
   ProfileUploadScreen({super.key});
@@ -60,7 +62,7 @@ class ProfileUploadScreen extends StatelessWidget {
                   colors: [
                     AppColors.primaryColor.withValues(alpha: 0.15),
                     Colors.purple.withValues(alpha: 0.1),
-                    Colors.transparent
+                    Colors.transparent,
                   ],
                   rotation: profileController.rotationAnimation.value,
                 ),
@@ -73,7 +75,7 @@ class ProfileUploadScreen extends StatelessWidget {
                   colors: [
                     Colors.cyan.withValues(alpha: 0.12),
                     Colors.blue.withValues(alpha: 0.08),
-                    Colors.transparent
+                    Colors.transparent,
                   ],
                   rotation: -profileController.rotationAnimation.value * 0.7,
                 ),
@@ -86,7 +88,7 @@ class ProfileUploadScreen extends StatelessWidget {
                   colors: [
                     Colors.pink.withValues(alpha: 0.12),
                     Colors.purple.withValues(alpha: 0.08),
-                    Colors.transparent
+                    Colors.transparent,
                   ],
                   rotation: profileController.rotationAnimation.value * 1.2,
                 ),
@@ -99,7 +101,7 @@ class ProfileUploadScreen extends StatelessWidget {
                   colors: [
                     Colors.teal.withValues(alpha: 0.1),
                     Colors.green.withValues(alpha: 0.06),
-                    Colors.transparent
+                    Colors.transparent,
                   ],
                   rotation: profileController.rotationAnimation.value * 0.5,
                 ),
@@ -107,8 +109,15 @@ class ProfileUploadScreen extends StatelessWidget {
               // Smaller accent orbs
               ...List.generate(6, (index) {
                 return Positioned(
-                  top: 120 + (index * 80) + profileController.floatAnimation1.value * (10 + index * 2),
-                  left: 40 + (index * 60) + profileController.floatAnimation2.value * (8 + index),
+                  top:
+                      120 +
+                      (index * 80) +
+                      profileController.floatAnimation1.value *
+                          (10 + index * 2),
+                  left:
+                      40 +
+                      (index * 60) +
+                      profileController.floatAnimation2.value * (8 + index),
                   child: _buildAccentOrb(
                     size: 15 + (index * 3).toDouble(),
                     opacity: 0.4 - (index * 0.05),
@@ -118,7 +127,10 @@ class ProfileUploadScreen extends StatelessWidget {
               // Sparkle effects
               ...List.generate(8, (index) {
                 return Positioned(
-                  top: 100 + (index * 70) + profileController.pulseAnimation.value * 5,
+                  top:
+                      100 +
+                      (index * 70) +
+                      profileController.pulseAnimation.value * 5,
                   right: 80 + (index * 40),
                   child: _buildSparkle(
                     size: 4 + (index % 3) * 2,
@@ -229,7 +241,10 @@ class ProfileUploadScreen extends StatelessWidget {
             GestureDetector(
               onTap: () {},
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
                 child: Text(
                   "Skip",
                   style: GoogleFonts.fredoka(
@@ -343,167 +358,109 @@ class ProfileUploadScreen extends StatelessWidget {
   }
 
   Widget _buildProfileUploadSection() {
-    return Obx(() => Column(
-      children: [
-        // Main profile upload area
-        GestureDetector(
-          onTap: () => profileController.showImagePickerOptions(),
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 500),
-            curve: Curves.easeInOut,
-            width: 200,
-            height: 200,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: profileController.selectedImagePath.value.isNotEmpty
-                  ? null
-                  : RadialGradient(
-                      colors: [
-                        AppColors.primaryColor.withValues(alpha: 0.2),
-                        Colors.purple.withValues(alpha: 0.1),
-                        Colors.transparent,
-                      ],
-                      stops: const [0.0, 0.7, 1.0],
-                    ),
-              border: Border.all(
-                color: profileController.selectedImagePath.value.isNotEmpty
-                    ? AppColors.primaryColor.withValues(alpha: 0.6)
-                    : Colors.white.withValues(alpha: 0.3),
-                width: 3,
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.primaryColor.withValues(alpha: 0.3),
-                  blurRadius: 25,
-                  spreadRadius: 2,
-                ),
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.1),
-                  blurRadius: 15,
-                  offset: const Offset(0, 8),
-                ),
-              ],
-            ),
-            child: profileController.selectedImagePath.value.isNotEmpty
-                ? ClipOval(
-                    child: Image.network(
-                      profileController.selectedImagePath.value,
-                      fit: BoxFit.cover,
-                      width: 200,
-                      height: 200,
-                      errorBuilder: (context, error, stackTrace) => _buildPlaceholderContent(),
-                    ),
-                  )
-                : _buildPlaceholderContent(),
-          ),
-        ),
-        const SizedBox(height: 30),
-        // Upload options
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            _buildUploadOption(
-              icon: Icons.camera_alt_rounded,
-              label: "Camera",
-              onTap: () => profileController.pickImageFromCamera(),
-            ),
-            _buildUploadOption(
-              icon: Icons.photo_library_rounded,
-              label: "Gallery",
-              onTap: () => profileController.pickImageFromGallery(),
-            ),
-          ],
-        ),
-        if (profileController.selectedImagePath.value.isNotEmpty) ...[
-          const SizedBox(height: 20),
+    return Obx(() {
+      return Column(
+        children: [
           GestureDetector(
-            onTap: () => profileController.removeImage(),
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+            onTap: () => profileController.showImagePickerOptions(),
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.easeInOut,
+              width: 200,
+              height: 200,
               decoration: BoxDecoration(
-                color: Colors.red.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(25),
+                shape: BoxShape.circle,
+                gradient: profileController.selectedImage.value != null
+                    ? null
+                    : RadialGradient(
+                        colors: [
+                          AppColors.primaryColor.withValues(alpha: 0.2),
+                          Colors.purple.withValues(alpha: 0.1),
+                          Colors.transparent,
+                        ],
+                        stops: const [0.0, 0.7, 1.0],
+                      ),
                 border: Border.all(
-                  color: Colors.red.withValues(alpha: 0.3),
-                  width: 1,
+                  color: profileController.selectedImage.value != null
+                      ? AppColors.primaryColor.withValues(alpha: 0.6)
+                      : Colors.white.withValues(alpha: 0.3),
+                  width: 3,
                 ),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    Icons.delete_outline_rounded,
-                    color: Colors.red.shade300,
-                    size: 18,
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.primaryColor.withValues(alpha: 0.3),
+                    blurRadius: 25,
+                    spreadRadius: 2,
                   ),
-                  const SizedBox(width: 8),
-                  Text(
-                    "Remove photo",
-                    style: GoogleFonts.fredoka(
-                      fontSize: 14,
-                      color: Colors.red.shade300,
-                      fontWeight: FontWeight.w500,
-                    ),
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.1),
+                    blurRadius: 15,
+                    offset: const Offset(0, 8),
                   ),
                 ],
               ),
+              child: profileController.selectedImage.value != null
+                  ? ClipOval(
+                      child: Image.file(
+                        profileController.selectedImage.value!,
+                        fit: BoxFit.cover,
+                        width: 200,
+                        height: 200,
+                        errorBuilder: (context, error, stackTrace) => Icon(
+                          Icons.error_outline_rounded,
+                          color: Colors.red,
+                          size: 40,
+                        ),
+                      ),
+                    )
+                  : Icon(
+                      Icons.add_a_photo_rounded,
+                      color: AppColors.primaryColor,
+                      size: 40,
+                    ),
             ),
           ),
+          const SizedBox(height: 30),
+          // Upload options
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //   children: [
+          //     _buildUploadOption(
+          //       icon: Icons.camera_alt_rounded,
+          //       label: "Camera",
+          //       onTap: () => profileController.pickImageFromCamera(),
+          //     ),
+          //     _buildUploadOption(
+          //       icon: Icons.photo_library_rounded,
+          //       label: "Gallery",
+          //       onTap: () => profileController.pickImageFromGallery(),
+          //     ),
+          //   ],
+          // ),
+          Obx(() {
+            final dateOfBirth = profileController.dateOfBirth.value;
+            return CustomTextField(
+              bgColor: Colors.white.withValues(alpha: 0.05),
+              prefixIcon: Icons.person,
+              onTap: () => profileController.showDateDialog(),
+              prefixIconColor: AppColors.primaryColor,
+              readOnly: true,
+              hintText: dateOfBirth != null
+                  ? DateFormat('dd MMM yyyy').format(dateOfBirth)
+                  : "Date of birth",
+              hintStyle: GoogleFonts.fredoka(
+                color: Colors.white.withValues(alpha: 0.5),
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+              ),
+            );
+          }),
         ],
-      ],
-    ));
+      );
+    });
   }
 
-  Widget _buildPlaceholderContent() {
-    return AnimatedBuilder(
-      animation: profileController.pulseAnimation,
-      builder: (context, child) {
-        return Container(
-          width: 200,
-          height: 200,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: Colors.white.withValues(alpha: 0.05),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Transform.scale(
-                scale: 1.0 + (profileController.pulseAnimation.value * 0.1),
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: AppColors.primaryColor.withValues(alpha: 0.2),
-                    border: Border.all(
-                      color: AppColors.primaryColor.withValues(alpha: 0.4),
-                      width: 2,
-                    ),
-                  ),
-                  child: Icon(
-                    Icons.add_a_photo_rounded,
-                    color: AppColors.primaryColor,
-                    size: 40,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                "Add Photo",
-                style: GoogleFonts.fredoka(
-                  fontSize: 16,
-                  color: Colors.white.withOpacity(0.7),
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
-  Widget _buildUploadOption({
+  Widget buildUploadOption({
     required IconData icon,
     required String label,
     required VoidCallback onTap,
@@ -539,11 +496,7 @@ class ProfileUploadScreen extends StatelessWidget {
                   width: 1,
                 ),
               ),
-              child: Icon(
-                icon,
-                color: AppColors.primaryColor,
-                size: 24,
-              ),
+              child: Icon(icon, color: AppColors.primaryColor, size: 24),
             ),
             const SizedBox(height: 8),
             Text(
@@ -564,11 +517,11 @@ class ProfileUploadScreen extends StatelessWidget {
     return Obx(
       () => AnimatedOpacity(
         duration: const Duration(milliseconds: 300),
-        opacity: profileController.selectedImagePath.value.isNotEmpty ? 1.0 : 0.5,
+        opacity: profileController.selectedImage.value != null ? 1.0 : 0.5,
         child: CustomButton(
-          ontap: profileController.selectedImagePath.value.isNotEmpty
-              ? () => profileController.continueToNext()
-              : () {},
+          ontap: () {
+            if (!profileController.hasSelectedImage) return;
+          },
           isLoading: profileController.isUploading,
           borderRadius: BorderRadius.circular(15),
           child: Row(
@@ -585,7 +538,7 @@ class ProfileUploadScreen extends StatelessWidget {
               const SizedBox(width: 12),
               AnimatedRotation(
                 duration: const Duration(milliseconds: 300),
-                turns: profileController.selectedImagePath.value.isNotEmpty ? 0 : 0.5,
+                turns: profileController.selectedImage.value != null ? 0 : 0.5,
                 child: const Icon(
                   Icons.arrow_forward,
                   color: Colors.white,
