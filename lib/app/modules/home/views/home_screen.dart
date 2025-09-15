@@ -13,6 +13,7 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
   final homeController = Get.put(HomeController());
+  final appinioSwiperController = AppinioSwiperController();
   final authWidget = AuthWidgets();
 
   @override
@@ -30,6 +31,7 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(height: Get.height * 0.05),
                 Expanded(
                   child: AppinioSwiper(
+                    controller: appinioSwiperController,
                     cardCount: homeController.images.length,
                     backgroundCardCount: 2,
                     backgroundCardOffset: Offset(0, -45),
@@ -143,14 +145,22 @@ class HomeScreen extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        buildActionButton(icon: FontAwesomeIcons.arrowsRotate, onTap: () {}),
-        buildActionButton(size: 35, icon: FontAwesomeIcons.xmark, onTap: () {}),
+        buildActionButton(icon: FontAwesomeIcons.arrowsRotate, onTap: () {
+          appinioSwiperController.unswipe();
+        }),
+        buildActionButton(size: 35, icon: FontAwesomeIcons.xmark, onTap: () {
+          appinioSwiperController.swipeLeft();
+        }),
         buildActionButton(
           icon: FontAwesomeIcons.solidHeart,
-          onTap: () {},
+          onTap: () {
+            appinioSwiperController.swipeRight();
+          },
           size: 35,
         ),
-        buildActionButton(icon: FontAwesomeIcons.paperPlane, onTap: () {}),
+        buildActionButton(icon: FontAwesomeIcons.paperPlane, onTap: () {
+          appinioSwiperController.swipeRight();
+        }),
       ],
     );
   }
