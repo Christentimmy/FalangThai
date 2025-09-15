@@ -11,4 +11,5 @@ class AppRoutes {
   static const String relationshipPreference = '/relationship-preference';
   static const String favorite = '/favorite';
   static const String matches = '/matches';
+  static const String chatList = '/chatList';
 }
