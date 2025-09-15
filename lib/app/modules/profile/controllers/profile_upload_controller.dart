@@ -208,6 +208,9 @@ class ProfileUploadController extends GetxController
 
   // Validation
   bool get hasSelectedImage => selectedImage.value != null;
+  bool get hasSelectedDateOfBirth => dateOfBirth.value != null;
+
+  bool get isValid => hasSelectedImage && hasSelectedDateOfBirth;
 
   void showDateDialog() async {
     final date = await showDatePicker(

@@ -223,13 +223,10 @@ class ProfileUploadScreen extends StatelessWidget {
     return Obx(
       () => AnimatedOpacity(
         duration: const Duration(milliseconds: 300),
-        opacity: profileController.selectedImage.value != null ? 1.0 : 0.5,
+        opacity: profileController.isValid ? 1.0 : 0.5,
         child: CustomButton(
           ontap: () {
-            if (!profileController.hasSelectedImage){
-              
-            }
-            if (profileController.dateOfBirth.value == null) return;
+            if (!profileController.isValid) return;
             Get.toNamed(AppRoutes.hobby);
           },
           isLoading: profileController.isUploading,

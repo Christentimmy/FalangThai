@@ -1,4 +1,3 @@
-
 import 'package:falangthai/app/modules/profile/controllers/hobby_controller.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
@@ -116,9 +115,14 @@ class HobbiesSelectionScreen extends StatelessWidget {
                   const Color(0xFFEF4444),
                 ];
                 return Positioned(
-                  top: 120 + (index * 60) + 
-                      hobbiesController.floatAnimation1.value * (8 + index * 1.5),
-                  left: 60 + (index * 45) + 
+                  top:
+                      120 +
+                      (index * 60) +
+                      hobbiesController.floatAnimation1.value *
+                          (8 + index * 1.5),
+                  left:
+                      60 +
+                      (index * 45) +
                       hobbiesController.floatAnimation2.value * (6 + index),
                   child: _buildHobbySparkle(
                     size: 6 + (index % 4) * 2,
@@ -138,7 +142,9 @@ class HobbiesSelectionScreen extends StatelessWidget {
                   Icons.flight_rounded,
                 ];
                 return Positioned(
-                  top: 100 + (index * 120) + 
+                  top:
+                      100 +
+                      (index * 120) +
                       hobbiesController.pulseAnimation.value * 10,
                   right: 30 + (index * 30),
                   child: _buildFloatingIcon(
@@ -203,11 +209,7 @@ class HobbiesSelectionScreen extends StatelessWidget {
     required double size,
     required double opacity,
   }) {
-    return Icon(
-      icon,
-      size: size,
-      color: Colors.white.withOpacity(opacity),
-    );
+    return Icon(icon, size: size, color: Colors.white.withOpacity(opacity));
   }
 
   Widget _buildHeader() {
@@ -392,31 +394,29 @@ class HobbiesSelectionScreen extends StatelessWidget {
   }
 
   Widget _buildHobbiesGrid() {
-    return Obx(() {
-      return AnimatedList(
-        initialItemCount: hobbiesController.availableHobbies.length,
-        itemBuilder: (context, index, animation) {
-          return SlideTransition(
-            position: animation.drive(
-              Tween(begin: const Offset(0.5, 0), end: Offset.zero),
+    return AnimatedList(
+      initialItemCount: hobbiesController.availableHobbies.length,
+      itemBuilder: (context, index, animation) {
+        return SlideTransition(
+          position: animation.drive(
+            Tween(begin: const Offset(0.5, 0), end: Offset.zero),
+          ),
+          child: FadeTransition(
+            opacity: animation,
+            child: _buildHobbyCard(
+              hobby: hobbiesController.availableHobbies[index],
+              index: index,
             ),
-            child: FadeTransition(
-              opacity: animation,
-              child: _buildHobbyCard(
-                hobby: hobbiesController.availableHobbies[index],
-                index: index,
-              ),
-            ),
-          );
-        },
-      );
-    });
+          ),
+        );
+      },
+    );
   }
 
   Widget _buildHobbyCard({required HobbyItem hobby, required int index}) {
     return Obx(() {
       final isSelected = hobbiesController.isHobbySelected(hobby.id);
-      
+
       return AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
@@ -436,9 +436,7 @@ class HobbiesSelectionScreen extends StatelessWidget {
                       ],
                     )
                   : null,
-              color: isSelected 
-                  ? null 
-                  : Colors.white.withValues(alpha: 0.05),
+              color: isSelected ? null : Colors.white.withValues(alpha: 0.05),
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
                 color: isSelected
@@ -495,7 +493,9 @@ class HobbiesSelectionScreen extends StatelessWidget {
                       color: isSelected
                           ? Colors.white
                           : Colors.white.withOpacity(0.8),
-                      fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                      fontWeight: isSelected
+                          ? FontWeight.w600
+                          : FontWeight.w500,
                     ),
                   ),
                 ),
@@ -530,7 +530,7 @@ class HobbiesSelectionScreen extends StatelessWidget {
         opacity: hobbiesController.canContinue ? 1.0 : 0.5,
         child: CustomButton(
           ontap: hobbiesController.continueToNext,
-          isLoading: hobbiesController.isLoading,
+          isLoading: false.obs,
           borderRadius: BorderRadius.circular(15),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -559,5 +559,4 @@ class HobbiesSelectionScreen extends StatelessWidget {
       );
     });
   }
-
 }
