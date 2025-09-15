@@ -228,20 +228,6 @@ class HobbiesSelectionController extends GetxController
     return "$count/8 hobbies selected";
   }
 
-  void continueToNext() {
-    if (!canContinue) return;
-    
-    HapticFeedback.mediumImpact();
-    isLoading.value = true;
-    
-    // Simulate API call
-    Future.delayed(const Duration(seconds: 2), () {
-      isLoading.value = false;
-      // Navigate to next screen
-      // Get.toNamed('/next-screen');
-    });
-  }
-
   @override
   void onClose() {
     backgroundAnimationController.dispose();

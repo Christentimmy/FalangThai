@@ -1,15 +1,14 @@
-import 'package:falangthai/app/modules/profile/controllers/hobby_controller.dart';
+import 'package:falangthai/app/modules/profile/controllers/relationship_controller.dart';
 import 'package:falangthai/app/resources/colors.dart';
-import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HobbiesSelectionScreen extends StatelessWidget {
-  HobbiesSelectionScreen({super.key});
+class RelationshipPreferenceScreen extends StatelessWidget {
+  RelationshipPreferenceScreen({super.key});
 
-  final hobbiesController = Get.put(HobbiesSelectionController());
+  final preferenceController = Get.put(RelationshipPreferenceController());
 
   @override
   Widget build(BuildContext context) {
@@ -48,110 +47,121 @@ class HobbiesSelectionScreen extends StatelessWidget {
   Widget _buildAnimatedBackground() {
     return Positioned.fill(
       child: AnimatedBuilder(
-        animation: hobbiesController.backgroundAnimationController,
+        animation: preferenceController.backgroundAnimationController,
         builder: (context, child) {
           return Stack(
             children: [
-              // Main floating orbs with hobby-themed colors
+              // Romantic floating orbs with love-themed colors
               Positioned(
-                top: 80 + hobbiesController.floatAnimation1.value * 30,
-                right: 20,
+                top: 70 + preferenceController.floatAnimation1.value * 25,
+                right: 30,
                 child: _buildFloatingOrb(
-                  size: 180,
+                  size: 160,
                   colors: [
-                    const Color(0xFF6366F1).withValues(alpha: 0.15),
-                    const Color(0xFF8B5CF6).withValues(alpha: 0.1),
+                    const Color(0xFFEC4899).withValues(alpha: 0.2),
+                    const Color(0xFFBE185D).withValues(alpha: 0.1),
                     Colors.transparent,
                   ],
-                  rotation: hobbiesController.rotationAnimation.value,
+                  rotation: preferenceController.rotationAnimation.value,
                 ),
               ),
               Positioned(
-                top: 200 + hobbiesController.floatAnimation2.value * 35,
-                left: -40,
+                top: 220 + preferenceController.floatAnimation2.value * 30,
+                left: -50,
                 child: _buildFloatingOrb(
                   size: 200,
                   colors: [
-                    const Color(0xFFEC4899).withValues(alpha: 0.12),
-                    const Color(0xFFF97316).withValues(alpha: 0.08),
+                    const Color(0xFF8B5CF6).withValues(alpha: 0.15),
+                    const Color(0xFF7C3AED).withValues(alpha: 0.1),
                     Colors.transparent,
                   ],
-                  rotation: -hobbiesController.rotationAnimation.value * 0.6,
+                  rotation: -preferenceController.rotationAnimation.value * 0.7,
                 ),
               ),
               Positioned(
-                bottom: 120 + hobbiesController.floatAnimation1.value * 40,
-                right: -60,
+                bottom: 150 + preferenceController.floatAnimation1.value * 35,
+                right: -40,
                 child: _buildFloatingOrb(
-                  size: 160,
+                  size: 140,
+                  colors: [
+                    const Color(0xFF06B6D4).withValues(alpha: 0.15),
+                    const Color(0xFF0891B2).withValues(alpha: 0.1),
+                    Colors.transparent,
+                  ],
+                  rotation: preferenceController.rotationAnimation.value * 1.2,
+                ),
+              ),
+              Positioned(
+                bottom: 320 + preferenceController.floatAnimation2.value * 20,
+                left: 30,
+                child: _buildFloatingOrb(
+                  size: 110,
                   colors: [
                     const Color(0xFF10B981).withValues(alpha: 0.12),
                     const Color(0xFF059669).withValues(alpha: 0.08),
                     Colors.transparent,
                   ],
-                  rotation: hobbiesController.rotationAnimation.value * 1.3,
+                  rotation: preferenceController.rotationAnimation.value * 0.5,
                 ),
               ),
-              Positioned(
-                bottom: 300 + hobbiesController.floatAnimation2.value * 25,
-                left: 20,
-                child: _buildFloatingOrb(
-                  size: 120,
-                  colors: [
-                    const Color(0xFF06B6D4).withValues(alpha: 0.1),
-                    const Color(0xFF0891B2).withValues(alpha: 0.06),
-                    Colors.transparent,
-                  ],
-                  rotation: hobbiesController.rotationAnimation.value * 0.4,
-                ),
-              ),
-              // Hobby-themed sparkles
-              ...List.generate(12, (index) {
-                final colors = [
-                  const Color(0xFF6366F1),
-                  const Color(0xFFEC4899),
-                  const Color(0xFFF59E0B),
-                  const Color(0xFF10B981),
-                  const Color(0xFF8B5CF6),
-                  const Color(0xFFEF4444),
-                ];
-                return Positioned(
-                  top:
-                      120 +
-                      (index * 60) +
-                      hobbiesController.floatAnimation1.value *
-                          (8 + index * 1.5),
-                  left:
-                      60 +
-                      (index * 45) +
-                      hobbiesController.floatAnimation2.value * (6 + index),
-                  child: _buildHobbySparkle(
-                    size: 6 + (index % 4) * 2,
-                    color: colors[index % colors.length],
-                    opacity: 0.5 - (index * 0.03),
-                  ),
-                );
-              }),
-              // Floating icons
-              ...List.generate(6, (index) {
+              // Floating hearts and relationship symbols
+              ...List.generate(8, (index) {
                 final icons = [
-                  Icons.music_note_rounded,
-                  Icons.palette_rounded,
-                  Icons.sports_soccer_rounded,
-                  Icons.camera_alt_rounded,
-                  Icons.menu_book_rounded,
-                  Icons.flight_rounded,
+                  Icons.favorite_rounded,
+                  Icons.favorite_border_rounded,
+                  Icons.people_rounded,
+                  Icons.handshake_rounded,
+                  Icons.favorite_rounded,
+                  Icons.people_alt_rounded,
+                  Icons.favorite_border_rounded,
+                  Icons.group_rounded,
+                ];
+                final colors = [
+                  const Color(0xFFEC4899),
+                  const Color(0xFF8B5CF6),
+                  const Color(0xFF10B981),
+                  const Color(0xFF06B6D4),
+                  const Color(0xFFF59E0B),
+                  const Color(0xFF3B82F6),
+                  const Color(0xFFEF4444),
+                  const Color(0xFF84CC16),
                 ];
                 return Positioned(
                   top:
                       100 +
-                      (index * 120) +
-                      hobbiesController.pulseAnimation.value * 10,
-                  right: 30 + (index * 30),
-                  child: _buildFloatingIcon(
+                      (index * 80) +
+                      preferenceController.heartbeatAnimation.value * 15,
+                  left:
+                      50 +
+                      (index * 50) +
+                      preferenceController.floatAnimation1.value * (5 + index),
+                  child: _buildFloatingLoveIcon(
                     icon: icons[index],
-                    size: 20 + (index % 3) * 4,
-                    opacity: 0.2 - (index * 0.02),
+                    color: colors[index],
+                    size: 18 + (index % 4) * 3,
+                    opacity: 0.4 - (index * 0.04),
+                  ),
+                );
+              }),
+              // Sparkle effects
+              ...List.generate(10, (index) {
+                final colors = [
+                  const Color(0xFFEC4899),
+                  const Color(0xFF8B5CF6),
+                  const Color(0xFF06B6D4),
+                  const Color(0xFFF59E0B),
+                  const Color(0xFF10B981),
+                ];
+                return Positioned(
+                  top:
+                      120 +
+                      (index * 65) +
+                      preferenceController.pulseAnimation.value * 8,
+                  right: 70 + (index * 35),
+                  child: _buildLoveSparkle(
+                    size: 4 + (index % 3) * 2,
+                    color: colors[index % colors.length],
+                    opacity: 0.6 - (index * 0.05),
                   ),
                 );
               }),
@@ -183,7 +193,16 @@ class HobbiesSelectionScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildHobbySparkle({
+  Widget _buildFloatingLoveIcon({
+    required IconData icon,
+    required Color color,
+    required double size,
+    required double opacity,
+  }) {
+    return Icon(icon, size: size, color: color.withOpacity(opacity));
+  }
+
+  Widget _buildLoveSparkle({
     required double size,
     required Color color,
     required double opacity,
@@ -205,14 +224,6 @@ class HobbiesSelectionScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildFloatingIcon({
-    required IconData icon,
-    required double size,
-    required double opacity,
-  }) {
-    return Icon(icon, size: size, color: Colors.white.withOpacity(opacity));
-  }
-
   Widget _buildHeader() {
     return Positioned(
       top: 20,
@@ -223,7 +234,9 @@ class HobbiesSelectionScreen extends StatelessWidget {
         child: Row(
           children: [
             GestureDetector(
-              onTap: () => Get.back(),
+              onTap: () {
+                Get.back();
+              },
               child: Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
@@ -283,13 +296,12 @@ class HobbiesSelectionScreen extends StatelessWidget {
           _buildTitle(),
           const SizedBox(height: 8),
           _buildSubtitle(),
-          const SizedBox(height: 12),
-          _buildSelectionCounter(),
-          const SizedBox(height: 30),
-          Expanded(child: _buildHobbiesGrid()),
-          const SizedBox(height: 12),
+          const SizedBox(height: 40),
+          // Expanded(child: _buildCurrentStep()),
+          Expanded(child: _buildGenderPreferenceSelection()),
+          const SizedBox(height: 8),
           _buildContinueButton(),
-          const SizedBox(height: 20),
+          const SizedBox(height: 40),
         ],
       ),
     );
@@ -305,7 +317,7 @@ class HobbiesSelectionScreen extends StatelessWidget {
         _buildProgressLine(),
         _buildProgressDot(isActive: true),
         _buildProgressLine(),
-        _buildProgressDot(isActive: false),
+        _buildProgressDot(isActive: true),
       ],
     );
   }
@@ -347,7 +359,7 @@ class HobbiesSelectionScreen extends StatelessWidget {
 
   Widget _buildTitle() {
     return Text(
-      "What are your hobbies?",
+      "Who interests you?",
       style: GoogleFonts.fredoka(
         fontSize: 28,
         color: Colors.white,
@@ -359,7 +371,7 @@ class HobbiesSelectionScreen extends StatelessWidget {
 
   Widget _buildSubtitle() {
     return Text(
-      "Help others discover what makes you unique!\nSelect activities you love and enjoy",
+      "Select preference that apply to help us\nfind your perfect matches",
       style: GoogleFonts.fredoka(
         fontSize: 15,
         color: Colors.white.withOpacity(0.7),
@@ -370,66 +382,32 @@ class HobbiesSelectionScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSelectionCounter() {
-    return Obx(() {
-      return AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: BoxDecoration(
-          color: AppColors.primaryColor.withValues(alpha: 0.15),
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: AppColors.primaryColor.withValues(alpha: 0.3),
-            width: 1,
-          ),
-        ),
-        child: Text(
-          hobbiesController.selectionText,
-          style: GoogleFonts.fredoka(
-            fontSize: 13,
-            color: AppColors.primaryColor,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      );
-    });
-  }
-
-  Widget _buildHobbiesGrid() {
-    return AnimatedGrid(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: 2.8,
-        crossAxisSpacing: 12,
-      ),
-      initialItemCount: hobbiesController.availableHobbies.length,
-      itemBuilder: (context, index, animation) {
-        return SlideTransition(
-          position: animation.drive(
-            Tween(begin: const Offset(0.5, 0), end: Offset.zero),
-          ),
-          child: FadeTransition(
-            opacity: animation,
-            child: _buildHobbyCard(
-              hobby: hobbiesController.availableHobbies[index],
-              index: index,
-            ),
-          ),
-        );
+  Widget _buildGenderPreferenceSelection() {
+    return ListView.builder(
+      key: const ValueKey("gender_preferences"),
+      itemCount: preferenceController.genderPreferences.length,
+      itemBuilder: (context, index) {
+        final preference = preferenceController.genderPreferences[index];
+        return _buildGenderPreferenceCard(preference: preference, index: index);
       },
     );
   }
 
-  Widget _buildHobbyCard({required HobbyItem hobby, required int index}) {
+  Widget _buildGenderPreferenceCard({
+    required PreferenceItem preference,
+    required int index,
+  }) {
     return Obx(() {
-      final isSelected = hobbiesController.isHobbySelected(hobby.id);
+      final isSelected =
+          preferenceController.selectedPreference.value == preference.id;
 
       return AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
         margin: const EdgeInsets.only(bottom: 12),
         child: GestureDetector(
-          onTap: () => hobbiesController.toggleHobby(hobby.id),
+          onTap: () =>
+              preferenceController.toggleGenderPreference(preference.id),
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
             decoration: BoxDecoration(
@@ -444,11 +422,11 @@ class HobbiesSelectionScreen extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Icon(hobby.icon, color: Colors.white70, size: 20),
+                Icon(preference.icon, color: Colors.white70, size: 20),
                 const SizedBox(width: 16),
                 Expanded(
                   child: Text(
-                    hobby.name,
+                    preference.title,
                     style: GoogleFonts.fredoka(
                       fontSize: 13,
                       color: isSelected
@@ -472,10 +450,11 @@ class HobbiesSelectionScreen extends StatelessWidget {
     return Obx(() {
       return AnimatedOpacity(
         duration: const Duration(milliseconds: 300),
-        opacity: hobbiesController.canContinue ? 1.0 : 0.5,
+        opacity: preferenceController.canContinue ? 1.0 : 0.5,
         child: CustomButton(
           ontap: () {
-            Get.toNamed(AppRoutes.relationshipPreference);
+            if (!preferenceController.canContinue) return;
+            // preferenceController.nextStep();
           },
           isLoading: false.obs,
           borderRadius: BorderRadius.circular(15),
@@ -493,7 +472,7 @@ class HobbiesSelectionScreen extends StatelessWidget {
               const SizedBox(width: 12),
               AnimatedRotation(
                 duration: const Duration(milliseconds: 300),
-                turns: hobbiesController.canContinue ? 0 : 0.5,
+                turns: preferenceController.canContinue ? 0 : 0.5,
                 child: const Icon(
                   Icons.arrow_forward,
                   color: Colors.white,
