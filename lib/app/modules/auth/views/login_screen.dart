@@ -219,7 +219,7 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 32),
               CustomButton(
                 ontap: () {
-                  Get.toNamed(AppRoutes.home);
+                  Get.toNamed(AppRoutes.bottomNavigation);
                 },
                 isLoading: false.obs,
                 borderRadius: BorderRadius.circular(20),

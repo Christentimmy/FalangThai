@@ -15,10 +15,13 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: "FalangThai",
-      initialRoute: AppRoutes.settings,
+      initialRoute: AppRoutes.bottomNavigation,
       getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        splashFactory: NoSplash.splashFactory,
         primaryColor: Colors.pinkAccent,
         textTheme: GoogleFonts.poppinsTextTheme(),
       ),

@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
 import 'package:falangthai/app/resources/colors.dart';
+import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,7 +18,6 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Get.theme.scaffoldBackgroundColor,
       body: SafeArea(
         child: Container(
           decoration: authWidget.buildBackgroundDecoration(),
@@ -181,7 +181,7 @@ class HomeScreen extends StatelessWidget {
         ),
         const Spacer(),
         InkWell(
-          // onTap: () => Get.toNamed(AppRoutes.notification),
+          onTap: () => Get.toNamed(AppRoutes.notification),
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 5),
             child: Icon(Icons.notifications, color: AppColors.primaryColor),

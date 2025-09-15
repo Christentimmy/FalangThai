@@ -18,4 +18,5 @@ class AppRoutes {
   static const String settings = '/settings';
   static const String notification = '/notification';
   static const String subscription = '/subscription';
+  static const String bottomNavigation = '/bottom-navigation';
 }

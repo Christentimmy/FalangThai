@@ -455,7 +455,7 @@ class RelationshipPreferenceScreen extends StatelessWidget {
         child: CustomButton(
           ontap: () {
             if (!preferenceController.canContinue) return;
-            Get.toNamed(AppRoutes.home);
+            Get.toNamed(AppRoutes.bottomNavigation);
           },
           isLoading: false.obs,
           borderRadius: BorderRadius.circular(15),
