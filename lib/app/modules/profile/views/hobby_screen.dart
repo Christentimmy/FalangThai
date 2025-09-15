@@ -286,8 +286,9 @@ class HobbiesSelectionScreen extends StatelessWidget {
           _buildSelectionCounter(),
           const SizedBox(height: 30),
           Expanded(child: _buildHobbiesGrid()),
+          const SizedBox(height: 12),
           _buildContinueButton(),
-          const SizedBox(height: 40),
+          const SizedBox(height: 20),
         ],
       ),
     );
@@ -394,7 +395,12 @@ class HobbiesSelectionScreen extends StatelessWidget {
   }
 
   Widget _buildHobbiesGrid() {
-    return AnimatedList(
+    return AnimatedGrid(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: 2.8,
+        crossAxisSpacing: 12,
+      ),
       initialItemCount: hobbiesController.availableHobbies.length,
       itemBuilder: (context, index, animation) {
         return SlideTransition(
@@ -426,92 +432,30 @@ class HobbiesSelectionScreen extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
             decoration: BoxDecoration(
-              gradient: isSelected
-                  ? LinearGradient(
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      colors: [
-                        hobby.color.withValues(alpha: 0.3),
-                        hobby.color.withValues(alpha: 0.2),
-                      ],
-                    )
-                  : null,
-              color: isSelected ? null : Colors.white.withValues(alpha: 0.05),
+              color: Colors.white.withValues(alpha: 0.05),
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
                 color: isSelected
-                    ? hobby.color.withValues(alpha: 0.6)
+                    ? AppColors.primaryColor
                     : Colors.white.withValues(alpha: 0.15),
                 width: isSelected ? 2 : 1,
               ),
-              boxShadow: isSelected
-                  ? [
-                      BoxShadow(
-                        color: hobby.color.withValues(alpha: 0.3),
-                        blurRadius: 15,
-                        spreadRadius: 2,
-                        offset: const Offset(0, 4),
-                      ),
-                    ]
-                  : [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.1),
-                        blurRadius: 10,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
             ),
             child: Row(
               children: [
-                AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: isSelected
-                        ? hobby.color.withValues(alpha: 0.3)
-                        : Colors.white.withValues(alpha: 0.1),
-                    border: Border.all(
-                      color: isSelected
-                          ? hobby.color.withValues(alpha: 0.6)
-                          : Colors.white.withValues(alpha: 0.2),
-                      width: 1,
-                    ),
-                  ),
-                  child: Icon(
-                    hobby.icon,
-                    color: isSelected ? hobby.color : Colors.white70,
-                    size: 24,
-                  ),
-                ),
+                Icon(hobby.icon, color: Colors.white70, size: 20),
                 const SizedBox(width: 16),
                 Expanded(
                   child: Text(
                     hobby.name,
                     style: GoogleFonts.fredoka(
-                      fontSize: 16,
+                      fontSize: 13,
                       color: isSelected
                           ? Colors.white
                           : Colors.white.withOpacity(0.8),
                       fontWeight: isSelected
-                          ? FontWeight.w600
+                          ? FontWeight.w700
                           : FontWeight.w500,
-                    ),
-                  ),
-                ),
-                AnimatedScale(
-                  duration: const Duration(milliseconds: 200),
-                  scale: isSelected ? 1.0 : 0.0,
-                  child: Container(
-                    padding: const EdgeInsets.all(4),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: hobby.color,
-                    ),
-                    child: const Icon(
-                      Icons.check,
-                      color: Colors.white,
-                      size: 16,
                     ),
                   ),
                 ),
