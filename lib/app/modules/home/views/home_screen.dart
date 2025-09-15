@@ -19,35 +19,34 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          decoration: authWidget.buildBackgroundDecoration(),
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                buildHeader(),
-                SizedBox(height: Get.height * 0.05),
-                Expanded(
-                  child: AppinioSwiper(
-                    controller: appinioSwiperController,
-                    cardCount: homeController.images.length,
-                    backgroundCardCount: 2,
-                    backgroundCardOffset: Offset(0, -45),
-                    onSwipeEnd: (previousIndex, targetIndex, activity) {
-                      // Get.toNamed(AppRoutes.match);
-                    },
-                    cardBuilder: (context, index) {
-                      final image = homeController.images[index];
-                      return buildCard(image: image);
-                    },
-                  ),
+      body: Container(
+        decoration: authWidget.buildBackgroundDecoration(),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: Get.height * 0.02),
+              buildHeader(),
+              SizedBox(height: Get.height * 0.05),
+              Expanded(
+                child: AppinioSwiper(
+                  controller: appinioSwiperController,
+                  cardCount: homeController.images.length,
+                  backgroundCardCount: 2,
+                  backgroundCardOffset: Offset(0, -45),
+                  onSwipeEnd: (previousIndex, targetIndex, activity) {
+                    // Get.toNamed(AppRoutes.match);
+                  },
+                  cardBuilder: (context, index) {
+                    final image = homeController.images[index];
+                    return buildCard(image: image);
+                  },
                 ),
-                SizedBox(height: Get.height * 0.01),
-                buildActionButtons(),
-              ],
-            ),
+              ),
+              SizedBox(height: Get.height * 0.01),
+              buildActionButtons(),
+            ],
           ),
         ),
       ),
@@ -145,12 +144,19 @@ class HomeScreen extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        buildActionButton(icon: FontAwesomeIcons.arrowsRotate, onTap: () {
-          appinioSwiperController.unswipe();
-        }),
-        buildActionButton(size: 35, icon: FontAwesomeIcons.xmark, onTap: () {
-          appinioSwiperController.swipeLeft();
-        }),
+        buildActionButton(
+          icon: FontAwesomeIcons.arrowsRotate,
+          onTap: () {
+            appinioSwiperController.unswipe();
+          },
+        ),
+        buildActionButton(
+          size: 35,
+          icon: FontAwesomeIcons.xmark,
+          onTap: () {
+            appinioSwiperController.swipeLeft();
+          },
+        ),
         buildActionButton(
           icon: FontAwesomeIcons.solidHeart,
           onTap: () {
@@ -158,9 +164,12 @@ class HomeScreen extends StatelessWidget {
           },
           size: 35,
         ),
-        buildActionButton(icon: FontAwesomeIcons.paperPlane, onTap: () {
-          appinioSwiperController.swipeRight();
-        }),
+        buildActionButton(
+          icon: FontAwesomeIcons.paperPlane,
+          onTap: () {
+            appinioSwiperController.swipeRight();
+          },
+        ),
       ],
     );
   }

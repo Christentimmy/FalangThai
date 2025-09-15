@@ -11,6 +11,7 @@ import 'package:falangthai/app/modules/language/views/language_selection_screen.
 import 'package:falangthai/app/modules/notification/views/notification_screen.dart';
 import 'package:falangthai/app/modules/profile/views/gender_screen.dart';
 import 'package:falangthai/app/modules/profile/views/hobby_screen.dart';
+import 'package:falangthai/app/modules/profile/views/profile_screen.dart';
 import 'package:falangthai/app/modules/profile/views/profile_upload.dart';
 import 'package:falangthai/app/modules/profile/views/relationship_preference.dart';
 import 'package:falangthai/app/modules/settings/views/settings_screen.dart';
@@ -43,5 +44,6 @@ class AppPages {
     GetPage(name: AppRoutes.notification, page: () => NotificationScreen()),
     GetPage(name: AppRoutes.subscription, page: () => SubscriptionScreen()),
     GetPage(name: AppRoutes.bottomNavigation, page: () => BottomNavigationWidget()),
+    GetPage(name: AppRoutes.profile, page: () => ProfileScreen()),
   ];
 }

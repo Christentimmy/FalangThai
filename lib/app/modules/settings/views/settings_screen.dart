@@ -36,7 +36,7 @@ class SettingsScreen extends StatelessWidget {
               buildText(
                 title: "Edit Profile",
                 icon: Icons.person,
-                onTap: () => Get.toNamed(AppRoutes.language),
+                onTap: () => Get.toNamed(AppRoutes.profile),
               ),
 
               buildText(
