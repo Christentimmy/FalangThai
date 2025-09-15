@@ -1,5 +1,5 @@
-import 'dart:math' as math;
 import 'package:falangthai/app/modules/auth/controller/signup_controller.dart';
+import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/utils/validator.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
@@ -13,33 +13,19 @@ class SignupScreen extends StatelessWidget {
   SignupScreen({super.key});
 
   final signupController = Get.put(SignupController());
+  final authWidgets = AuthWidgets();
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: _buildBackgroundDecoration(),
+        decoration: authWidgets.buildBackgroundDecoration(),
         child: SafeArea(
           child: Stack(
             children: [_buildAnimatedShapes(), _buildContent(), _buildHeader()],
           ),
         ),
-      ),
-    );
-  }
-
-  BoxDecoration _buildBackgroundDecoration() {
-    return const BoxDecoration(
-      gradient: LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: [
-          Color(0xFF1A1625),
-          Color(0xFF2D2438),
-          Color(0xFF1F1B2E),
-          Color(0xFF0F0D15),
-        ],
-        stops: [0.0, 0.3, 0.7, 1.0],
       ),
     );
   }
@@ -55,27 +41,27 @@ class SignupScreen extends StatelessWidget {
               Positioned(
                 top: 100 + signupController.floatAnimation1.value * 20,
                 right: 50,
-                child: _buildFloatingShape(
+                child: authWidgets.buildFloatingShape(
                   size: 120,
-                  color: AppColors.primaryColor.withOpacity(0.1),
+                  color: AppColors.primaryColor.withValues(alpha: 0.1),
                   rotation: signupController.rotationAnimation.value,
                 ),
               ),
               Positioned(
                 top: 300 + signupController.floatAnimation2.value * 15,
                 left: -30,
-                child: _buildFloatingShape(
+                child: authWidgets.buildFloatingShape(
                   size: 200,
-                  color: Colors.purple.withOpacity(0.08),
+                  color: Colors.purple.withValues(alpha: 0.08),
                   rotation: -signupController.rotationAnimation.value * 0.7,
                 ),
               ),
               Positioned(
                 bottom: 150 + signupController.floatAnimation1.value * 25,
                 right: -50,
-                child: _buildFloatingShape(
+                child: authWidgets.buildFloatingShape(
                   size: 150,
-                  color: Colors.cyan.withOpacity(0.06),
+                  color: Colors.cyan.withValues(alpha: 0.06),
                   rotation: signupController.rotationAnimation.value * 1.2,
                 ),
               ),
@@ -90,7 +76,7 @@ class SignupScreen extends StatelessWidget {
                     shape: BoxShape.circle,
                     gradient: RadialGradient(
                       colors: [
-                        AppColors.primaryColor.withOpacity(0.3),
+                        AppColors.primaryColor.withValues(alpha: 0.3),
                         Colors.transparent,
                       ],
                     ),
@@ -100,27 +86,6 @@ class SignupScreen extends StatelessWidget {
             ],
           );
         },
-      ),
-    );
-  }
-
-  Widget _buildFloatingShape({
-    required double size,
-    required Color color,
-    required double rotation,
-  }) {
-    return Transform.rotate(
-      angle: rotation,
-      child: Container(
-        width: size,
-        height: size,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          gradient: RadialGradient(
-            colors: [color, Colors.transparent],
-            stops: const [0.0, 1.0],
-          ),
-        ),
       ),
     );
   }
@@ -160,7 +125,7 @@ class SignupScreen extends StatelessWidget {
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Form(
-          key: signupController.formKey,
+          key: formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -186,12 +151,12 @@ class SignupScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              _buildTitle(),
-              _buildSubtitle(),
+              authWidgets.buildTitle(title: "Create Account"),
+              authWidgets.buildSubtitle(subtitle: "Join our community and start connecting"),
               const SizedBox(height: 32),
               CustomTextField(
                 controller: signupController.nameController,
-                bgColor: Colors.white.withOpacity(0.05),
+                bgColor: Colors.white.withValues(alpha: 0.05),
                 prefixIcon: Icons.person,
                 prefixIconColor: AppColors.primaryColor,
                 hintText: "Full Name",
@@ -261,71 +226,11 @@ class SignupScreen extends StatelessWidget {
               const SizedBox(height: 30),
               _buildSocialLogin(),
               const SizedBox(height: 20),
-              _buildLoginLink(),
+              // _buildLoginLink(),
+              authWidgets.buildLoginLink(),
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget buildLogo() {
-    return AnimatedBuilder(
-      animation: signupController.logoAnimationController,
-      builder: (context, child) {
-        return Transform.scale(
-          scale: 1.0 + signupController.pulseAnimation.value * 0.1,
-          child: Transform.rotate(
-            angle: math.pi / 0.53,
-            child: Container(
-              padding: const EdgeInsets.all(25),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                gradient: RadialGradient(
-                  colors: [
-                    AppColors.primaryColor.withOpacity(0.2),
-                    Colors.transparent,
-                  ],
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.primaryColor.withOpacity(0.3),
-                    blurRadius: 30,
-                    spreadRadius: 5,
-                  ),
-                ],
-              ),
-              child: Image.asset(
-                "assets/images/logo.png",
-                width: 80,
-                height: 60,
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  Widget _buildTitle() {
-    return Text(
-      "Create Account",
-      style: GoogleFonts.poppins(
-        fontSize: 18,
-        color: Colors.white,
-        fontWeight: FontWeight.w500,
-      ),
-    );
-  }
-
-  Widget _buildSubtitle() {
-    return Text(
-      "Join our community and start connecting",
-      style: GoogleFonts.fredoka(
-        fontSize: 16,
-        color: Colors.white.withOpacity(0.7),
-        fontWeight: FontWeight.w400,
       ),
     );
   }
@@ -420,14 +325,14 @@ class SignupScreen extends StatelessWidget {
         Row(
           children: [
             Expanded(
-              child: _buildSocialButton(
+              child: authWidgets.buildSocialButton(
                 icon: FontAwesomeIcons.google,
                 label: "Google",
               ),
             ),
             const SizedBox(width: 12),
             Expanded(
-              child: _buildSocialButton(
+              child: authWidgets.buildSocialButton(
                 icon: FontAwesomeIcons.facebook,
                 label: "Facebook",
               ),
@@ -435,64 +340,6 @@ class SignupScreen extends StatelessWidget {
           ],
         ),
       ],
-    );
-  }
-
-  Widget _buildSocialButton({
-    required IconData icon,
-    required String label,
-    VoidCallback? onTap,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: Colors.white.withValues(alpha: 0.2), width: 1),
-          color: Colors.white.withValues(alpha: 0.05),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, color: Colors.white, size: 24),
-            const SizedBox(width: 8),
-            Text(
-              label,
-              style: GoogleFonts.fredoka(
-                fontSize: 16,
-                color: Colors.white,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildLoginLink() {
-    return GestureDetector(
-      onTap: () => Get.back(),
-      child: RichText(
-        text: TextSpan(
-          style: GoogleFonts.fredoka(
-            fontSize: 16,
-            color: Colors.white.withOpacity(0.7),
-            fontWeight: FontWeight.w400,
-          ),
-          children: [
-            const TextSpan(text: "Already have an account? "),
-            TextSpan(
-              text: "Sign In",
-              style: GoogleFonts.fredoka(
-                color: AppColors.primaryColor,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 

@@ -1,3 +1,4 @@
+import 'package:falangthai/app/modules/auth/views/login_screen.dart';
 import 'package:falangthai/app/modules/auth/views/signup_screen.dart';
 import 'package:falangthai/app/modules/language/views/language_selection_screen.dart';
 import 'package:falangthai/app/modules/splash/splash_screen.dart';
@@ -7,21 +8,10 @@ import 'package:get/get.dart';
 
 class AppPages {
   static final routes = <GetPage>[
-    GetPage(
-      name: AppRoutes.splash,
-      page: () => const SplashScreen(),
-    ),
-    GetPage(
-      name: AppRoutes.welcome,
-      page: () =>  WelcomeScreen(),
-    ),
-    GetPage(
-      name: AppRoutes.language,
-      page: () =>  LanguageSelectionScreen(),
-    ),
-    GetPage(
-      name: AppRoutes.signup,
-      page: () =>  SignupScreen(),
-    ),
-  ]; 
+    GetPage(name: AppRoutes.splash, page: () => const SplashScreen()),
+    GetPage(name: AppRoutes.welcome, page: () => WelcomeScreen()),
+    GetPage(name: AppRoutes.language, page: () => LanguageSelectionScreen()),
+    GetPage(name: AppRoutes.signup, page: () => SignupScreen()),
+    GetPage(name: AppRoutes.login, page: () => LoginScreen()),
+  ];
 }

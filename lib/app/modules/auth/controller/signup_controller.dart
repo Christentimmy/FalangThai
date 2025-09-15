@@ -20,8 +20,6 @@ class SignupController extends GetxController with GetTickerProviderStateMixin {
   final RxBool isPasswordVisible = true.obs;
   final RxBool acceptTerms = false.obs;
 
-  // Form Validation
-  final formKey = GlobalKey<FormState>();
 
   @override
   void onInit() {
@@ -118,7 +116,6 @@ class SignupController extends GetxController with GetTickerProviderStateMixin {
 
   @override
   void onClose() {
-    formKey.currentState?.reset();
     nameController.dispose();
     emailController.dispose();
     passwordController.dispose();
