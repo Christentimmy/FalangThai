@@ -1,3 +1,5 @@
+
+
 import 'dart:ui';
 import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
 import 'package:falangthai/app/resources/colors.dart';
@@ -6,9 +8,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class FavoriteScreen extends StatelessWidget {
-  FavoriteScreen({super.key});
-  
+class MatchesScreen extends StatelessWidget {
+  MatchesScreen({super.key});
+
+
   final List<String> images = [
     "assets/images/pic1.jpeg",
     "assets/images/pic2.jpg",
@@ -142,7 +145,7 @@ class FavoriteScreen extends StatelessWidget {
       automaticallyImplyLeading: false,
       backgroundColor: Color(0xFF1A1625),
       title: Text(
-        "Likes",
+        "Matches",
         style: GoogleFonts.fredoka(
           fontSize: 22,
           color: AppColors.primaryColor,
@@ -152,7 +155,7 @@ class FavoriteScreen extends StatelessWidget {
       actions: [
         IconButton(
           onPressed: () {},
-          icon: Icon(Icons.notifications, color: AppColors.primaryColor),
+          icon: Icon(Icons.filter_alt, color: AppColors.primaryColor),
         ),
       ],
     );

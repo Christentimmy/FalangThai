@@ -1,6 +1,7 @@
 import 'package:falangthai/app/modules/auth/views/login_screen.dart';
 import 'package:falangthai/app/modules/auth/views/signup_screen.dart';
 import 'package:falangthai/app/modules/favorites/views/favorite_screen.dart';
+import 'package:falangthai/app/modules/favorites/views/matches_screen.dart';
 import 'package:falangthai/app/modules/home/views/home_screen.dart';
 import 'package:falangthai/app/modules/language/views/language_selection_screen.dart';
 import 'package:falangthai/app/modules/profile/views/gender_screen.dart';
@@ -25,5 +26,6 @@ class AppPages {
     GetPage(name: AppRoutes.relationshipPreference, page: () => RelationshipPreferenceScreen()),
     GetPage(name: AppRoutes.home, page: () => HomeScreen()),
     GetPage(name: AppRoutes.favorite, page: () => FavoriteScreen()),
+    GetPage(name: AppRoutes.matches, page: () => MatchesScreen()),
   ];
 }
