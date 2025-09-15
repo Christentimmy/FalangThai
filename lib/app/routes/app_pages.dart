@@ -1,5 +1,6 @@
 import 'package:falangthai/app/modules/auth/views/login_screen.dart';
 import 'package:falangthai/app/modules/auth/views/signup_screen.dart';
+import 'package:falangthai/app/modules/home/views/home_screen.dart';
 import 'package:falangthai/app/modules/language/views/language_selection_screen.dart';
 import 'package:falangthai/app/modules/profile/views/gender_screen.dart';
 import 'package:falangthai/app/modules/profile/views/hobby_screen.dart';
@@ -21,5 +22,6 @@ class AppPages {
     GetPage(name: AppRoutes.profileUpload, page: () => ProfileUploadScreen()),
     GetPage(name: AppRoutes.hobby, page: () => HobbiesSelectionScreen()),
     GetPage(name: AppRoutes.relationshipPreference, page: () => RelationshipPreferenceScreen()),
+    GetPage(name: AppRoutes.home, page: () => HomeScreen()),
   ];
 }

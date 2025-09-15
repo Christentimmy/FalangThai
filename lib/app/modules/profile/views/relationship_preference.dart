@@ -1,5 +1,6 @@
 import 'package:falangthai/app/modules/profile/controllers/relationship_controller.dart';
 import 'package:falangthai/app/resources/colors.dart';
+import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -454,7 +455,7 @@ class RelationshipPreferenceScreen extends StatelessWidget {
         child: CustomButton(
           ontap: () {
             if (!preferenceController.canContinue) return;
-            // preferenceController.nextStep();
+            Get.toNamed(AppRoutes.home);
           },
           isLoading: false.obs,
           borderRadius: BorderRadius.circular(15),

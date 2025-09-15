@@ -2,6 +2,7 @@ import 'dart:math' as math;
 import 'package:falangthai/app/modules/auth/controller/login_controller.dart';
 import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
 import 'package:falangthai/app/resources/colors.dart';
+import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:falangthai/app/utils/validator.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
 import 'package:falangthai/app/widgets/custom_textfield.dart';
@@ -217,7 +218,9 @@ class LoginScreen extends StatelessWidget {
               _buildForgotPassword(),
               const SizedBox(height: 32),
               CustomButton(
-                ontap: () {},
+                ontap: () {
+                  Get.toNamed(AppRoutes.home);
+                },
                 isLoading: false.obs,
                 borderRadius: BorderRadius.circular(20),
                 child: Row(
