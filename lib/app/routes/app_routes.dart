@@ -12,4 +12,7 @@ class AppRoutes {
   static const String favorite = '/favorite';
   static const String matches = '/matches';
   static const String chatList = '/chatList';
+  static const String message = '/message';
+  static const String audioCall = '/audio-call';
+  static const String videoCall = '/video-call';
 }

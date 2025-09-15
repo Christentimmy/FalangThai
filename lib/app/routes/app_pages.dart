@@ -1,6 +1,9 @@
 import 'package:falangthai/app/modules/auth/views/login_screen.dart';
 import 'package:falangthai/app/modules/auth/views/signup_screen.dart';
+import 'package:falangthai/app/modules/chat/views/audio_call_screen.dart';
 import 'package:falangthai/app/modules/chat/views/chat_list_screen.dart';
+import 'package:falangthai/app/modules/chat/views/message_screen.dart';
+import 'package:falangthai/app/modules/chat/views/video_call_screen.dart';
 import 'package:falangthai/app/modules/favorites/views/favorite_screen.dart';
 import 'package:falangthai/app/modules/favorites/views/matches_screen.dart';
 import 'package:falangthai/app/modules/home/views/home_screen.dart';
@@ -29,5 +32,8 @@ class AppPages {
     GetPage(name: AppRoutes.favorite, page: () => FavoriteScreen()),
     GetPage(name: AppRoutes.matches, page: () => MatchesScreen()),
     GetPage(name: AppRoutes.chatList, page: () => ChatListScreen()),
+    GetPage(name: AppRoutes.message, page: () => MessageScreen()),
+    GetPage(name: AppRoutes.audioCall, page: () => AudioCallScreen()),
+    GetPage(name: AppRoutes.videoCall, page: () => VideoCallScreen()),
   ];
 }

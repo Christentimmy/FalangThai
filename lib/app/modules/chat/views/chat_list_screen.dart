@@ -1,5 +1,6 @@
 import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
 import 'package:falangthai/app/resources/colors.dart';
+import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -63,7 +64,7 @@ class ChatListScreen extends StatelessWidget {
       contentPadding: EdgeInsets.zero,
       horizontalTitleGap: 5,
       onTap: () {
-        // Get.toNamed(AppRoutes.message);
+        Get.toNamed(AppRoutes.message);
       },
       leading: CircleAvatar(
         radius: 35,
