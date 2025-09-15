@@ -15,6 +15,7 @@ import 'package:falangthai/app/modules/profile/views/profile_upload.dart';
 import 'package:falangthai/app/modules/profile/views/relationship_preference.dart';
 import 'package:falangthai/app/modules/settings/views/settings_screen.dart';
 import 'package:falangthai/app/modules/splash/splash_screen.dart';
+import 'package:falangthai/app/modules/subscription/views/subscription_screen.dart';
 import 'package:falangthai/app/modules/welcome/views/welcome_screen.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:get/get.dart';
@@ -39,5 +40,6 @@ class AppPages {
     GetPage(name: AppRoutes.videoCall, page: () => VideoCallScreen()),
     GetPage(name: AppRoutes.settings, page: () => SettingsScreen()),
     GetPage(name: AppRoutes.notification, page: () => NotificationScreen()),
+    GetPage(name: AppRoutes.subscription, page: () => SubscriptionScreen()),
   ];
 }
