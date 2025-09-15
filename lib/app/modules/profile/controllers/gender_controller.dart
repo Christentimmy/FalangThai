@@ -131,12 +131,10 @@ class GenderController extends GetxController with GetSingleTickerProviderStateM
     return option['gradient'] as List<Color>;
   }
 
-  // Reset selection
   void resetSelection() {
     selectedGender.value = '';
   }
 
-  // Validate selection
   bool get isSelectionValid => selectedGender.value.isNotEmpty;
 
   @override

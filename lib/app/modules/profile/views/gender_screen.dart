@@ -53,7 +53,7 @@ class GenderScreen extends StatelessWidget {
                 right: 30,
                 child: _buildFloatingShape(
                   size: 100,
-                  colors: [Colors.pink.withOpacity(0.15), Colors.transparent],
+                  colors: [Colors.pink.withValues(alpha: 0.15), Colors.transparent],
                   rotation: genderController.rotationAnimation.value,
                 ),
               ),
@@ -62,7 +62,7 @@ class GenderScreen extends StatelessWidget {
                 left: -20,
                 child: _buildFloatingShape(
                   size: 130,
-                  colors: [Colors.blue.withOpacity(0.12), Colors.transparent],
+                  colors: [Colors.blue.withValues(alpha: 0.12), Colors.transparent],
                   rotation: -genderController.rotationAnimation.value * 0.8,
                 ),
               ),
@@ -71,7 +71,7 @@ class GenderScreen extends StatelessWidget {
                 right: -40,
                 child: _buildFloatingShape(
                   size: 110,
-                  colors: [Colors.purple.withOpacity(0.1), Colors.transparent],
+                  colors: [Colors.purple.withValues(alpha: 0.1), Colors.transparent],
                   rotation: genderController.rotationAnimation.value * 1.5,
                 ),
               ),
@@ -80,7 +80,7 @@ class GenderScreen extends StatelessWidget {
                 left: 20,
                 child: _buildFloatingShape(
                   size: 90,
-                  colors: [Colors.teal.withOpacity(0.08), Colors.transparent],
+                  colors: [Colors.teal.withValues(alpha: 0.08), Colors.transparent],
                   rotation: genderController.rotationAnimation.value * 0.6,
                 ),
               ),
@@ -247,11 +247,11 @@ class GenderScreen extends StatelessWidget {
         shape: BoxShape.circle,
         color: isActive
             ? AppColors.primaryColor
-            : Colors.white.withOpacity(0.3),
+            : Colors.white.withValues(alpha: 0.3),
         boxShadow: isActive
             ? [
                 BoxShadow(
-                  color: AppColors.primaryColor.withOpacity(0.4),
+                  color: AppColors.primaryColor.withValues(alpha: 0.4),
                   blurRadius: 8,
                   spreadRadius: 1,
                 ),
@@ -265,7 +265,7 @@ class GenderScreen extends StatelessWidget {
     return Container(
       width: 24,
       height: 2,
-      color: Colors.white.withOpacity(0.2),
+      color: Colors.white.withValues(alpha: 0.2),
       margin: const EdgeInsets.symmetric(horizontal: 8),
     );
   }
@@ -303,8 +303,8 @@ class GenderScreen extends StatelessWidget {
             title: 'Male',
             icon: Icons.male,
             gradient: [
-              Colors.blue.withOpacity(0.8),
-              Colors.cyan.withOpacity(0.6),
+              Colors.blue.withValues(alpha: 0.8),
+              Colors.cyan.withValues(alpha: 0.6),
             ],
             isSelected: genderController.selectedGender.value == 'male',
           ),
@@ -314,8 +314,8 @@ class GenderScreen extends StatelessWidget {
             title: 'Female',
             icon: Icons.female,
             gradient: [
-              Colors.pink.withOpacity(0.8),
-              Colors.purple.withOpacity(0.6),
+              Colors.pink.withValues(alpha: 0.8),
+              Colors.purple.withValues(alpha: 0.6),
             ],
             isSelected: genderController.selectedGender.value == 'female',
           ),
@@ -325,8 +325,8 @@ class GenderScreen extends StatelessWidget {
             title: 'Other',
             icon: Icons.transgender,
             gradient: [
-              Colors.green.withOpacity(0.8),
-              Colors.teal.withOpacity(0.6),
+              Colors.green.withValues(alpha: 0.8),
+              Colors.teal.withValues(alpha: 0.6),
             ],
             isSelected: genderController.selectedGender.value == 'other',
           ),
@@ -336,8 +336,8 @@ class GenderScreen extends StatelessWidget {
             title: 'Prefer not to say',
             icon: Icons.help_outline,
             gradient: [
-              Colors.orange.withOpacity(0.8),
-              Colors.amber.withOpacity(0.6),
+              Colors.orange.withValues(alpha: 0.8),
+              Colors.amber.withValues(alpha: 0.6),
             ],
             isSelected:
                 genderController.selectedGender.value == 'prefer_not_to_say',
