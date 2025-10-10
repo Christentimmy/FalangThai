@@ -206,7 +206,7 @@ class GenderScreen extends StatelessWidget {
   Widget _buildContent() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Column(
+      child: ListView(
         children: [
           SizedBox(height: Get.height * 0.12),
           _buildProgressIndicator(),
