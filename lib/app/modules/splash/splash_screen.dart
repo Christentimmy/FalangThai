@@ -1,4 +1,7 @@
 // import 'package:falangthai/app/controller/storage_controller.dart';
+import 'package:falangthai/app/controller/auth_controller.dart';
+import 'package:falangthai/app/controller/language_controller.dart';
+import 'package:falangthai/app/controller/storage_controller.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
@@ -17,9 +20,6 @@ class _SplashScreenState extends State<SplashScreen>
   late AnimationController _controller;
   late Animation<double> _bounceAnimation;
   late Animation<double> fadeAnimation;
-
-  // final userController = Get.find<UserController>();
-  // final socketController = Get.find<SocketController>();
 
   @override
   void initState() {
@@ -45,22 +45,23 @@ class _SplashScreenState extends State<SplashScreen>
     );
 
     Future.delayed(const Duration(seconds: 3), () async {
-      // final userController = Get.find<UserController>();
-      // final socketController = Get.find<SocketController>();
-      // final storageController = Get.find<StorageController>();
+      final authController = Get.find<AuthController>();
+      final storageController = Get.find<StorageController>();
+      final languageController = Get.find<LanguageController>();
+      
+      final lanCode = languageController.locale.value;
+      String? token = await storageController.getToken();
 
-      // bool newUser = await storageController.getUserStatus();
-      // if (newUser) {
-      //   Get.offAll(AppRoutes.onboarding);
-      //   await storageController.saveStatus("notNewAgain");
-      //   return;
-      // }
-      // String? token = await storageController.getToken();
-      // if (token == null || token.isEmpty) {
-      //   Get.offAllNamed(AppRoutes.login);
-      //   return;
-      // }
-      Get.toNamed(AppRoutes.welcome);
+      if ((token == null || token.isEmpty) && lanCode == null) {
+        Get.offAllNamed(AppRoutes.welcome);
+        return;
+      }
+      if (token == null || token.isEmpty || lanCode != null) {
+        Get.offAllNamed(AppRoutes.login);
+        return;
+      }
+
+      await authController.handleLoginNavigation();
     });
   }
 

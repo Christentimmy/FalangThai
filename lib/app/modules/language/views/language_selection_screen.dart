@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 import 'dart:ui';
 
-import 'package:falangthai/app/modules/language/controller/language_controller.dart';
+import 'package:falangthai/app/modules/language/controller/language_screen_controller.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,7 @@ import 'package:google_fonts/google_fonts.dart';
 class LanguageSelectionScreen extends StatelessWidget {
   LanguageSelectionScreen({super.key});
 
-  final languageController = Get.put(LanguageController());
+  final languageScreenController = Get.put(LanguageScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -97,10 +97,10 @@ class LanguageSelectionScreen extends StatelessWidget {
 
   Widget _buildFloatingLogo() {
     return AnimatedBuilder(
-      animation: languageController.animationController,
+      animation: languageScreenController.animationController,
       builder: (context, child) {
         return Transform.translate(
-          offset: Offset(0, languageController.floatAnimation.value * 8),
+          offset: Offset(0, languageScreenController.floatAnimation.value * 8),
           child: child,
         );
       },
@@ -171,11 +171,11 @@ class LanguageSelectionScreen extends StatelessWidget {
           child: ListView.separated(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: languageController.languages.length,
+            itemCount: languageScreenController.languages.length,
             separatorBuilder: (context, index) =>
                 Divider(height: 1, color: Colors.white.withOpacity(0.1)),
             itemBuilder: (context, index) {
-              final language = languageController.languages[index];
+              final language = languageScreenController.languages[index];
               // final isSelected =
               //     languageController.selectedLanguage.value == language['code'];
 
@@ -187,7 +187,7 @@ class LanguageSelectionScreen extends StatelessWidget {
                     vertical: 8,
                   ),
                   onTap: () {
-                    languageController.selectLanguage(language['code']!);
+                    languageScreenController.selectLanguage(language['code']!);
                   },
                   leading: Container(
                     width: 40,
@@ -231,20 +231,20 @@ class LanguageSelectionScreen extends StatelessWidget {
                         shape: BoxShape.circle,
                         border: Border.all(
                           color:
-                              languageController.selectedLanguage.value ==
+                              languageScreenController.selectedLanguage.value ==
                                   language['code']
                               ? AppColors.primaryColor
                               : Colors.grey.shade500,
                           width: 2,
                         ),
                         color:
-                            languageController.selectedLanguage.value ==
+                            languageScreenController.selectedLanguage.value ==
                                 language['code']
                             ? AppColors.primaryColor
                             : Colors.transparent,
                       ),
                       child:
-                          languageController.selectedLanguage.value ==
+                          languageScreenController.selectedLanguage.value ==
                               language['code']
                           ? const Icon(
                               Icons.check,
@@ -264,16 +264,16 @@ class LanguageSelectionScreen extends StatelessWidget {
   }
 
   Widget _buildContinueButton() {
-    return Obx(
+    return Obx( 
       () => Opacity(
-        opacity: languageController.selectedLanguage.value.isNotEmpty
+        opacity: languageScreenController.selectedLanguage.value.isNotEmpty
             ? 1.0
             : 0.6,
         child: CustomButton(
-          ontap: languageController.selectedLanguage.value.isNotEmpty
-              ? () => languageController.continueToNext()
+          ontap: languageScreenController.selectedLanguage.value.isNotEmpty
+              ? () => languageScreenController.continueToNext()
               : () {},
-          isLoading: languageController.isLoading,
+          isLoading: languageScreenController.isLoading,
           borderRadius: BorderRadius.circular(24),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -319,11 +319,11 @@ class LanguageSelectionScreen extends StatelessWidget {
       crossAxisCount: 4,
       mainAxisSpacing: 5,
       crossAxisSpacing: 8,
-      itemCount: languageController.backgroundImages.length,
+      itemCount: languageScreenController.backgroundImages.length,
       physics: const NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 2),
       itemBuilder: (context, index) {
-        final images = languageController.backgroundImages[index];
+        final images = languageScreenController.backgroundImages[index];
         return ClipRRect(
           borderRadius: BorderRadius.circular(16),
           child: Image.asset(images, fit: BoxFit.cover),

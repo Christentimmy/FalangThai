@@ -1,9 +1,10 @@
+import 'package:falangthai/app/controller/language_controller.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-class LanguageController extends GetxController with GetSingleTickerProviderStateMixin {
+class LanguageScreenController extends GetxController with GetSingleTickerProviderStateMixin {
   late AnimationController animationController;
   late Animation<double> floatAnimation;
   
@@ -90,47 +91,14 @@ class LanguageController extends GetxController with GetSingleTickerProviderStat
 
   void selectLanguage(String languageCode) {
     selectedLanguage.value = languageCode;
-    
-    // Add haptic feedback
     HapticFeedback.lightImpact();
-    
-    // You can add analytics tracking here
-    // _trackLanguageSelection(languageCode);
   }
 
-  Future<void> continueToNext() async {
+  void continueToNext() {
     if (selectedLanguage.value.isEmpty) return;
-    
-    // isLoading.value = true;
-    
-    try {
-      // Save selected language to local storage
-      // await saveSelectedLanguage();
-      
-      // // Update app locale
-      // await updateAppLocale();
-      
-      // // Navigate to next screen (e.g., onboarding or main app)
-      // // Get.offNamed('/onboarding');
-      // // Or for now, just show a success message
-      // Get.snackbar(
-      //   'Language Selected',
-      //   'Your language preference has been saved!',
-      //   snackPosition: SnackPosition.BOTTOM,
-      //   backgroundColor: const Color(0xFFFF9EE6).withOpacity(0.9),
-      //   colorText: Colors.white,
-      //   duration: const Duration(seconds: 2),
-      // );
-      
-      // // Simulate API call delay
-      // await Future.delayed(const Duration(milliseconds: 1500));
-      Get.toNamed(AppRoutes.signup);
-      
-    } catch (e) {
-      debugPrint(e.toString());
-    } finally {
-      isLoading.value = false;
-    }
+    final languageController = Get.find<LanguageController>();
+    languageController.saveLanguage(selectedLanguage.value);
+    Get.toNamed(AppRoutes.signup);
   }
 
   Future<void> saveSelectedLanguage() async {

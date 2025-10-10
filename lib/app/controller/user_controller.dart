@@ -20,17 +20,13 @@ class UserController extends GetxController {
       if (token == null || token.isEmpty) return;
 
       final response = await _userService.getUserDetails(token: token);
-      if (response == null) return;
-      final decoded = json.decode(response.body);
-      String message = decoded["message"];
-
-      if (message == "Token has expired.") {
-        Get.offAllNamed(AppRoutes.login);
+      if (response == null){
+        Get.offAllNamed(AppRoutes.welcome);
         return;
       }
-
+      final decoded = json.decode(response.body);
       if (response.statusCode != 200) {
-        // CustomSnackbar.showErrorToast(message);
+        Get.offAllNamed(AppRoutes.welcome);
         return;
       }
 

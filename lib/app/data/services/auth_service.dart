@@ -202,4 +202,23 @@ class AuthService {
     }
     return null;
   }
+
+  Future<http.Response?> validateToken({required String token}) async {
+    try {
+      final response = await client
+          .post(
+            Uri.parse("$baseUrl/auth/validate-token"),
+            headers: {
+              "Authorization": "Bearer $token",
+              "Content-Type": "application/json",
+            },
+          )
+          .timeout(const Duration(seconds: 15));
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return null;
+  }
+
 }

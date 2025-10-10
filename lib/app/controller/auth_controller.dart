@@ -100,6 +100,7 @@ class AuthController extends GetxController {
       final decoded = json.decode(response.body);
       String message = decoded["message"] ?? "";
       String token = decoded["token"] ?? "";
+
       final storageController = Get.find<StorageController>();
       await storageController.storeToken(token);
 
@@ -113,11 +114,68 @@ class AuthController extends GetxController {
       // await userController.getPotentialMatches();
       // await storyController.getAllStories();
       // await storyController.getUserPostedStories();
-      Get.offAllNamed(AppRoutes.bottomNavigation);
+      // Get.offAllNamed(AppRoutes.bottomNavigation);
+      await handleLoginNavigation();
     } catch (e) {
       debugPrint(e.toString());
     } finally {
       isloading.value = false;
+    }
+  }
+
+  Future<void> handleLoginNavigation() async {
+    final userController = Get.find<UserController>();
+    await userController.getUserDetails();
+    final user = userController.userModel.value;
+
+    if (user == null) return;
+    if (user.profileCompleted == true) {
+      Get.offAllNamed(AppRoutes.bottomNavigation);
+      return;
+    }
+    if (user.gender?.isEmpty == true) {
+      Get.offAllNamed(
+        AppRoutes.gender,
+        arguments: {
+          "nextScreen": () async {
+            await handleLoginNavigation();
+          },
+        },
+      );
+      return;
+    }
+    if (user.dob?.isEmpty == true || user.avatar?.isEmpty == true) {
+      Get.offAllNamed(
+        AppRoutes.profileUpload,
+        arguments: {
+          "nextScreen": () async {
+            await handleLoginNavigation();
+          },
+        },
+      );
+      return;
+    }
+    if (user.hobbies?.isEmpty == true) {
+      Get.offAllNamed(
+        AppRoutes.hobby,
+        arguments: {
+          "nextScreen": () async {
+            await handleLoginNavigation();
+          },
+        },
+      );
+      return;
+    }
+    if (user.interestedIn?.isEmpty == true) {
+      Get.offAllNamed(
+        AppRoutes.relationshipPreference,
+        arguments: {
+          "nextScreen": () async {
+            await handleLoginNavigation();
+          },
+        },
+      );
+      return;
     }
   }
 
@@ -274,4 +332,31 @@ class AuthController extends GetxController {
       isloading.value = false;
     }
   }
+
+  Future<void> validateToken() async {
+    try {
+      final storageController = Get.find<StorageController>();
+      final String? token = await storageController.getToken();
+      if (token == null) {
+        Get.offAllNamed(AppRoutes.login);
+        return;
+      }
+
+      final response = await _authService.validateToken(token: token);
+      if (response == null) {
+        Get.offAllNamed(AppRoutes.login);
+        return;
+      }
+
+      if (response.statusCode != 200) {
+        Get.offAllNamed(AppRoutes.login);
+        return;
+      }
+
+      await handleLoginNavigation();
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
 }
