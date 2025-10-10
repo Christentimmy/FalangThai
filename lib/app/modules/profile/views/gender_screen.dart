@@ -1,6 +1,5 @@
 import 'package:falangthai/app/modules/profile/controllers/gender_controller.dart';
 import 'package:falangthai/app/resources/colors.dart';
-import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -208,17 +207,16 @@ class GenderScreen extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: ListView(
         children: [
-          SizedBox(height: Get.height * 0.12),
+          SizedBox(height: Get.height * 0.1),
           _buildProgressIndicator(),
-          const SizedBox(height: 40),
+          const SizedBox(height: 24),
           _buildTitle(),
-          const SizedBox(height: 12),
+          const SizedBox(height: 10),
           _buildSubtitle(),
-          const Spacer(),
+         const SizedBox(height: 10),
           _buildGenderOptions(),
-          const Spacer(),
+          const SizedBox(height: 20),
           _buildContinueButton(),
-          const SizedBox(height: 40),
         ],
       ),
     );
@@ -309,7 +307,7 @@ class GenderScreen extends StatelessWidget {
             ],
             isSelected: genderController.selectedGender.value == 'male',
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           _buildGenderCard(
             gender: 'female',
             title: 'Female',
@@ -320,18 +318,18 @@ class GenderScreen extends StatelessWidget {
             ],
             isSelected: genderController.selectedGender.value == 'female',
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           _buildGenderCard(
-            gender: 'other',
-            title: 'Other',
+            gender: 'others',
+            title: 'Others',
             icon: Icons.transgender,
             gradient: [
               Colors.green.withValues(alpha: 0.8),
               Colors.teal.withValues(alpha: 0.6),
             ],
-            isSelected: genderController.selectedGender.value == 'other',
+            isSelected: genderController.selectedGender.value == 'others',
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           _buildGenderCard(
             gender: 'prefer_not_to_say',
             title: 'Prefer not to say',
@@ -451,10 +449,10 @@ class GenderScreen extends StatelessWidget {
         duration: const Duration(milliseconds: 300),
         opacity: genderController.selectedGender.value.isNotEmpty ? 1.0 : 0.5,
         child: CustomButton(
-          ontap: () {
-            Get.toNamed(AppRoutes.profileUpload);
+          ontap: () async {
+            await genderController.saveGender();
           },
-          isLoading: false.obs,
+          isLoading: genderController.isLoading,
           borderRadius: BorderRadius.circular(15),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,

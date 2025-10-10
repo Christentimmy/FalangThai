@@ -11,6 +11,7 @@ import 'package:falangthai/app/modules/favorites/views/favorite_screen.dart';
 import 'package:falangthai/app/modules/favorites/views/matches_screen.dart';
 import 'package:falangthai/app/modules/home/views/home_screen.dart';
 import 'package:falangthai/app/modules/language/views/language_selection_screen.dart';
+import 'package:falangthai/app/modules/location/views/location_request_screen.dart';
 import 'package:falangthai/app/modules/notification/views/notification_screen.dart';
 import 'package:falangthai/app/modules/profile/views/gender_screen.dart';
 import 'package:falangthai/app/modules/profile/views/hobby_screen.dart';
@@ -35,7 +36,10 @@ class AppPages {
     GetPage(name: AppRoutes.gender, page: () => GenderScreen()),
     GetPage(name: AppRoutes.profileUpload, page: () => ProfileUploadScreen()),
     GetPage(name: AppRoutes.hobby, page: () => HobbiesSelectionScreen()),
-    GetPage(name: AppRoutes.relationshipPreference, page: () => RelationshipPreferenceScreen()),
+    GetPage(
+      name: AppRoutes.relationshipPreference,
+      page: () => RelationshipPreferenceScreen(),
+    ),
     GetPage(name: AppRoutes.home, page: () => HomeScreen()),
     GetPage(name: AppRoutes.favorite, page: () => FavoriteScreen()),
     GetPage(name: AppRoutes.matches, page: () => MatchesScreen()),
@@ -46,21 +50,36 @@ class AppPages {
     GetPage(name: AppRoutes.settings, page: () => SettingsScreen()),
     GetPage(name: AppRoutes.notification, page: () => NotificationScreen()),
     GetPage(name: AppRoutes.subscription, page: () => SubscriptionScreen()),
-    GetPage(name: AppRoutes.bottomNavigation, page: () => BottomNavigationWidget()),
+    GetPage(
+      name: AppRoutes.bottomNavigation,
+      page: () => BottomNavigationWidget(),
+    ),
     GetPage(name: AppRoutes.profile, page: () => ProfileScreen()),
-    GetPage(name: AppRoutes.otpVerification, page: () {
-      final arguments = Get.arguments ?? {};
-      final email = arguments['email'] as String;
-      if(email.isEmpty){
-        throw Exception("Email is required");
-      }
-      final onVerifiedCallBack = arguments['onVerifiedCallBack'] as VoidCallback?;
-      final showEditDetails = arguments['showEditDetails'] ?? true;
-      return OtpScreen(
-        email: email,
-        onVerifiedCallBack: onVerifiedCallBack,
-        showEditDetails: showEditDetails,
-      );
-    }),
+    GetPage(
+      name: AppRoutes.otpVerification,
+      page: () {
+        final arguments = Get.arguments ?? {};
+        final email = arguments['email'] as String;
+        if (email.isEmpty) {
+          throw Exception("Email is required");
+        }
+        final onVerifiedCallBack =
+            arguments['onVerifiedCallBack'] as VoidCallback?;
+        final showEditDetails = arguments['showEditDetails'] ?? true;
+        return OtpScreen(
+          email: email,
+          onVerifiedCallBack: onVerifiedCallBack,
+          showEditDetails: showEditDetails,
+        );
+      },
+    ),
+    GetPage(
+      name: AppRoutes.locationRequest,
+      page: () {
+        final arguments = Get.arguments ?? {};
+        final nextScreen = arguments['nextScreen'] as VoidCallback?;
+        return LocationRequestScreen(nextScreen: nextScreen);
+      },
+    ),
   ];
 }
