@@ -105,6 +105,8 @@ class CustomTextField extends StatelessWidget {
             textStyle ??
             GoogleFonts.fredoka(
               color: Colors.white,
+              decorationThickness: 0,
+              decoration: TextDecoration.none,
               fontSize: 16,
               fontWeight: FontWeight.w500,
             ),

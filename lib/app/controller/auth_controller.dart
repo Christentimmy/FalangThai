@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:falangthai/app/controller/storage_controller.dart';
+import 'package:falangthai/app/data/models/user_model.dart';
 import 'package:falangthai/app/data/services/auth_service.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:falangthai/app/widgets/snack_bar.dart';
@@ -15,7 +16,6 @@ class AuthController extends GetxController {
     required String password,
   }) async {
     isloading.value = true;
-    // final loginController = Get.find<LoginController>();
     try {
       final response = await _authService.loginUser(
         identifier: identifier,
@@ -27,28 +27,9 @@ class AuthController extends GetxController {
       String token = decoded["token"] ?? "";
       final storageController = Get.find<StorageController>();
       await storageController.storeToken(token);
-      if (response.statusCode == 404) {
-        CustomSnackbar.showErrorSnackBar(message);
-        return;
-      }
-      if (response.statusCode == 402) {
-        CustomSnackbar.showErrorSnackBar(message);
-        // Get.offAll(() => const RegisterScreen());
-        return;
-      }
-      // final socketController = Get.find<SocketController>();
-      // await socketController.initializeSocket();
-      if (response.statusCode == 401) {
-        CustomSnackbar.showErrorSnackBar(message);
-        return;
-      }
-      if (response.statusCode == 400) {
-        CustomSnackbar.showErrorSnackBar(message);
-        // Get.offAll(() => CompleteProfileScreen());
-        return;
-      }
+
       if (response.statusCode != 200) {
-        CustomSnackbar.showErrorSnackBar(message);
+        CustomSnackbar.showErrorToast(message);
         return;
       }
       // final userController = Get.find<UserController>();
@@ -64,4 +45,33 @@ class AuthController extends GetxController {
       isloading.value = false;
     }
   }
+
+  Future<void> signUpUSer({
+    required UserModel userModel,
+  }) async {
+    isloading.value = true;
+    try {
+      final response = await _authService.signUpUser(userModel: userModel);
+      if (response == null) return;
+      final decoded = json.decode(response.body);
+      var message = decoded["message"] ?? "";
+      if (response.statusCode != 201) {
+        CustomSnackbar.showErrorToast(message);
+        return;
+      }
+      // final userController = Get.find<UserController>();
+      final storageController = Get.find<StorageController>();
+      String token = decoded["token"];
+      await storageController.storeToken(token);
+      // final socketController = Get.find<SocketController>();
+      // socketController.initializeSocket();
+      // await userController.getUserDetails();
+      Get.offAllNamed(AppRoutes.gender);
+    } catch (e) {
+      debugPrint("Error From Auth Controller: ${e.toString()}");
+    } finally {
+      isloading.value = false;
+    }
+  }
+
 }

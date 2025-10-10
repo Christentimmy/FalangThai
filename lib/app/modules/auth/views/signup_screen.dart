@@ -1,7 +1,7 @@
 import 'package:falangthai/app/modules/auth/controller/signup_controller.dart';
 import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
 import 'package:falangthai/app/resources/colors.dart';
-import 'package:falangthai/app/routes/app_routes.dart';
+// import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:falangthai/app/utils/validator.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
 import 'package:falangthai/app/widgets/custom_textfield.dart';
@@ -161,7 +161,7 @@ class SignupScreen extends StatelessWidget {
                 prefixIconColor: AppColors.primaryColor,
                 hintText: "Full Name",
                 hintStyle: GoogleFonts.fredoka(
-                  color: Colors.white.withOpacity(0.5),
+                  color: Colors.white.withValues(alpha: 0.5),
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
                 ),
@@ -211,10 +211,13 @@ class SignupScreen extends StatelessWidget {
               _buildTermsCheckbox(),
               const SizedBox(height: 32),
               CustomButton(
-                ontap: () {
-                  Get.toNamed(AppRoutes.gender);
+                ontap: () async {
+                  if (!formKey.currentState!.validate()) {
+                    return;
+                  }
+                  await signupController.signUp();
                 },
-                isLoading: false.obs,
+                isLoading: signupController.isLoading,
                 borderRadius: BorderRadius.circular(22),
                 child: Text(
                   "Sign Up",

@@ -1,7 +1,12 @@
+import 'package:falangthai/app/controller/auth_controller.dart';
+import 'package:falangthai/app/data/models/user_model.dart';
+import 'package:falangthai/app/widgets/snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SignupController extends GetxController with GetTickerProviderStateMixin {
+  final isLoading = false.obs;
+
   // Animation Controllers
   late AnimationController backgroundAnimationController;
   late AnimationController logoAnimationController;
@@ -19,7 +24,6 @@ class SignupController extends GetxController with GetTickerProviderStateMixin {
 
   final RxBool isPasswordVisible = true.obs;
   final RxBool acceptTerms = false.obs;
-
 
   @override
   void onInit() {
@@ -91,21 +95,11 @@ class SignupController extends GetxController with GetTickerProviderStateMixin {
     if (value == null) return null;
     if (value.isEmpty) {
       return '';
-    } else if (value.length < 8) {
-      return '';
-    } else if (!value.contains(RegExp(r'[A-Z]'))) {
-      return '';
-    } else if (!value.contains(RegExp(r'[a-z]'))) {
-      return '';
-    } else if (!value.contains(RegExp(r'[0-9]'))) {
-      return '';
-    } else if (!value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
-      return '';
     } else {
       return null;
     }
   }
-  
+
   void clearForm() {
     nameController.clear();
     emailController.clear();
@@ -113,6 +107,22 @@ class SignupController extends GetxController with GetTickerProviderStateMixin {
     acceptTerms.value = false;
   }
 
+  Future<void> signUp() async {
+    if (!acceptTerms.value) {
+      CustomSnackbar.showErrorToast("Accept Terms and conditions");
+      return;
+    }
+    isLoading.value = true;
+    final authController = Get.find<AuthController>();
+    final userModel = UserModel(
+      fullName: nameController.text,
+      email: emailController.text,
+      password: passwordController.text,
+    );
+    await authController.signUpUSer(userModel: userModel);
+    isLoading.value = false;
+    // clearForm();
+  }
 
   @override
   void onClose() {

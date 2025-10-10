@@ -87,16 +87,22 @@ class WelcomeScreen extends StatelessWidget {
               ),
             ),
             SizedBox(width: 5),
-            Text(
-              "Login",
-              style: GoogleFonts.fredoka(
-                fontSize: 16,
-                color: AppColors.primaryColor,
-                fontWeight: FontWeight.bold,
+            GestureDetector(
+              onTap: (){
+                Get.toNamed(AppRoutes.login);
+              },
+              child: Text(
+                "Login",
+                style: GoogleFonts.fredoka(
+                  fontSize: 16,
+                  color: AppColors.primaryColor,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ],
         ),
+        SizedBox(height: Get.height * 0.05),
       ],
     );
   }

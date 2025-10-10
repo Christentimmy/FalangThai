@@ -1,3 +1,4 @@
+import 'package:falangthai/app/bindings/app_bindings.dart';
 import 'package:falangthai/app/routes/app_pages.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,7 @@ class MainApp extends StatelessWidget {
       initialRoute: AppRoutes.splash,
       getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,
+      initialBinding: AppBindings(),
       theme: ThemeData(
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
