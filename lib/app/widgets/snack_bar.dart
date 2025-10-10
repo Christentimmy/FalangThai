@@ -60,4 +60,6 @@ class CustomSnackbar {
     ).show(Get.context!);
   }
 
+  static void showErrorSnackBar(String s) {}
+
 }

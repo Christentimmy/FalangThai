@@ -14,13 +14,7 @@ class ProfileScreen extends StatelessWidget {
       body: Container(
         decoration: _buildBackgroundDecoration(),
         child: SafeArea(
-          child: Stack(
-            children: [
-              // _buildAnimatedBackground(),
-              _buildContent(),
-              _buildHeader(),
-            ],
-          ),
+          child: Stack(children: [_buildContent(), _buildHeader()]),
         ),
       ),
     );
@@ -38,168 +32,6 @@ class ProfileScreen extends StatelessWidget {
           Color(0xFF1A1625),
         ],
         stops: [0.0, 0.3, 0.7, 1.0],
-      ),
-    );
-  }
-
-  Widget _buildAnimatedBackground() {
-    return Positioned.fill(
-      child: AnimatedBuilder(
-        animation: profileController.backgroundAnimationController,
-        builder: (context, child) {
-          return Stack(
-            children: [
-              // Floating orbs with profile-themed colors
-              Positioned(
-                top: 80 + profileController.floatAnimation1.value * 30,
-                right: 20,
-                child: _buildFloatingOrb(
-                  size: 150,
-                  colors: [
-                    const Color(0xFFFF9EE6).withValues(alpha: 0.25),
-                    const Color(0xFFEC4899).withValues(alpha: 0.15),
-                    Colors.transparent,
-                  ],
-                  rotation: profileController.rotationAnimation.value,
-                ),
-              ),
-              Positioned(
-                top: 200 + profileController.floatAnimation2.value * 40,
-                left: -60,
-                child: _buildFloatingOrb(
-                  size: 180,
-                  colors: [
-                    const Color(0xFF8B5CF6).withValues(alpha: 0.2),
-                    const Color(0xFF7C3AED).withValues(alpha: 0.1),
-                    Colors.transparent,
-                  ],
-                  rotation: -profileController.rotationAnimation.value * 0.8,
-                ),
-              ),
-              Positioned(
-                bottom: 160 + profileController.floatAnimation1.value * 25,
-                right: -30,
-                child: _buildFloatingOrb(
-                  size: 120,
-                  colors: [
-                    const Color(0xFF06B6D4).withValues(alpha: 0.18),
-                    const Color(0xFF0891B2).withValues(alpha: 0.12),
-                    Colors.transparent,
-                  ],
-                  rotation: profileController.rotationAnimation.value * 1.3,
-                ),
-              ),
-              // Floating profile icons
-              ...List.generate(6, (index) {
-                final icons = [
-                  Icons.person_rounded,
-                  Icons.favorite_rounded,
-                  Icons.photo_camera_rounded,
-                  Icons.edit_rounded,
-                  Icons.settings_rounded,
-                  Icons.star_rounded,
-                ];
-                final colors = [
-                  const Color(0xFFFF9EE6),
-                  const Color(0xFFEC4899),
-                  const Color(0xFF8B5CF6),
-                  const Color(0xFF06B6D4),
-                  const Color(0xFF10B981),
-                  const Color(0xFFF59E0B),
-                ];
-                return Positioned(
-                  top:
-                      120 +
-                      (index * 90) +
-                      profileController.pulseAnimation.value * 12,
-                  left:
-                      60 +
-                      (index * 45) +
-                      profileController.floatAnimation2.value * (8 + index),
-                  child: _buildFloatingIcon(
-                    icon: icons[index],
-                    color: colors[index],
-                    size: 16 + (index % 3) * 4,
-                    opacity: 0.5 - (index * 0.06),
-                  ),
-                );
-              }),
-              // Sparkle effects
-              ...List.generate(8, (index) {
-                final colors = [
-                  const Color(0xFFFF9EE6),
-                  const Color(0xFF8B5CF6),
-                  const Color(0xFF06B6D4),
-                  const Color(0xFFF59E0B),
-                ];
-                return Positioned(
-                  top:
-                      100 +
-                      (index * 75) +
-                      profileController.heartbeatAnimation.value * 6,
-                  right: 80 + (index * 30),
-                  child: _buildSparkle(
-                    size: 3 + (index % 4) * 2,
-                    color: colors[index % colors.length],
-                    opacity: 0.7 - (index * 0.08),
-                  ),
-                );
-              }),
-            ],
-          );
-        },
-      ),
-    );
-  }
-
-  Widget _buildFloatingOrb({
-    required double size,
-    required List<Color> colors,
-    required double rotation,
-  }) {
-    return Transform.rotate(
-      angle: rotation,
-      child: Container(
-        width: size,
-        height: size,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          gradient: RadialGradient(
-            colors: colors,
-            stops: const [0.0, 0.7, 1.0],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildFloatingIcon({
-    required IconData icon,
-    required Color color,
-    required double size,
-    required double opacity,
-  }) {
-    return Icon(icon, size: size, color: color.withOpacity(opacity));
-  }
-
-  Widget _buildSparkle({
-    required double size,
-    required Color color,
-    required double opacity,
-  }) {
-    return Container(
-      width: size,
-      height: size,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: color.withOpacity(opacity),
-        boxShadow: [
-          BoxShadow(
-            color: color.withOpacity(opacity * 0.6),
-            blurRadius: size * 0.9,
-            spreadRadius: 1,
-          ),
-        ],
       ),
     );
   }
@@ -334,7 +166,6 @@ class ProfileScreen extends StatelessWidget {
                       : null,
                 ),
               ),
-             
             ],
           ),
         ),

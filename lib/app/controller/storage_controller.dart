@@ -1,5 +1,3 @@
-
-
 import 'package:get/get.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -13,7 +11,11 @@ class StorageController extends GetxController {
 
   // Get token
   Future<String?> getToken() async {
-    return await _secureStorage.read(key: 'userToken');
+    try {
+      return await _secureStorage.read(key: 'userToken');
+    } catch (e) {
+      return null;
+    }
   }
 
   // Delete token
@@ -23,8 +25,12 @@ class StorageController extends GetxController {
 
   //user status
   Future<bool> getUserStatus() async {
-    final String? value = await _secureStorage.read(key: "newUser");
-    return value != null ? true : false;
+    try {
+      final String? value = await _secureStorage.read(key: "newUser");
+      return value != null ? true : false;
+    } catch (e) {
+      return false;
+    }
   }
 
   Future<void> saveStatus(String value) async {

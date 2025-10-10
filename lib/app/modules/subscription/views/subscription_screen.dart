@@ -52,11 +52,11 @@ class SubscriptionScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: Get.height * 0.03),
-                buildSubCard(title: 'Basic', price: 10),
+                buildSubCard(title: 'Basic', price: 9),
                 SizedBox(height: Get.height * 0.03),
-                buildSubCard(title: 'Premium', price: 30),
+                buildSubCard(title: 'Premium', price: 54, month: 6),
                 SizedBox(height: Get.height * 0.03),
-                buildSubCard(title: 'Premium Plus', price: 35),
+                buildSubCard(title: 'Premium Plus', price: 108, month: 12),
               ],
             ),
           ),
@@ -65,7 +65,7 @@ class SubscriptionScreen extends StatelessWidget {
     );
   }
 
-  Widget buildSubCard({required String title, required int price}) {
+  Widget buildSubCard({required String title, required int price, int? month}) {
     return Container(
       width: Get.width,
       height: Get.height * 0.45,
@@ -89,7 +89,7 @@ class SubscriptionScreen extends StatelessWidget {
           SizedBox(height: 10),
           Center(
             child: Text(
-              "\$$price",
+              "€${price.toString()}",
               style: GoogleFonts.figtree(
                 fontSize: 40,
                 color: Colors.white,
@@ -99,7 +99,7 @@ class SubscriptionScreen extends StatelessWidget {
           ),
           Center(
             child: Text(
-              'monthly',
+              month != null ? '$month months' : "monthly",
               style: GoogleFonts.figtree(
                 fontSize: 16,
                 color: Colors.white,
