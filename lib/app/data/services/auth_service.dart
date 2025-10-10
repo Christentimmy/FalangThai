@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'package:falangthai/app/data/models/user_model.dart';
 import 'package:falangthai/app/utils/base_url.dart';
@@ -12,10 +13,15 @@ class AuthService {
   http.Client client = http.Client();
 
   Future<http.Response?> signUpUser({required UserModel userModel}) async {
-    print(userModel.toJson().toString());
     try {
       final response = await client
-          .post(Uri.parse("$baseUrl/auth/register"), body: userModel.toJson())
+          .post(
+            Uri.parse("$baseUrl/auth/register"),
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: jsonEncode(userModel.toJson()),
+          )
           .timeout(const Duration(seconds: 10));
       return response;
     } on SocketException catch (e) {
