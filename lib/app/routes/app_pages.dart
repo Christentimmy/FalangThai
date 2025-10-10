@@ -34,8 +34,22 @@ class AppPages {
     GetPage(name: AppRoutes.signup, page: () => SignupScreen()),
     GetPage(name: AppRoutes.login, page: () => LoginScreen()),
     GetPage(name: AppRoutes.gender, page: () => GenderScreen()),
-    GetPage(name: AppRoutes.profileUpload, page: () => ProfileUploadScreen()),
-    GetPage(name: AppRoutes.hobby, page: () => HobbiesSelectionScreen()),
+    GetPage(
+      name: AppRoutes.profileUpload,
+      page: () {
+        final arguments = Get.arguments ?? {};
+        final nextScreen = arguments['nextScreen'] as VoidCallback?;
+        return ProfileUploadScreen(nextScreen: nextScreen);
+      },
+    ),
+    GetPage(
+      name: AppRoutes.hobby,
+      page: () {
+        final arguments = Get.arguments ?? {};
+        final nextScreen = arguments['nextScreen'] as VoidCallback?;
+        return HobbiesSelectionScreen(nextScreen: nextScreen);
+      },
+    ),
     GetPage(
       name: AppRoutes.relationshipPreference,
       page: () => RelationshipPreferenceScreen(),

@@ -1,13 +1,13 @@
 import 'package:falangthai/app/modules/profile/controllers/hobby_controller.dart';
 import 'package:falangthai/app/resources/colors.dart';
-import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HobbiesSelectionScreen extends StatelessWidget {
-  HobbiesSelectionScreen({super.key});
+  final VoidCallback? nextScreen;
+  HobbiesSelectionScreen({super.key, this.nextScreen});
 
   final hobbiesController = Get.put(HobbiesSelectionController());
 
@@ -431,7 +431,7 @@ class HobbiesSelectionScreen extends StatelessWidget {
         child: GestureDetector(
           onTap: () => hobbiesController.toggleHobby(hobby.id),
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+            // padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
             decoration: BoxDecoration(
               color: Colors.white.withValues(alpha: 0.05),
               borderRadius: BorderRadius.circular(20),
@@ -443,21 +443,19 @@ class HobbiesSelectionScreen extends StatelessWidget {
               ),
             ),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(hobby.icon, color: Colors.white70, size: 20),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Text(
-                    hobby.name,
-                    style: GoogleFonts.fredoka(
-                      fontSize: 13,
-                      color: isSelected
-                          ? Colors.white
-                          : Colors.white.withOpacity(0.8),
-                      fontWeight: isSelected
-                          ? FontWeight.w700
-                          : FontWeight.w500,
-                    ),
+                Icon(hobby.icon, color: Colors.white70, size: 25),
+                const SizedBox(width: 10),
+                Text(
+                  hobby.name,
+                  style: GoogleFonts.fredoka(
+                    fontSize: 12,
+                    color: isSelected
+                        ? Colors.white
+                        : Colors.white.withValues(alpha: 0.8),
+                    fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
                   ),
                 ),
               ],
@@ -474,10 +472,10 @@ class HobbiesSelectionScreen extends StatelessWidget {
         duration: const Duration(milliseconds: 300),
         opacity: hobbiesController.canContinue ? 1.0 : 0.5,
         child: CustomButton(
-          ontap: () {
-            Get.toNamed(AppRoutes.relationshipPreference);
+          ontap: () async {
+            await hobbiesController.updateHobbies(nextScreen: nextScreen);
           },
-          isLoading: false.obs,
+          isLoading: hobbiesController.isloading,
           borderRadius: BorderRadius.circular(15),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,

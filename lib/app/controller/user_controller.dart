@@ -124,4 +124,42 @@ class UserController extends GetxController {
       isloading.value = false;
     }
   }
+
+  Future<void> updateHobbies({
+    required List<String> hobbies,
+    VoidCallback? nextScreen
+  }) async {
+    isloading.value = true;
+    try {
+      final storageController = Get.find<StorageController>();
+      String? token = await storageController.getToken();
+      if (token == null || token.isEmpty) {
+        CustomSnackbar.showErrorToast("Authentication required");
+        return;
+      }
+      final response = await _userService.updateHobbies(
+        token: token,
+        hobbies: hobbies,
+      );
+      if (response == null) return;
+      final decoded = json.decode(response.body);
+      String message = decoded["message"] ?? "";
+      if (response.statusCode != 200) {
+        CustomSnackbar.showErrorToast(message);
+        return;
+      }
+      if (nextScreen != null) {
+        await getUserDetails();
+        nextScreen();
+        return;
+      }
+      await getUserDetails();
+      Get.toNamed(AppRoutes.relationshipPreference);
+    } catch (e) {
+      debugPrint(e.toString());
+    } finally {
+      isloading.value = false;
+    }
+  }
+
 }

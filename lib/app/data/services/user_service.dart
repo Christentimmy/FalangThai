@@ -91,4 +91,29 @@ class UserService {
     return null;
   }
 
+  Future<http.Response?> updateHobbies({
+    required String token,
+    required List<String> hobbies,
+  }) async {
+    try {
+      final response = await client
+          .patch(
+            Uri.parse("$baseUrl/user/update-hobbies"),
+            headers: {
+              'Authorization': 'Bearer $token',
+              'Content-Type': 'application/json',
+            },
+            body: jsonEncode({'hobbies': hobbies}),
+          )
+          .timeout(const Duration(seconds: 15));
+      return response;
+    } on SocketException catch (e) {
+      debugPrint("No internet connection $e");
+    } on TimeoutException {
+      debugPrint("Request timeout");
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return null;
+  }
 }

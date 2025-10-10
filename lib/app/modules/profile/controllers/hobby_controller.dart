@@ -1,5 +1,4 @@
-
-
+import 'package:falangthai/app/controller/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -31,7 +30,7 @@ class HobbiesSelectionController extends GetxController
 
   // Observable States
   final RxList<String> selectedHobbies = <String>[].obs;
-  final RxBool isLoading = false.obs;
+  final RxBool isloading = false.obs;
   final RxInt animationDelay = 0.obs;
 
   // Available hobbies with beautiful colors
@@ -160,15 +159,16 @@ class HobbiesSelectionController extends GetxController
       ),
     );
 
-    rotationAnimation = Tween<double>(
-      begin: 0,
-      end: 6.28318530718, // 2π
-    ).animate(
-      CurvedAnimation(
-        parent: backgroundAnimationController,
-        curve: Curves.linear,
-      ),
-    );
+    rotationAnimation =
+        Tween<double>(
+          begin: 0,
+          end: 6.28318530718, // 2π
+        ).animate(
+          CurvedAnimation(
+            parent: backgroundAnimationController,
+            curve: Curves.linear,
+          ),
+        );
 
     pulseAnimation = Tween<double>(begin: 0.8, end: 1.2).animate(
       CurvedAnimation(
@@ -182,7 +182,7 @@ class HobbiesSelectionController extends GetxController
 
   void toggleHobby(String hobbyId) {
     HapticFeedback.lightImpact();
-    
+
     if (selectedHobbies.contains(hobbyId)) {
       selectedHobbies.remove(hobbyId);
     } else {
@@ -226,6 +226,20 @@ class HobbiesSelectionController extends GetxController
     if (count == 0) return "Select at least 3 hobbies";
     if (count < 3) return "Select ${3 - count} more hobbies";
     return "$count/8 hobbies selected";
+  }
+
+  Future<void> updateHobbies({VoidCallback? nextScreen}) async {
+    if (selectedHobbies.length < 3) {
+      _showMaxSelectionSnackbar();
+      return;
+    }
+    isloading.value = true;
+    final userController = Get.find<UserController>();
+    await userController.updateHobbies(
+      hobbies: selectedHobbies,
+      nextScreen: nextScreen,
+    );
+    isloading.value = false;
   }
 
   @override
