@@ -7,7 +7,6 @@ import 'package:geocoding/geocoding.dart' as geo;
 
 class LocationController extends GetxController {
   RxBool isloading = false.obs;
-  // RxBool get isLocation => _isLocation;
   Location location = Location();
 
   Future<void> getCurrentCity({VoidCallback? nextScreen}) async {
@@ -25,11 +24,15 @@ class LocationController extends GetxController {
       if (permission == PermissionStatus.denied) {
         permission = await location.requestPermission();
       }
-      LocationData locationData = await location.getLocation();
-      List<geo.Placemark> placemarks = await geo.placemarkFromCoordinates(
-        locationData.latitude ?? 0.0,
-        locationData.longitude ?? 0.0,
+      LocationData locationData = await location.getLocation().timeout(
+        const Duration(seconds: 15),
       );
+      List<geo.Placemark> placemarks = await geo
+          .placemarkFromCoordinates(
+            locationData.latitude ?? 0.0,
+            locationData.longitude ?? 0.0,
+          )
+          .timeout(const Duration(seconds: 15));
       String? city = placemarks[0].subAdministrativeArea;
       if (city == null || city.isEmpty) return;
       final userController = Get.find<UserController>();
@@ -39,7 +42,6 @@ class LocationController extends GetxController {
         address: city,
         nextScreen: nextScreen,
       );
-
     } catch (e, stackTrace) {
       debugPrint("${e.toString()} StackTrace: $stackTrace");
     } finally {

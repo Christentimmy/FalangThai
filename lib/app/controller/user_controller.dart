@@ -20,15 +20,9 @@ class UserController extends GetxController {
       if (token == null || token.isEmpty) return;
 
       final response = await _userService.getUserDetails(token: token);
-      if (response == null){
-        Get.offAllNamed(AppRoutes.welcome);
-        return;
-      }
+      if (response == null) return;
       final decoded = json.decode(response.body);
-      if (response.statusCode != 200) {
-        Get.offAllNamed(AppRoutes.welcome);
-        return;
-      }
+      if (response.statusCode != 200) return;
 
       var userData = decoded["data"];
       UserModel mapped = UserModel.fromJson(userData);
@@ -196,4 +190,8 @@ class UserController extends GetxController {
     }
   }
 
+  clearUserData() {
+    userModel.value = null;
+    isloading.value = false;
+  }
 }

@@ -133,11 +133,14 @@ class GenderController extends GetxController
 
   bool get isSelectionValid => selectedGender.value.isNotEmpty;
 
-  Future<void> saveGender() async {
+  Future<void> saveGender({VoidCallback? nextScreen}) async {
     if (!isSelectionValid) return;
     isLoading.value = true;
     final userController = Get.find<UserController>();
-    await userController.updateGender(gender: selectedGender.value);
+    await userController.updateGender(
+      gender: selectedGender.value,
+      nextScreen: nextScreen,
+    );
     isLoading.value = false;
   }
 

@@ -6,7 +6,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class GenderScreen extends StatelessWidget {
-  GenderScreen({super.key});
+  final VoidCallback? nextScreen;
+  GenderScreen({super.key, this.nextScreen});
 
   final genderController = Get.put(GenderController());
 

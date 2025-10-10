@@ -32,7 +32,7 @@ class RelationshipPreferenceController extends GetxController
     PreferenceItem(id: 'men', title: 'Men', icon: Icons.male_rounded),
     PreferenceItem(id: 'women', title: 'Women', icon: Icons.female_rounded),
     PreferenceItem(
-      id: 'non_binary',
+      id: 'non-binary',
       title: 'Non-binary',
       icon: Icons.transgender_rounded,
     ),
@@ -121,7 +121,7 @@ class RelationshipPreferenceController extends GetxController
       if (!canContinue) return;
       final userController = Get.find<UserController>();
       await userController.updateInterestIn(
-        interestedIn: selectedPreference.value,
+        interestedIn: selectedPreference.value.toLowerCase(),
         nextScreen: nextScreen,
       );
     } catch (e) {

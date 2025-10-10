@@ -128,14 +128,43 @@ class AuthController extends GetxController {
     await userController.getUserDetails();
     final user = userController.userModel.value;
 
-    if (user == null) return;
+    if (user == null) {
+      Get.offAllNamed(AppRoutes.login);
+      return;
+    }
     if (user.profileCompleted == true) {
       Get.offAllNamed(AppRoutes.bottomNavigation);
+      return;
+    }
+    if (user.isEmailVerified == false) {
+      if (user.email?.isEmpty == true) return;
+      await sendOtp(email: user.email!);
+      Get.offAllNamed(
+        AppRoutes.otpVerification,
+        arguments: {
+          "email": user.email,
+          "showEditDetails": true,
+          "onVerifiedCallBack": () async {
+            await handleLoginNavigation();
+          },
+        },
+      );
       return;
     }
     if (user.gender?.isEmpty == true) {
       Get.offAllNamed(
         AppRoutes.gender,
+        arguments: {
+          "nextScreen": () async {
+            await handleLoginNavigation();
+          },
+        },
+      );
+      return;
+    }
+    if (user.location?.address?.isEmpty == true) {
+      Get.offAllNamed(
+        AppRoutes.locationRequest,
         arguments: {
           "nextScreen": () async {
             await handleLoginNavigation();
@@ -359,4 +388,27 @@ class AuthController extends GetxController {
     }
   }
 
+  Future<void> logout() async {
+    try {
+      Get.offAllNamed(AppRoutes.login);
+      String? token = await StorageController().getToken();
+      if (token == null) {
+        return;
+      }
+
+      final response = await _authService.logout(token: token);
+      if (response == null) return;
+      final data = jsonDecode(response.body);
+      if (response.statusCode != 200) {
+        debugPrint(data["message"].toString());
+        return;
+      }
+      final userController = Get.find<UserController>();
+      final storage = Get.find<StorageController>();
+      await storage.deleteToken();
+      userController.clearUserData();
+    } catch (error) {
+      debugPrint(error.toString());
+    }
+  }
 }

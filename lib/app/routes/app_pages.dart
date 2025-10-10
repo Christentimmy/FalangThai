@@ -33,7 +33,11 @@ class AppPages {
     GetPage(name: AppRoutes.language, page: () => LanguageSelectionScreen()),
     GetPage(name: AppRoutes.signup, page: () => SignupScreen()),
     GetPage(name: AppRoutes.login, page: () => LoginScreen()),
-    GetPage(name: AppRoutes.gender, page: () => GenderScreen()),
+    GetPage(name: AppRoutes.gender, page: () {
+      final arguments = Get.arguments ?? {};
+      final nextScreen = arguments['nextScreen'] as VoidCallback?;
+      return GenderScreen(nextScreen: nextScreen);
+    }),
     GetPage(
       name: AppRoutes.profileUpload,
       page: () {

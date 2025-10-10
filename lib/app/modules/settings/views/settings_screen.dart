@@ -1,3 +1,4 @@
+import 'package:falangthai/app/controller/auth_controller.dart';
 import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
@@ -68,7 +69,7 @@ class SettingsScreen extends StatelessWidget {
                 title: "Logout",
                 icon: Icons.logout,
                 prefixColor: Colors.red,
-                onTap: () => Get.offAllNamed(AppRoutes.login),
+                onTap: () => Get.find<AuthController>().logout(),
               ),
             ],
           ),

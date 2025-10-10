@@ -66,7 +66,7 @@ class AuthService {
             headers: {"Content-Type": "application/json"},
             body: jsonEncode(userModel.toJson()),
           )
-          .timeout(const Duration(seconds: 10));
+          .timeout(const Duration(seconds: 20));
       return response;
     } on SocketException catch (e) {
       CustomSnackbar.showErrorToast("Check internet connection");
@@ -215,6 +215,27 @@ class AuthService {
           )
           .timeout(const Duration(seconds: 15));
       return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return null;
+  }
+
+  Future<http.Response?> logout({required String token}) async {
+    try {
+      final url = Uri.parse("$baseUrl/auth/logout");
+      final response = await http.post(
+        url,
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer $token",
+        },
+      );
+      return response;
+    } on SocketException catch (e) {
+      debugPrint("No internet connection $e");
+    } on TimeoutException {
+      debugPrint("Request timeout");
     } catch (e) {
       debugPrint(e.toString());
     }

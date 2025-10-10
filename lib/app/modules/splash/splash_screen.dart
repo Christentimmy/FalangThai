@@ -48,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen>
       final authController = Get.find<AuthController>();
       final storageController = Get.find<StorageController>();
       final languageController = Get.find<LanguageController>();
-      
+
       final lanCode = languageController.locale.value;
       String? token = await storageController.getToken();
 
@@ -56,11 +56,11 @@ class _SplashScreenState extends State<SplashScreen>
         Get.offAllNamed(AppRoutes.welcome);
         return;
       }
-      if (token == null || token.isEmpty || lanCode != null) {
+      if ((token == null || token.isEmpty) && lanCode != null) {
         Get.offAllNamed(AppRoutes.login);
         return;
       }
-
+    
       await authController.handleLoginNavigation();
     });
   }
