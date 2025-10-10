@@ -1,13 +1,13 @@
 import 'package:falangthai/app/modules/profile/controllers/relationship_controller.dart';
 import 'package:falangthai/app/resources/colors.dart';
-import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RelationshipPreferenceScreen extends StatelessWidget {
-  RelationshipPreferenceScreen({super.key});
+  final VoidCallback? nextScreen;
+  RelationshipPreferenceScreen({super.key, this.nextScreen});
 
   final preferenceController = Get.put(RelationshipPreferenceController());
 
@@ -453,11 +453,10 @@ class RelationshipPreferenceScreen extends StatelessWidget {
         duration: const Duration(milliseconds: 300),
         opacity: preferenceController.canContinue ? 1.0 : 0.5,
         child: CustomButton(
-          ontap: () {
-            if (!preferenceController.canContinue) return;
-            Get.toNamed(AppRoutes.bottomNavigation);
+          ontap: ()async{
+            await preferenceController.updatePreference(nextScreen: nextScreen);
           },
-          isLoading: false.obs,
+          isLoading: preferenceController.isloading,
           borderRadius: BorderRadius.circular(15),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,

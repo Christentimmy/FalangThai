@@ -3,6 +3,7 @@ import 'package:falangthai/app/modules/favorites/views/favorite_screen.dart';
 import 'package:falangthai/app/modules/favorites/views/matches_screen.dart';
 import 'package:falangthai/app/modules/home/views/home_screen.dart';
 import 'package:falangthai/app/modules/settings/views/settings_screen.dart';
+import 'package:falangthai/app/resources/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,6 +28,7 @@ class BottomNavigationWidget extends StatelessWidget {
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(
           unselectedItemColor: Colors.grey,
+          selectedItemColor: AppColors.primaryColor,
           backgroundColor: Color(0xFF0F0D15),
           type: BottomNavigationBarType.fixed,
           items: [

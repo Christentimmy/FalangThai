@@ -52,7 +52,11 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.relationshipPreference,
-      page: () => RelationshipPreferenceScreen(),
+      page: () {
+        final arguments = Get.arguments ?? {};
+        final nextScreen = arguments['nextScreen'] as VoidCallback?;
+        return RelationshipPreferenceScreen(nextScreen: nextScreen);
+      },
     ),
     GetPage(name: AppRoutes.home, page: () => HomeScreen()),
     GetPage(name: AppRoutes.favorite, page: () => FavoriteScreen()),

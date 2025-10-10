@@ -1,3 +1,4 @@
+import 'package:falangthai/app/controller/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -14,6 +15,8 @@ class RelationshipPreferenceController extends GetxController
     with GetSingleTickerProviderStateMixin {
   // Animation Controllers
   late AnimationController backgroundAnimationController;
+
+  final isloading = false.obs;
 
   // Animations
   late Animation<double> floatAnimation1;
@@ -108,11 +111,25 @@ class RelationshipPreferenceController extends GetxController
     }
   }
 
-
   bool get canContinue {
     return selectedPreference.value.isNotEmpty;
   }
 
+  Future<void> updatePreference({VoidCallback? nextScreen}) async {
+    isloading.value = true;
+    try {
+      if (!canContinue) return;
+      final userController = Get.find<UserController>();
+      await userController.updateInterestIn(
+        interestedIn: selectedPreference.value,
+        nextScreen: nextScreen,
+      );
+    } catch (e) {
+      debugPrint(e.toString());
+    } finally {
+      isloading.value = false;
+    }
+  }
 
   @override
   void onClose() {

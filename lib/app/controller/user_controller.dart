@@ -127,7 +127,7 @@ class UserController extends GetxController {
 
   Future<void> updateHobbies({
     required List<String> hobbies,
-    VoidCallback? nextScreen
+    VoidCallback? nextScreen,
   }) async {
     isloading.value = true;
     try {
@@ -155,6 +155,44 @@ class UserController extends GetxController {
       }
       await getUserDetails();
       Get.toNamed(AppRoutes.relationshipPreference);
+    } catch (e) {
+      debugPrint(e.toString());
+    } finally {
+      isloading.value = false;
+    }
+  }
+
+  Future<void> updateInterestIn({
+    VoidCallback? nextScreen,
+    required String interestedIn,
+  }) async {
+    isloading.value = true;
+    try {
+      final storageController = Get.find<StorageController>();
+      String? token = await storageController.getToken();
+      if (token == null || token.isEmpty) {
+        CustomSnackbar.showErrorToast("Authentication required");
+        return;
+      }
+      final response = await _userService.updateInterestedIn(
+        token: token,
+        interestedIn: interestedIn,
+      );
+      if (response == null) return;
+      final decoded = json.decode(response.body);
+      String message = decoded["message"] ?? "";
+      if (response.statusCode != 200) {
+        CustomSnackbar.showErrorToast(message);
+        return;
+      }
+      await getUserDetails();
+
+      if (nextScreen != null) {
+        nextScreen();
+        return;
+      }
+
+      Get.offAllNamed(AppRoutes.bottomNavigation);
     } catch (e) {
       debugPrint(e.toString());
     } finally {
