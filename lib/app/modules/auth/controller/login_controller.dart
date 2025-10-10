@@ -1,23 +1,24 @@
+import 'package:falangthai/app/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginController extends GetxController with GetTickerProviderStateMixin {
-  // final formKey = GlobalKey<FormState>();
+  final isloading = false.obs;
 
   // Animation Controllers
   late AnimationController backgroundAnimationController;
   late AnimationController logoAnimationController;
-  
+
   // Animations
   late Animation<double> floatAnimation1;
   late Animation<double> floatAnimation2;
   late Animation<double> rotationAnimation;
   late Animation<double> pulseAnimation;
-  
+
   // Form Controllers
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  
+
   // Observable States
   final RxBool isPasswordVisible = false.obs;
 
@@ -33,50 +34,47 @@ class LoginController extends GetxController with GetTickerProviderStateMixin {
       duration: const Duration(seconds: 25),
       vsync: this,
     );
-    
-    floatAnimation1 = Tween<double>(
-      begin: -1.0,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: backgroundAnimationController,
-      curve: Curves.easeInOut,
-    ));
-    
-    floatAnimation2 = Tween<double>(
-      begin: 1.0,
-      end: -1.0,
-    ).animate(CurvedAnimation(
-      parent: backgroundAnimationController,
-      curve: const Interval(0.2, 1.0, curve: Curves.easeInOut),
-    ));
-    
-    rotationAnimation = Tween<double>(
-      begin: 0,
-      end: 6.28318530718, // 2π
-    ).animate(CurvedAnimation(
-      parent: backgroundAnimationController,
-      curve: Curves.linear,
-    ));
-    
+
+    floatAnimation1 = Tween<double>(begin: -1.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: backgroundAnimationController,
+        curve: Curves.easeInOut,
+      ),
+    );
+
+    floatAnimation2 = Tween<double>(begin: 1.0, end: -1.0).animate(
+      CurvedAnimation(
+        parent: backgroundAnimationController,
+        curve: const Interval(0.2, 1.0, curve: Curves.easeInOut),
+      ),
+    );
+
+    rotationAnimation =
+        Tween<double>(
+          begin: 0,
+          end: 6.28318530718, // 2π
+        ).animate(
+          CurvedAnimation(
+            parent: backgroundAnimationController,
+            curve: Curves.linear,
+          ),
+        );
+
     backgroundAnimationController.repeat();
-    
+
     // Logo animation
     logoAnimationController = AnimationController(
       duration: const Duration(seconds: 3),
       vsync: this,
     );
-    
-    pulseAnimation = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: logoAnimationController,
-      curve: Curves.easeInOut,
-    ));
-    
+
+    pulseAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: logoAnimationController, curve: Curves.easeInOut),
+    );
+
     logoAnimationController.repeat(reverse: true);
   }
- 
+
   void forgotPassword() {
     _showForgotPasswordDialog();
   }
@@ -91,19 +89,14 @@ class LoginController extends GetxController with GetTickerProviderStateMixin {
         ),
         title: Text(
           'Reset Password',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w600,
-          ),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
         ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               'Enter your email address and we\'ll send you a link to reset your password.',
-              style: TextStyle(
-                color: Colors.white.withOpacity(0.8),
-              ),
+              style: TextStyle(color: Colors.white.withOpacity(0.8)),
             ),
             const SizedBox(height: 20),
             TextFormField(
@@ -156,6 +149,23 @@ class LoginController extends GetxController with GetTickerProviderStateMixin {
     );
   }
 
+  Future<void> login({required GlobalKey<FormState> formKey}) async {
+    isloading.value = true;
+    try {
+      if (!formKey.currentState!.validate()) return;
+      final authController = Get.find<AuthController>();
+      await authController.loginUser(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+    } catch (e) {
+      debugPrint(e.toString());
+    } finally {
+      isloading.value = false;
+      clearForm();
+    }
+  }
+
   // Utility Methods
   void clearForm() {
     emailController.clear();
@@ -164,12 +174,10 @@ class LoginController extends GetxController with GetTickerProviderStateMixin {
 
   @override
   void onClose() {
-    emailController.dispose();
-    passwordController.dispose();
-    
+    clearForm();
     backgroundAnimationController.dispose();
     logoAnimationController.dispose();
-    
+
     super.onClose();
   }
 }

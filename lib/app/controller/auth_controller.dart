@@ -15,13 +15,13 @@ class AuthController extends GetxController {
   final _authService = AuthService();
 
   Future<void> loginUser({
-    required String identifier,
+    required String email,
     required String password,
   }) async {
     isloading.value = true;
     try {
       final response = await _authService.loginUser(
-        identifier: identifier,
+        email: email,
         password: password,
       );
       if (response == null) return;
@@ -35,9 +35,9 @@ class AuthController extends GetxController {
         CustomSnackbar.showErrorToast(message);
         return;
       }
-      // final userController = Get.find<UserController>();
+      final userController = Get.find<UserController>();
       // final storyController = Get.find<StoryController>();
-      // await userController.getUserDetails();
+      await userController.getUserDetails();
       // await userController.getPotentialMatches();
       // await storyController.getAllStories();
       // await storyController.getUserPostedStories();

@@ -2,7 +2,6 @@ import 'dart:math' as math;
 import 'package:falangthai/app/modules/auth/controller/login_controller.dart';
 import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
 import 'package:falangthai/app/resources/colors.dart';
-import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:falangthai/app/utils/validator.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
 import 'package:falangthai/app/widgets/custom_textfield.dart';
@@ -175,7 +174,9 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 8),
               authWidgets.buildTitle(title: "Welcome Back"),
               const SizedBox(height: 6),
-              authWidgets.buildSubtitle(subtitle: "Sign in to continue your journey"),
+              authWidgets.buildSubtitle(
+                subtitle: "Sign in to continue your journey",
+              ),
               const SizedBox(height: 40),
               CustomTextField(
                 controller: loginController.emailController,
@@ -218,10 +219,10 @@ class LoginScreen extends StatelessWidget {
               _buildForgotPassword(),
               const SizedBox(height: 32),
               CustomButton(
-                ontap: () {
-                  Get.toNamed(AppRoutes.bottomNavigation);
+                ontap: () async {
+                  await loginController.login(formKey: formKey);
                 },
-                isLoading: false.obs,
+                isLoading: loginController.isloading,
                 borderRadius: BorderRadius.circular(20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -339,5 +340,4 @@ class LoginScreen extends StatelessWidget {
       ),
     );
   }
-
 }
