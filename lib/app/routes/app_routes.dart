@@ -20,4 +20,5 @@ class AppRoutes {
   static const String subscription = '/subscription';
   static const String bottomNavigation = '/bottom-navigation';
   static const String profile = '/profile';
+  static const String otpVerification = '/otp-verification';
 }

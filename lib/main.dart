@@ -1,4 +1,5 @@
 import 'package:falangthai/app/bindings/app_bindings.dart';
+import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/routes/app_pages.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,10 @@ class MainApp extends StatelessWidget {
         splashFactory: NoSplash.splashFactory,
         primaryColor: Colors.pinkAccent,
         textTheme: GoogleFonts.poppinsTextTheme(),
+        textSelectionTheme: const TextSelectionThemeData(
+          cursorColor: AppColors.primaryColor,
+          selectionHandleColor: AppColors.primaryColor,
+        ),
       ),
     );
   }

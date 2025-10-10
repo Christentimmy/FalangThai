@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class WelcomeController extends GetxController
-    with GetSingleTickerProviderStateMixin {
+    with GetTickerProviderStateMixin {
+      
   late AnimationController animationController;
   late Animation<double> bounceAnimation;
 
@@ -41,5 +42,11 @@ class WelcomeController extends GetxController
       CurvedAnimation(parent: animationController, curve: Curves.easeInOut),
     );
     super.onInit();
+  }
+
+  @override
+  void onClose() {
+    animationController.dispose();
+    super.onClose();
   }
 }

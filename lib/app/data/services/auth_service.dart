@@ -17,9 +17,7 @@ class AuthService {
       final response = await client
           .post(
             Uri.parse("$baseUrl/auth/register"),
-            headers: {
-              "Content-Type": "application/json",
-            },
+            headers: {"Content-Type": "application/json"},
             body: jsonEncode(userModel.toJson()),
           )
           .timeout(const Duration(seconds: 10));
@@ -64,5 +62,64 @@ class AuthService {
     } catch (e) {
       throw Exception("Unexpected error $e");
     }
+  }
+
+  Future<http.Response?> changeAuthDetails({
+    required String token,
+    String? email,
+  }) async {
+    try {
+      final response = await client
+          .post(
+            Uri.parse("$baseUrl/auth/change-auth-details"),
+            headers: {
+              "Authorization": "Bearer $token",
+              "Content-Type": "application/json",
+            },
+            body: jsonEncode({"email": email}),
+          )
+          .timeout(const Duration(seconds: 15));
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return null;
+  }
+
+  Future<http.Response?> verifyOtp({
+    required String otpCode,
+    required String email,
+  }) async {
+    try {
+      final response = await client
+          .post(
+            Uri.parse("$baseUrl/auth/verify-otp"),
+            headers: {"Content-Type": "application/json"},
+            body: jsonEncode({"email": email, "otp": otpCode}),
+          )
+          .timeout(const Duration(seconds: 15));
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+      return null;
+    }
+  }
+
+  Future<http.Response?> sendOtp({required String email}) async {
+    try {
+      final response = await client
+          .post(
+            Uri.parse("$baseUrl/auth/send-otp"),
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: jsonEncode({"email": email}),
+          )
+          .timeout(const Duration(seconds: 15));
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return null;
   }
 }

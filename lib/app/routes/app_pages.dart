@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:falangthai/app/modules/auth/views/login_screen.dart';
+import 'package:falangthai/app/modules/auth/views/otp_screen.dart';
 import 'package:falangthai/app/modules/auth/views/signup_screen.dart';
 import 'package:falangthai/app/modules/chat/views/audio_call_screen.dart';
 import 'package:falangthai/app/modules/chat/views/chat_list_screen.dart';
@@ -45,5 +48,19 @@ class AppPages {
     GetPage(name: AppRoutes.subscription, page: () => SubscriptionScreen()),
     GetPage(name: AppRoutes.bottomNavigation, page: () => BottomNavigationWidget()),
     GetPage(name: AppRoutes.profile, page: () => ProfileScreen()),
+    GetPage(name: AppRoutes.otpVerification, page: () {
+      final arguments = Get.arguments ?? {};
+      final email = arguments['email'] as String;
+      if(email.isEmpty){
+        throw Exception("Email is required");
+      }
+      final onVerifiedCallBack = arguments['onVerifiedCallBack'] as VoidCallback?;
+      final showEditDetails = arguments['showEditDetails'] ?? true;
+      return OtpScreen(
+        email: email,
+        onVerifiedCallBack: onVerifiedCallBack,
+        showEditDetails: showEditDetails,
+      );
+    }),
   ];
 }
