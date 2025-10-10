@@ -14,6 +14,78 @@ class AuthController extends GetxController {
   final isOtpVerifyLoading = false.obs;
   final _authService = AuthService();
 
+  Future<void> googleAuthSignUp() async {
+    isloading.value = true;
+    try {
+      final idToken = await _authService.signInWithGoogle();
+      if (idToken == null) {
+        return;
+      }
+      final response = await _authService.sendGoogleToken(
+        token: idToken,
+        isRegister: true,
+      );
+      if (response == null) return;
+      final decoded = json.decode(response.body);
+      String message = decoded["message"] ?? "";
+      if (response.statusCode != 201) {
+        CustomSnackbar.showErrorToast(message);
+        return;
+      }
+      final userController = Get.find<UserController>();
+      final storageController = Get.find<StorageController>();
+      String token = decoded["token"] ?? "";
+      if (token.isEmpty) return;
+      await storageController.storeToken(token);
+      // final socketController = Get.find<SocketController>();
+      // socketController.initializeSocket();
+      await userController.getUserDetails();
+      Get.toNamed(AppRoutes.gender);
+    } catch (e) {
+      debugPrint(e.toString());
+    } finally {
+      isloading.value = false;
+    }
+  }
+
+  Future<void> googleAuthSignIn() async {
+    isloading.value = true;
+    try {
+      final idToken = await _authService.signInWithGoogle();
+      if (idToken == null) {
+        CustomSnackbar.showErrorToast("Failed to sign in with Google");
+        return;
+      }
+
+      final response = await _authService.sendGoogleToken(
+        token: idToken,
+        isRegister: false,
+      );
+
+      if (response == null) return;
+      final decoded = json.decode(response.body);
+
+      String message = decoded["message"] ?? "";
+      String token = decoded["token"] ?? "";
+      if (token.isEmpty) return;
+
+      final storageController = Get.find<StorageController>();
+      await storageController.storeToken(token);
+
+      if (response.statusCode != 200) {
+        CustomSnackbar.showErrorToast(message);
+        return;
+      }
+      final userController = Get.find<UserController>();
+      await userController.getUserDetails();
+      Get.offAllNamed(AppRoutes.bottomNavigation);
+    } catch (e) {
+      debugPrint(e.toString());
+    } finally {
+      isloading.value = false;
+    }
+  }
+
   Future<void> loginUser({
     required String email,
     required String password,
