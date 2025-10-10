@@ -1,4 +1,7 @@
 import 'dart:io';
+import 'package:falangthai/app/controller/auth_controller.dart';
+import 'package:falangthai/app/data/models/user_model.dart';
+import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/utils/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,6 +12,7 @@ class ProfileUploadController extends GetxController
     with GetSingleTickerProviderStateMixin {
   // Animation Controllers
   late AnimationController backgroundAnimationController;
+  final bioController = TextEditingController();
 
   // Animations
   late Animation<double> floatAnimation1;
@@ -19,11 +23,10 @@ class ProfileUploadController extends GetxController
   // Observable States
   final Rx<File?> selectedImage = Rx<File?>(null);
   final Rx<DateTime?> dateOfBirth = Rx<DateTime?>(null);
-  final RxBool isUploading = false.obs;
   final RxBool showUploadOptions = false.obs;
 
   // Upload progress
-  final RxDouble uploadProgress = 0.0.obs;
+  final isloading = false.obs;
 
   @override
   void onInit() {
@@ -79,12 +82,12 @@ class ProfileUploadController extends GetxController
 
     Get.bottomSheet(
       Container(
-        height: 200,
         decoration: const BoxDecoration(
           color: Color(0xFF1F1B2E),
           borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
         ),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             const SizedBox(height: 12),
             Container(
@@ -126,6 +129,7 @@ class ProfileUploadController extends GetxController
                 ),
               ],
             ),
+            const SizedBox(height: 30),
           ],
         ),
       ),
@@ -209,8 +213,13 @@ class ProfileUploadController extends GetxController
   // Validation
   bool get hasSelectedImage => selectedImage.value != null;
   bool get hasSelectedDateOfBirth => dateOfBirth.value != null;
+  bool get isBioValid => bioController.text.isNotEmpty;
 
-  bool get isValid => hasSelectedImage && hasSelectedDateOfBirth;
+  RxBool isValid = false.obs;
+
+  void validate() {
+    isValid.value = hasSelectedImage && hasSelectedDateOfBirth && isBioValid;
+  }
 
   void showDateDialog() async {
     final date = await showDatePicker(
@@ -218,9 +227,42 @@ class ProfileUploadController extends GetxController
       firstDate: DateTime(1940),
       initialDate: DateTime.now(),
       lastDate: DateTime(2050),
+      builder: (context, child) {
+        return Theme(
+          data: ThemeData(
+            colorScheme: ColorScheme.dark(
+              primary: AppColors.primaryColor,
+              onPrimary: Colors.white,
+            ),
+          ),
+          child: child!,
+        );
+      },
     );
     if (date != null) {
       dateOfBirth.value = date;
+    }
+  }
+
+  Future<void> uploadImageAndDob({VoidCallback? nextScreen}) async {
+    isloading.value = true;
+    try {
+      if (!isValid.value) return;
+      final authController = Get.find<AuthController>();
+      final userModel = UserModel(
+        dob: dateOfBirth.value!.toIso8601String(),
+        bio: bioController.text,
+      );
+      if (selectedImage.value == null) return;
+      await authController.completeProfile(
+        userModel: userModel,
+        imageFile: selectedImage.value!,
+        nextScreen: nextScreen,
+      );
+    } catch (e) {
+      debugPrint(e.toString());
+    } finally {
+      isloading.value = false;
     }
   }
 

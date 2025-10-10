@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:falangthai/app/controller/storage_controller.dart';
 import 'package:falangthai/app/controller/user_controller.dart';
 import 'package:falangthai/app/data/models/user_model.dart';
@@ -154,6 +155,47 @@ class AuthController extends GetxController {
         CustomSnackbar.showErrorToast("Failed to get OTP, $message");
         return;
       }
+    } catch (e) {
+      debugPrint(e.toString());
+    } finally {
+      isloading.value = false;
+    }
+  }
+
+  Future<void> completeProfile({
+    required UserModel userModel,
+    required File imageFile,
+    VoidCallback? nextScreen,
+  }) async {
+    isloading.value = true;
+    try {
+      final storageController = Get.find<StorageController>();
+      final String? token = await storageController.getToken();
+      if (token == null) return;
+
+      final response = await _authService.completeProfile(
+        userModel: userModel,
+        token: token,
+        imageFile: imageFile,
+      );
+      if (response == null) return;
+
+      final decoded = json.decode(response.body);
+      String message = decoded["message"] ?? "";
+      if (response.statusCode != 200) {
+        CustomSnackbar.showErrorToast(message);
+        return;
+      }
+
+      final userController = Get.find<UserController>();
+      await userController.getUserDetails();
+
+      if (nextScreen != null) {
+        nextScreen();
+        return;
+      }
+
+      Get.toNamed(AppRoutes.hobby);
     } catch (e) {
       debugPrint(e.toString());
     } finally {

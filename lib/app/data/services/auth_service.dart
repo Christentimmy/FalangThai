@@ -110,13 +110,46 @@ class AuthService {
       final response = await client
           .post(
             Uri.parse("$baseUrl/auth/send-otp"),
-            headers: {
-              "Content-Type": "application/json",
-            },
+            headers: {"Content-Type": "application/json"},
             body: jsonEncode({"email": email}),
           )
           .timeout(const Duration(seconds: 15));
       return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return null;
+  }
+
+  Future<http.Response?> completeProfile({
+    required UserModel userModel,
+    required String token,
+    required File imageFile,
+  }) async {
+    try {
+      var uri = Uri.parse("$baseUrl/auth/complete-profile");
+
+      var request = http.MultipartRequest('POST', uri)
+        ..headers['Authorization'] = 'Bearer $token'
+        ..headers['Content-Type'] = 'multipart/form-data'
+        ..fields['bio'] = userModel.bio!
+        ..fields['dob'] = userModel.dob!
+        ..files.add(
+          await http.MultipartFile.fromPath('avatar', imageFile.path),
+        );
+
+      var response = await request.send().timeout(const Duration(seconds: 20));
+      return await http.Response.fromStream(response);
+    } on SocketException catch (e) {
+      CustomSnackbar.showErrorToast("Check internet connection, $e");
+      debugPrint("No internet connection");
+      return null;
+    } on TimeoutException {
+      CustomSnackbar.showErrorToast(
+        "Request timeout, probably bad network, try again",
+      );
+      debugPrint("Request timeout");
+      return null;
     } catch (e) {
       debugPrint(e.toString());
     }

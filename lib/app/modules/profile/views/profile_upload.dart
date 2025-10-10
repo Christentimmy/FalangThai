@@ -1,7 +1,6 @@
 import 'package:falangthai/app/modules/profile/controllers/profile_upload_controller.dart';
 import 'package:falangthai/app/modules/profile/widgets/profile_upload_widget.dart';
 import 'package:falangthai/app/resources/colors.dart';
-import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
 import 'package:falangthai/app/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +9,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 class ProfileUploadScreen extends StatelessWidget {
-  ProfileUploadScreen({super.key});
+  final VoidCallback? nextScreen;
+  ProfileUploadScreen({super.key, this.nextScreen});
 
   final profileController = Get.put(ProfileUploadController());
   final profileUploadWidget = ProfileUploadWidget();
@@ -36,7 +36,7 @@ class ProfileUploadScreen extends StatelessWidget {
   Widget _buildContent() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Column(
+      child: ListView(
         children: [
           SizedBox(height: Get.height * 0.12),
           profileUploadWidget.buildProgressIndicator(),
@@ -46,9 +46,9 @@ class ProfileUploadScreen extends StatelessWidget {
           _buildSubtitle(),
           const SizedBox(height: 60),
           _buildProfileUploadSection(),
-          const Spacer(),
+          const SizedBox(height: 10),
           _buildContinueButton(),
-          const SizedBox(height: 40),
+          // const SizedBox(height: 40),
         ],
       ),
     );
@@ -161,6 +161,20 @@ class ProfileUploadScreen extends StatelessWidget {
               ),
             );
           }),
+          const SizedBox(height: 10),
+          CustomTextField(
+            controller: profileController.bioController,
+            onChanged: (value) => profileController.validate(),
+            bgColor: Colors.white.withValues(alpha: 0.05),
+            prefixIcon: Icons.person,
+            prefixIconColor: AppColors.primaryColor,
+            hintText: "Bio",
+            hintStyle: GoogleFonts.fredoka(
+              color: Colors.white.withValues(alpha: 0.5),
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
         ],
       );
     });
@@ -223,13 +237,12 @@ class ProfileUploadScreen extends StatelessWidget {
     return Obx(
       () => AnimatedOpacity(
         duration: const Duration(milliseconds: 300),
-        opacity: profileController.isValid ? 1.0 : 0.5,
+        opacity: profileController.isValid.value ? 1.0 : 0.5,
         child: CustomButton(
-          ontap: () {
-            if (!profileController.isValid) return;
-            Get.toNamed(AppRoutes.hobby);
+          ontap: () async {
+            await profileController.uploadImageAndDob(nextScreen: nextScreen);
           },
-          isLoading: profileController.isUploading,
+          isLoading: profileController.isloading,
           borderRadius: BorderRadius.circular(15),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
