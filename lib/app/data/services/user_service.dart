@@ -143,4 +143,30 @@ class UserService {
     return null;
   }
 
+  Future<http.Response?> saveUserOneSignalId({
+    required String token,
+    required String id,
+  }) async {
+    try {
+      final response = await client
+          .patch(
+            Uri.parse("$baseUrl/user/update-one-signal-id/$id"),
+            headers: {
+              "Authorization": "Bearer $token",
+              "Content-Type": "application/json",
+            },
+          )
+          .timeout(const Duration(seconds: 15));
+      return response;
+    } on SocketException catch (e) {
+      debugPrint("No internet connection $e");
+    } on TimeoutException {
+      debugPrint("Request timeout");
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return null;
+  }
+
 }
+

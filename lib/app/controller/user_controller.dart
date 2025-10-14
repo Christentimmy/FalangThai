@@ -190,6 +190,32 @@ class UserController extends GetxController {
     }
   }
 
+  Future<void> saveUserOneSignalId({
+    required String id,
+  }) async {
+    try {
+      final storageController = Get.find<StorageController>();
+      String? token = await storageController.getToken();
+      if (token == null || token.isEmpty) {
+        CustomSnackbar.showErrorToast("Authentication required");
+        return;
+      }
+      final response = await _userService.saveUserOneSignalId(
+        token: token,
+        id: id,
+      );
+      if (response == null) return;
+      final decoded = json.decode(response.body);
+      String message = decoded["message"] ?? "";
+      if (response.statusCode != 200) {
+        CustomSnackbar.showErrorToast(message);
+        return;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
   clearUserData() {
     userModel.value = null;
     isloading.value = false;
