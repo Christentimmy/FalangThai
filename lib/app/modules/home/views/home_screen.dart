@@ -1,20 +1,41 @@
 import 'dart:ui';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:falangthai/app/controller/user_controller.dart';
+import 'package:falangthai/app/data/models/user_model.dart';
 import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
+import 'package:falangthai/app/utils/age_calculator.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:falangthai/app/modules/home/controller/home_controller.dart';
+import 'package:shimmer/shimmer.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final homeController = Get.put(HomeController());
+  final userController = Get.put(UserController());
   final appinioSwiperController = AppinioSwiperController();
   final authWidget = AuthWidgets();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (userController.potentialMatchesList.isNotEmpty) return;
+      userController.getPotentialMatches();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,19 +51,40 @@ class HomeScreen extends StatelessWidget {
               buildHeader(),
               SizedBox(height: Get.height * 0.05),
               Expanded(
-                child: AppinioSwiper(
-                  controller: appinioSwiperController,
-                  cardCount: homeController.images.length,
-                  backgroundCardCount: 2,
-                  backgroundCardOffset: Offset(0, -45),
-                  onSwipeEnd: (previousIndex, targetIndex, activity) {
-                    // Get.toNamed(AppRoutes.match);
-                  },
-                  cardBuilder: (context, index) {
-                    final image = homeController.images[index];
-                    return buildCard(image: image);
-                  },
-                ),
+                child: Obx(() {
+                  if (userController.isloading.value) {
+                    return const Center(
+                      child: CupertinoActivityIndicator(
+                        color: AppColors.primaryColor,
+                      ),
+                    );
+                  }
+                  if (userController.potentialMatchesList.isEmpty) {
+                    return Center(
+                      child: Text(
+                        "No matches found",
+                        style: GoogleFonts.figtree(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.primaryColor,
+                        ),
+                      ),
+                    );
+                  }
+                  final potentialList = userController.potentialMatchesList;
+                  return AppinioSwiper(
+                    controller: appinioSwiperController,
+                    cardCount: potentialList.length,
+                    // backgroundCardCount: 2,
+                    backgroundCardOffset: Offset(0, -45),
+                    onSwipeEnd: (previousIndex, targetIndex, activity) {
+                      // Get.toNamed(AppRoutes.match);
+                    },
+                    cardBuilder: (context, index) {
+                      return buildCard(user: potentialList[index]);
+                    },
+                  );
+                }),
               ),
               SizedBox(height: Get.height * 0.01),
               buildActionButtons(),
@@ -53,7 +95,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Padding buildCard({required String image}) {
+  Padding buildCard({required UserModel user}) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
       child: Stack(
@@ -61,7 +103,25 @@ class HomeScreen extends StatelessWidget {
           Positioned.fill(
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.asset(image, fit: BoxFit.cover),
+              child: CachedNetworkImage(
+                imageUrl: user.avatar ?? "",
+                placeholder: (context, url) {
+                  return Shimmer.fromColors(
+                    baseColor: Colors.grey[300]!,
+                    highlightColor: Colors.grey[100]!,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white,
+                      ),
+                    ),
+                  );
+                },
+                errorWidget: (context, url, error) => const Center(
+                  child: Icon(Icons.error, color: AppColors.primaryColor),
+                ),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           Column(
@@ -85,12 +145,13 @@ class HomeScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Row(
                   children: [
                     Text(
-                      "Blaire  23",
+                      "${user.fullName?.split(" ").first} ${calculateAge(user.dob)}",
                       style: GoogleFonts.figtree(
                         fontSize: 25,
                         fontWeight: FontWeight.w600,
@@ -113,7 +174,7 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     Icon(Icons.location_on, color: Colors.white),
                     Text(
-                      "5 miles away",
+                      user.location?.address?.capitalizeFirst ?? "",
                       style: GoogleFonts.figtree(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
@@ -124,7 +185,9 @@ class HomeScreen extends StatelessWidget {
                 ),
                 SizedBox(height: Get.height * 0.01),
                 Text(
-                  "“I’ll fall for you if you love dogs 🐶 and good jollof rice 🍛.” Christian girlie!! I think I hate skating too.",
+                  user.bio?.capitalizeFirst ?? "",
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                   style: GoogleFonts.figtree(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,

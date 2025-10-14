@@ -12,6 +12,11 @@ class UserController extends GetxController {
   Rxn<UserModel> userModel = Rxn<UserModel>();
   final isloading = false.obs;
 
+  //potential matches variables
+  RxList<UserModel> potentialMatchesList = <UserModel>[].obs;
+  RxInt currentPage = 1.obs;
+  RxBool hasNextPage = false.obs;
+
   Future<void> getUserDetails() async {
     isloading.value = true;
     try {
@@ -190,9 +195,7 @@ class UserController extends GetxController {
     }
   }
 
-  Future<void> saveUserOneSignalId({
-    required String id,
-  }) async {
+  Future<void> saveUserOneSignalId({required String id}) async {
     try {
       final storageController = Get.find<StorageController>();
       String? token = await storageController.getToken();
@@ -213,6 +216,56 @@ class UserController extends GetxController {
       }
     } catch (e) {
       debugPrint(e.toString());
+    }
+  }
+
+  Future<void> getPotentialMatches({
+    bool? loadMore = false,
+    bool showLoader = true,
+  }) async {
+    isloading.value = showLoader;
+
+    try {
+      if (loadMore == true && hasNextPage.value) {
+        currentPage.value++;
+      } else {
+        currentPage.value = 1;
+        potentialMatchesList.clear();
+      }
+
+      final storageController = Get.find<StorageController>();
+      String? token = await storageController.getToken();
+      if (token == null || token.isEmpty) return;
+
+      final response = await _userService.getPotentialMatches(
+        token: token,
+        page: currentPage.value,
+      );
+
+      if (response == null) return;
+
+      final decoded = json.decode(response.body);
+      if (response.statusCode != 200) {
+        debugPrint(decoded["message"].toString());
+        return;
+      }
+
+      List matches = decoded["data"] ?? [];
+      hasNextPage.value = decoded["hasNextPage"] ?? false;
+      if (matches.isEmpty) return;
+
+      List<UserModel> mapped = matches
+          .map((e) => UserModel.fromJson(e))
+          .toList();
+      if (loadMore == true && hasNextPage.value == true) {
+        potentialMatchesList.addAll(mapped);
+      } else {
+        potentialMatchesList.value = mapped;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    } finally {
+      isloading.value = false;
     }
   }
 
