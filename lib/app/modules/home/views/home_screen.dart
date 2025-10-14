@@ -1,3 +1,5 @@
+
+
 import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:falangthai/app/controller/user_controller.dart';
@@ -95,110 +97,115 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Padding buildCard({required UserModel user}) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-      child: Stack(
-        children: [
-          Positioned.fill(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: CachedNetworkImage(
-                imageUrl: user.avatar ?? "",
-                placeholder: (context, url) {
-                  return Shimmer.fromColors(
-                    baseColor: Colors.grey[300]!,
-                    highlightColor: Colors.grey[100]!,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.white,
+  Widget buildCard({required UserModel user}) {
+    return GestureDetector(
+      onTap: () {
+        Get.toNamed(AppRoutes.swipeProfile, arguments: {'userId': user.id});
+      },
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: CachedNetworkImage(
+                  imageUrl: user.avatar ?? "",
+                  placeholder: (context, url) {
+                    return Shimmer.fromColors(
+                      baseColor: Color(0xFF1A1625),
+                      highlightColor: Color(0xFFD586D3),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Color(0xFF1A1625),
+                        ),
                       ),
-                    ),
-                  );
-                },
-                errorWidget: (context, url, error) => const Center(
-                  child: Icon(Icons.error, color: AppColors.primaryColor),
+                    );
+                  },
+                  errorWidget: (context, url, error) => const Center(
+                    child: Icon(Icons.error, color: AppColors.primaryColor),
+                  ),
+                  fit: BoxFit.cover,
                 ),
-                fit: BoxFit.cover,
               ),
             ),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
-                ),
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                  child: Container(
-                    height: Get.height * 0.18,
-                    color: Colors.black.withOpacity(0),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Row(
-                  children: [
-                    Text(
-                      "${user.fullName?.split(" ").first} ${calculateAge(user.dob)}",
-                      style: GoogleFonts.figtree(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
-                      ),
+                ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20),
+                  ),
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                    child: Container(
+                      height: Get.height * 0.18,
+                      color: Colors.black.withOpacity(0),
                     ),
-                    const Spacer(),
-                    CircleAvatar(
-                      radius: 20,
-                      backgroundColor: Colors.white.withOpacity(0.2),
-                      child: Icon(
-                        FontAwesomeIcons.circleExclamation,
-                        size: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Icon(Icons.location_on, color: Colors.white),
-                    Text(
-                      user.location?.address?.capitalizeFirst ?? "",
-                      style: GoogleFonts.figtree(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: Get.height * 0.01),
-                Text(
-                  user.bio?.capitalizeFirst ?? "",
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: GoogleFonts.figtree(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
                   ),
                 ),
-                SizedBox(height: Get.height * 0.01),
               ],
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        "${user.fullName?.split(" ").first} ${calculateAge(user.dob)}",
+                        style: GoogleFonts.figtree(
+                          fontSize: 25,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const Spacer(),
+                      CircleAvatar(
+                        radius: 20,
+                        backgroundColor: Colors.white.withOpacity(0.2),
+                        child: Icon(
+                          FontAwesomeIcons.circleExclamation,
+                          size: 18,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Icon(Icons.location_on, color: Colors.white),
+                      Text(
+                        user.location?.address?.capitalizeFirst ?? "",
+                        style: GoogleFonts.figtree(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: Get.height * 0.01),
+                  Text(
+                    user.bio?.capitalizeFirst ?? "",
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: GoogleFonts.figtree(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(height: Get.height * 0.01),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

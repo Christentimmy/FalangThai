@@ -10,7 +10,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MainApp());
 }
-  
+
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
@@ -21,6 +21,7 @@ class MainApp extends StatelessWidget {
       initialRoute: AppRoutes.splash,
       getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,
+      defaultTransition: Transition.fadeIn,
       initialBinding: AppBindings(),
       theme: ThemeData(
         splashColor: Colors.transparent,

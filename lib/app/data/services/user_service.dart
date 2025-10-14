@@ -193,4 +193,24 @@ class UserService {
     return null;
   }
 
+  Future<http.Response?> getUserWithId({
+    required String token,
+    required String userId,
+  }) async {
+    try {
+      final url = Uri.parse('$baseUrl/user/get-user-with-id/$userId');
+      final response = await client
+          .get(url, headers: {'Authorization': 'Bearer $token'})
+          .timeout(const Duration(seconds: 15));
+      return response;
+    } on SocketException catch (e) {
+      debugPrint("No internet connection $e");
+    } on TimeoutException {
+      debugPrint("Request timeout");
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return null;
+  }
+
 }

@@ -269,8 +269,36 @@ class UserController extends GetxController {
     }
   }
 
+  Future<UserModel?> getUserWithId({required String userId}) async {
+    try {
+      final storageController = Get.find<StorageController>();
+      String? token = await storageController.getToken();
+      if (token == null || token.isEmpty) {
+        CustomSnackbar.showErrorToast("Authentication required");
+        return null;
+      }
+      final response = await _userService.getUserWithId(
+        token: token,
+        userId: userId,
+      );
+      if (response == null) return null;
+      final decoded = json.decode(response.body);
+      if (response.statusCode != 200 && response.statusCode != 201) {
+        CustomSnackbar.showErrorToast(decoded["message"]);
+        return null;
+      }
+      return UserModel.fromJson(decoded["data"]);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return null;
+  }
+
   clearUserData() {
     userModel.value = null;
     isloading.value = false;
+    potentialMatchesList.clear();
+    currentPage.value = 1;
+    hasNextPage.value = false;
   }
 }

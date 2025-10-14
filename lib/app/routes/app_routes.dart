@@ -22,4 +22,5 @@ class AppRoutes {
   static const String profile = '/profile';
   static const String otpVerification = '/otp-verification';
   static const String locationRequest = '/location-request';
+  static const String swipeProfile = '/swipe-profile';
 }
