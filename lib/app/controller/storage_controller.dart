@@ -33,6 +33,21 @@ class StorageController extends GetxController {
     }
   }
 
+  Future<bool> isSignalSaveOnThisDevice() async {
+    try {
+      final String? value = await _secureStorage.read(
+        key: "signalSaveOnThisDevice",
+      );
+      return value != null ? true : false;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<void> saveSignalSaveOnThisDevice(bool value) async {
+    await _secureStorage.write(key: "signalSaveOnThisDevice", value: value.toString());
+  }
+
   Future<void> saveStatus(String value) async {
     await _secureStorage.write(key: "newUser", value: value);
   }
