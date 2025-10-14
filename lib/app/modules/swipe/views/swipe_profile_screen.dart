@@ -289,7 +289,7 @@ class _SwipeProfileScreenState extends State<SwipeProfileScreen> {
           ),
           _buildPreferenceItem(
             title: "Distance",
-            value: userModel.value?.preferences?.maxDistance?.toString() ?? '',
+            value: "${userModel.value?.preferences?.maxDistance?.toString()}Km",
             icon: Icons.location_on_rounded,
           ),
           _buildPreferenceItem(

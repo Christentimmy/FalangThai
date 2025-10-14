@@ -240,4 +240,27 @@ class UserService {
     return null;
   }
 
+  Future<http.Response?> getUserWhoLikesMe({
+    required String token,
+  }) async {
+    try {
+      final response = await client
+          .get(
+            Uri.parse("$baseUrl/user/get-users-who-liked-me"),
+            headers: {
+              'Authorization': 'Bearer $token',
+              'Content-Type': 'application/json',
+            },
+          )
+          .timeout(const Duration(seconds: 15));
+      return response;
+    } on SocketException catch (e) {
+      debugPrint("No internet connection $e");
+    } on TimeoutException {
+      debugPrint("Request timeout");
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return null;
+  }
 }

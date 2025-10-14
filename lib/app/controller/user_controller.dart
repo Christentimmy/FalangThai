@@ -17,6 +17,9 @@ class UserController extends GetxController {
   RxInt currentPage = 1.obs;
   RxBool hasNextPage = false.obs;
 
+  //users who likes me variables
+  RxList<UserModel> usersWhoLikesMeList = <UserModel>[].obs;
+
   Future<void> getUserDetails() async {
     isloading.value = true;
     try {
@@ -294,10 +297,7 @@ class UserController extends GetxController {
     return null;
   }
 
-  Future<void> swipe({
-    required String userId,
-    required SwipeType type,
-  }) async {
+  Future<void> swipe({required String userId, required SwipeType type}) async {
     try {
       final storageController = Get.find<StorageController>();
       String? token = await storageController.getToken();
@@ -334,12 +334,40 @@ class UserController extends GetxController {
     potentialMatchesList.removeWhere((element) => element.id == userId);
   }
 
+  Future<void> getUserWhoLikesMe() async {
+    isloading.value = true;
+    try {
+      final storageController = Get.find<StorageController>();
+      String? token = await storageController.getToken();
+      if (token == null || token.isEmpty) return;
+
+      final response = await _userService.getUserWhoLikesMe(token: token);
+      if (response == null) return;
+      final decoded = json.decode(response.body);
+      if (response.statusCode != 200) {
+        debugPrint(decoded["message"].toString());
+        return;
+      }
+      List matches = decoded["data"] ?? [];
+      if (matches.isEmpty) return;
+      List<UserModel> mapped = matches
+          .map((e) => UserModel.fromJson(e))
+          .toList();
+      usersWhoLikesMeList.value = mapped;
+    } catch (e) {
+      debugPrint(e.toString());
+    } finally {
+      isloading.value = false;
+    }
+  }
+
   clearUserData() {
     userModel.value = null;
     isloading.value = false;
     potentialMatchesList.clear();
     currentPage.value = 1;
     hasNextPage.value = false;
+    usersWhoLikesMeList.clear();
   }
 }
 
