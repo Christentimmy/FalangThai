@@ -1,5 +1,3 @@
-
-
 import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:falangthai/app/controller/user_controller.dart';
@@ -27,7 +25,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final homeController = Get.put(HomeController());
   final userController = Get.put(UserController());
-  final appinioSwiperController = AppinioSwiperController();
+  AppinioSwiperController appinioSwiperController = AppinioSwiperController();
   final authWidget = AuthWidgets();
 
   @override
@@ -77,10 +75,34 @@ class _HomeScreenState extends State<HomeScreen> {
                   return AppinioSwiper(
                     controller: appinioSwiperController,
                     cardCount: potentialList.length,
-                    // backgroundCardCount: 2,
                     backgroundCardOffset: Offset(0, -45),
-                    onSwipeEnd: (previousIndex, targetIndex, activity) {
-                      // Get.toNamed(AppRoutes.match);
+                    onSwipeEnd: (previousIndex, targetIndex, activity) async {
+                      if (previousIndex == -1) return;
+                      if (previousIndex >=
+                          userController.potentialMatchesList.length) {
+                        return;
+                      }
+                      final userId =
+                          userController.potentialMatchesList[previousIndex].id;
+                      if (userId == null) return;
+                      if (activity.direction == AxisDirection.right) {
+                        await userController.swipe(
+                          userId: userId,
+                          type: SwipeType.like,
+                        );
+                      }
+                      if (activity.direction == AxisDirection.left) {
+                        await userController.swipe(
+                          userId: userId,
+                          type: SwipeType.pass,
+                        );
+                      }
+                      if (activity.direction == AxisDirection.up) {
+                        await userController.swipe(
+                          userId: userId,
+                          type: SwipeType.superlike,
+                        );
+                      }
                     },
                     cardBuilder: (context, index) {
                       return buildCard(user: potentialList[index]);
@@ -214,14 +236,13 @@ class _HomeScreenState extends State<HomeScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        // buildActionButton(
+        //   icon: FontAwesomeIcons.arrowsRotate,
+        //   onTap: () {
+        //     appinioSwiperController.unswipe();
+        //   },
+        // ),
         buildActionButton(
-          icon: FontAwesomeIcons.arrowsRotate,
-          onTap: () {
-            appinioSwiperController.unswipe();
-          },
-        ),
-        buildActionButton(
-          size: 35,
           icon: FontAwesomeIcons.xmark,
           onTap: () {
             appinioSwiperController.swipeLeft();
@@ -230,7 +251,7 @@ class _HomeScreenState extends State<HomeScreen> {
         buildActionButton(
           icon: FontAwesomeIcons.solidHeart,
           onTap: () {
-            appinioSwiperController.swipeRight();
+            appinioSwiperController.swipeUp();
           },
           size: 35,
         ),

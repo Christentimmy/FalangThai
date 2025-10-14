@@ -294,6 +294,46 @@ class UserController extends GetxController {
     return null;
   }
 
+  Future<void> swipe({
+    required String userId,
+    required SwipeType type,
+  }) async {
+    try {
+      final storageController = Get.find<StorageController>();
+      String? token = await storageController.getToken();
+      if (token == null || token.isEmpty) return;
+
+      final response = await _userService.swipeLike(
+        token: token,
+        targetUserId: userId,
+        type: type.name.toLowerCase(),
+      );
+
+      if (response == null) return;
+      final decoded = json.decode(response.body);
+
+      if (response.statusCode != 200) {
+        CustomSnackbar.showErrorToast(decoded["message"]);
+        return;
+      }
+      removeUserFromPotentialList(userId);
+
+      final match = decoded["match"];
+      if (match == null) return;
+
+      String targetUserId = match["targetUserId"] ?? "";
+      if (targetUserId.isEmpty) return;
+
+      Get.toNamed(AppRoutes.match, arguments: {"targetUserId": targetUserId});
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  void removeUserFromPotentialList(String userId) {
+    potentialMatchesList.removeWhere((element) => element.id == userId);
+  }
+
   clearUserData() {
     userModel.value = null;
     isloading.value = false;
@@ -302,3 +342,5 @@ class UserController extends GetxController {
     hasNextPage.value = false;
   }
 }
+
+enum SwipeType { pass, superlike, like }

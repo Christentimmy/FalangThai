@@ -21,6 +21,7 @@ import 'package:falangthai/app/modules/profile/views/relationship_preference.dar
 import 'package:falangthai/app/modules/settings/views/settings_screen.dart';
 import 'package:falangthai/app/modules/splash/splash_screen.dart';
 import 'package:falangthai/app/modules/subscription/views/subscription_screen.dart';
+import 'package:falangthai/app/modules/swipe/views/match_screen.dart';
 import 'package:falangthai/app/modules/swipe/views/swipe_profile_screen.dart';
 import 'package:falangthai/app/modules/welcome/views/welcome_screen.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
@@ -113,6 +114,17 @@ class AppPages {
           throw Exception("User ID is required");
         }
         return SwipeProfileScreen(userId: userId);
+      },
+    ),
+    GetPage(
+      name: AppRoutes.match,
+      page: () {
+        final arguments = Get.arguments ?? {};
+        final targetUserId = arguments['targetUserId'] as String;
+        if (targetUserId.isEmpty) {
+          throw Exception("User ID is required");
+        }
+        return MatchScreen(targetUserId: targetUserId);
       },
     ),
   ];

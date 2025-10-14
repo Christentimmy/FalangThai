@@ -23,4 +23,5 @@ class AppRoutes {
   static const String otpVerification = '/otp-verification';
   static const String locationRequest = '/location-request';
   static const String swipeProfile = '/swipe-profile';
+  static const String match = '/match';
 }
