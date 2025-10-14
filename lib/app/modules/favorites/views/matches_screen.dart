@@ -1,31 +1,42 @@
-
-
 import 'dart:ui';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:falangthai/app/controller/user_controller.dart';
+import 'package:falangthai/app/data/models/user_model.dart';
 import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
 import 'package:falangthai/app/resources/colors.dart';
+import 'package:falangthai/app/routes/app_routes.dart';
+import 'package:falangthai/app/utils/age_calculator.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shimmer/shimmer.dart';
 
-class MatchesScreen extends StatelessWidget {
-  MatchesScreen({super.key});
+class MatchesScreen extends StatefulWidget {
+  const MatchesScreen({super.key});
 
+  @override
+  State<MatchesScreen> createState() => _MatchesScreenState();
+}
 
-  final List<String> images = [
-    "assets/images/pic10.jpg",
-    "assets/images/pic11.jpg",
-    "assets/images/pic12.jpg",
-    "assets/images/pic13.jpg",
-    "assets/images/pic14.jpg",
-    "assets/images/pic15.jpg",
-    "assets/images/pic16.jpg",
-    "assets/images/pic17.jpg",
-    "assets/images/pic18.jpg",
-    "assets/images/pic19.jpg",
-    "assets/images/pic20.jpg",
-    "assets/images/pic21.jpg",
-  ];
+class _MatchesScreenState extends State<MatchesScreen> {
+
+  final userController = Get.find<UserController>();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (userController.matchesList.isNotEmpty) return;
+      userController.getMatches();
+    });
+  }
+
+  @override
+  void dispose() {
+    userController.isloading.value = false;
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,100 +45,145 @@ class MatchesScreen extends StatelessWidget {
       body: SafeArea(
         child: Container(
           decoration: AuthWidgets().buildBackgroundDecoration(),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: GridView.builder(
-              itemCount: images.length,
-              physics: BouncingScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 0.7,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-              ),
-              itemBuilder: (context, index) {
-                final image = images[index];
-                return buildLikeCard(image);
-              },
-            ),
-          ),
+          child: Obx(() {
+            if (userController.isloading.value) {
+              return Center(
+                child: CircularProgressIndicator(color: AppColors.primaryColor),
+              );
+            }
+            if (userController.matchesList.isEmpty) {
+              return Center(
+                child: Text(
+                  "No users found",
+                  style: GoogleFonts.figtree(
+                    fontSize: 22,
+                    color: AppColors.primaryColor,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              );
+            }
+            return buildMatchGridBuilder();
+          }),
         ),
       ),
     );
   }
 
-  Stack buildLikeCard(String image) {
-    return Stack(
-      children: [
-        Positioned.fill(
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Image.asset(image, fit: BoxFit.cover),
-          ),
+  Padding buildMatchGridBuilder() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      child: GridView.builder(
+        itemCount: userController.matchesList.length,
+        physics: BouncingScrollPhysics(),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 0.7,
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 10,
         ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(20),
-                bottomRight: Radius.circular(20),
-              ),
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                child: Container(
-                  height: Get.height * 0.07,
-                  color: Colors.black.withOpacity(0),
+        itemBuilder: (context, index) {
+          return buildLikeCard(user: userController.matchesList[index]);
+        },
+      ),
+    );
+  }
+
+  Widget buildLikeCard({required UserModel user}) {
+    return InkWell(
+      onTap: () {
+        Get.toNamed(AppRoutes.swipeProfile, arguments: {'userId': user.id});
+      },
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: CachedNetworkImage(
+                imageUrl: user.avatar ?? "",
+                fit: BoxFit.cover,
+                placeholder: (context, url) {
+                  return Shimmer.fromColors(
+                    baseColor: Color(0xFF1A1625),
+                    highlightColor: Color(0xFFD586D3),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Color(0xFF1A1625),
+                      ),
+                    ),
+                  );
+                },
+                errorWidget: (context, url, error) => const Center(
+                  child: Icon(Icons.error, color: AppColors.primaryColor),
                 ),
               ),
             ),
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          ),
+          Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Text(
-                "Blaire  23",
-                style: GoogleFonts.figtree(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
+              ClipRRect(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
+                ),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                  child: Container(
+                    height: Get.height * 0.07,
+                    color: Colors.black.withOpacity(0),
+                  ),
                 ),
               ),
-              Row(
-                children: [
-                  Icon(Icons.location_on, color: Colors.white, size: 15),
-                  Text(
-                    "5 miles away",
-                    style: GoogleFonts.figtree(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 6),
             ],
           ),
-        ),
-        Positioned(
-          top: 10,
-          right: 10,
-          child: CircleAvatar(
-            radius: 20,
-            backgroundColor: Colors.white.withOpacity(0.2),
-            child: Icon(
-              FontAwesomeIcons.solidHeart,
-              size: 18,
-              color: Colors.white,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  "${user.fullName?.split(" ").first},  ${calculateAge(user.dob)}",
+                  style: GoogleFonts.figtree(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
+                ),
+                Row(
+                  children: [
+                    Icon(Icons.location_on, color: Colors.white, size: 15),
+                    Text(
+                      user.location?.address ?? "",
+                      style: GoogleFonts.figtree(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 6),
+              ],
             ),
           ),
-        ),
-      ],
+          Positioned(
+            top: 10,
+            right: 10,
+            child: CircleAvatar(
+              radius: 20,
+              backgroundColor: Colors.white.withOpacity(0.2),
+              child: Icon(
+                FontAwesomeIcons.solidHeart,
+                size: 18,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 

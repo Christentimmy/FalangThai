@@ -3,6 +3,7 @@ import 'package:falangthai/app/controller/user_controller.dart';
 import 'package:falangthai/app/data/models/user_model.dart';
 import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
 import 'package:falangthai/app/resources/colors.dart';
+import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:falangthai/app/utils/age_calculator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class SwipeProfileScreen extends StatefulWidget {
 }
 
 class _SwipeProfileScreenState extends State<SwipeProfileScreen> {
+  
   final isloading = true.obs;
   final isBioExpanded = false.obs;
   Rxn<UserModel> userModel = Rxn<UserModel>();
@@ -122,21 +124,43 @@ class _SwipeProfileScreenState extends State<SwipeProfileScreen> {
     return SizedBox(
       height: Get.height * 0.45,
       width: Get.width,
-      child: PageView.builder(
-        itemCount: userModel.value?.photos?.length ?? 0,
-        itemBuilder: (context, index) {
-          final image = userModel.value?.photos?[index] ?? '';
-          return CachedNetworkImage(
-            imageUrl: image,
-            fit: BoxFit.cover,
-            placeholder: (context, url) {
-              return buildShimmerImageEffect();
+      child: Stack(
+        children: [
+          PageView.builder(
+            itemCount: userModel.value?.photos?.length ?? 0,
+            itemBuilder: (context, index) {
+              final image = userModel.value?.photos?[index] ?? '';
+              return CachedNetworkImage(
+                imageUrl: image,
+                fit: BoxFit.cover,
+                placeholder: (context, url) {
+                  return buildShimmerImageEffect();
+                },
+                errorWidget: (context, url, error) {
+                  return Icon(Icons.error, color: Colors.red);
+                },
+              );
             },
-            errorWidget: (context, url, error) {
-              return Icon(Icons.error, color: Colors.red);
-            },
-          );
-        },
+          ),
+          Positioned(
+            bottom: Get.height * 0.08,
+            right: 20,
+            child: InkWell(
+              onTap: () {
+                Get.toNamed(AppRoutes.message);
+              },
+              child: CircleAvatar(
+                radius: 25,
+                backgroundColor: Color(0xFFD586D3),
+                child: Icon(
+                  Icons.chat_bubble,
+                  color: Colors.white,
+                  size: 25,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

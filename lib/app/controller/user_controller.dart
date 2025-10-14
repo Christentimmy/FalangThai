@@ -20,6 +20,9 @@ class UserController extends GetxController {
   //users who likes me variables
   RxList<UserModel> usersWhoLikesMeList = <UserModel>[].obs;
 
+  //matches variables
+  RxList<UserModel> matchesList = <UserModel>[].obs;
+
   Future<void> getUserDetails() async {
     isloading.value = true;
     try {
@@ -354,6 +357,35 @@ class UserController extends GetxController {
           .map((e) => UserModel.fromJson(e))
           .toList();
       usersWhoLikesMeList.value = mapped;
+    } catch (e) {
+      debugPrint(e.toString());
+    } finally {
+      isloading.value = false;
+    }
+  }
+
+  Future<void> getMatches() async {
+    isloading.value = true;
+    try {
+      final storageController = Get.find<StorageController>();
+      String? token = await storageController.getToken();
+      if (token == null || token.isEmpty) return;
+
+      final response = await _userService.getMatches(token: token);
+
+      if (response == null) return;
+      final decoded = json.decode(response.body);
+      if (response.statusCode != 200) {
+        debugPrint(decoded["message"].toString());
+        return;
+      }
+      List matches = decoded["data"] ?? [];
+      matchesList.clear();
+      if (matches.isEmpty) return;
+      List<UserModel> mapped = matches
+          .map((e) => UserModel.fromJson(e))
+          .toList();
+      matchesList.value = mapped;
     } catch (e) {
       debugPrint(e.toString());
     } finally {

@@ -21,30 +21,7 @@ class FavoriteScreen extends StatefulWidget {
 
 class _FavoriteScreenState extends State<FavoriteScreen> {
   final userController = Get.find<UserController>();
-  final List<String> images = [
-    "assets/images/pic1.jpeg",
-    "assets/images/pic2.jpg",
-    "assets/images/pic3.jpg",
-    "assets/images/pic4.jpg",
-    "assets/images/pic5.jpg",
-    "assets/images/pic6.jpg",
-    "assets/images/pic7.jpg",
-    "assets/images/pic8.jpg",
-    "assets/images/pic9.jpg",
-    "assets/images/pic10.jpg",
-    "assets/images/pic11.jpg",
-    "assets/images/pic12.jpg",
-    "assets/images/pic13.jpg",
-    "assets/images/pic14.jpg",
-    "assets/images/pic15.jpg",
-    "assets/images/pic16.jpg",
-    "assets/images/pic17.jpg",
-    "assets/images/pic18.jpg",
-    "assets/images/pic19.jpg",
-    "assets/images/pic20.jpg",
-    "assets/images/pic21.jpg",
-  ];
-
+  
   @override
   void initState() {
     super.initState();
@@ -52,6 +29,12 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
       if (userController.usersWhoLikesMeList.isNotEmpty) return;
       userController.getUserWhoLikesMe();
     });
+  }
+
+  @override
+  void dispose() {
+    userController.isloading.value = false;
+    super.dispose();
   }
 
   @override
