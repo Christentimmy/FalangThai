@@ -1,47 +1,58 @@
+import 'dart:async';
 import 'package:falangthai/app/controller/user_controller.dart';
-// import 'package:falangthai/app/data/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:location/location.dart';
 import 'package:geocoding/geocoding.dart' as geo;
+import 'package:geolocator/geolocator.dart';
 
 class LocationController extends GetxController {
   RxBool isloading = false.obs;
-  Location location = Location();
 
   Future<void> getCurrentCity({VoidCallback? nextScreen}) async {
     isloading.value = true;
     try {
-      bool serviceEnabled = await location.serviceEnabled();
+      bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
       if (!serviceEnabled) {
-        serviceEnabled = await location.requestService();
-        if (!serviceEnabled) {
+        await Geolocator.openLocationSettings();
+        return;
+      }
+
+      LocationPermission permission = await Geolocator.checkPermission();
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+        if (permission == LocationPermission.denied) {
           return;
         }
       }
-
-      PermissionStatus permission = await location.hasPermission();
-      if (permission == PermissionStatus.denied) {
-        permission = await location.requestPermission();
+      if (permission == LocationPermission.deniedForever) {
+        // User permanently denied permission
+        await Geolocator.openAppSettings();
+        return;
       }
-      LocationData locationData = await location.getLocation().timeout(
-        const Duration(seconds: 15),
+
+      final position = await Geolocator.getCurrentPosition(
+        locationSettings: LocationSettings(
+          accuracy: LocationAccuracy.high,
+          timeLimit: const Duration(seconds: 15),
+        ),
       );
-      List<geo.Placemark> placemarks = await geo
-          .placemarkFromCoordinates(
-            locationData.latitude ?? 0.0,
-            locationData.longitude ?? 0.0,
-          )
-          .timeout(const Duration(seconds: 15));
+
+      final placemarks = await geo.placemarkFromCoordinates(
+        position.latitude,
+        position.longitude,
+      );
+
       String? city = placemarks[0].subAdministrativeArea;
       if (city == null || city.isEmpty) return;
       final userController = Get.find<UserController>();
       await userController.updateLocation(
-        latitude: locationData.latitude ?? 0.0,
-        longitude: locationData.longitude ?? 0.0,
+        latitude: position.latitude,
+        longitude: position.longitude,
         address: city,
         nextScreen: nextScreen,
       );
+    } on TimeoutException catch (e) {
+      debugPrint("TimeoutException: $e");
     } catch (e, stackTrace) {
       debugPrint("${e.toString()} StackTrace: $stackTrace");
     } finally {
