@@ -1,12 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
-// import 'dart:convert';
 import 'dart:io';
 import 'package:falangthai/app/utils/base_url.dart';
+import 'package:falangthai/app/widgets/snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-// import 'package:http_parser/http_parser.dart';
-// import 'package:mime/mime.dart';
 
 class UserService {
   http.Client client = http.Client();
@@ -284,4 +282,138 @@ class UserService {
     return null;
   }
 
+  Future<http.Response?> addPhotoToGallery({
+    required String token,
+    required File imageFile,
+  }) async {
+    try {
+      var uri = Uri.parse("$baseUrl/user/add-photo-to-gallery");
+
+      var request = http.MultipartRequest('POST', uri)
+        ..headers['Authorization'] = 'Bearer $token'
+        ..headers['Content-Type'] = 'multipart/form-data'
+        ..files.add(
+          await http.MultipartFile.fromPath('photos', imageFile.path),
+        );
+
+      var response = await request.send().timeout(const Duration(seconds: 20));
+      return await http.Response.fromStream(response);
+    } on SocketException catch (e) {
+      CustomSnackbar.showErrorToast("Check internet connection, $e");
+      debugPrint("No internet connection");
+      return null;
+    } on TimeoutException {
+      CustomSnackbar.showErrorToast(
+        "Request timeout, probably bad network, try again",
+      );
+      debugPrint("Request timeout");
+      return null;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return null;
+  }
+
+  Future<http.Response?> removePhotoFromGallery({
+    required String token,
+    required int index,
+  }) async {
+    try {
+      final response = await client
+          .post(
+            Uri.parse("$baseUrl/user/remove-photo-from-gallery"),
+            headers: {
+              'Authorization': 'Bearer $token',
+              'Content-Type': 'application/json',
+            },
+            body: jsonEncode({'index': index}),
+          )
+          .timeout(const Duration(seconds: 15));
+      return response;
+    } on SocketException catch (e) {
+      debugPrint("No internet connection $e");
+    } on TimeoutException {
+      debugPrint("Request timeout");
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return null;
+  }
+
+  Future<http.Response?> editProfile({
+    String? fullName,
+    String? bio,
+    String? relationshipPreference,
+    String? interestedIn,
+    List? ageRange,
+    String? maxDistance,
+    required String token,
+  }) async {
+    try {
+      Map<String, dynamic> body = {};
+      if (fullName != null) {
+        body['full_name'] = fullName;
+      }
+      if (bio != null) {
+        body['bio'] = bio;
+      }
+      if (relationshipPreference != null) {
+        body['relationship_preference'] = relationshipPreference;
+      }
+      if (interestedIn != null) {
+        body['interested_in'] = interestedIn;
+      }
+      if (ageRange != null) {
+        body['age_range'] = ageRange;
+      }
+      if (maxDistance != null) {
+        body['max_distance'] = maxDistance;
+      }
+
+      final response = await client
+          .patch(
+            Uri.parse("$baseUrl/user/edit-profile"),
+            headers: {
+              'Authorization': 'Bearer $token',
+              'Content-Type': 'application/json',
+            },
+            body: jsonEncode(body),
+          )
+          .timeout(const Duration(seconds: 15));
+      return response;
+    } on SocketException catch (e) {
+      debugPrint("No internet connection $e");
+    } on TimeoutException {
+      debugPrint("Request timeout");
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return null;
+  }
+
+  Future<http.Response?> updateProfileImage({
+    required String token,
+    required File imageFile,
+  }) async {
+    try {
+      var uri = Uri.parse("$baseUrl/user/update-profile-image");
+
+      var request = http.MultipartRequest('PATCH', uri)
+        ..headers['Authorization'] = 'Bearer $token'
+        ..headers['Content-Type'] = 'multipart/form-data'
+        ..files.add(
+          await http.MultipartFile.fromPath('avatar', imageFile.path),
+        );
+
+      var response = await request.send().timeout(const Duration(seconds: 20));
+      return await http.Response.fromStream(response);
+    } on SocketException catch (e) {
+      debugPrint("No internet connection $e");
+    } on TimeoutException {
+      debugPrint("Request timeout");
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return null;
+  }
 }

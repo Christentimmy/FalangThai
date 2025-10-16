@@ -59,4 +59,5 @@ class LocationController extends GetxController {
       isloading.value = false;
     }
   }
+
 }

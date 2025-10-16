@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:falangthai/app/controller/storage_controller.dart';
 import 'package:falangthai/app/data/models/user_model.dart';
 import 'package:falangthai/app/data/services/user_service.dart';
@@ -390,6 +391,103 @@ class UserController extends GetxController {
       debugPrint(e.toString());
     } finally {
       isloading.value = false;
+    }
+  }
+
+  Future<void> addPhotoToGallery({required File imageFile}) async {
+    try {
+      final storageController = Get.find<StorageController>();
+      String? token = await storageController.getToken();
+      if (token == null || token.isEmpty) return;
+
+      final response = await _userService.addPhotoToGallery(
+        token: token,
+        imageFile: imageFile,
+      );
+      if (response == null) return;
+      final decoded = json.decode(response.body);
+      if (response.statusCode != 200) {
+        debugPrint(decoded["message"].toString());
+        return;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> removePhotoFromGallery({required int index}) async {
+    try {
+      final storageController = Get.find<StorageController>();
+      String? token = await storageController.getToken();
+      if (token == null || token.isEmpty) return;
+
+      final response = await _userService.removePhotoFromGallery(
+        token: token,
+        index: index,
+      );
+      if (response == null) return;
+      final decoded = json.decode(response.body);
+      if (response.statusCode != 200) {
+        debugPrint(decoded["message"].toString());
+        return;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> editProfile({
+    String? fullName,
+    String? bio,
+    String? relationshipPreference,
+    String? interestedIn,
+    List? ageRange,
+    String? maxDistance,
+  }) async {
+    try {
+      final storageController = Get.find<StorageController>();
+      String? token = await storageController.getToken();
+      if (token == null || token.isEmpty) return;
+
+      final response = await _userService.editProfile(
+        token: token,
+        fullName: fullName,
+        bio: bio,
+        relationshipPreference: relationshipPreference,
+        interestedIn: interestedIn,
+        ageRange: ageRange,
+        maxDistance: maxDistance,
+      );
+
+      if (response == null) return;
+      final decoded = json.decode(response.body);
+      if (response.statusCode != 200) {
+        debugPrint(decoded["message"].toString());
+        return;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> updateProfileImage({required File imageFile}) async {
+    try {
+      final storageController = Get.find<StorageController>();
+      String? token = await storageController.getToken();
+      if (token == null || token.isEmpty) return;
+
+      final response = await _userService.updateProfileImage(
+        token: token,
+        imageFile: imageFile,
+      );
+      if (response == null) return;
+      final decoded = json.decode(response.body);
+      if (response.statusCode != 200) {
+        debugPrint(decoded["message"].toString());
+        return;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
     }
   }
 

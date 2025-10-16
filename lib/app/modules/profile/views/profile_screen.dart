@@ -1,22 +1,79 @@
+import 'dart:io';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:falangthai/app/controller/user_controller.dart';
 import 'package:falangthai/app/modules/profile/controllers/profile_controller.dart';
+import 'package:falangthai/app/resources/colors.dart';
+import 'package:falangthai/app/routes/app_routes.dart';
+import 'package:falangthai/app/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shimmer/shimmer.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
 
   final profileController = Get.put(ProfileController());
+  final userController = Get.find<UserController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: buildAppBar(),
       body: Container(
         decoration: _buildBackgroundDecoration(),
-        child: SafeArea(
-          child: Stack(children: [_buildContent(), _buildHeader()]),
+        child: SafeArea(child: _buildContent()),
+      ),
+    );
+  }
+
+  AppBar buildAppBar() {
+    return AppBar(
+      backgroundColor: Color(0xFF0F0D15),
+      elevation: 0,
+      centerTitle: true,
+      leading: IconButton(
+        onPressed: () => Get.back(),
+        icon: Icon(Icons.arrow_back_ios_new, color: Colors.white),
+      ),
+      title: Text(
+        "Profile",
+        style: GoogleFonts.fredoka(
+          fontSize: 20,
+          color: Colors.white,
+          fontWeight: FontWeight.w700,
         ),
       ),
+      actions: [
+        GestureDetector(
+          onTap: () async {
+            profileController.isEditMode.toggle();
+            if (!profileController.isEditMode.value) {
+              await profileController.editProfile();
+            }
+          },
+          child: Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: const Color(0xFFFF9EE6).withValues(alpha: 0.2),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: const Color(0xFFFF9EE6).withValues(alpha: 0.3),
+                width: 1,
+              ),
+            ),
+            child: Obx(
+              () => Icon(
+                profileController.isEditMode.value
+                    ? Icons.check_rounded
+                    : Icons.edit_rounded,
+                color: const Color(0xFFFF9EE6),
+                size: 20,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -36,68 +93,64 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader() {
-    return Positioned(
-      top: 20,
-      left: 0,
-      right: 0,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Row(
+  Widget _buildContent() {
+    return ListView(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      children: [
+        SizedBox(height: Get.height * 0.05),
+        _buildProfileAvatar(),
+        const SizedBox(height: 20),
+        _buildProfileInfo(),
+        const SizedBox(height: 30),
+        _buildProfileSections(),
+        const SizedBox(height: 20),
+      ],
+    );
+  }
+
+  Widget _buildProfileAvatar() {
+    return Container(
+      width: 120,
+      height: 120,
+      alignment: Alignment.center,
+      child: buildAvater(),
+    );
+  }
+
+  Widget buildAvater() {
+    return Obx(() {
+      final userModel = userController.userModel.value;
+      final profileImage = profileController.profileImage.value;
+      final isEditMode = profileController.isEditMode.value;
+      if (isEditMode || profileImage != null) {
+        return Stack(
           children: [
-            GestureDetector(
-              onTap: () => Get.back(),
-              child: Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                    color: Colors.white.withValues(alpha: 0.2),
-                    width: 1,
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.2),
-                      blurRadius: 15,
-                      offset: const Offset(0, 5),
+            CircleAvatar(
+              radius: 60,
+              backgroundColor: Colors.grey[300],
+              backgroundImage: profileImage != null
+                  ? FileImage(profileImage)
+                  : CachedNetworkImageProvider(userModel?.avatar ?? ""),
+            ),
+            Positioned(
+              bottom: 0,
+              right: 5,
+              child: InkWell(
+                onTap: () async {
+                  await profileController.updateProfileImage();
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0xFFFF9EE6).withValues(alpha: 0.2),
+                    border: Border.all(
+                      color: const Color(0xFFFF9EE6).withValues(alpha: 0.3),
+                      width: 1,
                     ),
-                  ],
-                ),
-                child: const Icon(
-                  Icons.arrow_back_ios_new,
-                  color: Colors.white,
-                  size: 20,
-                ),
-              ),
-            ),
-            const Spacer(),
-            Text(
-              "Profile",
-              style: GoogleFonts.fredoka(
-                fontSize: 20,
-                color: Colors.white,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            const Spacer(),
-            GestureDetector(
-              // onTap: () => profileController.toggleEditMode(),
-              child: Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: const Color(0xFFFF9EE6).withValues(alpha: 0.2),
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                    color: const Color(0xFFFF9EE6).withValues(alpha: 0.3),
-                    width: 1,
                   ),
-                ),
-                child: Obx(
-                  () => Icon(
-                    profileController.isEditMode.value
-                        ? Icons.check_rounded
-                        : Icons.edit_rounded,
+                  child: Icon(
+                    Icons.camera_alt_rounded,
                     color: const Color(0xFFFF9EE6),
                     size: 20,
                   ),
@@ -105,35 +158,13 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildContent() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: ListView(
-        children: [
-          SizedBox(height: Get.height * 0.12),
-          _buildProfileAvatar(),
-          const SizedBox(height: 20),
-          _buildProfileInfo(),
-          const SizedBox(height: 30),
-          Expanded(child: _buildProfileSections()),
-          const SizedBox(height: 20),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildProfileAvatar() {
-    return Obx(
-      () => GestureDetector(
-        onTap: profileController.isEditMode.value ? () {} : null,
+        );
+      }
+      return InkWell(
+        onTap: () {
+          Get.dialog(Image.network(userModel?.avatar ?? ""));
+        },
         child: Container(
-          width: 120,
-          height: 120,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(
@@ -148,47 +179,59 @@ class ProfileScreen extends StatelessWidget {
               ),
             ],
           ),
-          child: Stack(
-            children: [
-              Center(
-                child: CircleAvatar(
-                  radius: 60,
-                  backgroundColor: Colors.grey[300],
-                  backgroundImage: profileController.profileImage.value != null
-                      ? FileImage(profileController.profileImage.value!)
-                      : null,
-                  child: profileController.profileImage.value == null
-                      ? const Icon(
-                          Icons.person_rounded,
-                          size: 50,
-                          color: Colors.grey,
-                        )
-                      : null,
-                ),
-              ),
-            ],
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(60),
+            child: CachedNetworkImage(
+              imageUrl: userModel?.avatar ?? "",
+              fit: BoxFit.cover,
+              width: 115,
+              height: 115,
+              placeholder: (context, url) {
+                return Shimmer.fromColors(
+                  baseColor: Color(0xFF1A1625),
+                  highlightColor: Color(0xFFD586D3),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Color(0xFF1A1625),
+                    ),
+                  ),
+                );
+              },
+              errorWidget: (context, url, error) {
+                return Icon(Icons.error, color: Colors.red);
+              },
+            ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 
   Widget _buildProfileInfo() {
+    final userModel = userController.userModel.value;
     return Obx(
       () => Column(
         children: [
           profileController.isEditMode.value
-              ? _buildEditableTextField(
+              ? CustomTextField(
                   controller: profileController.nameController,
-                  style: GoogleFonts.fredoka(
-                    fontSize: 24,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
-                  ),
                   textAlign: TextAlign.center,
+                  hintText: userModel?.fullName ?? "",
+                  contentPadding: const EdgeInsets.only(
+                    left: 40,
+                    top: 10,
+                    bottom: 10,
+                  ),
+                  hintStyle: GoogleFonts.fredoka(
+                    fontSize: 12,
+                    color: Colors.white,
+                    fontWeight: FontWeight.normal,
+                    fontStyle: FontStyle.italic,
+                  ),
                 )
               : Text(
-                  "Your Name",
+                  userModel?.fullName ?? "",
                   style: GoogleFonts.fredoka(
                     fontSize: 24,
                     color: Colors.white,
@@ -197,19 +240,26 @@ class ProfileScreen extends StatelessWidget {
                 ),
           const SizedBox(height: 8),
           profileController.isEditMode.value
-              ? _buildEditableTextField(
+              ? CustomTextField(
                   controller: profileController.bioController,
-                  style: GoogleFonts.fredoka(
-                    fontSize: 16,
-                    color: Colors.white.withOpacity(0.8),
-                    fontWeight: FontWeight.w400,
-                    height: 1.4,
-                  ),
                   textAlign: TextAlign.center,
-                  maxLines: 2,
+                  hintText: userModel?.bio ?? "Tell us about yourself...",
+                  maxLines: 3,
+                  minLines: 2,
+                  contentPadding: const EdgeInsets.only(
+                    left: 40,
+                    top: 10,
+                    bottom: 10,
+                  ),
+                  hintStyle: GoogleFonts.fredoka(
+                    fontSize: 12,
+                    color: Colors.white,
+                    fontWeight: FontWeight.normal,
+                    fontStyle: FontStyle.italic,
+                  ),
                 )
               : Text(
-                  "Tell us about yourself...",
+                  userModel?.bio ?? "Tell us about yourself...",
                   style: GoogleFonts.fredoka(
                     fontSize: 16,
                     color: Colors.white.withValues(alpha: 0.8),
@@ -223,30 +273,9 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildEditableTextField({
-    required TextEditingController controller,
-    required TextStyle style,
-    TextAlign textAlign = TextAlign.start,
-    int maxLines = 1,
-  }) {
-    return TextField(
-      controller: controller,
-      style: style,
-      textAlign: textAlign,
-      maxLines: maxLines,
-      decoration: InputDecoration(
-        border: InputBorder.none,
-        contentPadding: EdgeInsets.zero,
-        hintStyle: style.copyWith(color: Colors.white.withOpacity(0.5)),
-      ),
-    );
-  }
-
   Widget _buildProfileSections() {
     return Column(
       children: [
-        _buildStatsRow(),
-        const SizedBox(height: 30),
         _buildInterestsSection(),
         const SizedBox(height: 25),
         _buildPhotosSection(),
@@ -256,7 +285,7 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildStatsRow() {
+  Widget buildStatsRow() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -321,17 +350,25 @@ class ProfileScreen extends StatelessWidget {
   }
 
   Widget _buildInterestsSection() {
-    return _buildSection(
-      title: "Interests",
-      icon: Icons.interests_rounded,
-      child: Obx(
-        () => Wrap(
-          spacing: 8,
-          runSpacing: 8,
-          children: profileController.interests.map((interest) {
-            return _buildInterestChip(interest);
-          }).toList(),
-        ),
+    return InkWell(
+      onTap: () {
+        if (!profileController.isEditMode.value) return;
+        Get.toNamed(AppRoutes.editHobbies);
+      },
+      child: _buildSection(
+        title: "Interests",
+        icon: Icons.interests_rounded,
+        child: Obx(() {
+          final userModel = userController.userModel.value;
+          final interests = userModel!.hobbies!;
+          return Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: interests.map((interest) {
+              return _buildInterestChip(interest);
+            }).toList(),
+          );
+        }),
       ),
     );
   }
@@ -348,7 +385,7 @@ class ProfileScreen extends StatelessWidget {
         ),
       ),
       child: Text(
-        interest,
+        interest.capitalizeFirst ?? "",
         style: GoogleFonts.fredoka(
           fontSize: 14,
           color: Colors.white,
@@ -362,63 +399,142 @@ class ProfileScreen extends StatelessWidget {
     return _buildSection(
       title: "Photos",
       icon: Icons.photo_library_rounded,
-      child: Container(
+      child: SizedBox(
         height: 100,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: 6,
-          itemBuilder: (context, index) {
-            return _buildPhotoSlot(index);
-          },
-        ),
+        child: Obx(() {
+          return ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: profileController.photos.length + 1,
+            itemBuilder: (context, index) {
+              final image = index == 0
+                  ? null
+                  : profileController.photos[index - 1];
+              return _buildPhotoSlot(index, image);
+            },
+          );
+        }),
       ),
     );
   }
 
-  Widget _buildPhotoSlot(int index) {
-    return Container(
-      width: 80,
-      height: 80,
-      margin: const EdgeInsets.only(right: 12),
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: Colors.white.withValues(alpha: 0.2),
-          width: 1,
-        ),
-      ),
-      child: Icon(
-        index == 0 ? Icons.add_rounded : Icons.photo_rounded,
-        color: Colors.white.withOpacity(0.6),
-        size: 24,
+  Widget _buildPhotoSlot(int index, dynamic image) {
+    return InkWell(
+      onTap: () {
+        if (index != 0) {
+          if (image is File) {
+            Get.dialog(Image.file(image));
+          } else if (image is String) {
+            Get.dialog(Image.network(image));
+          }
+          return;
+        }
+        if (!profileController.isEditMode.value) return;
+        profileController.selectImage();
+      },
+      child: Stack(
+        children: [
+          Container(
+            width: 80,
+            height: 90,
+            margin: const EdgeInsets.only(right: 12),
+            decoration: BoxDecoration(
+              color: Colors.white.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: Colors.white.withValues(alpha: 0.2),
+                width: 1,
+              ),
+              image: index != 0 && image != null
+                  ? buildEachPhoto(image: image)
+                  : null,
+            ),
+            child: index == 0 || image == null
+                ? Icon(
+                    Icons.add_rounded,
+                    color: Colors.white.withValues(alpha: 0.6),
+                    size: 24,
+                  )
+                : null,
+          ),
+          Obx(() {
+            if (profileController.isEditMode.value &&
+                image != null &&
+                index != 0) {
+              return Positioned(
+                top: 0,
+                left: 0,
+                child: InkWell(
+                  onTap: () {
+                    profileController.removePhoto(index - 1);
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(2),
+                    decoration: BoxDecoration(
+                      color: Colors.red.withValues(alpha: 0.2),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.delete_rounded,
+                      color: Colors.red,
+                      size: 17,
+                    ),
+                  ),
+                ),
+              );
+            }
+            return SizedBox.shrink();
+          }),
+        ],
       ),
     );
+  }
+
+  DecorationImage? buildEachPhoto({required dynamic image}) {
+    if (image is File) {
+      return DecorationImage(image: FileImage(image), fit: BoxFit.cover);
+    }
+    if (image is String) {
+      return DecorationImage(image: NetworkImage(image), fit: BoxFit.cover);
+    }
+    return null;
   }
 
   Widget _buildPreferencesSection() {
     return _buildSection(
       title: "Preferences",
       icon: Icons.tune_rounded,
-      child: Column(
-        children: [
-          _buildPreferenceItem(
-            title: "Age Range",
-            value: "22-28",
-            icon: Icons.cake_rounded,
-          ),
-          _buildPreferenceItem(
-            title: "Distance",
-            value: "Within 25 km",
-            icon: Icons.location_on_rounded,
-          ),
-          _buildPreferenceItem(
-            title: "Looking for",
-            value: "Long-term relationship",
-            icon: Icons.favorite_rounded,
-          ),
-        ],
-      ),
+      child: Obx(() {
+        final isEditMode = profileController.isEditMode.value;
+        if (isEditMode) {
+          return _buildPreferencesEditMode();
+        }
+
+        final userModel = userController.userModel.value;
+        return Column(
+          children: [
+            _buildPreferenceItem(
+              title: "Age Range",
+              value: userModel?.preferences?.ageRange?.join("-") ?? "",
+              icon: Icons.cake_rounded,
+            ),
+            _buildPreferenceItem(
+              title: "Distance",
+              value: "${userModel?.preferences?.maxDistance?.toString()} km",
+              icon: Icons.location_on_rounded,
+            ),
+            _buildPreferenceItem(
+              title: "Looking for",
+              value: userModel?.relationshipPreference ?? "",
+              icon: Icons.favorite_rounded,
+            ),
+            _buildPreferenceItem(
+              title: "Interested In",
+              value: profileController.interestedIn.value.capitalizeFirst ?? "",
+              icon: Icons.favorite_rounded,
+            ),
+          ],
+        );
+      }),
     );
   }
 
@@ -446,7 +562,7 @@ class ProfileScreen extends StatelessWidget {
             title,
             style: GoogleFonts.fredoka(
               fontSize: 14,
-              color: Colors.white.withOpacity(0.8),
+              color: Colors.white.withValues(alpha: 0.8),
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -499,6 +615,185 @@ class ProfileScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           child,
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPreferencesEditMode() {
+    return Column(
+      children: [
+        _buildEditItemContainer(
+          title: "Age Range",
+          icon: Icons.cake_rounded,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "${profileController.ageRange.value.start.toInt()} - ${profileController.ageRange.value.end.toInt()}",
+                style: GoogleFonts.fredoka(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.primaryColor,
+                ),
+              ),
+              RangeSlider(
+                values: profileController.ageRange.value,
+                min: 18,
+                max: 150,
+                activeColor: AppColors.primaryColor,
+                inactiveColor: Colors.white.withValues(alpha: 0.3),
+                onChanged: (RangeValues newValues) {
+                  profileController.ageRange.value = newValues;
+                },
+              ),
+            ],
+          ),
+        ),
+
+        _buildEditItemContainer(
+          title: "Max Distance",
+          icon: Icons.location_on_rounded,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "${profileController.maxDistance.value.toInt()} km",
+                style: GoogleFonts.fredoka(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.primaryColor,
+                ),
+              ),
+              Slider(
+                value: profileController.maxDistance.value,
+                max: 200,
+                divisions: 39,
+                activeColor: AppColors.primaryColor,
+                inactiveColor: Colors.white.withValues(alpha: 0.3),
+                onChanged: (double newValue) {
+                  profileController.maxDistance.value = newValue;
+                },
+              ),
+            ],
+          ),
+        ),
+
+        _buildEditItemContainer(
+          title: "Looking for",
+          icon: Icons.favorite_rounded,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: DropdownButtonFormField<String>(
+              decoration: InputDecoration(
+                isDense: true,
+                contentPadding: EdgeInsets.zero,
+                enabledBorder: OutlineInputBorder(borderSide: BorderSide.none),
+                focusedBorder: OutlineInputBorder(borderSide: BorderSide.none),
+              ),
+              value: profileController.relationshipPreference.value,
+              dropdownColor: Colors.black.withValues(alpha: 0.8),
+              style: GoogleFonts.fredoka(
+                fontSize: 16,
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+              ),
+              items: const [
+                DropdownMenuItem(value: "Marriage", child: Text("Marriage")),
+                DropdownMenuItem(value: "Friends", child: Text("Friends")),
+                DropdownMenuItem(
+                  value: "Short-Term",
+                  child: Text("Short-Term"),
+                ),
+                DropdownMenuItem(value: "Long-Term", child: Text("Long-Term")),
+                DropdownMenuItem(value: "Other", child: Text("Other")),
+              ],
+              onChanged: (String? newValue) {
+                profileController.relationshipPreference.value = newValue!;
+              },
+            ),
+          ),
+        ),
+
+        _buildEditItemContainer(
+          title: "Interested In",
+          icon: Icons.favorite_rounded,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: DropdownButtonFormField<String>(
+              decoration: InputDecoration(
+                isDense: true,
+                contentPadding: EdgeInsets.zero,
+                enabledBorder: OutlineInputBorder(borderSide: BorderSide.none),
+                focusedBorder: OutlineInputBorder(borderSide: BorderSide.none),
+              ),
+              value: profileController.interestedIn.value.toLowerCase(),
+              dropdownColor: Colors.black.withValues(alpha: 0.8),
+              style: GoogleFonts.fredoka(
+                fontSize: 16,
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+              ),
+              items: const [
+                DropdownMenuItem(value: "men", child: Text("Men")),
+                DropdownMenuItem(value: "women", child: Text("Women")),
+                DropdownMenuItem(
+                  value: "non-binary",
+                  child: Text("Non-Binary"),
+                ),
+                DropdownMenuItem(
+                  value: "transgender",
+                  child: Text("Transgender"),
+                ),
+                DropdownMenuItem(value: "everyone", child: Text("Everyone")),
+              ],
+              onChanged: (String? newValue) {
+                profileController.interestedIn.value = newValue!;
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildEditItemContainer({
+    required String title,
+    required IconData icon,
+    required Widget child,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(icon, color: AppColors.primaryColor, size: 20),
+              const SizedBox(width: 12),
+              Text(
+                title,
+                style: GoogleFonts.fredoka(
+                  fontSize: 14,
+                  color: Colors.white.withOpacity(0.8),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.05),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: Colors.white.withOpacity(0.1),
+                width: 1,
+              ),
+            ),
+            child: child, // Insert the interactive widget here
+          ),
         ],
       ),
     );

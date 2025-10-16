@@ -169,15 +169,13 @@ class LoginScreen extends StatelessWidget {
             children: [
               SizedBox(height: Get.height * 0.08),
               _buildLogo(),
-              const SizedBox(height: 40),
+              const SizedBox(height: 20),
               _buildBrandName(),
-              const SizedBox(height: 8),
               authWidgets.buildTitle(title: "Welcome Back"),
-              const SizedBox(height: 6),
               authWidgets.buildSubtitle(
                 subtitle: "Sign in to continue your journey",
               ),
-              const SizedBox(height: 40),
+              const SizedBox(height: 20),
               CustomTextField(
                 controller: loginController.emailController,
                 bgColor: Colors.white.withValues(alpha: 0.05),

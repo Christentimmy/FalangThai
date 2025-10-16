@@ -1,22 +1,35 @@
+import 'dart:io';
 
-
+import 'package:falangthai/app/controller/user_controller.dart';
+import 'package:falangthai/app/utils/image_picker.dart';
+import 'package:falangthai/app/widgets/snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
-
 // Profile Controller
-class ProfileController extends GetxController
-    with GetSingleTickerProviderStateMixin {
-  // Animation Controllers
-  late AnimationController backgroundAnimationController;
+class ProfileController extends GetxController {
+  @override
+  void onInit() {
+    super.onInit();
+    loadPhotos();
+  }
 
-  // Animations
-  late Animation<double> floatAnimation1;
-  late Animation<double> floatAnimation2;
-  late Animation<double> rotationAnimation;
-  late Animation<double> pulseAnimation;
-  late Animation<double> heartbeatAnimation;
+  final userController = Get.find<UserController>();
+
+  void loadPhotos() {
+    final userModel = userController.userModel.value;
+    if (userModel == null) return;
+    ageRange.value = RangeValues(
+      userModel.preferences?.ageRange?.first.toDouble() ?? 18.0,
+      userModel.preferences?.ageRange?.last.toDouble() ?? 150.0,
+    );
+    maxDistance.value = userModel.preferences?.maxDistance?.toDouble() ?? 50.0;
+    relationshipPreference.value =
+        userModel.relationshipPreference ?? "Long-Term";
+    interestedIn.value = userModel.interestedIn ?? "";
+    if (userModel.photos?.isEmpty == true) return;
+    photos.addAll(userModel.photos!);
+  }
 
   // Observable States
   final RxBool isEditMode = false.obs;
@@ -31,7 +44,12 @@ class ProfileController extends GetxController
   final TextEditingController bioController = TextEditingController();
 
   // Profile Image
-  final Rx<dynamic> profileImage = Rx<dynamic>(null);
+  final Rx<File?> profileImage = Rx<File?>(null);
+  final RxList photos = [].obs;
+  Rx<RangeValues> ageRange = RangeValues(18.0, 150.0).obs;
+  RxDouble maxDistance = 50.0.obs;
+  RxString relationshipPreference = "Long-Term".obs;
+  RxString interestedIn = "".obs;
 
   // Interests
   final RxList<String> interests = <String>[
@@ -45,62 +63,49 @@ class ProfileController extends GetxController
     'Art',
   ].obs;
 
-  @override
-  void onInit() {
-    super.onInit();
-    _initializeAnimations();
+  Future<void> selectImage() async {
+    if (photos.length > 6) {
+      CustomSnackbar.showErrorToast("You can only add 6 photos");
+      return;
+    }
+    final pickedFile = await pickImage();
+    if (pickedFile == null) return;
+    photos.add(pickedFile);
+    await userController.addPhotoToGallery(imageFile: pickedFile);
   }
 
-  void _initializeAnimations() {
-    backgroundAnimationController = AnimationController(
-      duration: const Duration(seconds: 30),
-      vsync: this,
-    );
-
-    floatAnimation1 = Tween<double>(begin: -1.0, end: 1.0).animate(
-      CurvedAnimation(
-        parent: backgroundAnimationController,
-        curve: Curves.easeInOut,
-      ),
-    );
-
-    floatAnimation2 = Tween<double>(begin: 1.0, end: -1.0).animate(
-      CurvedAnimation(
-        parent: backgroundAnimationController,
-        curve: const Interval(0.3, 1.0, curve: Curves.easeInOut),
-      ),
-    );
-
-    rotationAnimation = Tween<double>(begin: 0, end: 6.28318530718).animate(
-      CurvedAnimation(
-        parent: backgroundAnimationController,
-        curve: Curves.linear,
-      ),
-    );
-
-    pulseAnimation = Tween<double>(begin: 0.8, end: 1.2).animate(
-      CurvedAnimation(
-        parent: backgroundAnimationController,
-        curve: Curves.easeInOut,
-      ),
-    );
-
-    heartbeatAnimation = Tween<double>(begin: 1.0, end: 1.3).animate(
-      CurvedAnimation(
-        parent: backgroundAnimationController,
-        curve: const Interval(0.0, 0.15, curve: Curves.easeInOut),
-      ),
-    );
-
-    backgroundAnimationController.repeat();
+  Future<void> removePhoto(int index) async {
+    photos.removeAt(index);
+    await userController.removePhotoFromGallery(index: index);
   }
 
+  Future<void> editProfile() async {
+    await userController.editProfile(
+      fullName: nameController.text,
+      bio: bioController.text,
+      relationshipPreference: relationshipPreference.value,
+      interestedIn: interestedIn.value,
+      ageRange: [ageRange.value.start.toInt(), ageRange.value.end.toInt()],
+      maxDistance: maxDistance.value.toInt().toString(),
+    );
+    await userController.getUserDetails();
+  }
+
+  Future<void> updateProfileImage() async {
+    final pickedFile = await pickImage();
+    if (pickedFile == null) return;
+    profileImage.value = pickedFile;
+    await userController.updateProfileImage(imageFile: pickedFile);
+  }
 
   @override
   void onClose() {
-    backgroundAnimationController.dispose();
     nameController.dispose();
     bioController.dispose();
+    profileImage.value = null;
+    photos.clear();
+    ageRange.value = RangeValues(18.0, 150.0);
+
     super.onClose();
   }
 }

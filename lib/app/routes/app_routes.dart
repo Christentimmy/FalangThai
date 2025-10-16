@@ -24,4 +24,5 @@ class AppRoutes {
   static const String locationRequest = '/location-request';
   static const String swipeProfile = '/swipe-profile';
   static const String match = '/match';
+  static const String editHobbies = '/edit-hobbies';
 }

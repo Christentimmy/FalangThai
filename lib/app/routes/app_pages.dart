@@ -13,6 +13,7 @@ import 'package:falangthai/app/modules/home/views/home_screen.dart';
 import 'package:falangthai/app/modules/language/views/language_selection_screen.dart';
 import 'package:falangthai/app/modules/location/views/location_request_screen.dart';
 import 'package:falangthai/app/modules/notification/views/notification_screen.dart';
+import 'package:falangthai/app/modules/profile/views/edit_hobbies_screen.dart';
 import 'package:falangthai/app/modules/profile/views/gender_screen.dart';
 import 'package:falangthai/app/modules/profile/views/hobby_screen.dart';
 import 'package:falangthai/app/modules/profile/views/profile_screen.dart';
@@ -126,6 +127,10 @@ class AppPages {
         }
         return MatchScreen(targetUserId: targetUserId);
       },
+    ),
+    GetPage(
+      name: AppRoutes.editHobbies,
+      page: () => EditHobbiesScreen(),
     ),
   ];
 }

@@ -242,6 +242,15 @@ class HobbiesSelectionController extends GetxController
     isloading.value = false;
   }
 
+  void loadHobbies() {
+    final userController = Get.find<UserController>();
+    final userModel = userController.userModel.value;
+    if (userModel == null || userModel.hobbies?.isEmpty == true) {
+      return;
+    }
+    selectedHobbies.addAll(userModel.hobbies!);
+  }
+
   @override
   void onClose() {
     backgroundAnimationController.dispose();
