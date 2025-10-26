@@ -200,11 +200,11 @@ class _ChatListScreenState extends State<ChatListScreen> {
           color: Colors.white,
         ),
       ),
-      trailing: CircleAvatar(
+      trailing: chatHead.unreadCount == 0 ? const SizedBox() : CircleAvatar(
         radius: 13,
         backgroundColor: AppColors.primaryColor,
         child: Text(
-          "2",
+          chatHead.unreadCount.toString(),
           style: GoogleFonts.figtree(
             fontSize: 10,
             fontWeight: FontWeight.w600,
