@@ -300,6 +300,7 @@ class NewChatInputFields extends StatelessWidget {
   void _showMediaPickerBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
+      backgroundColor: Colors.black,
       builder: (context) => MediaPickerBottomSheet(controller: controller),
     );
   }

@@ -40,7 +40,7 @@ class MessageContainerWidget extends StatelessWidget {
         decoration: BoxDecoration(
           color: _getCardColor(isReceiver, isHighlighted, opacity),
           border: _getBorder(isReceiver, isHighlighted),
-          gradient: _getCardGradient(isReceiver, isHighlighted),
+          // gradient: _getCardGradient(isReceiver, isHighlighted),
           borderRadius: BorderRadius.circular(10),
           boxShadow: _getBoxShadow(isReceiver, isHighlighted),
         ),
@@ -74,7 +74,7 @@ class MessageContainerWidget extends StatelessWidget {
   BoxBorder? _getBorder(bool isReceiver, bool isHighlighted) {
     if (isReceiver && isHighlighted) {
       return Border.all(
-        color: AppColors.receiverHighlightBorder,
+        color: AppColors.primaryColor,
         width: 2,
       );
     }
@@ -92,7 +92,13 @@ class MessageContainerWidget extends StatelessWidget {
       return AppColors.receiverHighlightBackground.withOpacity(opacity);
     }
     if (isReceiver && !isHighlighted) {
-      return AppColors.receiverBackground;
+      return const Color.fromARGB(255, 231, 216, 228);
+    }
+    if (!isReceiver && isHighlighted) {
+      return AppColors.primaryColor.withValues(alpha: opacity);
+    }
+    if (!isReceiver && !isHighlighted) {
+      return AppColors.primaryColor;
     }
     return null;
   }
@@ -107,7 +113,7 @@ class MessageContainerWidget extends StatelessWidget {
     return BoxConstraints(maxWidth: Get.width * 0.68);
   }
 
-  LinearGradient? _getCardGradient(bool isReceiver, bool isHighlighted) {
+  LinearGradient? getCardGradient(bool isReceiver, bool isHighlighted) {
     if (!isReceiver && isHighlighted) {
       return const LinearGradient(
         begin: Alignment.topLeft,

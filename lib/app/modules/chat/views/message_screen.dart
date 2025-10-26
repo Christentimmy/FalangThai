@@ -289,14 +289,14 @@ class _MessageScreenState extends State<MessageScreen> {
             children: [
               CircleAvatar(
                 radius: 25,
-                backgroundImage: AssetImage("assets/images/pic12.jpg"),
+                backgroundImage: NetworkImage(widget.chatHead.avatar ?? ""),
               ),
               SizedBox(width: 10),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Jessica Baker",
+                    widget.chatHead.fullName ?? "",
                     style: GoogleFonts.figtree(
                       fontSize: 20,
                       fontWeight: FontWeight.w800,
@@ -304,11 +304,11 @@ class _MessageScreenState extends State<MessageScreen> {
                     ),
                   ),
                   Text(
-                    "Active now",
+                    widget.chatHead.online == true ? "Active now" : "Offline",
                     style: GoogleFonts.figtree(
                       fontSize: 12,
                       fontWeight: FontWeight.w400,
-                      color: Colors.green,
+                      color: widget.chatHead.online == true ? Colors.green : Colors.grey,
                     ),
                   ),
                 ],

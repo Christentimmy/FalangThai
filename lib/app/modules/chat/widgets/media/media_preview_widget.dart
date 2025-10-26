@@ -16,7 +16,7 @@ class MediaPreviewWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: Colors.grey.shade100,
+        color: Colors.transparent,
         border: Border(
           top: BorderSide(color: Colors.grey.shade300),
         ),

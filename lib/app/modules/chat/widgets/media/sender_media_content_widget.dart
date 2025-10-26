@@ -20,7 +20,6 @@ class SenderMediaContentWidget extends BaseMediaContentWidget {
     required this.chatController,
   }) : super(isReceiver: false);
 
-
   @override
   Widget buildVideoPreview() {
     final cached = chatController.get(messageModel.mediaUrl ?? "");
@@ -38,11 +37,7 @@ class SenderMediaContentWidget extends BaseMediaContentWidget {
           return _buildThumbnailWidget(snapshot.data!);
         }
         return const AnimatedVideoPreview(
-          child: Icon(
-            Icons.play_circle_fill,
-            color: Colors.white,
-            size: 50,
-          ),
+          child: Icon(Icons.play_circle_fill, color: Colors.white, size: 50),
         );
       },
     );
@@ -62,11 +57,7 @@ class SenderMediaContentWidget extends BaseMediaContentWidget {
               fit: BoxFit.cover,
             ),
           ),
-          const Icon(
-            Icons.play_circle_fill,
-            color: Colors.white,
-            size: 50,
-          ),
+          const Icon(Icons.play_circle_fill, color: Colors.white, size: 50),
         ],
       ),
     );
@@ -111,7 +102,7 @@ class SenderMediaContentWidget extends BaseMediaContentWidget {
         const Center(
           child: SizedBox(
             width: 45,
-            child: CupertinoActivityIndicator(),
+            child: CupertinoActivityIndicator(color: Colors.white),
           ),
         ),
       ],
