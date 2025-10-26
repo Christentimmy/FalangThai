@@ -68,7 +68,7 @@ class SubscriptionScreen extends StatelessWidget {
   Widget buildSubCard({required String title, required int price, int? month}) {
     return Container(
       width: Get.width,
-      height: Get.height * 0.45,
+      height: Get.height * 0.47,
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
       margin: EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
