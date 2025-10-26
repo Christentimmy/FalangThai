@@ -7,17 +7,13 @@ import 'package:falangthai/app/controller/user_controller.dart';
 import 'package:falangthai/app/data/models/chat_list_model.dart';
 import 'package:falangthai/app/data/models/message_model.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
-import 'package:falangthai/app/utils/base_url.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class SocketController extends GetxController {
   IO.Socket? socket;
-  // RxList<LiveStreamChatModel> chatMessages = <LiveStreamChatModel>[].obs;
   RxBool isloading = false.obs;
-  // final _storyController = Get.find<StoryController>();
 
   int _reconnectAttempts = 0;
   final int _maxReconnectAttempts = 5;
@@ -28,7 +24,7 @@ class SocketController extends GetxController {
       return;
     }
 
-    socket = IO.io(baseUrl, <String, dynamic>{
+    socket = IO.io("https://17a7d21a5c26.ngrok-free.app", <String, dynamic>{
       'transports': ['websocket'],
       'extraHeaders': {'Authorization': 'Bearer $token'},
       'reconnection': true,
@@ -38,15 +34,8 @@ class SocketController extends GetxController {
     socket?.connect();
 
     socket?.onConnect((_) async {
+      print("Socket connected");
       getOnlineUser();
-      const prefs = FlutterSecureStorage();
-      final channelName = await prefs.read(key: 'channelName');
-      if (channelName != null && channelName.isNotEmpty) {
-        await Future.delayed(const Duration(seconds: 3), () {
-          joinStream(channelName);
-        });
-      }
-
       listenToEvents();
     });
 
@@ -197,16 +186,6 @@ class SocketController extends GetxController {
     socket?.emit("history", {"rideId": rideId});
   }
 
-  void markRead({
-    required String channedId,
-    required String messageId,
-  }) async {
-    socket?.emit("MARK_MESSAGE_READ", {
-      "channel_id": channedId,
-      "message_ids": [messageId],
-    });
-  }
-
   void scheduleReconnect() {
     if (_reconnectAttempts >= _maxReconnectAttempts) {
       debugPrint("🚨 Max reconnection attempts reached. Stopping retry.");
@@ -222,32 +201,6 @@ class SocketController extends GetxController {
     });
   }
 
-  void joinStream(String channelName) {
-    if (socket == null || !socket!.connected) {
-      print("Socket is not connected");
-      return;
-    }
-
-    if (channelName.isEmpty) {
-      print("Invalid channelName");
-      return;
-    }
-
-    print("Emitting joinStream event for channel: $channelName");
-    socket?.emit('joinStream', {"channelName": channelName});
-  }
-
-  void sendChatMessage(
-    String channelName,
-    String message,
-    String currentUserId,
-  ) {
-    socket?.emit('sendChatMessage', {
-      'channelName': channelName,
-      'userId': currentUserId,
-      'message': message,
-    });
-  }
 
   @override
   void onClose() {

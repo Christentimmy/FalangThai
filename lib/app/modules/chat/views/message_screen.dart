@@ -4,9 +4,11 @@ import 'package:falangthai/app/data/models/chat_list_model.dart';
 import 'package:falangthai/app/data/models/message_model.dart';
 import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
 import 'package:falangthai/app/modules/chat/controller/chat_controller.dart';
+import 'package:falangthai/app/modules/chat/widgets/media/media_preview_widget.dart';
 import 'package:falangthai/app/modules/chat/widgets/receiver_card.dart';
 import 'package:falangthai/app/modules/chat/widgets/sender_card.dart';
 import 'package:falangthai/app/modules/chat/widgets/shimmer/chat_loader_shimmer.dart';
+import 'package:falangthai/app/modules/chat/widgets/textfield/chat_input_field_widget.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
@@ -60,32 +62,43 @@ class _MessageScreenState extends State<MessageScreen> {
     return Scaffold(
       backgroundColor: Get.theme.scaffoldBackgroundColor,
       appBar: buildAppBar(),
-      body: SafeArea(
-        child: Container(
-          decoration: AuthWidgets().buildBackgroundDecoration(),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: Column(
-              children: [
-                // Expanded(
-                //   child: ListView(
-                //     children: [
-                // SizedBox(height: Get.height * 0.02),
-                // buildReceiverCard(),
-                // SizedBox(height: Get.height * 0.01),
-                // buildSenderCard(),
-                //     ],
-                //   ),
-                // ),
-                Expanded(
-                  child: Stack(
-                    children: [_buildMessageList(), _buildScrollDownButton()],
-                  ),
+      body: Container(
+        decoration: AuthWidgets().buildBackgroundDecoration(),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 7),
+          child: Column(
+            children: [
+              // Expanded(
+              //   child: ListView(
+              //     children: [
+              // SizedBox(height: Get.height * 0.02),
+              // buildReceiverCard(),
+              // SizedBox(height: Get.height * 0.01),
+              // buildSenderCard(),
+              //     ],
+              //   ),
+              // ),
+              Expanded(
+                child: Stack(
+                  children: [_buildMessageList(), _buildScrollDownButton()],
                 ),
-                buildTextField(),
-                SizedBox(height: 10),
-              ],
-            ),
+              ),
+              Obx(() {
+                if (_chatController.mediaController.showMediaPreview.value) {
+                  return MediaPreviewWidget(
+                    controller: _chatController.mediaController,
+                  );
+                }
+                return const SizedBox();
+              }),
+              SizedBox(height: 5),
+              NewChatInputFields(
+                controller: _chatController,
+                chatHead: widget.chatHead,
+              ),
+              // buildTextField(),
+              SizedBox(height: 10),
+            ],
           ),
         ),
       ),
@@ -442,7 +455,16 @@ class _MessageScreenState extends State<MessageScreen> {
       }
 
       if (chatHistoryAndLiveMessage.isEmpty && oldChats.isEmpty) {
-        return const Center(child: Text("No Message"));
+        return Center(
+          child: Text(
+            "No Message",
+            style: GoogleFonts.figtree(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              color: Colors.white,
+            ),
+          ),
+        );
       }
 
       return _buildMessageListView(chatHistoryAndLiveMessage);

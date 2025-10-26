@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:falangthai/app/controller/user_controller.dart';
+import 'package:falangthai/app/data/models/chat_list_model.dart';
 import 'package:falangthai/app/data/models/user_model.dart';
 import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
 import 'package:falangthai/app/resources/colors.dart';
@@ -20,7 +21,6 @@ class SwipeProfileScreen extends StatefulWidget {
 }
 
 class _SwipeProfileScreenState extends State<SwipeProfileScreen> {
-  
   final isloading = true.obs;
   final isBioExpanded = false.obs;
   Rxn<UserModel> userModel = Rxn<UserModel>();
@@ -147,16 +147,21 @@ class _SwipeProfileScreenState extends State<SwipeProfileScreen> {
             right: 20,
             child: InkWell(
               onTap: () {
-                Get.toNamed(AppRoutes.message);
+                final chatHead = ChatListModel(
+                  userId: userModel.value?.id,
+                  fullName: userModel.value?.fullName,
+                  avatar: userModel.value?.avatar,
+                  online: false,
+                );
+                Get.toNamed(
+                  AppRoutes.message,
+                  arguments: {"chatHead": chatHead},
+                );
               },
               child: CircleAvatar(
                 radius: 25,
                 backgroundColor: Color(0xFFD586D3),
-                child: Icon(
-                  Icons.chat_bubble,
-                  color: Colors.white,
-                  size: 25,
-                ),
+                child: Icon(Icons.chat_bubble, color: Colors.white, size: 25),
               ),
             ),
           ),

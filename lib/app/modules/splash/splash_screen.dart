@@ -1,6 +1,7 @@
 // import 'package:falangthai/app/controller/storage_controller.dart';
 import 'package:falangthai/app/controller/auth_controller.dart';
 import 'package:falangthai/app/controller/language_controller.dart';
+import 'package:falangthai/app/controller/socket_controller.dart';
 import 'package:falangthai/app/controller/storage_controller.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
@@ -62,6 +63,8 @@ class _SplashScreenState extends State<SplashScreen>
       }
     
       await authController.handleLoginNavigation();
+      final socketController = Get.find<SocketController>();
+      await socketController.initializeSocket();
     });
   }
 

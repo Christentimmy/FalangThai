@@ -1,3 +1,4 @@
+import 'package:falangthai/app/controller/socket_controller.dart';
 import 'package:falangthai/app/modules/chat/views/chat_list_screen.dart';
 import 'package:falangthai/app/modules/favorites/views/favorite_screen.dart';
 import 'package:falangthai/app/modules/favorites/views/matches_screen.dart';
@@ -7,9 +8,14 @@ import 'package:falangthai/app/resources/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class BottomNavigationWidget extends StatelessWidget {
-  BottomNavigationWidget({super.key});
+class BottomNavigationWidget extends StatefulWidget {
+  const BottomNavigationWidget({super.key});
 
+  @override
+  State<BottomNavigationWidget> createState() => _BottomNavigationWidgetState();
+}
+
+class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
   final List<Widget> pages = [
     HomeScreen(),
     FavoriteScreen(),
@@ -19,6 +25,15 @@ class BottomNavigationWidget extends StatelessWidget {
   ];
 
   final RxInt currentIndex = 0.obs;
+
+  @override
+  void initState() {
+    super.initState();
+    final socketController = Get.find<SocketController>();
+    if(socketController.socket == null || !socketController.socket!.connected) {
+      socketController.initializeSocket();
+    }
+  } 
 
   @override
   Widget build(BuildContext context) {

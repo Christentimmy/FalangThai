@@ -21,9 +21,7 @@ class MessageController extends GetxController {
   final RxnString highlightedMessageId = RxnString();
   final RxDouble highlightOpacity = 1.0.obs;
 
-  Future<void> sendMessage({
-    required MessageModel messageModel,
-  }) async {
+  Future<void> sendMessage({required MessageModel messageModel}) async {
     isloading.value = true;
     try {
       final storageController = Get.find<StorageController>();
@@ -52,9 +50,7 @@ class MessageController extends GetxController {
     }
   }
 
-  Future<void> getMessageHistory({
-    required String receiverUserId,
-  }) async {
+  Future<void> getMessageHistory({required String receiverUserId}) async {
     isloading.value = true;
     try {
       final storageController = Get.find<StorageController>();
@@ -78,8 +74,9 @@ class MessageController extends GetxController {
       List chatHistory = decoded["data"] ?? [];
       chatHistoryAndLiveMessage.clear();
       if (chatHistory.isEmpty) return;
-      List<MessageModel> mapped =
-          chatHistory.map((json) => MessageModel.fromJson(json)).toList();
+      List<MessageModel> mapped = chatHistory
+          .map((json) => MessageModel.fromJson(json))
+          .toList();
       chatHistoryAndLiveMessage.assignAll(mapped);
     } catch (e) {
       debugPrint(e.toString());
@@ -98,9 +95,7 @@ class MessageController extends GetxController {
         return;
       }
 
-      final response = await _messageService.getChatList(
-        token: token,
-      );
+      final response = await _messageService.getChatList(token: token);
 
       if (response == null) return;
       final decoded = json.decode(response.body);
@@ -112,8 +107,9 @@ class MessageController extends GetxController {
       List chatHistory = decoded["chatList"] ?? [];
       allChattedUserList.clear();
       if (chatHistory.isEmpty) return;
-      List<ChatListModel> mapped =
-          chatHistory.map((e) => ChatListModel.fromJson(e)).toList();
+      List<ChatListModel> mapped = chatHistory
+          .map((e) => ChatListModel.fromJson(e))
+          .toList();
       allChattedUserList.value = mapped;
       allChattedUserList.refresh();
       if (response.statusCode == 200) isChattedListFetched.value = true;

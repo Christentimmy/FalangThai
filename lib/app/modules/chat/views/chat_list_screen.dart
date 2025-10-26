@@ -6,6 +6,7 @@ import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shimmer/shimmer.dart';
 
 class ChatListScreen extends StatefulWidget {
   const ChatListScreen({super.key});
@@ -40,18 +41,111 @@ class _ChatListScreenState extends State<ChatListScreen> {
             child: ListView(
               physics: BouncingScrollPhysics(),
               children: [
-                _buildStory(),
+                // _buildStory(),
                 SizedBox(height: Get.height * 0.01),
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: _messageController.allChattedUserList.length,
-                  itemBuilder: (context, index) {
-                    final chatHead = _messageController.allChattedUserList[index];
-                    return buildChatTile(chatHead: chatHead);
-                  },
-                ),
+                Obx(() {
+                  if (_messageController.isChatListLoading.value) {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: 8,
+                      itemBuilder: (context, index) {
+                        return _buildChatItemSkeleton(true);
+                      },
+                    );
+                  }
+
+                  if (_messageController.allChattedUserList.isEmpty) {
+                    return _buildEmptyList(true);
+                  }
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: _messageController.allChattedUserList.length,
+                    itemBuilder: (context, index) {
+                      final chatHead =
+                          _messageController.allChattedUserList[index];
+                      return buildChatTile(chatHead: chatHead);
+                    },
+                  );
+                }),
               ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildEmptyList(bool isDark) {
+    return SizedBox(
+      height: Get.height * 0.65,
+      width: Get.width,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text(
+            'No conversations yet',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
+            ),
+          ),
+          const SizedBox(height: 8),
+          const Text(
+            'Start chatting with your matches!',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+              color: Colors.white,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildChatItemSkeleton(bool isDark) {
+    return Shimmer.fromColors(
+      baseColor: Color.fromARGB(199, 15, 13, 21),
+      highlightColor: AppColors.primaryColor,
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: Colors.transparent,
+        ),
+        child: ListTile(
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 8,
+          ),
+          leading: Container(
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(
+              color: Color.fromARGB(199, 15, 13, 21),
+              borderRadius: BorderRadius.circular(20),
+            ),
+          ),
+          title: Container(
+            width: 100,
+            height: 16,
+            color: Color.fromARGB(199, 15, 13, 21),
+            margin: const EdgeInsets.only(bottom: 8),
+          ),
+          subtitle: Container(
+            width: 150,
+            height: 14,
+            color: Color.fromARGB(199, 15, 13, 21),
+          ),
+          trailing: Container(
+            width: 24,
+            height: 24,
+            decoration: BoxDecoration(
+              color: Color.fromARGB(199, 15, 13, 21),
+              borderRadius: BorderRadius.circular(12),
             ),
           ),
         ),
@@ -84,14 +178,14 @@ class _ChatListScreenState extends State<ChatListScreen> {
       contentPadding: EdgeInsets.zero,
       horizontalTitleGap: 5,
       onTap: () {
-        Get.toNamed(AppRoutes.message, arguments: chatHead);
+        Get.toNamed(AppRoutes.message, arguments: {"chatHead": chatHead});
       },
       leading: CircleAvatar(
         radius: 35,
-        backgroundImage: AssetImage("assets/images/pic9.jpg"),
+        backgroundImage: NetworkImage(chatHead.avatar ?? ""),
       ),
       title: Text(
-        "Jessica sent you a text",
+        chatHead.fullName ?? "",
         style: GoogleFonts.fredoka(
           fontSize: 18,
           fontWeight: FontWeight.w600,
@@ -99,44 +193,29 @@ class _ChatListScreenState extends State<ChatListScreen> {
         ),
       ),
       subtitle: Text(
-        "2 hours ago",
+        chatHead.lastMessage ?? "",
         style: GoogleFonts.fredoka(
           fontSize: 12,
           fontWeight: FontWeight.w400,
           color: Colors.white,
         ),
       ),
-      trailing: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Text(
-            "22:40",
-            style: GoogleFonts.figtree(
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-              color: Get.theme.primaryColor,
-            ),
+      trailing: CircleAvatar(
+        radius: 13,
+        backgroundColor: AppColors.primaryColor,
+        child: Text(
+          "2",
+          style: GoogleFonts.figtree(
+            fontSize: 10,
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
           ),
-          SizedBox(height: 2),
-          CircleAvatar(
-            radius: 10,
-            backgroundColor: AppColors.primaryColor,
-            child: Text(
-              "2",
-              style: GoogleFonts.figtree(
-                fontSize: 9,
-                fontWeight: FontWeight.w600,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
 
-  Widget _buildStory() {
+  Widget buildStory() {
     return Container(
       padding: const EdgeInsets.only(left: 5),
       height: Get.height * 0.088,
