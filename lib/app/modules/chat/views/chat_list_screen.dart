@@ -1,3 +1,5 @@
+import 'package:falangthai/app/controller/message_controller.dart';
+import 'package:falangthai/app/data/models/chat_list_model.dart';
 import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
@@ -5,8 +7,25 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ChatListScreen extends StatelessWidget {
+class ChatListScreen extends StatefulWidget {
   const ChatListScreen({super.key});
+
+  @override
+  State<ChatListScreen> createState() => _ChatListScreenState();
+}
+
+class _ChatListScreenState extends State<ChatListScreen> {
+  final _messageController = Get.find<MessageController>();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!_messageController.isChattedListFetched.value) {
+        _messageController.getChatList();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +45,10 @@ class ChatListScreen extends StatelessWidget {
                 ListView.builder(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
-                  itemCount: 10,
+                  itemCount: _messageController.allChattedUserList.length,
                   itemBuilder: (context, index) {
-                    return buildChatTile();
+                    final chatHead = _messageController.allChattedUserList[index];
+                    return buildChatTile(chatHead: chatHead);
                   },
                 ),
               ],
@@ -59,12 +79,12 @@ class ChatListScreen extends StatelessWidget {
     );
   }
 
-  ListTile buildChatTile() {
+  ListTile buildChatTile({required ChatListModel chatHead}) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
       horizontalTitleGap: 5,
       onTap: () {
-        Get.toNamed(AppRoutes.message);
+        Get.toNamed(AppRoutes.message, arguments: chatHead);
       },
       leading: CircleAvatar(
         radius: 35,

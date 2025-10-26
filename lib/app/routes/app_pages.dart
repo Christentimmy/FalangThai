@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:falangthai/app/data/models/chat_list_model.dart';
 import 'package:falangthai/app/modules/auth/views/login_screen.dart';
 import 'package:falangthai/app/modules/auth/views/otp_screen.dart';
 import 'package:falangthai/app/modules/auth/views/signup_screen.dart';
@@ -69,7 +70,14 @@ class AppPages {
     GetPage(name: AppRoutes.favorite, page: () => FavoriteScreen()),
     GetPage(name: AppRoutes.matches, page: () => MatchesScreen()),
     GetPage(name: AppRoutes.chatList, page: () => ChatListScreen()),
-    GetPage(name: AppRoutes.message, page: () => MessageScreen()),
+    GetPage(name: AppRoutes.message, page: () {
+      final arguments = Get.arguments ?? {};
+      final chatHead = arguments['chatHead'];
+      if (chatHead == null) {
+        throw Exception("Chat head is required");
+      }
+      return MessageScreen(chatHead: chatHead as ChatListModel);
+    }),
     GetPage(name: AppRoutes.audioCall, page: () => AudioCallScreen()),
     GetPage(name: AppRoutes.videoCall, page: () => VideoCallScreen()),
     GetPage(name: AppRoutes.settings, page: () => SettingsScreen()),
