@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:falangthai/app/controller/user_controller.dart';
+import 'package:falangthai/app/data/models/chat_list_model.dart';
 import 'package:falangthai/app/data/models/user_model.dart';
 import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
 import 'package:falangthai/app/resources/colors.dart';
@@ -158,7 +159,17 @@ class _MatchScreenState extends State<MatchScreen> {
           CustomButton(
             ontap: () {
               userController.getPotentialMatches();
-              Get.offNamed(AppRoutes.message);
+              Get.offNamed(
+                AppRoutes.message,
+                arguments: {
+                  "chatHead": ChatListModel(
+                    avatar: targetUser.value?.avatar ?? "",
+                    fullName: targetUser.value?.fullName ?? "",
+                    online: false,
+                    userId: targetUser.value?.id ?? "",
+                  ),
+                },
+              );
             },
             isLoading: false.obs,
             child: Text(
