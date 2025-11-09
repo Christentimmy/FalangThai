@@ -1,6 +1,6 @@
 import 'dart:convert';
-
 import 'package:falangthai/app/controller/storage_controller.dart';
+import 'package:falangthai/app/controller/user_controller.dart';
 import 'package:falangthai/app/data/models/subscription_model.dart';
 import 'package:falangthai/app/data/services/subscription_service.dart';
 import 'package:falangthai/app/utils/url_launcher.dart';
@@ -61,7 +61,7 @@ class SubscriptionController extends GetxController {
         token: token,
       );
       if (response == null) return;
-      
+
       final decoded = json.decode(response.body);
       final message = decoded["message"];
       if (response.statusCode != 200) {
@@ -82,4 +82,53 @@ class SubscriptionController extends GetxController {
     }
   }
 
+  Future<void> cancelSubscription() async {
+    isloading.value = true;
+    try {
+      final token = await Get.find<StorageController>().getToken();
+      if (token == null) return;
+
+      final response = await subscriptionService.cancelSubscription(
+        token: token,
+      );
+      if (response == null) return;
+      final decoded = json.decode(response.body);
+      final message = decoded["message"];
+      if (response.statusCode != 200) {
+        CustomSnackbar.showErrorToast(message);
+        return;
+      }
+      await Get.find<UserController>().getUserDetails();
+      CustomSnackbar.showSuccessToast(message);
+    } catch (e) {
+      debugPrint(e.toString());
+    } finally {
+      isloading.value = false;
+    }
+  }
+
+  Future<void> reactivateSubscription() async {
+    isloading.value = true;
+    try {
+      final token = await Get.find<StorageController>().getToken();
+      if (token == null) return;
+
+      final response = await subscriptionService.reactivateUserSubscription(
+        token: token,
+      );
+      if (response == null) return;
+      final decoded = json.decode(response.body);
+      final message = decoded["message"];
+      if (response.statusCode != 200) {
+        CustomSnackbar.showErrorToast(message);
+        return;
+      }
+      await Get.find<UserController>().getUserDetails();
+      CustomSnackbar.showSuccessToast(message);
+    } catch (e) {
+      debugPrint(e.toString());
+    } finally {
+      isloading.value = false;
+    }
+  }
 }

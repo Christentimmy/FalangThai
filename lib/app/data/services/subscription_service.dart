@@ -36,6 +36,30 @@ class SubscriptionService {
     }, context: 'getSubscriptionPlans');
   }
 
+  Future<http.Response?> cancelSubscription({required String token}) {
+    return safeRequest(() {
+      return http.post(
+        Uri.parse("$baseUrl/subscription/cancel"),
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer $token",
+        },
+      );
+    }, context: 'cancelSubscription');
+  }
+
+  Future<http.Response?> reactivateUserSubscription({required String token}) {
+    return safeRequest(() {
+      return http.post(
+        Uri.parse("$baseUrl/subscription/reactivate"),
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer $token",
+        },
+      );
+    }, context: 'reactivateUserSubscription');
+  }
+
   Future<http.Response?> safeRequest(
     Future<http.Response> Function() request, {
     String? context,

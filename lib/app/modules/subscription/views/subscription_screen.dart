@@ -18,6 +18,7 @@ class SubscriptionScreen extends StatefulWidget {
 
 class _SubscriptionScreenState extends State<SubscriptionScreen> {
   final subscriptionController = Get.find<SubscriptionController>();
+  final userController = Get.find<UserController>();
 
   @override
   void initState() {
@@ -82,6 +83,40 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                   },
                 );
               }),
+              SizedBox(height: Get.height * 0.03),
+              Obx(() {
+                final subDetails =
+                    userController.userModel.value?.subscriptionDetails;
+                // if (subDetails?.status != "active") {
+                //   return SizedBox.shrink();
+                // }
+                final status = subDetails?.status ?? "";
+                if (status.isEmpty || status == "canceled") {
+                  return SizedBox.shrink();
+                }
+
+                return CustomButton(
+                  ontap: () async {
+                    if (status == "active" &&
+                        subDetails?.cancelAtPeriodEnd == false) {
+                      await subscriptionController.cancelSubscription();
+                    } else {
+                      await subscriptionController.reactivateSubscription();
+                    }
+                  },
+                  isLoading: subscriptionController.isloading,
+                  child: Text(
+                    status == "active" && subDetails?.cancelAtPeriodEnd == false
+                        ? "Cancel"
+                        : "Reactivate",
+                    style: GoogleFonts.figtree(
+                      fontSize: 16,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                );
+              }),
             ],
           ),
         ),
@@ -108,7 +143,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
   }
 
   Widget buildSubCard({required SubscriptionModel plan, required int index}) {
-    final userModel = Get.find<UserController>().userModel;
+    final userModel = userController.userModel;
     final status = userModel.value?.subscriptionDetails?.status;
     final subId = userModel.value?.subscriptionDetails?.planId;
     final isSubscribed = status == "active" && subId == plan.id;
