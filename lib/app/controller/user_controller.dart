@@ -194,7 +194,8 @@ class UserController extends GetxController {
         return;
       }
 
-      Get.offAllNamed(AppRoutes.bottomNavigation);
+      Get.toNamed(AppRoutes.redeemCode);
+      // Get.offAllNamed(AppRoutes.bottomNavigation);
     } catch (e) {
       debugPrint(e.toString());
     } finally {

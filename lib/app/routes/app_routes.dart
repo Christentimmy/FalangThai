@@ -25,4 +25,6 @@ class AppRoutes {
   static const String swipeProfile = '/swipe-profile';
   static const String match = '/match';
   static const String editHobbies = '/edit-hobbies';
+  static const String redeemCode = '/redeem-code';
+  static const String inviteStat = '/invite-stat';
 }

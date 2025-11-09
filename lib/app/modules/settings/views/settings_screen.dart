@@ -47,6 +47,12 @@ class SettingsScreen extends StatelessWidget {
               ),
 
               buildText(
+                title: "Invite",
+                icon: FontAwesomeIcons.usersRays,
+                onTap: () => Get.toNamed(AppRoutes.inviteStat),
+              ),
+
+              buildText(
                 title: "Notification",
                 icon: Icons.notifications,
                 onTap: () => Get.toNamed(AppRoutes.notification),

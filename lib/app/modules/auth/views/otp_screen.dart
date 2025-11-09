@@ -26,7 +26,6 @@ class OtpScreen extends StatefulWidget {
 
 class _OtpScreenState extends State<OtpScreen>
     with SingleTickerProviderStateMixin {
-
   @override
   void initState() {
     super.initState();
@@ -149,18 +148,31 @@ class _OtpScreenState extends State<OtpScreen>
               Center(
                 child: Pinput(
                   controller: _otpController,
+                  closeKeyboardWhenCompleted: true,
                   defaultPinTheme: PinTheme(
                     width: 65,
                     height: 65,
-                    textStyle: const TextStyle(
+                    textStyle: GoogleFonts.fredoka(
                       fontWeight: FontWeight.w600,
                       fontSize: 18,
+                      color: Colors.white,
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Get.isDarkMode
-                          ? const Color.fromARGB(255, 37, 37, 37)
-                          : const Color(0xffF1F1F1),
+                      border: Border.all(color: Colors.white),
+                    ),
+                  ),
+                  focusedPinTheme: PinTheme(
+                    width: 65,
+                    height: 65,
+                    textStyle: GoogleFonts.fredoka(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: AppColors.primaryColor),
                     ),
                   ),
                 ),
@@ -199,10 +211,7 @@ class _OtpScreenState extends State<OtpScreen>
       children: [
         Text(
           "Didn't receive the code? ",
-          style: GoogleFonts.fredoka(
-            fontSize: 16,
-            color: Colors.white,
-          ),
+          style: GoogleFonts.fredoka(fontSize: 16, color: Colors.white),
         ),
         Obx(
           () => InkWell(

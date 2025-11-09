@@ -1,6 +1,5 @@
-
-
 import 'package:falangthai/app/controller/auth_controller.dart';
+import 'package:falangthai/app/controller/invite_controller.dart';
 import 'package:falangthai/app/controller/language_controller.dart';
 import 'package:falangthai/app/controller/location_controller.dart';
 import 'package:falangthai/app/controller/message_controller.dart';
@@ -23,5 +22,6 @@ class AppBindings implements Bindings {
     Get.put(MessageController());
     Get.put(SocketController());
     Get.put(SubscriptionController());
+    Get.put(InviteController());
   }
 }

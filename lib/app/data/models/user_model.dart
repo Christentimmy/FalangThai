@@ -35,6 +35,11 @@ class UserModel {
   String? otpCode;
   final SubcriptionDetails? subscriptionDetails;
 
+  final String? inviteCode;
+  final int? totalInvites;
+  final Wallet? wallet;
+  final PaymentInfo? paymentInfo;
+
   UserModel({
     this.id,
     this.fullName,
@@ -69,6 +74,11 @@ class UserModel {
     this.otpCode,
     this.isVerified,
     this.subscriptionDetails,
+
+    this.inviteCode,
+    this.totalInvites,
+    this.wallet,
+    this.paymentInfo,
   });
 
   factory UserModel.fromJson(json) {
@@ -111,6 +121,13 @@ class UserModel {
       dob: json['date_of_birth'] ?? "",
       subscriptionDetails: json['subscription'] != null
           ? SubcriptionDetails.fromJson(json['subscription'])
+          : null,
+
+      inviteCode: json['inviteCode'] ?? "",
+      totalInvites: json['totalInvites'] ?? 0,
+      wallet: json['wallet'] != null ? Wallet.fromJson(json['wallet']) : null,
+      paymentInfo: json['paymentInfo'] != null
+          ? PaymentInfo.fromJson(json['paymentInfo'])
           : null,
     );
   }
@@ -164,6 +181,65 @@ class UserModel {
   @override
   String toString() {
     return jsonEncode(toJson());
+  }
+}
+
+class PaymentInfo {
+  final String? preferredMethod;
+  final BankTansfer? bankTransfer;
+  final String? paypal;
+  final String? stripe;
+
+  PaymentInfo({
+    this.preferredMethod,
+    this.bankTransfer,
+    this.paypal,
+    this.stripe,
+  });
+
+  factory PaymentInfo.fromJson(json) {
+    return PaymentInfo(
+      preferredMethod: json['preferredMethod'] ?? "",
+      bankTransfer: json['bankTransfer'] != null
+          ? BankTansfer.fromJson(json['bankTransfer'])
+          : null,
+      paypal: json['paypal']?["email"] ?? "",
+      stripe: json['stripe']?["accountId"] ?? "",
+    );
+  }
+}
+
+class BankTansfer {
+  final String? accountHolderName;
+  final String? accountNumber;
+  final String? bankName;
+
+  BankTansfer({this.accountHolderName, this.accountNumber, this.bankName});
+
+  factory BankTansfer.fromJson(json) {
+    return BankTansfer(
+      accountHolderName: json['accountHolderName'] ?? "",
+      accountNumber: json['accountNumber'] ?? "",
+      bankName: json['bankName'] ?? "",
+    );
+  }
+}
+
+class Wallet {
+  final int? balance;
+  final String? currency;
+  final int? totalEarned;
+  final int? totalWithdrawn;
+
+  Wallet({this.balance, this.currency, this.totalEarned, this.totalWithdrawn});
+
+  factory Wallet.fromJson(json) {
+    return Wallet(
+      balance: json['balance'] ?? 0,
+      currency: json['currency'] ?? "",
+      totalEarned: json['totalEarned'] ?? 0,
+      totalWithdrawn: json['totalWithdrawn'] ?? 0,
+    );
   }
 }
 
