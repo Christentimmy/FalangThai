@@ -7,11 +7,18 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class SubscriptionService {
-  Future<http.Response?> createSubscription({required String planId}) {
+  
+  Future<http.Response?> createSubscription({
+    required String planId,
+    required String token,
+  }) {
     return safeRequest(() {
       return http.post(
         Uri.parse("$baseUrl/subscription/create"),
-        headers: {"Content-Type": "application/json"},
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer $token",
+        },
         body: jsonEncode({"planId": planId}),
       );
     }, context: 'createSubscription');

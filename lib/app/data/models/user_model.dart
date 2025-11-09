@@ -1,5 +1,3 @@
-
-
 import 'dart:convert';
 
 class UserModel {
@@ -24,7 +22,6 @@ class UserModel {
   final int? echocoinsBalance;
   final String? oneSignalId;
   final List<dynamic>? transactions;
-  final String? recipientCode;
   final String? plan;
   final int? dailySwipes;
   final int? dailyMessages;
@@ -36,7 +33,7 @@ class UserModel {
   final bool? isVerified;
   String? password;
   String? otpCode;
-  DateTime? subscriptionEndDate;
+  final SubcriptionDetails? subscriptionDetails;
 
   UserModel({
     this.id,
@@ -60,7 +57,6 @@ class UserModel {
     this.echocoinsBalance,
     this.oneSignalId,
     this.transactions,
-    this.recipientCode,
     this.plan,
     this.dailySwipes,
     this.dailyMessages,
@@ -72,7 +68,7 @@ class UserModel {
     this.createdAt,
     this.otpCode,
     this.isVerified,
-    this.subscriptionEndDate,
+    this.subscriptionDetails,
   });
 
   factory UserModel.fromJson(json) {
@@ -83,7 +79,8 @@ class UserModel {
       phoneNumber: json['phone_number'] ?? "",
       avatar: json['avatar'] ?? "",
       bio: json['bio'] ?? "",
-      photos: (json['photos'] as List<dynamic>?)
+      photos:
+          (json['photos'] as List<dynamic>?)
               ?.map((e) => e?.toString() ?? '')
               .toList() ??
           [],
@@ -105,13 +102,16 @@ class UserModel {
       interestedIn: json['interested_in'] ?? "",
       relationshipPreference: json['relationship_preference'] ?? "",
       oneSignalId: json['one_signal_id'] ?? "",
-      recipientCode: json['recipient_code'] ?? "",
       preferences: json['preferences'] != null
           ? Preferences.fromJson(json['preferences'])
           : null,
-      location:
-          json['location'] != null ? Location.fromJson(json['location']) : null,
+      location: json['location'] != null
+          ? Location.fromJson(json['location'])
+          : null,
       dob: json['date_of_birth'] ?? "",
+      subscriptionDetails: json['subscription'] != null
+          ? SubcriptionDetails.fromJson(json['subscription'])
+          : null,
     );
   }
 
@@ -149,9 +149,7 @@ class UserModel {
     if (transactions != null && transactions!.isNotEmpty) {
       data['transactions'] = transactions;
     }
-    if (recipientCode != null && recipientCode!.isNotEmpty) {
-      data['recipient_code'] = recipientCode;
-    }
+
     if (plan != null && plan!.isNotEmpty) data['plan'] = plan;
     if (dailySwipes != null) data['daily_swipes'] = dailySwipes;
     if (dailyMessages != null) data['daily_messages'] = dailyMessages;
@@ -169,6 +167,31 @@ class UserModel {
   }
 }
 
+class SubcriptionDetails {
+  final String? planId;
+  final String? status;
+  final DateTime? currentPeriodEnd;
+  final bool? cancelAtPeriodEnd;
+
+  SubcriptionDetails({
+    this.planId,
+    this.status,
+    this.currentPeriodEnd,
+    this.cancelAtPeriodEnd,
+  });
+
+  factory SubcriptionDetails.fromJson(json) {
+    return SubcriptionDetails(
+      planId: json['planId'] ?? "",
+      status: json['status'] ?? "",
+      currentPeriodEnd: json['currentPeriodEnd'] != null
+          ? DateTime.parse(json['currentPeriodEnd'])
+          : null,
+      cancelAtPeriodEnd: json['cancelAtPeriodEnd'] ?? false,
+    );
+  }
+}
+
 class Preferences {
   final List<int>? ageRange;
   final int? maxDistance;
@@ -177,8 +200,9 @@ class Preferences {
 
   factory Preferences.fromJson(json) {
     return Preferences(
-      ageRange:
-          (json['ageRange'] as List<dynamic>?)?.map((e) => e as int).toList(),
+      ageRange: (json['ageRange'] as List<dynamic>?)
+          ?.map((e) => e as int)
+          .toList(),
       maxDistance: json['maxDistance'] as int?,
     );
   }
@@ -225,5 +249,3 @@ class Location {
     return jsonEncode(toJson());
   }
 }
-
-

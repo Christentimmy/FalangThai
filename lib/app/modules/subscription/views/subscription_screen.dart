@@ -1,4 +1,5 @@
 import 'package:falangthai/app/controller/subscription_controller.dart';
+import 'package:falangthai/app/controller/user_controller.dart';
 import 'package:falangthai/app/data/models/subscription_model.dart';
 import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
 import 'package:falangthai/app/resources/colors.dart';
@@ -22,10 +23,12 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      // if (subscriptionController.subscriptionPlans.isNotEmpty) return;
+      if (subscriptionController.subscriptionPlans.isNotEmpty) return;
       subscriptionController.getSubscriptionPlans();
     });
   }
+
+  final selectedIndex = (-1).obs;
 
   @override
   Widget build(BuildContext context) {
@@ -75,15 +78,10 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                   itemCount: subscriptionController.subscriptionPlans.length,
                   itemBuilder: (context, index) {
                     final plans = subscriptionController.subscriptionPlans;
-                    return buildSubCard(plan: plans[index]);
+                    return buildSubCard(plan: plans[index], index: index);
                   },
                 );
               }),
-              // buildSubCard(title: 'Basic', price: 9),
-              // SizedBox(height: Get.height * 0.03),
-              // buildSubCard(title: 'Premium', price: 54, month: 6),
-              // SizedBox(height: Get.height * 0.03),
-              // buildSubCard(title: 'Premium Plus', price: 108, month: 12),
             ],
           ),
         ),
@@ -109,7 +107,11 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
     );
   }
 
-  Widget buildSubCard({required SubscriptionModel plan}) {
+  Widget buildSubCard({required SubscriptionModel plan, required int index}) {
+    final userModel = Get.find<UserController>().userModel;
+    final status = userModel.value?.subscriptionDetails?.status;
+    final subId = userModel.value?.subscriptionDetails?.planId;
+    final isSubscribed = status == "active" && subId == plan.id;
     return Container(
       width: Get.width,
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
@@ -117,6 +119,9 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
       decoration: BoxDecoration(
         color: const Color.fromARGB(255, 15, 5, 12),
         borderRadius: BorderRadius.circular(12),
+        border: isSubscribed
+            ? Border.all(color: AppColors.primaryColor, width: 1)
+            : null,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -152,18 +157,29 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
             ),
           ),
           SizedBox(height: Get.height * 0.03),
-          CustomButton(
-            ontap: () {},
-            isLoading: false.obs,
-            child: Text(
-              'Get Started',
-              style: GoogleFonts.figtree(
-                fontSize: 16,
-                color: Colors.white,
-                fontWeight: FontWeight.w600,
+          Obx(() {
+            return CustomButton(
+              ontap: () async {
+                selectedIndex.value = index;
+                if (selectedIndex.value == -1) return;
+                await subscriptionController.createSubscription(
+                  planId: plan.id!,
+                );
+              },
+              isLoading:
+                  (subscriptionController.isloading.value &&
+                          selectedIndex.value == index)
+                      .obs,
+              child: Text(
+                'Get Started',
+                style: GoogleFonts.figtree(
+                  fontSize: 16,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
-            ),
-          ),
+            );
+          }),
           SizedBox(height: Get.height * 0.02),
           Column(
             children: plan.features!
