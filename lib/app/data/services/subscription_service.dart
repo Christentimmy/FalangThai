@@ -19,6 +19,14 @@ class SubscriptionService {
     }, context: 'createSubscription');
   }
 
+  Future<http.Response?> getSubscriptionPlans() {
+    return safeRequest(() {
+      return http.get(Uri.parse("$baseUrl/subscription/plans"));
+    }, context: 'getSubscriptionPlans');
+  }
+
+  
+
   Future<http.Response?> safeRequest(
     Future<http.Response> Function() request, {
     String? context,
