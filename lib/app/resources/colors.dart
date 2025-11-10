@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   static const Color primaryColor = Color(0xFFFF9EE6);
+  static const Color backgroundColor = Color(0xFF1A1625);
+  static const Color cardColor = Color(0xFF2A2235);
+  static const Color textPrimary = Color(0xFFFFFFFF);
+  static const Color textSecondary = Color(0xFFB8B8B8);
 
   // Sender (your messages)
   static const Color senderStart = Color(0xFFFF6B35);

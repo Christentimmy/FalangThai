@@ -27,4 +27,5 @@ class AppRoutes {
   static const String editHobbies = '/edit-hobbies';
   static const String redeemCode = '/redeem-code';
   static const String inviteStat = '/invite-stat';
+  static const String walletScreen = "/wallet";
 }

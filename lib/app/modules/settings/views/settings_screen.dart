@@ -41,6 +41,12 @@ class SettingsScreen extends StatelessWidget {
               ),
 
               buildText(
+                title: "Wallet",
+                icon: Icons.wallet,
+                onTap: () => Get.toNamed(AppRoutes.walletScreen),
+              ),
+
+              buildText(
                 title: "Language",
                 icon: FontAwesomeIcons.language,
                 onTap: () => Get.toNamed(AppRoutes.language),
@@ -52,13 +58,12 @@ class SettingsScreen extends StatelessWidget {
                 onTap: () => Get.toNamed(AppRoutes.inviteStat),
               ),
 
-              buildText(
-                title: "Notification",
-                icon: Icons.notifications,
-                onTap: () => Get.toNamed(AppRoutes.notification),
-              ),
+              // buildText(
+              //   title: "Notification",
+              //   icon: Icons.notifications,
+              //   onTap: () => Get.toNamed(AppRoutes.notification),
+              // ),
               buildText(title: "Security", icon: Icons.security),
-              buildText(title: "Privacy", icon: Icons.privacy_tip),
               SizedBox(height: 20),
               buildTitle(title: "Support", icon: Icons.support),
               buildText(
@@ -66,6 +71,7 @@ class SettingsScreen extends StatelessWidget {
                 icon: Icons.subscript,
                 onTap: () => Get.toNamed(AppRoutes.subscription),
               ),
+              buildText(title: "Privacy", icon: Icons.privacy_tip),
               buildText(title: "Terms & Conditions", icon: Icons.policy),
               buildText(title: "Help Center", icon: Icons.help_center),
               SizedBox(height: 20),
