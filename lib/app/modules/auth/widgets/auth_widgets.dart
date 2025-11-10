@@ -10,7 +10,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AuthWidgets {
-  
   BoxDecoration buildBackgroundDecoration() {
     return const BoxDecoration(
       gradient: LinearGradient(
@@ -132,6 +131,7 @@ class AuthWidgets {
   }
 
   Widget buildSocialLogin() {
+    final authController = Get.find<AuthController>();
     return Column(
       children: [
         Row(
@@ -159,10 +159,17 @@ class AuthWidgets {
         Row(
           children: [
             Expanded(
-              child: buildSocialButton(
-                icon: FontAwesomeIcons.google,
-                label: "Google",
-              ),
+              child: Obx(() {
+                return buildSocialButton(
+                  icon: FontAwesomeIcons.google,
+                  label: authController.isloading.value
+                      ? "Loading..."
+                      : "Google",
+                  onTap: () async {
+                    await authController.googleAuthSignIn();
+                  },
+                );
+              }),
             ),
             const SizedBox(width: 12),
             Expanded(

@@ -15,9 +15,9 @@ class AuthService {
 
   Future<void> _initializeSignIn() async {
     final clientId =
-        "423296603409-16vqq4rnphhhkb43v81q1088e56jp08f.apps.googleusercontent.com";
+        "339208855443-higlvs7scph1fhnma3u37j7mjk4gf7ue.apps.googleusercontent.com";
     final serverClientId =
-        "423296603409-lechplsgug2dtpsa9r6hrkptihsl6tdn.apps.googleusercontent.com";
+        "339208855443-0p22l7s1scbv7afbrfi66ajb0p08di5v.apps.googleusercontent.com";
 
     await _googleSignIn.initialize(
       clientId: clientId,
