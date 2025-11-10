@@ -1,12 +1,8 @@
-
-
-
 import 'package:falangthai/app/controller/user_controller.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 
 class PaymentMethodScreen extends StatelessWidget {
   const PaymentMethodScreen({super.key});
@@ -14,75 +10,97 @@ class PaymentMethodScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userController = Get.find<UserController>();
-    final paymentInfo = userController.userModel.value?.paymentInfo;
+    final userModel = userController.userModel;
 
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: AppBar(
-        backgroundColor: AppColors.backgroundColor,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
-          onPressed: () => Get.back(),
-        ),
-        title: const Text(
-          'Payment Methods',
-          style: TextStyle(color: AppColors.textPrimary),
-        ),
-      ),
+      appBar: buildAppBar(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Bank Transfer
-            _PaymentMethodCard(
-              icon: Icons.account_balance,
-              title: 'Bank Transfer',
-              isConfigured: paymentInfo?.bankTransfer != null,
-              details: paymentInfo?.bankTransfer != null
-                  ? {
-                      'Account Holder':
-                          paymentInfo!.bankTransfer!.accountHolderName ?? '-',
-                      'Account Number':
-                          paymentInfo.bankTransfer!.accountNumber ?? '-',
-                      'Bank Name': paymentInfo.bankTransfer!.bankName ?? '-',
-                    }
-                  : null,
-              onEdit: () => Get.toNamed(AppRoutes.editBankTransferScreen),
-            ),
+            Obx(() {
+              final paymentInfo = userModel.value?.paymentInfo;
+              Map<String, String>? details = {};
+              if (paymentInfo?.bankTransfer != null &&
+                  paymentInfo!.bankTransfer!.accountHolderName!.isNotEmpty) {
+                final accounName = paymentInfo.bankTransfer!.accountHolderName!
+                    .split(" ")
+                    .first;
+                details = {
+                  'Account Holder': accounName,
+                  'Account Number':
+                      paymentInfo.bankTransfer!.accountNumber ?? "",
+                  'Bank Name': paymentInfo.bankTransfer!.bankName ?? "",
+                };
+              }
+              return _PaymentMethodCard(
+                icon: Icons.account_balance,
+                title: 'Bank Transfer',
+                isConfigured: paymentInfo?.bankTransfer != null,
+                details: details,
+                onEdit: () => Get.toNamed(AppRoutes.editBankTransferScreen),
+              );
+            }),
             const SizedBox(height: 16),
 
             // PayPal
-            _PaymentMethodCard(
-              icon: Icons.payment,
-              title: 'PayPal',
-              isConfigured:
-                  paymentInfo?.paypal != null &&
-                  paymentInfo!.paypal!.isNotEmpty,
-              details:
-                  paymentInfo?.paypal != null && paymentInfo!.paypal!.isNotEmpty
-                  ? {'Email': paymentInfo.paypal!}
-                  : null,
-              onEdit: () => Get.toNamed(AppRoutes.editPayPalScreen),
-            ),
+            Obx(() {
+              final paymentInfo = userModel.value?.paymentInfo;
+              dynamic details;
+              if (paymentInfo?.paypal != null &&
+                  paymentInfo!.paypal!.isNotEmpty) {
+                details = {'Email': paymentInfo.paypal!};
+              }
+              return _PaymentMethodCard(
+                icon: Icons.payment,
+                title: 'PayPal',
+                isConfigured:
+                    paymentInfo?.paypal != null &&
+                    paymentInfo!.paypal!.isNotEmpty,
+                details: details,
+                onEdit: () => Get.toNamed(AppRoutes.editPayPalScreen),
+              );
+            }),
             const SizedBox(height: 16),
 
             // Stripe
-            _PaymentMethodCard(
-              icon: Icons.credit_card,
-              title: 'Stripe',
-              isConfigured:
-                  paymentInfo?.stripe != null &&
-                  paymentInfo!.stripe!.isNotEmpty,
-              details:
-                  paymentInfo?.stripe != null && paymentInfo!.stripe!.isNotEmpty
-                  ? {'Account ID': paymentInfo.stripe!}
-                  : null,
-              onEdit: () => Get.toNamed(AppRoutes.editStripeScreen),
-            ),
+            Obx(() {
+              final paymentInfo = userModel.value?.paymentInfo;
+              dynamic details;
+              if (paymentInfo?.stripe != null &&
+                  paymentInfo!.stripe!.isNotEmpty) {
+                details = {'Account ID': paymentInfo.stripe!};
+              }
+              return _PaymentMethodCard(
+                icon: Icons.credit_card,
+                title: 'Stripe',
+                isConfigured:
+                    paymentInfo?.stripe != null &&
+                    paymentInfo!.stripe!.isNotEmpty,
+                details: details,
+                onEdit: () => Get.toNamed(AppRoutes.editStripeScreen),
+              );
+            }),
           ],
         ),
+      ),
+    );
+  }
+
+  AppBar buildAppBar() {
+    return AppBar(
+      backgroundColor: AppColors.backgroundColor,
+      elevation: 0,
+      leading: IconButton(
+        icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
+        onPressed: () => Get.back(),
+      ),
+      title: const Text(
+        'Payment Methods',
+        style: TextStyle(color: AppColors.textPrimary),
       ),
     );
   }
