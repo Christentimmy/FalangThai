@@ -66,7 +66,11 @@ class SettingsScreen extends StatelessWidget {
               //   icon: Icons.notifications,
               //   onTap: () => Get.toNamed(AppRoutes.notification),
               // ),
-              buildText(title: "Security", icon: Icons.security),
+              buildText(
+                title: "Security",
+                icon: Icons.security,
+                onTap: () => Get.toNamed(AppRoutes.changePasswordScreen),
+              ),
               SizedBox(height: 20),
               buildTitle(title: "Support", icon: Icons.support),
               buildText(

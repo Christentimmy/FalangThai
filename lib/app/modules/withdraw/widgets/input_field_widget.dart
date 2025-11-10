@@ -13,6 +13,7 @@ class InputField extends StatelessWidget {
   final String hint;
   final IconData icon;
   final TextInputType? keyboardType;
+  final String? Function(String?)? validator;
 
   const InputField({
     super.key,
@@ -21,6 +22,7 @@ class InputField extends StatelessWidget {
     required this.hint,
     required this.icon,
     this.keyboardType,
+    this.validator,
   });
 
   @override
@@ -56,6 +58,7 @@ class InputField extends StatelessWidget {
           ),
           prefixIcon: icon,
           prefixIconColor: AppColors.primaryColor,
+          validator: validator,
         ),
       ],
     );

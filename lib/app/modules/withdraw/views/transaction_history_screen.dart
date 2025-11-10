@@ -59,7 +59,6 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
         final isWithdrawal = transaction.type == 'withdrawal';
         final amount = transaction.amount;
         final status = transaction.status ?? '';
-        print(transaction.type);
 
         return Container(
           margin: const EdgeInsets.only(bottom: 12),

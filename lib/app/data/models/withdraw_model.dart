@@ -18,7 +18,7 @@ class WithdrawModel {
   factory WithdrawModel.fromJson(Map<String, dynamic> json) {
     return WithdrawModel(
       id: json["id"] ?? "",
-      amount: num.tryParse(json["amount"]) ?? 0,
+      amount: num.tryParse(json["amount"].toString()) ?? 0,
       status: json["status"] ?? "",
       paymentMethod: json["paymentMethod"] ?? "",
       date: json["date"] != null

@@ -67,23 +67,27 @@ class WalletScreen extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: _StatCard(
-                    title: 'Total Earned',
-                    amount: userModel.value?.wallet?.totalEarned ?? 0,
-                    currency: currency,
-                    icon: Icons.trending_up,
-                    color: Colors.green,
-                  ),
+                  child: Obx(() {
+                    return _StatCard(
+                      title: 'Total Earned',
+                      amount: userModel.value?.wallet?.totalEarned ?? 0,
+                      currency: currency,
+                      icon: Icons.trending_up,
+                      color: Colors.green,
+                    );
+                  }),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
-                  child: _StatCard(
-                    title: 'Withdrawn',
-                    amount: userModel.value?.wallet?.totalWithdrawn ?? 0,
-                    currency: currency,
-                    icon: Icons.trending_down,
-                    color: Colors.orange,
-                  ),
+                  child: Obx(() {
+                    return _StatCard(
+                      title: 'Withdrawn',
+                      amount: userModel.value?.wallet?.totalWithdrawn ?? 0,
+                      currency: currency,
+                      icon: Icons.trending_down,
+                      color: Colors.orange,
+                    );
+                  }),
                 ),
               ],
             ),

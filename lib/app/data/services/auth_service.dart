@@ -242,4 +242,29 @@ class AuthService {
     return null;
   }
 
+  Future<http.Response?> changePassword({
+    required String token,
+    required String oldPassword,
+    required String newPassword,
+  }) async {
+    try {
+      final response = await client
+          .post(
+            Uri.parse("$baseUrl/auth/change-password"),
+            headers: {
+              "Authorization": "Bearer $token",
+              "Content-Type": "application/json",
+            },
+            body: jsonEncode({
+              "oldPassword": oldPassword,
+              "newPassword": newPassword,
+            }),
+          )
+          .timeout(const Duration(seconds: 15));
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return null;
+  }
 }

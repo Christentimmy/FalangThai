@@ -59,6 +59,7 @@ class WalletController extends GetxController {
         CustomSnackbar.showErrorToast(message);
         return;
       }
+      print(decoded);
       final rawCommissions = decoded["data"]["commissions"] ?? [];
       final commissions = rawCommissions
           .map((e) => CommissionModel.fromJson(e))
@@ -159,7 +160,8 @@ class WalletController extends GetxController {
         CustomSnackbar.showErrorToast(message);
         return;
       }
-      await Get.find<UserController>().getUserDetails();
+      final controller = Get.find<UserController>();
+      await controller.getUserDetails();
       CustomSnackbar.showSuccessToast(message);
       Get.back();
       Get.back();
@@ -169,7 +171,6 @@ class WalletController extends GetxController {
       isloading.value = false;
     }
   }
-
 }
 
 class PaymentMethod {

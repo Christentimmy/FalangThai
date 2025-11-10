@@ -20,6 +20,7 @@ import 'package:falangthai/app/modules/profile/views/hobby_screen.dart';
 import 'package:falangthai/app/modules/profile/views/profile_screen.dart';
 import 'package:falangthai/app/modules/profile/views/profile_upload.dart';
 import 'package:falangthai/app/modules/profile/views/relationship_preference.dart';
+import 'package:falangthai/app/modules/settings/views/change_password_screen.dart';
 import 'package:falangthai/app/modules/settings/views/invite_stat_screen.dart';
 import 'package:falangthai/app/modules/settings/views/redeem_code_screen.dart';
 import 'package:falangthai/app/modules/settings/views/settings_screen.dart';
@@ -188,6 +189,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.transactionHistoryScreen,
       page: () => TransactionHistoryScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.changePasswordScreen,
+      page: () => ChangePasswordScreen(),
     ),
   ];
 }
