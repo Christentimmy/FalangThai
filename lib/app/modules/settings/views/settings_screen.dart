@@ -78,12 +78,24 @@ class SettingsScreen extends StatelessWidget {
                 icon: Icons.subscript,
                 onTap: () => Get.toNamed(AppRoutes.subscription),
               ),
-              buildText(title: "Privacy", icon: Icons.privacy_tip),
-              buildText(title: "Terms & Conditions", icon: Icons.policy),
-              buildText(title: "Help Center", icon: Icons.help_center),
+              buildText(
+                title: "Privacy",
+                icon: Icons.privacy_tip,
+                onTap: () => Get.toNamed(AppRoutes.privacyPolicyScreen),
+              ),
+              buildText(
+                title: "Terms & Conditions",
+                icon: Icons.policy,
+                onTap: () => Get.toNamed(AppRoutes.termsAndConditionScreen),
+              ),
+              // buildText(title: "Help Center", icon: Icons.help_center),
               SizedBox(height: 20),
               buildTitle(icon: Icons.manage_accounts, title: "Account"),
-              buildText(title: "Report a problem", icon: Icons.report),
+              buildText(
+                title: "Report a problem",
+                icon: Icons.report,
+                onTap: () => Get.toNamed(AppRoutes.supportScreen),
+              ),
               buildText(
                 title: "Logout",
                 icon: Icons.logout,

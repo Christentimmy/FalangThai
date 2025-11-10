@@ -35,4 +35,8 @@ class AppRoutes {
   static const String editPayPalScreen = "/edit-paypal";
   static const String transactionHistoryScreen = "/transaction-history";
   static const String changePasswordScreen = "/change-password";
+
+  static const String termsAndConditionScreen = "/terms-and-condition";
+  static const String privacyPolicyScreen = "/privacy-policy";
+  static const String supportScreen = "/support-screen";
 }

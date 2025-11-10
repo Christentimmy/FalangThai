@@ -493,6 +493,41 @@ class UserController extends GetxController {
     }
   }
 
+  Future<void> createTicket({
+    required List<File> attachments,
+    required String subject,
+    required String description,
+  }) async {
+    isloading.value = true;
+    try {
+      final storageController = Get.find<StorageController>();
+      final token = await storageController.getToken();
+      if (token == null) return;
+
+      final response = await _userService.createTicket(
+        token: token,
+        attachments: attachments,
+        subject: subject,
+        description: description,
+      );
+
+      if (response == null) return;
+      final decoded = await json.decode(response.body);
+
+      String message = decoded["message"] ?? "";
+      if (response.statusCode != 201) {
+        CustomSnackbar.showErrorToast(message);
+        return;
+      }
+      CustomSnackbar.showSuccessToast(message);
+      Get.offAllNamed(AppRoutes.bottomNavigation);
+    } catch (e) {
+      debugPrint(e.toString());
+    } finally {
+      isloading.value = false;
+    }
+  }
+
   Future<void> initDeepLinks(AppLinks appLinks) async {
     try {
       final appLink = await appLinks.getInitialLink();
