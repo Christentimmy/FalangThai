@@ -28,7 +28,12 @@ import 'package:falangthai/app/modules/subscription/views/subscription_screen.da
 import 'package:falangthai/app/modules/swipe/views/match_screen.dart';
 import 'package:falangthai/app/modules/swipe/views/swipe_profile_screen.dart';
 import 'package:falangthai/app/modules/welcome/views/welcome_screen.dart';
+import 'package:falangthai/app/modules/withdraw/views/edit_bank_transfer_screen.dart';
+import 'package:falangthai/app/modules/withdraw/views/edit_paypal_screen.dart';
+import 'package:falangthai/app/modules/withdraw/views/edit_stripe_screen.dart';
+import 'package:falangthai/app/modules/withdraw/views/payment_method_screen.dart';
 import 'package:falangthai/app/modules/withdraw/views/wallet_screen.dart';
+import 'package:falangthai/app/modules/withdraw/views/withdraw_screen.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:falangthai/app/widgets/bottom_navigation_widget.dart';
 import 'package:get/get.dart';
@@ -154,6 +159,26 @@ class AppPages {
     GetPage(
       name: AppRoutes.walletScreen,
       page: () => WalletScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.withdrawScreen,
+      page: () => WithdrawScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.paymentMethodScreen,
+      page: () => PaymentMethodScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.editBankTransferScreen,
+      page: () => EditBankTransferScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.editStripeScreen,
+      page: () => EditStripeScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.editPayPalScreen,
+      page: () => EditPayPalScreen(),
     ),
   ];
 }

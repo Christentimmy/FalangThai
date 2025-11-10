@@ -28,4 +28,9 @@ class AppRoutes {
   static const String redeemCode = '/redeem-code';
   static const String inviteStat = '/invite-stat';
   static const String walletScreen = "/wallet";
+  static const String withdrawScreen = "/withdraw";
+  static const String paymentMethodScreen = "/payment-method";
+  static const String editBankTransferScreen = "/edit-bank-transfer";
+  static const String editStripeScreen = "/edit-stripe";
+  static const String editPayPalScreen = "/edit-paypal";
 }
