@@ -230,7 +230,7 @@ class SignupScreen extends StatelessWidget {
               ),
               const SizedBox(height: 30),
               // _buildSocialLogin(),
-              authWidgets.buildSocialLogin(),
+              authWidgets.buildSocialLogin(isSignUp: true),
               const SizedBox(height: 20),
               // _buildLoginLink(),
               authWidgets.buildLoginLink(),

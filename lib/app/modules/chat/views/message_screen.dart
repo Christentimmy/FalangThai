@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:falangthai/app/data/models/chat_list_model.dart';
 import 'package:falangthai/app/data/models/message_model.dart';
 import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
@@ -7,12 +6,13 @@ import 'package:falangthai/app/modules/chat/controller/chat_controller.dart';
 import 'package:falangthai/app/modules/chat/widgets/media/media_preview_widget.dart';
 import 'package:falangthai/app/modules/chat/widgets/receiver_card.dart';
 import 'package:falangthai/app/modules/chat/widgets/sender_card.dart';
-import 'package:falangthai/app/modules/chat/widgets/shimmer/chat_loader_shimmer.dart';
+// import 'package:falangthai/app/modules/chat/widgets/shimmer/chat_loader_shimmer.dart';
 import 'package:falangthai/app/modules/chat/widgets/textfield/chat_input_field_widget.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
 import 'package:falangthai/app/widgets/custom_textfield.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -308,7 +308,9 @@ class _MessageScreenState extends State<MessageScreen> {
                     style: GoogleFonts.figtree(
                       fontSize: 12,
                       fontWeight: FontWeight.w400,
-                      color: widget.chatHead.online == true ? Colors.green : Colors.grey,
+                      color: widget.chatHead.online == true
+                          ? Colors.green
+                          : Colors.grey,
                     ),
                   ),
                 ],
@@ -441,13 +443,16 @@ class _MessageScreenState extends State<MessageScreen> {
       final chatHistoryAndLiveMessage =
           messageController.chatHistoryAndLiveMessage;
       if (oldChats.isEmpty && messageController.isloading.value) {
-        return const ChatShimmerEffect(
-          itemCount: 20,
-          showSenderCards: true,
-          showReceiverCards: true,
-          // showImageCards: true,
-          // showAudioCards: true,
+        return const Center(
+          child: CupertinoActivityIndicator(color: AppColors.primaryColor),
         );
+        // return const ChatShimmerEffect(
+        //   itemCount: 20,
+        //   showSenderCards: true,
+        //   showReceiverCards: true,
+        //   // showImageCards: true,
+        //   // showAudioCards: true,
+        // );
       }
 
       if (oldChats.isNotEmpty && messageController.isloading.value) {

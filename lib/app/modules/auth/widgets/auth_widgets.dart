@@ -131,7 +131,7 @@ class AuthWidgets {
     );
   }
 
-  Widget buildSocialLogin() {
+  Widget buildSocialLogin({bool isSignUp = false}) {
     final authController = Get.find<AuthController>();
     return Column(
       children: [
@@ -167,7 +167,11 @@ class AuthWidgets {
                       ? "Loading..."
                       : "Google",
                   onTap: () async {
-                    await authController.googleAuthSignIn();
+                    if (isSignUp) {
+                      await authController.googleAuthSignUp();
+                    } else {
+                      await authController.googleAuthSignIn();
+                    }
                   },
                 );
               }),

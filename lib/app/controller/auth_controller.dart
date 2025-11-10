@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:falangthai/app/controller/invite_controller.dart';
 import 'package:falangthai/app/controller/message_controller.dart';
+import 'package:falangthai/app/controller/socket_controller.dart';
 import 'package:falangthai/app/controller/storage_controller.dart';
 import 'package:falangthai/app/controller/subscription_controller.dart';
 import 'package:falangthai/app/controller/user_controller.dart';
@@ -40,8 +41,8 @@ class AuthController extends GetxController {
       String token = decoded["token"] ?? "";
       if (token.isEmpty) return;
       await storageController.storeToken(token);
-      // final socketController = Get.find<SocketController>();
-      // socketController.initializeSocket();
+      final socketController = Get.find<SocketController>();
+      socketController.initializeSocket();
       await userController.getUserDetails();
       Get.toNamed(AppRoutes.gender);
     } catch (e) {
@@ -81,6 +82,8 @@ class AuthController extends GetxController {
       }
       final userController = Get.find<UserController>();
       await userController.getUserDetails();
+      final socketController = Get.find<SocketController>();
+      socketController.initializeSocket();
       Get.offAllNamed(AppRoutes.bottomNavigation);
     } catch (e) {
       debugPrint(e.toString());
@@ -114,10 +117,11 @@ class AuthController extends GetxController {
       final userController = Get.find<UserController>();
       // final storyController = Get.find<StoryController>();
       await userController.getUserDetails();
-      // await userController.getPotentialMatches();
+      await userController.getPotentialMatches();
       // await storyController.getAllStories();
       // await storyController.getUserPostedStories();
-      // Get.offAllNamed(AppRoutes.bottomNavigation);
+      final socketController = Get.find<SocketController>();
+      socketController.initializeSocket();
       await handleLoginNavigation();
     } catch (e) {
       debugPrint(e.toString());
