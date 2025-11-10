@@ -1,6 +1,5 @@
 import 'dart:math' as math;
 import 'dart:ui';
-
 import 'package:falangthai/app/modules/language/controller/language_screen_controller.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
@@ -10,7 +9,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LanguageSelectionScreen extends StatelessWidget {
-  LanguageSelectionScreen({super.key});
+  final VoidCallback? onContinue;
+  LanguageSelectionScreen({super.key, this.onContinue});
 
   final languageScreenController = Get.put(LanguageScreenController());
 
@@ -81,15 +81,15 @@ class LanguageSelectionScreen extends StatelessWidget {
               ),
             ),
           ),
-          const Spacer(),
-          Text(
-            "Skip",
-            style: GoogleFonts.fredoka(
-              fontSize: 16,
-              color: AppColors.primaryColor,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
+          // const Spacer(),
+          // Text(
+          //   "Skip",
+          //   style: GoogleFonts.fredoka(
+          //     fontSize: 16,
+          //     color: AppColors.primaryColor,
+          //     fontWeight: FontWeight.w600,
+          //   ),
+          // ),
         ],
       ),
     );
@@ -264,14 +264,16 @@ class LanguageSelectionScreen extends StatelessWidget {
   }
 
   Widget _buildContinueButton() {
-    return Obx( 
+    return Obx(
       () => Opacity(
         opacity: languageScreenController.selectedLanguage.value.isNotEmpty
             ? 1.0
             : 0.6,
         child: CustomButton(
           ontap: languageScreenController.selectedLanguage.value.isNotEmpty
-              ? () => languageScreenController.continueToNext()
+              ? () => languageScreenController.continueToNext(
+                  onContinue: onContinue,
+                )
               : () {},
           isLoading: languageScreenController.isLoading,
           borderRadius: BorderRadius.circular(24),
@@ -279,7 +281,7 @@ class LanguageSelectionScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Continue",
+                "Done",
                 style: GoogleFonts.fredoka(
                   fontSize: 16,
                   color: Colors.white,

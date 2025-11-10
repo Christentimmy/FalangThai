@@ -94,11 +94,15 @@ class LanguageScreenController extends GetxController with GetSingleTickerProvid
     HapticFeedback.lightImpact();
   }
 
-  void continueToNext() {
+  void continueToNext({required VoidCallback? onContinue}) {
     if (selectedLanguage.value.isEmpty) return;
     final languageController = Get.find<LanguageController>();
     languageController.saveLanguage(selectedLanguage.value);
-    Get.toNamed(AppRoutes.signup);
+    if (onContinue != null) {
+      onContinue();
+    } else {
+      Get.toNamed(AppRoutes.signup);
+    }
   }
 
   Future<void> saveSelectedLanguage() async {

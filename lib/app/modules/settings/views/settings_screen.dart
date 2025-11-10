@@ -49,7 +49,10 @@ class SettingsScreen extends StatelessWidget {
               buildText(
                 title: "Language",
                 icon: FontAwesomeIcons.language,
-                onTap: () => Get.toNamed(AppRoutes.language),
+                onTap: () => Get.toNamed(
+                  AppRoutes.language,
+                  arguments: {'onContinue': () => Get.back()},
+                ),
               ),
 
               buildText(

@@ -43,7 +43,11 @@ class AppPages {
   static final routes = <GetPage>[
     GetPage(name: AppRoutes.splash, page: () => const SplashScreen()),
     GetPage(name: AppRoutes.welcome, page: () => WelcomeScreen()),
-    GetPage(name: AppRoutes.language, page: () => LanguageSelectionScreen()),
+    GetPage(name: AppRoutes.language, page: () {
+      final arguments = Get.arguments ?? {};
+      final onContinue = arguments['onContinue'] as VoidCallback?;
+      return LanguageSelectionScreen(onContinue: onContinue);
+    }),
     GetPage(name: AppRoutes.signup, page: () => SignupScreen()),
     GetPage(name: AppRoutes.login, page: () => LoginScreen()),
     GetPage(name: AppRoutes.gender, page: () {
