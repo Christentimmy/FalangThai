@@ -1,6 +1,10 @@
 import 'package:falangthai/app/controller/auth_controller.dart';
+import 'package:falangthai/app/routes/app_routes.dart';
+import 'package:falangthai/app/widgets/custom_button.dart';
+import 'package:falangthai/app/widgets/snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginController extends GetxController with GetTickerProviderStateMixin {
   final isloading = false.obs;
@@ -21,6 +25,7 @@ class LoginController extends GetxController with GetTickerProviderStateMixin {
 
   // Observable States
   final RxBool isPasswordVisible = false.obs;
+  final authController = Get.find<AuthController>();
 
   @override
   void onInit() {
@@ -88,19 +93,20 @@ class LoginController extends GetxController with GetTickerProviderStateMixin {
           side: BorderSide(color: Colors.white.withOpacity(0.2)),
         ),
         title: Text(
-          'Reset Password',
+          'Forgot Password',
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
         ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'Enter your email address and we\'ll send you a link to reset your password.',
-              style: TextStyle(color: Colors.white.withOpacity(0.8)),
+              'Enter your email address and we\'ll send you an  otp to reset your password.',
+              style: GoogleFonts.fredoka(color: Colors.white.withOpacity(0.8)),
             ),
             const SizedBox(height: 20),
             TextFormField(
-              style: const TextStyle(color: Colors.white),
+              style: GoogleFonts.fredoka(color: Colors.white),
+              controller: emailController,
               decoration: InputDecoration(
                 hintText: 'Email Address',
                 hintStyle: TextStyle(color: Colors.white.withOpacity(0.5)),
@@ -122,28 +128,63 @@ class LoginController extends GetxController with GetTickerProviderStateMixin {
               style: TextStyle(color: Colors.white.withOpacity(0.7)),
             ),
           ),
-          ElevatedButton(
-            onPressed: () {
-              Get.back();
-              Get.snackbar(
-                'Password Reset',
-                'Reset link sent to your email!',
-                snackPosition: SnackPosition.BOTTOM,
-                backgroundColor: Colors.green.withOpacity(0.9),
-                colorText: Colors.white,
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFFFF9EE6),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+          SizedBox(
+            height: 45,
+            width: 140,
+            child: CustomButton(
+              ontap: () async {
+                if (emailController.text.isEmpty) {
+                  CustomSnackbar.showErrorToast("message");
+                  return;
+                }
+                await authController.sendOtp(email: emailController.text);
+                Get.toNamed(
+                  AppRoutes.otpVerification,
+                  arguments: {
+                    "email": emailController.text,
+                    "onVerifiedCallBack": () async {
+                      Get.toNamed(
+                        AppRoutes.resetPasswordScreen,
+                        arguments: {"email": emailController.text},
+                      );
+                    },
+                    "showEditDetails": false,
+                  },
+                );
+              },
+              isLoading: authController.isloading,
+              child: Text(
+                'Send Reset Link',
+                style: GoogleFonts.fredoka(
+                  color: Colors.white,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
-            child: const Text(
-              'Send Reset Link',
-              style: TextStyle(color: Colors.white),
-            ),
           ),
+          // ElevatedButton(
+          // onPressed: () async {
+          // Get.back();
+          // Get.snackbar(
+          //   'Password Reset',
+          //   'Reset link sent to your email!',
+          //   snackPosition: SnackPosition.BOTTOM,
+          //   backgroundColor: Colors.green.withOpacity(0.9),
+          //   colorText: Colors.white,
+          // );
+          // },
+          // style: ElevatedButton.styleFrom(
+          //   backgroundColor: const Color(0xFFFF9EE6),
+          //   shape: RoundedRectangleBorder(
+          //     borderRadius: BorderRadius.circular(12),
+          //   ),
+          // ),
+          // child: const Text(
+          //   'Send Reset Link',
+          //   style: TextStyle(color: Colors.white),
+          // ),
+          // ),
         ],
       ),
     );

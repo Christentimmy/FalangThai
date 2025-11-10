@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:falangthai/app/data/models/chat_list_model.dart';
 import 'package:falangthai/app/modules/auth/views/login_screen.dart';
 import 'package:falangthai/app/modules/auth/views/otp_screen.dart';
+import 'package:falangthai/app/modules/auth/views/reset_password_screen.dart';
 import 'package:falangthai/app/modules/auth/views/signup_screen.dart';
 import 'package:falangthai/app/modules/chat/views/audio_call_screen.dart';
 import 'package:falangthai/app/modules/chat/views/chat_list_screen.dart';
@@ -208,6 +209,17 @@ class AppPages {
     GetPage(
       name: AppRoutes.supportScreen,
       page: () => SupportScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.resetPasswordScreen,
+      page: () {
+        final arguments = Get.arguments ?? {};
+        final email = arguments['email'] as String;
+        if (email.isEmpty) {
+          throw Exception("Email is required");
+        }
+        return ResetPasswordScreen(email: email);
+      },
     ),
   ];
 }

@@ -267,4 +267,23 @@ class AuthService {
     }
     return null;
   }
+
+  Future<http.Response?> resetPassword({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final response = await client
+          .post(
+            Uri.parse("$baseUrl/auth/reset-password"),
+            headers: {"Content-Type": "application/json"},
+            body: jsonEncode({"email": email, "password": password}),
+          )
+          .timeout(const Duration(seconds: 15));
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return null;
+  }
 }

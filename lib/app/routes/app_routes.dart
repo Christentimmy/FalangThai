@@ -39,4 +39,5 @@ class AppRoutes {
   static const String termsAndConditionScreen = "/terms-and-condition";
   static const String privacyPolicyScreen = "/privacy-policy";
   static const String supportScreen = "/support-screen";
+  static const String resetPasswordScreen = "/reset-password-screen";
 }
