@@ -32,6 +32,7 @@ import 'package:falangthai/app/modules/withdraw/views/edit_bank_transfer_screen.
 import 'package:falangthai/app/modules/withdraw/views/edit_paypal_screen.dart';
 import 'package:falangthai/app/modules/withdraw/views/edit_stripe_screen.dart';
 import 'package:falangthai/app/modules/withdraw/views/payment_method_screen.dart';
+import 'package:falangthai/app/modules/withdraw/views/transaction_history_screen.dart';
 import 'package:falangthai/app/modules/withdraw/views/wallet_screen.dart';
 import 'package:falangthai/app/modules/withdraw/views/withdraw_screen.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
@@ -179,6 +180,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.editPayPalScreen,
       page: () => EditPayPalScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.transactionHistoryScreen,
+      page: () => TransactionHistoryScreen(),
     ),
   ];
 }

@@ -33,4 +33,5 @@ class AppRoutes {
   static const String editBankTransferScreen = "/edit-bank-transfer";
   static const String editStripeScreen = "/edit-stripe";
   static const String editPayPalScreen = "/edit-paypal";
+  static const String transactionHistoryScreen = "/transaction-history";
 }

@@ -137,13 +137,11 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                   onTap: () => _amountController.text = '500',
                 ),
                 const SizedBox(width: 8),
-                Expanded(
-                  child: _QuickAmountButton(
-                    amount: balance,
-                    currency: currency,
-                    label: 'All',
-                    onTap: () => _amountController.text = balance.toString(),
-                  ),
+                _QuickAmountButton(
+                  amount: balance,
+                  currency: currency,
+                  label: 'All',
+                  onTap: () => _amountController.text = balance.toString(),
                 ),
               ],
             ),
@@ -242,6 +240,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                 ],
               ),
             ),
+         
           ],
         ),
       ),
