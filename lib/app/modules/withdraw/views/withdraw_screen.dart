@@ -1,4 +1,5 @@
 import 'package:falangthai/app/controller/user_controller.dart';
+import 'package:falangthai/app/controller/wallet_controller.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,8 @@ class WithdrawScreen extends StatefulWidget {
 class _WithdrawScreenState extends State<WithdrawScreen> {
   final _amountController = TextEditingController();
   String? selectedMethod;
+
+  final walletController = Get.find<WalletController>();
 
   @override
   Widget build(BuildContext context) {
@@ -165,8 +168,8 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                 icon: Icons.account_balance,
                 title: 'Bank Transfer',
                 subtitle: paymentInfo!.bankTransfer!.accountNumber ?? 'Not set',
-                isSelected: selectedMethod == 'bank',
-                onTap: () => setState(() => selectedMethod = 'bank'),
+                isSelected: selectedMethod == 'bank_transfer',
+                onTap: () => setState(() => selectedMethod = 'bank_transfer'),
               ),
 
             if (paymentInfo?.paypal != null && paymentInfo!.paypal!.isNotEmpty)
@@ -245,19 +248,23 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: CustomButton(
-            ontap: () => _handleWithdraw(balance),
-            isLoading: false.obs,
-            child: Text(
-              'Withdraw',
-              style: GoogleFonts.fredoka(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
+      bottomNavigationBar: buildContinueButton(balance),
+    );
+  }
+
+  SafeArea buildContinueButton(int balance) {
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: CustomButton(
+          ontap: () => _handleWithdraw(balance),
+          isLoading: false.obs,
+          child: Text(
+            'Withdraw',
+            style: GoogleFonts.fredoka(
+              color: Colors.black,
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
             ),
           ),
         ),
@@ -318,22 +325,39 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
               style: TextStyle(color: AppColors.textSecondary),
             ),
           ),
-          ElevatedButton(
-            onPressed: () {
-              Get.back();
-              Get.back();
-              Get.snackbar(
-                'Success',
-                'Withdrawal request submitted',
-                backgroundColor: Colors.green,
-                colorText: Colors.white,
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.primaryColor,
+          SizedBox(
+            width: 100,
+            height: 45,
+            child: CustomButton(
+              ontap: () async {
+                await walletController.requestWithdrawal(
+                  amount: amount,
+                  paymentMethod: selectedMethod!,
+                );
+              },
+              isLoading: walletController.isloading,
+              child: Text(
+                'Confirm',
+                style: GoogleFonts.fredoka(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
             ),
-            child: const Text('Confirm', style: TextStyle(color: Colors.black)),
           ),
+          // ElevatedButton(
+          //   onPressed: () async {
+          //     await walletController.requestWithdrawal(
+          //       amount: amount,
+          //       paymentMethod: selectedMethod!,
+          //     );
+          //   },
+          //   style: ElevatedButton.styleFrom(
+          //     backgroundColor: AppColors.primaryColor,
+          //   ),
+          //   child: const Text('Confirm', style: TextStyle(color: Colors.black)),
+          // ),
         ],
       ),
     );
