@@ -1,3 +1,4 @@
+import 'package:falangthai/app/controller/wallet_controller.dart';
 import 'package:falangthai/app/modules/withdraw/widgets/input_field_widget.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
@@ -17,6 +18,9 @@ class _EditBankTransferScreenState extends State<EditBankTransferScreen> {
   final _accountController = TextEditingController();
   final _bankController = TextEditingController();
 
+  final formKey = GlobalKey<FormState>();
+  final walletController = Get.find<WalletController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,31 +39,34 @@ class _EditBankTransferScreenState extends State<EditBankTransferScreen> {
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            InputField(
-              controller: _holderController,
-              label: 'Account Holder Name',
-              hint: 'Enter full name',
-              icon: Icons.person,
-            ),
-            const SizedBox(height: 16),
-            InputField(
-              controller: _accountController,
-              label: 'Account Number',
-              hint: 'Enter account number',
-              icon: Icons.numbers,
-              keyboardType: TextInputType.number,
-            ),
-            const SizedBox(height: 16),
-            InputField(
-              controller: _bankController,
-              label: 'Bank Name',
-              hint: 'Enter bank name',
-              icon: Icons.account_balance,
-            ),
-          ],
+        child: Form(
+          key: formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              InputField(
+                controller: _holderController,
+                label: 'Account Holder Name',
+                hint: 'Enter full name',
+                icon: Icons.person,
+              ),
+              const SizedBox(height: 16),
+              InputField(
+                controller: _accountController,
+                label: 'Account Number',
+                hint: 'Enter account number',
+                icon: Icons.numbers,
+                keyboardType: TextInputType.number,
+              ),
+              const SizedBox(height: 16),
+              InputField(
+                controller: _bankController,
+                label: 'Bank Name',
+                hint: 'Enter bank name',
+                icon: Icons.account_balance,
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: continueButton(),
@@ -71,8 +78,19 @@ class _EditBankTransferScreenState extends State<EditBankTransferScreen> {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: CustomButton(
-          ontap: () {},
-          isLoading: false.obs,
+          ontap: () async {
+            if (!formKey.currentState!.validate()) return;
+            final paymentDetails = {
+              'accountHolderName': _holderController.text,
+              'accountNumber': _accountController.text,
+              'bankName': _bankController.text,
+            };
+            await walletController.updatePayment(
+              paymentMethod: PaymentMethod().bankTransfer,
+              paymentDetails: paymentDetails,
+            );
+          },
+          isLoading: walletController.isloading,
           child: Text(
             'Save Changes',
             style: GoogleFonts.fredoka(

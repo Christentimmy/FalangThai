@@ -1,5 +1,4 @@
 import 'package:cherry_toast/cherry_toast.dart';
-import 'package:falangthai/app/resources/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -48,10 +47,11 @@ class CustomSnackbar {
         message,
         style: GoogleFonts.fredoka(color: Colors.white),
       ),
-      backgroundColor: AppColors.primaryColor,
+      backgroundColor: const Color.fromARGB(255, 139, 29, 112),
       animationDuration: const Duration(milliseconds: 300),
       autoDismiss: true,
       borderRadius: 14,
+      shadowColor: Colors.transparent,
 
       iconWidget: Padding(
         padding: const EdgeInsets.only(left: 8.0),

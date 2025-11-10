@@ -7,6 +7,7 @@ import 'package:falangthai/app/controller/onesignal_controller.dart';
 import 'package:falangthai/app/controller/socket_controller.dart';
 import 'package:falangthai/app/controller/storage_controller.dart';
 import 'package:falangthai/app/controller/subscription_controller.dart';
+import 'package:falangthai/app/controller/wallet_controller.dart';
 // import 'package:falangthai/app/controller/user_controller.dart';
 import 'package:get/get.dart';
 
@@ -23,5 +24,6 @@ class AppBindings implements Bindings {
     Get.put(SocketController());
     Get.put(SubscriptionController());
     Get.put(InviteController());
+    Get.put(WalletController());
   }
 }
