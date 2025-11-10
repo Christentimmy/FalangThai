@@ -1,3 +1,4 @@
+import 'package:cherry_toast/cherry_toast.dart';
 import 'package:falangthai/app/controller/auth_controller.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
@@ -176,6 +177,26 @@ class AuthWidgets {
               child: buildSocialButton(
                 icon: FontAwesomeIcons.facebook,
                 label: "Facebook",
+                onTap: () async {
+                  CherryToast.info(
+                    title: Text(
+                      "Facebook Login",
+                      style: GoogleFonts.fredoka(
+                        fontSize: 15,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    description: Text(
+                      "This feature is coming soon.",
+                      style: GoogleFonts.fredoka(
+                        fontSize: 12,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ).show(Get.context!);
+                },
               ),
             ),
           ],
