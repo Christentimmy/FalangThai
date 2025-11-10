@@ -7,7 +7,7 @@ import 'package:falangthai/app/controller/onesignal_controller.dart';
 import 'package:falangthai/app/controller/socket_controller.dart';
 import 'package:falangthai/app/controller/storage_controller.dart';
 import 'package:falangthai/app/controller/subscription_controller.dart';
-import 'package:falangthai/app/controller/user_controller.dart';
+// import 'package:falangthai/app/controller/user_controller.dart';
 import 'package:get/get.dart';
 
 class AppBindings implements Bindings {
@@ -15,7 +15,7 @@ class AppBindings implements Bindings {
   void dependencies() {
     Get.put(AuthController());
     Get.put(StorageController());
-    Get.put(UserController());
+    // Get.put(UserController());
     Get.put(LocationController());
     Get.put(LanguageController());
     Get.put(OneSignalController());

@@ -4,6 +4,7 @@ import 'package:falangthai/app/data/models/subscription_model.dart';
 import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
+import 'package:falangthai/app/widgets/snack_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,6 +25,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      userController.getUserDetails();
       if (subscriptionController.subscriptionPlans.isNotEmpty) return;
       subscriptionController.getSubscriptionPlans();
     });
@@ -87,11 +89,8 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
               Obx(() {
                 final subDetails =
                     userController.userModel.value?.subscriptionDetails;
-                // if (subDetails?.status != "active") {
-                //   return SizedBox.shrink();
-                // }
                 final status = subDetails?.status ?? "";
-                if (status.isEmpty || status == "canceled") {
+                if (status == "none") {
                   return SizedBox.shrink();
                 }
 
@@ -100,11 +99,14 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                     if (status == "active" &&
                         subDetails?.cancelAtPeriodEnd == false) {
                       await subscriptionController.cancelSubscription();
-                    } else {
+                    } else if (status == "active" &&
+                        subDetails?.cancelAtPeriodEnd == true) {
                       await subscriptionController.reactivateSubscription();
+                    } else {
+                      CustomSnackbar.showErrorToast("Choose a plan above");
                     }
                   },
-                  isLoading: subscriptionController.isloading,
+                  isLoading: subscriptionController.isLoadingCancel,
                   child: Text(
                     status == "active" && subDetails?.cancelAtPeriodEnd == false
                         ? "Cancel"

@@ -75,7 +75,10 @@ class SettingsScreen extends StatelessWidget {
                 title: "Logout",
                 icon: Icons.logout,
                 prefixColor: Colors.red,
-                onTap: () => Get.find<AuthController>().logout(),
+                onTap: () async {
+                  Get.offAllNamed(AppRoutes.login);
+                  await Get.find<AuthController>().logout();
+                },
               ),
             ],
           ),

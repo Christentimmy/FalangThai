@@ -17,13 +17,19 @@ class RedeemCodeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFF1A1625),
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        // title: Text(
-        //   'Redeem Code',
-        //   style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w600),
-        // ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        centerTitle: true,
+        foregroundColor: AppColors.primaryColor,
+        title: Text(
+          'Redeem Code',
+          style: GoogleFonts.fredoka(
+            fontSize: 18,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
       ),
       body: SafeArea(
         child: Padding(
@@ -32,10 +38,11 @@ class RedeemCodeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                'Enter your redeem code',
-                style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
+                'Were you invited by a friend? Use their redeem code to get Falang points! and 20% money reward after you subscribe.',
+                style: GoogleFonts.fredoka(
+                  fontSize: 14,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
               const SizedBox(height: 16),
@@ -47,6 +54,7 @@ class RedeemCodeScreen extends StatelessWidget {
                   hintText: 'Enter redeem code',
                   textStyle: GoogleFonts.poppins(
                     fontSize: 16,
+                    color: Colors.white,
                     fontWeight: FontWeight.w600,
                   ),
                   controller: redeemCodeController,

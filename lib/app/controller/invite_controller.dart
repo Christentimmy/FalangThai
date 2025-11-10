@@ -54,6 +54,7 @@ class InviteController extends GetxController {
         return;
       }
       final data = decoded["data"];
+      print("data: $data");
       if (data == null) return;
       final inviteModel = InviteModel.fromJson(data);
       this.inviteModel.value = inviteModel;
@@ -90,5 +91,9 @@ class InviteController extends GetxController {
     } finally {
       isloading.value = false;
     }
+  }
+
+  clearInviteData() {
+    inviteModel.value = null;
   }
 }

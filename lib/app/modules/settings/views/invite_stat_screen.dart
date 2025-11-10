@@ -145,6 +145,7 @@ class _InviteStatScreenState extends State<InviteStatScreen> {
   Card buildRecentInviteCard(RecentInvites invite) {
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
+      color: const Color.fromARGB(255, 36, 31, 30),
       elevation: 1,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: ListTile(
@@ -160,27 +161,30 @@ class _InviteStatScreenState extends State<InviteStatScreen> {
         ),
         title: Text(
           invite.displayName!,
-          style: const TextStyle(fontWeight: FontWeight.w600),
+          style: GoogleFonts.poppins(
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
+          ),
         ),
         subtitle: Text(
           DateFormat("MMM dd, yyyy").format(invite.redeemedAt!),
           style: const TextStyle(color: Colors.grey, fontSize: 12),
         ),
-        trailing: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-          decoration: BoxDecoration(
-            color: AppColors.primaryColor.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Text(
-            '+${invite.rewardGiven} credits',
-            style: const TextStyle(
-              color: AppColors.primaryColor,
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ),
+        // trailing: Container(
+        //   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+        //   decoration: BoxDecoration(
+        //     color: AppColors.primaryColor.withOpacity(0.1),
+        //     borderRadius: BorderRadius.circular(20),
+        //   ),
+        //   child: Text(
+        //     '+${invite.rewardGiven} credits',
+        //     style: const TextStyle(
+        //       color: AppColors.primaryColor,
+        //       fontSize: 12,
+        //       fontWeight: FontWeight.w600,
+        //     ),
+        //   ),
+        // ),
       ),
     );
   }

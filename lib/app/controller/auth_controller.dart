@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:falangthai/app/controller/invite_controller.dart';
+import 'package:falangthai/app/controller/message_controller.dart';
 import 'package:falangthai/app/controller/storage_controller.dart';
+import 'package:falangthai/app/controller/subscription_controller.dart';
 import 'package:falangthai/app/controller/user_controller.dart';
 import 'package:falangthai/app/data/models/user_model.dart';
 import 'package:falangthai/app/data/services/auth_service.dart';
@@ -403,10 +406,11 @@ class AuthController extends GetxController {
         debugPrint(data["message"].toString());
         return;
       }
-      final userController = Get.find<UserController>();
-      final storage = Get.find<StorageController>();
-      await storage.deleteToken();
-      userController.clearUserData();
+      await Get.find<UserController>().clearUserData();
+      await Get.find<StorageController>().deleteToken();
+      await Get.find<MessageController>().clearChatHistory();
+      await Get.find<SubscriptionController>().clearSubscriptionData();
+      await Get.find<InviteController>().clearInviteData();
     } catch (error) {
       debugPrint(error.toString());
     }

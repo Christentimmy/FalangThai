@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:app_links/app_links.dart';
 import 'package:falangthai/app/controller/storage_controller.dart';
 import 'package:falangthai/app/data/models/user_model.dart';
 import 'package:falangthai/app/data/services/user_service.dart';
@@ -492,6 +493,38 @@ class UserController extends GetxController {
     }
   }
 
+  Future<void> initDeepLinks(AppLinks appLinks) async {
+    try {
+      final appLink = await appLinks.getInitialLink();
+      if (appLink != null) {
+        _handleDeepLink(appLink);
+      }
+
+      appLinks.uriLinkStream.listen((Uri? uri) {
+        if (uri != null) {
+          _handleDeepLink(uri);
+        }
+      });
+    } catch (e) {
+      print('Error initializing deep links: $e');
+    }
+  }
+
+  void _handleDeepLink(Uri uri) {
+    if (uri.host == 'payment-success') {
+      Future.delayed(const Duration(milliseconds: 1000), () async {
+        try {
+          await getUserDetails();
+          if (Get.currentRoute != '/bottomNavigation') {
+            Get.offAllNamed(AppRoutes.bottomNavigation);
+          }
+        } catch (e) {
+          debugPrint('Error handling deep link: $e');
+        }
+      });
+    }
+  }
+
   clearUserData() {
     userModel.value = null;
     isloading.value = false;
@@ -499,6 +532,7 @@ class UserController extends GetxController {
     currentPage.value = 1;
     hasNextPage.value = false;
     usersWhoLikesMeList.clear();
+    matchesList.clear();
   }
 }
 
