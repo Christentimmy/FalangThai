@@ -10,8 +10,8 @@ class WalletScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userController = Get.find<UserController>();
-    final wallet = userController.userModel.value?.wallet;
-    final currency = wallet?.currency ?? 'USD';
+    final userModel = userController.userModel;
+    final currency = userModel.value?.wallet?.currency ?? 'USD';
 
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
@@ -47,14 +47,16 @@ class WalletScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  Text(
-                    '${wallet?.balance ?? 0} $currency',
-                    style: const TextStyle(
-                      color: AppColors.textPrimary,
-                      fontSize: 36,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  Obx(() {
+                    return Text(
+                      '${userModel.value?.wallet?.balance ?? 0} $currency',
+                      style: const TextStyle(
+                        color: AppColors.textPrimary,
+                        fontSize: 36,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    );
+                  }),
                 ],
               ),
             ),
@@ -66,7 +68,7 @@ class WalletScreen extends StatelessWidget {
                 Expanded(
                   child: _StatCard(
                     title: 'Total Earned',
-                    amount: wallet?.totalEarned ?? 0,
+                    amount: userModel.value?.wallet?.totalEarned ?? 0,
                     currency: currency,
                     icon: Icons.trending_up,
                     color: Colors.green,
@@ -76,7 +78,7 @@ class WalletScreen extends StatelessWidget {
                 Expanded(
                   child: _StatCard(
                     title: 'Withdrawn',
-                    amount: wallet?.totalWithdrawn ?? 0,
+                    amount: userModel.value?.wallet?.totalWithdrawn ?? 0,
                     currency: currency,
                     icon: Icons.trending_down,
                     color: Colors.orange,
