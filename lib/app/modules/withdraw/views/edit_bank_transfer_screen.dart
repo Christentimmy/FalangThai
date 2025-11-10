@@ -86,7 +86,7 @@ class _EditBankTransferScreenState extends State<EditBankTransferScreen> {
               'bankName': _bankController.text,
             };
             await walletController.updatePayment(
-              paymentMethod: PaymentMethod().bankTransfer,
+              paymentMethod: PaymentMethod.bankTransfer,
               paymentDetails: paymentDetails,
             );
           },

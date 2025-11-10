@@ -45,7 +45,7 @@ class WalletController extends GetxController {
 }
 
 class PaymentMethod {
-  final String bankTransfer = 'bank_transfer';
-  final String paypal = 'paypal';
-  final String stripe = 'stripe';
+  static final String bankTransfer = 'bank_transfer';
+  static final String paypal = 'paypal';
+  static final String stripe = 'stripe';
 }

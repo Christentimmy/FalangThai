@@ -1,8 +1,10 @@
-
+import 'package:falangthai/app/controller/wallet_controller.dart';
 import 'package:falangthai/app/modules/withdraw/widgets/input_field_widget.dart';
 import 'package:falangthai/app/resources/colors.dart';
+import 'package:falangthai/app/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class EditPayPalScreen extends StatefulWidget {
   const EditPayPalScreen({super.key});
@@ -13,34 +15,29 @@ class EditPayPalScreen extends StatefulWidget {
 
 class _EditPayPalScreenState extends State<EditPayPalScreen> {
   final _emailController = TextEditingController();
+  final walletController = Get.find<WalletController>();
+
+  final formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: AppBar(
-        backgroundColor: AppColors.backgroundColor,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
-          onPressed: () => Get.back(),
-        ),
-        title: const Text(
-          'PayPal Account',
-          style: TextStyle(color: AppColors.textPrimary),
-        ),
-      ),
+      appBar: buildAppBar(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            InputField(
-              controller: _emailController,
-              label: 'PayPal Email',
-              hint: 'Enter PayPal email address',
-              icon: Icons.email,
-              keyboardType: TextInputType.emailAddress,
+            Form(
+              key: formkey,
+              child: InputField(
+                controller: _emailController,
+                label: 'PayPal Email',
+                hint: 'Enter PayPal email address',
+                icon: Icons.email,
+                keyboardType: TextInputType.emailAddress,
+              ),
             ),
             const SizedBox(height: 16),
             Container(
@@ -75,36 +72,47 @@ class _EditPayPalScreenState extends State<EditPayPalScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: ElevatedButton(
-            onPressed: () {
-              Get.back();
-              Get.snackbar(
-                'Success',
-                'PayPal email saved successfully',
-                backgroundColor: Colors.green,
-                colorText: Colors.white,
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.primaryColor,
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-            child: const Text(
-              'Save Changes',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
+      bottomNavigationBar: buildContinueButton(),
+    );
+  }
+
+  SafeArea buildContinueButton() {
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: CustomButton(
+          ontap: () async {
+            if (!formkey.currentState!.validate()) return;
+            await walletController.updatePayment(
+              paymentMethod: PaymentMethod.paypal,
+              paymentDetails: {"email": _emailController.text},
+            );
+          },
+          isLoading: walletController.isloading,
+          child: Text(
+            'Save Changes',
+            style: GoogleFonts.fredoka(
+              color: Colors.black,
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  AppBar buildAppBar() {
+    return AppBar(
+      backgroundColor: AppColors.backgroundColor,
+      elevation: 0,
+      leading: IconButton(
+        icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
+        onPressed: () => Get.back(),
+      ),
+      title: const Text(
+        'PayPal Account',
+        style: TextStyle(color: AppColors.textPrimary),
       ),
     );
   }

@@ -67,23 +67,23 @@ class PaymentMethodScreen extends StatelessWidget {
             const SizedBox(height: 16),
 
             // Stripe
-            Obx(() {
-              final paymentInfo = userModel.value?.paymentInfo;
-              dynamic details;
-              if (paymentInfo?.stripe != null &&
-                  paymentInfo!.stripe!.isNotEmpty) {
-                details = {'Account ID': paymentInfo.stripe!};
-              }
-              return _PaymentMethodCard(
-                icon: Icons.credit_card,
-                title: 'Stripe',
-                isConfigured:
-                    paymentInfo?.stripe != null &&
-                    paymentInfo!.stripe!.isNotEmpty,
-                details: details,
-                onEdit: () => Get.toNamed(AppRoutes.editStripeScreen),
-              );
-            }),
+            // Obx(() {
+            //   final paymentInfo = userModel.value?.paymentInfo;
+            //   dynamic details;
+            //   if (paymentInfo?.stripe != null &&
+            //       paymentInfo!.stripe!.isNotEmpty) {
+            //     details = {'Account ID': paymentInfo.stripe!};
+            //   }
+            //   return _PaymentMethodCard(
+            //     icon: Icons.credit_card,
+            //     title: 'Stripe',
+            //     isConfigured:
+            //         paymentInfo?.stripe != null &&
+            //         paymentInfo!.stripe!.isNotEmpty,
+            //     details: details,
+            //     onEdit: () => Get.toNamed(AppRoutes.editStripeScreen),
+            //   );
+            // }),
           ],
         ),
       ),
