@@ -1,8 +1,9 @@
-import 'package:falangthai/app/modules/withdraw/views/wallet_screen.dart';
+import 'package:falangthai/app/modules/withdraw/widgets/input_field_widget.dart';
 import 'package:falangthai/app/resources/colors.dart';
+import 'package:falangthai/app/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 
 class EditBankTransferScreen extends StatefulWidget {
   const EditBankTransferScreen({super.key});
@@ -49,6 +50,7 @@ class _EditBankTransferScreenState extends State<EditBankTransferScreen> {
               label: 'Account Number',
               hint: 'Enter account number',
               icon: Icons.numbers,
+              keyboardType: TextInputType.number,
             ),
             const SizedBox(height: 16),
             InputField(
@@ -60,33 +62,23 @@ class _EditBankTransferScreenState extends State<EditBankTransferScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: ElevatedButton(
-            onPressed: () {
-              Get.back();
-              Get.snackbar(
-                'Success',
-                'Bank details saved successfully',
-                backgroundColor: Colors.green,
-                colorText: Colors.white,
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.primaryColor,
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-            child: const Text(
-              'Save Changes',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
+      bottomNavigationBar: continueButton(),
+    );
+  }
+
+  SafeArea continueButton() {
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: CustomButton(
+          ontap: () {},
+          isLoading: false.obs,
+          child: Text(
+            'Save Changes',
+            style: GoogleFonts.fredoka(
+              color: Colors.black,
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
             ),
           ),
         ),

@@ -1,7 +1,9 @@
 import 'package:falangthai/app/controller/user_controller.dart';
 import 'package:falangthai/app/resources/colors.dart';
+import 'package:falangthai/app/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class WithdrawScreen extends StatefulWidget {
   const WithdrawScreen({super.key});
@@ -240,28 +242,21 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                 ],
               ),
             ),
-         
           ],
         ),
       ),
       bottomNavigationBar: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),
-          child: ElevatedButton(
-            onPressed: () => _handleWithdraw(balance),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.primaryColor,
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-            child: const Text(
-              'Withdraw Funds',
-              style: TextStyle(
+          child: CustomButton(
+            ontap: () => _handleWithdraw(balance),
+            isLoading: false.obs,
+            child: Text(
+              'Withdraw',
+              style: GoogleFonts.fredoka(
                 color: Colors.black,
                 fontSize: 16,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w700,
               ),
             ),
           ),

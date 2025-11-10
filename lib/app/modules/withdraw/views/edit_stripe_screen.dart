@@ -1,4 +1,5 @@
-import 'package:falangthai/app/modules/withdraw/views/wallet_screen.dart';
+
+import 'package:falangthai/app/modules/withdraw/widgets/input_field_widget.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
