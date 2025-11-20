@@ -9,7 +9,7 @@ class LanguageController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    getSelectLanguage();
+    // getSelectLanguage();
   }
 
   Future<void> getSelectLanguage() async {

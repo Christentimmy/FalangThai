@@ -43,8 +43,8 @@ class _MainAppState extends State<MainApp> {
       debugShowCheckedModeBanner: false,
       defaultTransition: Transition.fadeIn,
       initialBinding: AppBindings(),
-      locale: Locale("en"),
-      fallbackLocale: Locale("en"),
+      locale: Locale("fr"),
+      fallbackLocale: Locale("fr"),
       localizationsDelegates: [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

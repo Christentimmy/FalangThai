@@ -63,9 +63,10 @@ class AuthWidgets {
   Widget buildSubtitle({required String subtitle}) {
     return Text(
       subtitle,
+      textAlign: TextAlign.center,
       style: GoogleFonts.fredoka(
         fontSize: 16,
-        color: Colors.white.withOpacity(0.7),
+        color: Colors.white.withValues(alpha: 0.7),
         fontWeight: FontWeight.w400,
       ),
     );
@@ -221,9 +222,9 @@ class AuthWidgets {
             fontWeight: FontWeight.w400,
           ),
           children: [
-            const TextSpan(text: "Don't have an account? "),
+            TextSpan(text: AppLocalizations.of(Get.context!)!.dontHaveAccount),
             TextSpan(
-              text: "Sign Up",
+              text: AppLocalizations.of(Get.context!)!.signUp,
               style: GoogleFonts.fredoka(
                 color: AppColors.primaryColor,
                 fontWeight: FontWeight.w700,
