@@ -171,6 +171,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Loading...'**
   String get loading;
+
+  /// No description provided for @createAccountTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Account'**
+  String get createAccountTitle;
+
+  /// No description provided for @createAccountSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Join our community and start connecting'**
+  String get createAccountSubtitle;
+
+  /// No description provided for @fullName.
+  ///
+  /// In en, this message translates to:
+  /// **'Full Name'**
+  String get fullName;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// No description provided for @iAgreeTo.
+  ///
+  /// In en, this message translates to:
+  /// **'I agree to the '**
+  String get iAgreeTo;
+
+  /// No description provided for @termsOfService.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of Service'**
+  String get termsOfService;
+
+  /// No description provided for @and.
+  ///
+  /// In en, this message translates to:
+  /// **' and '**
+  String get and;
+
+  /// No description provided for @privacyPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get privacyPolicy;
+
+  /// No description provided for @alreadyHaveAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account? '**
+  String get alreadyHaveAccount;
 }
 
 class _AppLocalizationsDelegate

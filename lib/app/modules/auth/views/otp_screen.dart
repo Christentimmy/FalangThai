@@ -189,7 +189,6 @@ class _OtpScreenState extends State<OtpScreen>
                   ),
                 ),
                 ontap: () async {
-                  print("otp: ${_otpController.text}");
                   await _authController.verifyOtp(
                     otpCode: _otpController.text,
                     email: widget.email,

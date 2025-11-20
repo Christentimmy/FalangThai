@@ -11,5 +11,15 @@
   "facebook": "Facebook",
   "dontHaveAccount": "Vous n'avez pas de compte ?",
   "signUp": "Inscription",
-  "loading": "Chargement..."
+  "loading": "Chargement...",
+  "createAccountTitle": "Créer un compte",
+  "createAccountSubtitle": "Rejoignez notre communauté et commencez à vous connecter",
+  "fullName": "Nom complet",
+  "email": "E-mail",
+  "iAgreeTo": "J'accepte les ",
+  "termsOfService": "Conditions d'utilisation",
+  "and": " et ",
+  "privacyPolicy": "Politique de confidentialité",
+  "alreadyHaveAccount": "Vous avez déjà un compte ? ",
+  "signIn": "Se connecter"
 }

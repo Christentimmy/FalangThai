@@ -11,5 +11,15 @@
     "facebook": "Facebook",
     "dontHaveAccount": "Don't have an account?",
     "signUp": "Sign Up",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "createAccountTitle": "Create Account",
+    "createAccountSubtitle": "Join our community and start connecting",
+    "fullName": "Full Name",
+    "email": "Email",
+    "iAgreeTo": "I agree to the ",
+    "termsOfService": "Terms of Service",
+    "and": " and ",
+    "privacyPolicy": "Privacy Policy",
+    "alreadyHaveAccount": "Already have an account? ",
+    "signIn": "Sign In"
 }

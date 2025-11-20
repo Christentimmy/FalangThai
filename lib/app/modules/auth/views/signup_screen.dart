@@ -1,10 +1,10 @@
 import 'package:falangthai/app/modules/auth/controller/signup_controller.dart';
 import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
 import 'package:falangthai/app/resources/colors.dart';
-// import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:falangthai/app/utils/validator.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
 import 'package:falangthai/app/widgets/custom_textfield.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -121,6 +121,7 @@ class SignupScreen extends StatelessWidget {
   }
 
   Widget _buildContent() {
+    final text = AppLocalizations.of(Get.context!)!;
     return Center(
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -151,15 +152,15 @@ class SignupScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              authWidgets.buildTitle(title: "Create Account"),
-              authWidgets.buildSubtitle(subtitle: "Join our community and start connecting"),
+              authWidgets.buildTitle(title: text.createAccountTitle),
+              authWidgets.buildSubtitle(subtitle: text.createAccountSubtitle),
               const SizedBox(height: 32),
               CustomTextField(
                 controller: signupController.nameController,
                 bgColor: Colors.white.withValues(alpha: 0.05),
                 prefixIcon: Icons.person,
                 prefixIconColor: AppColors.primaryColor,
-                hintText: "Full Name",
+                hintText: text.fullName,
                 hintStyle: GoogleFonts.fredoka(
                   color: Colors.white.withValues(alpha: 0.5),
                   fontSize: 16,
@@ -173,7 +174,7 @@ class SignupScreen extends StatelessWidget {
                 bgColor: Colors.white.withValues(alpha: 0.05),
                 prefixIcon: Icons.email,
                 prefixIconColor: AppColors.primaryColor,
-                hintText: "Email",
+                hintText: text.email,
                 hintStyle: GoogleFonts.fredoka(
                   color: Colors.white.withValues(alpha: 0.5),
                   fontSize: 16,
@@ -189,7 +190,7 @@ class SignupScreen extends StatelessWidget {
                   bgColor: Colors.white.withValues(alpha: 0.05),
                   prefixIcon: Icons.lock,
                   prefixIconColor: AppColors.primaryColor,
-                  hintText: "Password",
+                  hintText: text.password,
                   hintStyle: GoogleFonts.fredoka(
                     color: Colors.white.withValues(alpha: 0.5),
                     fontSize: 16,
@@ -220,7 +221,7 @@ class SignupScreen extends StatelessWidget {
                 isLoading: signupController.isLoading,
                 borderRadius: BorderRadius.circular(22),
                 child: Text(
-                  "Sign Up",
+                  text.signUp,
                   style: GoogleFonts.fredoka(
                     fontSize: 16,
                     color: Colors.white,
@@ -242,6 +243,7 @@ class SignupScreen extends StatelessWidget {
   }
 
   Widget _buildTermsCheckbox() {
+    final text = AppLocalizations.of(Get.context!)!;
     return Obx(
       () => Row(
         children: [
@@ -278,17 +280,17 @@ class SignupScreen extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                 ),
                 children: [
-                  const TextSpan(text: "I agree to the "),
+                  TextSpan(text: text.iAgreeTo),
                   TextSpan(
-                    text: "Terms of Service",
+                    text: text.termsOfService,
                     style: GoogleFonts.fredoka(
                       color: AppColors.primaryColor,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  const TextSpan(text: " and "),
+                  TextSpan(text: text.and),
                   TextSpan(
-                    text: "Privacy Policy",
+                    text: text.privacyPolicy,
                     style: GoogleFonts.fredoka(
                       color: AppColors.primaryColor,
                       fontWeight: FontWeight.w600,

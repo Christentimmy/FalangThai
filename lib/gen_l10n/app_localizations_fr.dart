@@ -43,4 +43,32 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get loading => 'Chargement...';
+
+  @override
+  String get createAccountTitle => 'Créer un compte';
+
+  @override
+  String get createAccountSubtitle =>
+      'Rejoignez notre communauté et commencez à vous connecter';
+
+  @override
+  String get fullName => 'Nom complet';
+
+  @override
+  String get email => 'E-mail';
+
+  @override
+  String get iAgreeTo => 'J\'accepte les ';
+
+  @override
+  String get termsOfService => 'Conditions d\'utilisation';
+
+  @override
+  String get and => ' et ';
+
+  @override
+  String get privacyPolicy => 'Politique de confidentialité';
+
+  @override
+  String get alreadyHaveAccount => 'Vous avez déjà un compte ? ';
 }

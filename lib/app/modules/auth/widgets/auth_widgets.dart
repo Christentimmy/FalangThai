@@ -119,9 +119,9 @@ class AuthWidgets {
             fontWeight: FontWeight.w400,
           ),
           children: [
-            const TextSpan(text: "Already have an account? "),
+            TextSpan(text: AppLocalizations.of(Get.context!)!.alreadyHaveAccount),
             TextSpan(
-              text: "Sign In",
+              text: AppLocalizations.of(Get.context!)!.signIn,
               style: GoogleFonts.fredoka(
                 color: AppColors.primaryColor,
                 fontWeight: FontWeight.w700,

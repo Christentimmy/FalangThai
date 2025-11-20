@@ -43,4 +43,31 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get loading => 'Loading...';
+
+  @override
+  String get createAccountTitle => 'Create Account';
+
+  @override
+  String get createAccountSubtitle => 'Join our community and start connecting';
+
+  @override
+  String get fullName => 'Full Name';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get iAgreeTo => 'I agree to the ';
+
+  @override
+  String get termsOfService => 'Terms of Service';
+
+  @override
+  String get and => ' and ';
+
+  @override
+  String get privacyPolicy => 'Privacy Policy';
+
+  @override
+  String get alreadyHaveAccount => 'Already have an account? ';
 }

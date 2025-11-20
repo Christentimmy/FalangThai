@@ -43,4 +43,31 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get loading => 'กำลังโหลด...';
+
+  @override
+  String get createAccountTitle => 'สร้างบัญชี';
+
+  @override
+  String get createAccountSubtitle => 'เข้าร่วมชุมชนของเราและเริ่มเชื่อมต่อ';
+
+  @override
+  String get fullName => 'ชื่อ-นามสกุล';
+
+  @override
+  String get email => 'อีเมล';
+
+  @override
+  String get iAgreeTo => 'ฉันยอมรับ ';
+
+  @override
+  String get termsOfService => 'ข้อกำหนดการให้บริการ';
+
+  @override
+  String get and => ' และ ';
+
+  @override
+  String get privacyPolicy => 'นโยบายความเป็นส่วนตัว';
+
+  @override
+  String get alreadyHaveAccount => 'มีบัญชีแล้วหรือไม่?';
 }
