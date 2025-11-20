@@ -75,6 +75,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   return AppinioSwiper(
                     controller: appinioSwiperController,
                     cardCount: potentialList.length,
+                    loop: false,
+                    onEnd: () async {
+                      await userController.getPotentialMatches(loadMore: true);
+                    },
                     backgroundCardOffset: Offset(0, -45),
                     onSwipeEnd: (previousIndex, targetIndex, activity) async {
                       if (previousIndex == -1) return;
