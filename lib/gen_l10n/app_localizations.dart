@@ -99,6 +99,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'welcome Back'**
   String get welcomeBack;
+
+  /// No description provided for @loginText1.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to continue your journey'**
+  String get loginText1;
+
+  /// No description provided for @emailAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Email Address'**
+  String get emailAddress;
+
+  /// No description provided for @password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password;
+
+  /// No description provided for @forgotPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot Password?'**
+  String get forgotPassword;
+
+  /// No description provided for @signIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign In'**
+  String get signIn;
+
+  /// No description provided for @orContinueWith.
+  ///
+  /// In en, this message translates to:
+  /// **'Or continue with'**
+  String get orContinueWith;
+
+  /// No description provided for @google.
+  ///
+  /// In en, this message translates to:
+  /// **'Google'**
+  String get google;
+
+  /// No description provided for @facebook.
+  ///
+  /// In en, this message translates to:
+  /// **'Facebook'**
+  String get facebook;
+
+  /// No description provided for @dontHaveAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account?'**
+  String get dontHaveAccount;
+
+  /// No description provided for @signUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign Up'**
+  String get signUp;
 }
 
 class _AppLocalizationsDelegate

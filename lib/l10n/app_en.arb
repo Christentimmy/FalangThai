@@ -1,4 +1,14 @@
 {
     "@@locale": "en",
-    "welcomeBack": "welcome Back"
+    "welcomeBack": "welcome Back",
+    "loginText1": "Sign in to continue your journey",
+    "emailAddress": "Email Address",
+    "password": "Password",
+    "forgotPassword": "Forgot Password?",
+    "signIn": "Sign In",
+    "orContinueWith": "Or continue with",
+    "google": "Google",
+    "facebook": "Facebook",
+    "dontHaveAccount": "Don't have an account?",
+    "signUp": "Sign Up"
 }
