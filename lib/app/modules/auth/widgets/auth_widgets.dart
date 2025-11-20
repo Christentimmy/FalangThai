@@ -5,6 +5,7 @@ import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:falangthai/app/utils/validator.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
 import 'package:falangthai/app/widgets/custom_textfield.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -143,7 +144,7 @@ class AuthWidgets {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
-                "Or continue with",
+                AppLocalizations.of(Get.context!)!.orContinueWith,
                 style: GoogleFonts.fredoka(
                   fontSize: 14,
                   color: Colors.white.withOpacity(0.6),
@@ -164,8 +165,8 @@ class AuthWidgets {
                 return buildSocialButton(
                   icon: FontAwesomeIcons.google,
                   label: authController.isloading.value
-                      ? "Loading..."
-                      : "Google",
+                      ? AppLocalizations.of(Get.context!)!.loading
+                      : AppLocalizations.of(Get.context!)!.google,
                   onTap: () async {
                     if (isSignUp) {
                       await authController.googleAuthSignUp();
@@ -180,7 +181,7 @@ class AuthWidgets {
             Expanded(
               child: buildSocialButton(
                 icon: FontAwesomeIcons.facebook,
-                label: "Facebook",
+                label: AppLocalizations.of(Get.context!)!.facebook,
                 onTap: () async {
                   CherryToast.info(
                     title: Text(

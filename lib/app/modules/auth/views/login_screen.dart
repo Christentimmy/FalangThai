@@ -5,6 +5,7 @@ import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/utils/validator.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
 import 'package:falangthai/app/widgets/custom_textfield.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -159,6 +160,7 @@ class LoginScreen extends StatelessWidget {
   }
 
   Widget _buildContent() {
+    final text = AppLocalizations.of(Get.context!)!;
     return Center(
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -171,9 +173,9 @@ class LoginScreen extends StatelessWidget {
               _buildLogo(),
               const SizedBox(height: 20),
               _buildBrandName(),
-              authWidgets.buildTitle(title: "Welcome Back"),
+              authWidgets.buildTitle(title: text.welcomeBack),
               authWidgets.buildSubtitle(
-                subtitle: "Sign in to continue your journey",
+                subtitle: text.loginText1,
               ),
               const SizedBox(height: 20),
               CustomTextField(
@@ -181,7 +183,7 @@ class LoginScreen extends StatelessWidget {
                 bgColor: Colors.white.withValues(alpha: 0.05),
                 prefixIcon: Icons.email,
                 prefixIconColor: AppColors.primaryColor,
-                hintText: "Email Address",
+                hintText: text.emailAddress,
                 hintStyle: GoogleFonts.fredoka(
                   color: Colors.white.withValues(alpha: 0.5),
                   fontSize: 16,
@@ -196,7 +198,7 @@ class LoginScreen extends StatelessWidget {
                   bgColor: Colors.white.withValues(alpha: 0.05),
                   prefixIcon: Icons.lock,
                   prefixIconColor: AppColors.primaryColor,
-                  hintText: "Password",
+                  hintText: text.password,
                   hintStyle: GoogleFonts.fredoka(
                     color: Colors.white.withValues(alpha: 0.5),
                     fontSize: 16,
@@ -226,7 +228,7 @@ class LoginScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Sign In",
+                      text.signIn,
                       style: GoogleFonts.fredoka(
                         fontSize: 16,
                         color: Colors.white,
@@ -325,7 +327,7 @@ class LoginScreen extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
           child: Text(
-            "Forgot Password?",
+           AppLocalizations.of(Get.context!)!.forgotPassword,
             style: GoogleFonts.fredoka(
               fontSize: 14,
               color: AppColors.primaryColor,

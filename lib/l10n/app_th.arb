@@ -1,0 +1,15 @@
+{
+  "@@locale": "th",
+  "welcomeBack": "ยินดีต้อนรับกลับ",
+  "loginText1": "เข้าสู่ระบบเพื่อใช้งานต่อ",
+  "emailAddress": "อีเมล",
+  "password": "รหัสผ่าน",
+  "forgotPassword": "ลืมรหัสผ่าน?",
+  "signIn": "เข้าสู่ระบบ",
+  "orContinueWith": "หรือต่อด้วย",
+  "google": "Google",
+  "facebook": "Facebook",
+  "dontHaveAccount": "ยังไม่มีบัญชี?",
+  "signUp": "สมัครสมาชิก",
+  "loading": "กำลังโหลด..."
+}

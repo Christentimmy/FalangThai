@@ -10,5 +10,6 @@
     "google": "Google",
     "facebook": "Facebook",
     "dontHaveAccount": "Don't have an account?",
-    "signUp": "Sign Up"
+    "signUp": "Sign Up",
+    "loading": "Loading..."
 }
