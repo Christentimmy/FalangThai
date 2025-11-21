@@ -247,4 +247,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get prefEveryone => 'ทุกคน';
+
+  @override
+  String get noMatchesFound => 'ไม่พบคู่ที่ตรงกัน';
 }

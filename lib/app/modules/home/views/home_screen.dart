@@ -6,6 +6,7 @@ import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:falangthai/app/utils/age_calculator.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -62,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   if (userController.potentialMatchesList.isEmpty) {
                     return Center(
                       child: Text(
-                        "No matches found",
+                        AppLocalizations.of(context)!.noMatchesFound,
                         style: GoogleFonts.figtree(
                           fontSize: 22,
                           fontWeight: FontWeight.w600,

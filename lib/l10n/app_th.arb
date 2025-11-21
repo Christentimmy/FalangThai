@@ -76,5 +76,6 @@
   "prefWomen": "ผู้หญิง",
   "prefNonBinary": "นอนไบนารี",
   "prefTransgender": "ทรานส์เจนเดอร์",
-  "prefEveryone": "ทุกคน"
+  "prefEveryone": "ทุกคน",
+  "noMatchesFound": "ไม่พบคู่ที่ตรงกัน"
 }

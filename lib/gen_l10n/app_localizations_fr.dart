@@ -248,4 +248,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get prefEveryone => 'Tout le monde';
+
+  @override
+  String get noMatchesFound => 'Aucune correspondance trouvée';
 }
