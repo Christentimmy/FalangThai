@@ -1,5 +1,6 @@
 import 'package:falangthai/app/controller/wallet_controller.dart';
 import 'package:falangthai/app/resources/colors.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,6 +28,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: buildAppBar(),
@@ -39,7 +41,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
         if (walletController.recentWithdraw.isEmpty) {
           return Center(
             child: Text(
-              'No transactions found',
+              l10n.transactionHistoryEmpty,
               style: GoogleFonts.fredoka(color: Colors.white),
             ),
           );
@@ -51,6 +53,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
   }
 
   Widget buildListViewBuilder({required List transactions}) {
+    final l10n = AppLocalizations.of(Get.context!)!;
     return ListView.builder(
       padding: const EdgeInsets.all(20),
       itemCount: transactions.length,
@@ -132,7 +135,9 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Text(
-                            status == 'completed' ? 'Completed' : 'Pending',
+                            status == 'completed'
+                                ? l10n.transactionStatusCompleted
+                                : l10n.transactionStatusPending,
                             style: TextStyle(
                               color: status == 'completed'
                                   ? Colors.green
@@ -152,6 +157,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
   }
 
   AppBar buildAppBar() {
+    final l10n = AppLocalizations.of(Get.context!)!;
     final style = GoogleFonts.fredoka(color: AppColors.textPrimary);
     return AppBar(
       backgroundColor: AppColors.backgroundColor,
@@ -160,9 +166,9 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
         icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
         onPressed: () => Get.back(),
       ),
-      title: const Text(
-        'Transaction History',
-        style: TextStyle(color: AppColors.textPrimary),
+      title: Text(
+        l10n.transactionHistoryTitle,
+        style: const TextStyle(color: AppColors.textPrimary),
       ),
       actions: [
         PopupMenuButton(
@@ -174,7 +180,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
               onTap: () async {
                 await walletController.getRecentWithdraw();
               },
-              child: Text('Recent', style: style),
+              child: Text(l10n.transactionFilterRecent, style: style),
             ),
             PopupMenuItem(
               value: 'withdraws',
@@ -182,7 +188,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
               onTap: () async {
                 await walletController.getWithdrawals();
               },
-              child: Text('Withdraws', style: style),
+              child: Text(l10n.transactionFilterWithdrawals, style: style),
             ),
             PopupMenuItem(
               value: 'commissions',
@@ -190,7 +196,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
               onTap: () async {
                 await walletController.getCommissions();
               },
-              child: Text('Commissions', style: style),
+              child: Text(l10n.transactionFilterCommissions, style: style),
             ),
           ],
         ),

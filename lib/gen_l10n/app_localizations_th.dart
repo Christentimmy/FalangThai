@@ -494,4 +494,25 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get paypalSaveChanges => 'บันทึกการเปลี่ยนแปลง';
+
+  @override
+  String get transactionHistoryTitle => 'ประวัติธุรกรรม';
+
+  @override
+  String get transactionHistoryEmpty => 'ไม่พบธุรกรรม';
+
+  @override
+  String get transactionStatusCompleted => 'เสร็จสมบูรณ์';
+
+  @override
+  String get transactionStatusPending => 'รอดำเนินการ';
+
+  @override
+  String get transactionFilterRecent => 'ล่าสุด';
+
+  @override
+  String get transactionFilterWithdrawals => 'การถอนเงิน';
+
+  @override
+  String get transactionFilterCommissions => 'ค่าคอมมิชชั่น';
 }

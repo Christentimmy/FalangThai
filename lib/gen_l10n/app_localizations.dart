@@ -1041,6 +1041,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Save Changes'**
   String get paypalSaveChanges;
+
+  /// No description provided for @transactionHistoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Transaction History'**
+  String get transactionHistoryTitle;
+
+  /// No description provided for @transactionHistoryEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No transactions found'**
+  String get transactionHistoryEmpty;
+
+  /// No description provided for @transactionStatusCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get transactionStatusCompleted;
+
+  /// No description provided for @transactionStatusPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get transactionStatusPending;
+
+  /// No description provided for @transactionFilterRecent.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent'**
+  String get transactionFilterRecent;
+
+  /// No description provided for @transactionFilterWithdrawals.
+  ///
+  /// In en, this message translates to:
+  /// **'Withdrawals'**
+  String get transactionFilterWithdrawals;
+
+  /// No description provided for @transactionFilterCommissions.
+  ///
+  /// In en, this message translates to:
+  /// **'Commissions'**
+  String get transactionFilterCommissions;
 }
 
 class _AppLocalizationsDelegate

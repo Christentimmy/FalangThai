@@ -166,5 +166,13 @@
     "paypalEmailLabel": "PayPal Email",
     "paypalEmailHint": "Enter PayPal email address",
     "paypalInfoVerified": "Make sure this email is verified with your PayPal account",
-    "paypalSaveChanges": "Save Changes"
+    "paypalSaveChanges": "Save Changes",
+
+    "transactionHistoryTitle": "Transaction History",
+    "transactionHistoryEmpty": "No transactions found",
+    "transactionStatusCompleted": "Completed",
+    "transactionStatusPending": "Pending",
+    "transactionFilterRecent": "Recent",
+    "transactionFilterWithdrawals": "Withdrawals",
+    "transactionFilterCommissions": "Commissions"
 }

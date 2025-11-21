@@ -157,5 +157,12 @@
   "paypalEmailLabel": "E-mail PayPal",
   "paypalEmailHint": "Entrez l'adresse e-mail PayPal",
   "paypalInfoVerified": "Assurez-vous que cet e-mail est vérifié sur votre compte PayPal",
-  "paypalSaveChanges": "Enregistrer les modifications"
+  "paypalSaveChanges": "Enregistrer les modifications",
+  "transactionHistoryTitle": "Historique des transactions",
+  "transactionHistoryEmpty": "Aucune transaction trouvée",
+  "transactionStatusCompleted": "Terminée",
+  "transactionStatusPending": "En attente",
+  "transactionFilterRecent": "Récentes",
+  "transactionFilterWithdrawals": "Retraits",
+  "transactionFilterCommissions": "Commissions"
 }

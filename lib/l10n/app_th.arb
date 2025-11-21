@@ -157,5 +157,12 @@
   "paypalEmailLabel": "อีเมล PayPal",
   "paypalEmailHint": "กรอกอีเมล PayPal",
   "paypalInfoVerified": "โปรดตรวจสอบว่าอีเมลนี้ได้รับการยืนยันกับบัญชี PayPal ของคุณแล้ว",
-  "paypalSaveChanges": "บันทึกการเปลี่ยนแปลง"
+  "paypalSaveChanges": "บันทึกการเปลี่ยนแปลง",
+  "transactionHistoryTitle": "ประวัติธุรกรรม",
+  "transactionHistoryEmpty": "ไม่พบธุรกรรม",
+  "transactionStatusCompleted": "เสร็จสมบูรณ์",
+  "transactionStatusPending": "รอดำเนินการ",
+  "transactionFilterRecent": "ล่าสุด",
+  "transactionFilterWithdrawals": "การถอนเงิน",
+  "transactionFilterCommissions": "ค่าคอมมิชชั่น"
 }

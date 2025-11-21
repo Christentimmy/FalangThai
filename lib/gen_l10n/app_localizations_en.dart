@@ -496,4 +496,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get paypalSaveChanges => 'Save Changes';
+
+  @override
+  String get transactionHistoryTitle => 'Transaction History';
+
+  @override
+  String get transactionHistoryEmpty => 'No transactions found';
+
+  @override
+  String get transactionStatusCompleted => 'Completed';
+
+  @override
+  String get transactionStatusPending => 'Pending';
+
+  @override
+  String get transactionFilterRecent => 'Recent';
+
+  @override
+  String get transactionFilterWithdrawals => 'Withdrawals';
+
+  @override
+  String get transactionFilterCommissions => 'Commissions';
 }
