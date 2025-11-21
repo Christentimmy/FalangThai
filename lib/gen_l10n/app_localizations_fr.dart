@@ -71,4 +71,53 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get alreadyHaveAccount => 'Vous avez déjà un compte ? ';
+
+  @override
+  String get verificationTitle => 'Vérification';
+
+  @override
+  String get otpHeadingPrefix => 'Entrez votre ';
+
+  @override
+  String get otpHeadingOtp => 'code';
+
+  @override
+  String get otpSentTo => 'Un code de vérification a été envoyé à';
+
+  @override
+  String get wrongDetails => 'Mauvaises informations ?';
+
+  @override
+  String get change => ' Modifier';
+
+  @override
+  String get continueText => 'Continuer';
+
+  @override
+  String get didntReceiveCode => 'Vous n\'avez pas reçu le code ? ';
+
+  @override
+  String get resend => 'Renvoyer';
+
+  @override
+  String get skip => 'Passer';
+
+  @override
+  String get genderTitle => 'Quel est votre genre ?';
+
+  @override
+  String get genderSubtitle =>
+      'Aidez-nous à personnaliser votre expérience\nen sélectionnant votre genre';
+
+  @override
+  String get male => 'Homme';
+
+  @override
+  String get female => 'Femme';
+
+  @override
+  String get others => 'Autre';
+
+  @override
+  String get preferNotToSay => 'Préfère ne pas le dire';
 }

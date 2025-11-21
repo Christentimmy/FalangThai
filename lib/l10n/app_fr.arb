@@ -21,5 +21,21 @@
   "and": " et ",
   "privacyPolicy": "Politique de confidentialité",
   "alreadyHaveAccount": "Vous avez déjà un compte ? ",
-  "signIn": "Se connecter"
+  "signIn": "Se connecter",
+  "verificationTitle": "Vérification",
+  "otpHeadingPrefix": "Entrez votre ",
+  "otpHeadingOtp": "code",
+  "otpSentTo": "Un code de vérification a été envoyé à",
+  "wrongDetails": "Mauvaises informations ?",
+  "change": " Modifier",
+  "continueText": "Continuer",
+  "didntReceiveCode": "Vous n'avez pas reçu le code ? ",
+  "resend": "Renvoyer",
+  "skip": "Passer",
+  "genderTitle": "Quel est votre genre ?",
+  "genderSubtitle": "Aidez-nous à personnaliser votre expérience\nen sélectionnant votre genre",
+  "male": "Homme",
+  "female": "Femme",
+  "others": "Autre",
+  "preferNotToSay": "Préfère ne pas le dire"
 }

@@ -70,4 +70,53 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get alreadyHaveAccount => 'Already have an account? ';
+
+  @override
+  String get verificationTitle => 'Verification';
+
+  @override
+  String get otpHeadingPrefix => 'Enter your ';
+
+  @override
+  String get otpHeadingOtp => 'OTP';
+
+  @override
+  String get otpSentTo => 'A verification code has been sent to';
+
+  @override
+  String get wrongDetails => 'Wrong details?';
+
+  @override
+  String get change => ' Change';
+
+  @override
+  String get continueText => 'Continue';
+
+  @override
+  String get didntReceiveCode => 'Didn\'t receive the code? ';
+
+  @override
+  String get resend => 'Resend';
+
+  @override
+  String get skip => 'Skip';
+
+  @override
+  String get genderTitle => 'What\'s your gender?';
+
+  @override
+  String get genderSubtitle =>
+      'Help us personalize your experience\nby selecting your gender';
+
+  @override
+  String get male => 'Male';
+
+  @override
+  String get female => 'Female';
+
+  @override
+  String get others => 'Others';
+
+  @override
+  String get preferNotToSay => 'Prefer not to say';
 }

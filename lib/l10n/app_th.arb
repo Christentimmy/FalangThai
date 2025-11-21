@@ -21,5 +21,21 @@
   "and": " และ ",
   "privacyPolicy": "นโยบายความเป็นส่วนตัว",
   "alreadyHaveAccount": "มีบัญชีแล้วหรือไม่?",
-  "signIn": "เข้าสู่ระบบ"
+  "signIn": "เข้าสู่ระบบ",
+  "verificationTitle": "ยืนยันตัวตน",
+  "otpHeadingPrefix": "กรอก",
+  "otpHeadingOtp": "รหัส OTP ของคุณ",
+  "otpSentTo": "รหัสยืนยันได้ถูกส่งไปที่",
+  "wrongDetails": "รายละเอียดไม่ถูกต้อง?",
+  "change": " แก้ไข",
+  "continueText": "ดำเนินการต่อ",
+  "didntReceiveCode": "ยังไม่ได้รับรหัสใช่ไหม? ",
+  "resend": "ส่งใหม่",
+  "skip": "ข้าม",
+  "genderTitle": "เพศของคุณคืออะไร?",
+  "genderSubtitle": "ช่วยให้เราปรับประสบการณ์ให้เหมาะกับคุณ\nโดยการเลือกเพศของคุณ",
+  "male": "ชาย",
+  "female": "หญิง",
+  "others": "อื่นๆ",
+  "preferNotToSay": "ไม่ต้องการระบุ"
 }

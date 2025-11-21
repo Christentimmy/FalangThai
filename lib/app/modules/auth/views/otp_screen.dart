@@ -3,6 +3,7 @@ import 'package:falangthai/app/modules/auth/controller/timer_controller.dart';
 import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -95,7 +96,7 @@ class _OtpScreenState extends State<OtpScreen>
                   ),
                   SizedBox(width: Get.width * 0.18),
                   Text(
-                    "Verification",
+                    AppLocalizations.of(context)!.verificationTitle,
                     style: GoogleFonts.fredoka(
                       fontSize: 24,
                       color: Colors.white,
@@ -108,7 +109,7 @@ class _OtpScreenState extends State<OtpScreen>
               richTextWidget(),
               const SizedBox(height: 15),
               Text(
-                "A Verification code has been sent to\n${widget.email}",
+                "${AppLocalizations.of(context)!.otpSentTo}\n${widget.email}",
                 style: GoogleFonts.fredoka(
                   fontSize: 16,
                   height: 1.1,
@@ -122,7 +123,7 @@ class _OtpScreenState extends State<OtpScreen>
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          "Wrong details?",
+                          AppLocalizations.of(context)!.wrongDetails,
                           style: GoogleFonts.fredoka(
                             fontSize: 13,
                             color: Colors.white,
@@ -133,7 +134,7 @@ class _OtpScreenState extends State<OtpScreen>
                             await changeAuthDetails(widget.email);
                           },
                           child: Text(
-                            " Change",
+                            AppLocalizations.of(context)!.change,
                             style: TextStyle(
                               fontSize: 12,
                               color: AppColors.primaryColor,
@@ -181,7 +182,7 @@ class _OtpScreenState extends State<OtpScreen>
               CustomButton(
                 isLoading: _authController.isOtpVerifyLoading,
                 child: Text(
-                  "Continue",
+                  AppLocalizations.of(context)!.continueText,
                   style: GoogleFonts.fredoka(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
@@ -206,11 +207,12 @@ class _OtpScreenState extends State<OtpScreen>
   }
 
   Row resendOtpRow() {
+    final text = AppLocalizations.of(Get.context!)!;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          "Didn't receive the code? ",
+          text.didntReceiveCode,
           style: GoogleFonts.fredoka(fontSize: 16, color: Colors.white),
         ),
         Obx(
@@ -222,7 +224,7 @@ class _OtpScreenState extends State<OtpScreen>
             },
             child: _timerController.secondsRemaining.value == 0
                 ? Text(
-                    "Resend",
+                    text.resend,
                     style: TextStyle(
                       fontSize: 16,
                       color: AppColors.primaryColor,
@@ -244,17 +246,18 @@ class _OtpScreenState extends State<OtpScreen>
   }
 
   RichText richTextWidget() {
+    final text = AppLocalizations.of(Get.context!)!;
     return RichText(
       text: TextSpan(
         style: GoogleFonts.roboto(fontSize: 24),
         children: [
-          const TextSpan(
-            text: "Enter your ",
-            style: TextStyle(fontWeight: FontWeight.bold),
+          TextSpan(
+            text: text.otpHeadingPrefix,
+            style: const TextStyle(fontWeight: FontWeight.bold),
           ),
           TextSpan(
-            text: "OTP",
-            style: TextStyle(
+            text: text.otpHeadingOtp,
+            style: const TextStyle(
               color: AppColors.primaryColor,
               fontWeight: FontWeight.bold,
             ),

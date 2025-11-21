@@ -21,5 +21,21 @@
     "and": " and ",
     "privacyPolicy": "Privacy Policy",
     "alreadyHaveAccount": "Already have an account? ",
-    "signIn": "Sign In"
+    "signIn": "Sign In",
+    "verificationTitle": "Verification",
+    "otpHeadingPrefix": "Enter your ",
+    "otpHeadingOtp": "OTP",
+    "otpSentTo": "A verification code has been sent to",
+    "wrongDetails": "Wrong details?",
+    "change": " Change",
+    "continueText": "Continue",
+    "didntReceiveCode": "Didn't receive the code? ",
+    "resend": "Resend",
+    "skip": "Skip",
+    "genderTitle": "What's your gender?",
+    "genderSubtitle": "Help us personalize your experience\nby selecting your gender",
+    "male": "Male",
+    "female": "Female",
+    "others": "Others",
+    "preferNotToSay": "Prefer not to say"
 }

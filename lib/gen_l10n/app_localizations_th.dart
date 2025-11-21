@@ -70,4 +70,53 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get alreadyHaveAccount => 'มีบัญชีแล้วหรือไม่?';
+
+  @override
+  String get verificationTitle => 'ยืนยันตัวตน';
+
+  @override
+  String get otpHeadingPrefix => 'กรอก';
+
+  @override
+  String get otpHeadingOtp => 'รหัส OTP ของคุณ';
+
+  @override
+  String get otpSentTo => 'รหัสยืนยันได้ถูกส่งไปที่';
+
+  @override
+  String get wrongDetails => 'รายละเอียดไม่ถูกต้อง?';
+
+  @override
+  String get change => ' แก้ไข';
+
+  @override
+  String get continueText => 'ดำเนินการต่อ';
+
+  @override
+  String get didntReceiveCode => 'ยังไม่ได้รับรหัสใช่ไหม? ';
+
+  @override
+  String get resend => 'ส่งใหม่';
+
+  @override
+  String get skip => 'ข้าม';
+
+  @override
+  String get genderTitle => 'เพศของคุณคืออะไร?';
+
+  @override
+  String get genderSubtitle =>
+      'ช่วยให้เราปรับประสบการณ์ให้เหมาะกับคุณ\nโดยการเลือกเพศของคุณ';
+
+  @override
+  String get male => 'ชาย';
+
+  @override
+  String get female => 'หญิง';
+
+  @override
+  String get others => 'อื่นๆ';
+
+  @override
+  String get preferNotToSay => 'ไม่ต้องการระบุ';
 }

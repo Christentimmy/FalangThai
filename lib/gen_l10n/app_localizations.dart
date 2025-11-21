@@ -225,6 +225,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Already have an account? '**
   String get alreadyHaveAccount;
+
+  /// No description provided for @verificationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification'**
+  String get verificationTitle;
+
+  /// No description provided for @otpHeadingPrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your '**
+  String get otpHeadingPrefix;
+
+  /// No description provided for @otpHeadingOtp.
+  ///
+  /// In en, this message translates to:
+  /// **'OTP'**
+  String get otpHeadingOtp;
+
+  /// No description provided for @otpSentTo.
+  ///
+  /// In en, this message translates to:
+  /// **'A verification code has been sent to'**
+  String get otpSentTo;
+
+  /// No description provided for @wrongDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong details?'**
+  String get wrongDetails;
+
+  /// No description provided for @change.
+  ///
+  /// In en, this message translates to:
+  /// **' Change'**
+  String get change;
+
+  /// No description provided for @continueText.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continueText;
+
+  /// No description provided for @didntReceiveCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Didn\'t receive the code? '**
+  String get didntReceiveCode;
+
+  /// No description provided for @resend.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend'**
+  String get resend;
+
+  /// No description provided for @skip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get skip;
+
+  /// No description provided for @genderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s your gender?'**
+  String get genderTitle;
+
+  /// No description provided for @genderSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Help us personalize your experience\nby selecting your gender'**
+  String get genderSubtitle;
+
+  /// No description provided for @male.
+  ///
+  /// In en, this message translates to:
+  /// **'Male'**
+  String get male;
+
+  /// No description provided for @female.
+  ///
+  /// In en, this message translates to:
+  /// **'Female'**
+  String get female;
+
+  /// No description provided for @others.
+  ///
+  /// In en, this message translates to:
+  /// **'Others'**
+  String get others;
+
+  /// No description provided for @preferNotToSay.
+  ///
+  /// In en, this message translates to:
+  /// **'Prefer not to say'**
+  String get preferNotToSay;
 }
 
 class _AppLocalizationsDelegate

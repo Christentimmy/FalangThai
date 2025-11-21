@@ -1,6 +1,7 @@
 import 'package:falangthai/app/modules/profile/controllers/gender_controller.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -145,6 +146,7 @@ class GenderScreen extends StatelessWidget {
   }
 
   Widget _buildHeader() {
+    final text = AppLocalizations.of(Get.context!)!;
     return Positioned(
       top: 20,
       left: 0,
@@ -188,7 +190,7 @@ class GenderScreen extends StatelessWidget {
                   vertical: 8,
                 ),
                 child: Text(
-                  "Skip",
+                  text.skip,
                   style: GoogleFonts.fredoka(
                     fontSize: 16,
                     color: AppColors.primaryColor,
@@ -271,8 +273,9 @@ class GenderScreen extends StatelessWidget {
   }
 
   Widget _buildTitle() {
+    final text = AppLocalizations.of(Get.context!)!;
     return Text(
-      "What's your gender?",
+      text.genderTitle,
       style: GoogleFonts.fredoka(
         fontSize: 32,
         color: Colors.white,
@@ -283,8 +286,9 @@ class GenderScreen extends StatelessWidget {
   }
 
   Widget _buildSubtitle() {
+    final text = AppLocalizations.of(Get.context!)!;
     return Text(
-      "Help us personalize your experience\nby selecting your gender",
+      text.genderSubtitle,
       style: GoogleFonts.fredoka(
         fontSize: 16,
         color: Colors.white.withOpacity(0.7),
@@ -295,12 +299,13 @@ class GenderScreen extends StatelessWidget {
   }
 
   Widget _buildGenderOptions() {
+    final text = AppLocalizations.of(Get.context!)!;
     return Obx(
       () => Column(
         children: [
           _buildGenderCard(
             gender: 'male',
-            title: 'Male',
+            title: text.male,
             icon: Icons.male,
             gradient: [
               Colors.blue.withValues(alpha: 0.8),
@@ -311,7 +316,7 @@ class GenderScreen extends StatelessWidget {
           const SizedBox(height: 10),
           _buildGenderCard(
             gender: 'female',
-            title: 'Female',
+            title: text.female,
             icon: Icons.female,
             gradient: [
               Colors.pink.withValues(alpha: 0.8),
@@ -322,7 +327,7 @@ class GenderScreen extends StatelessWidget {
           const SizedBox(height: 10),
           _buildGenderCard(
             gender: 'others',
-            title: 'Others',
+            title: text.others,
             icon: Icons.transgender,
             gradient: [
               Colors.green.withValues(alpha: 0.8),
@@ -333,7 +338,7 @@ class GenderScreen extends StatelessWidget {
           const SizedBox(height: 10),
           _buildGenderCard(
             gender: 'prefer_not_to_say',
-            title: 'Prefer not to say',
+            title: text.preferNotToSay,
             icon: Icons.help_outline,
             gradient: [
               Colors.orange.withValues(alpha: 0.8),
@@ -459,7 +464,7 @@ class GenderScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Continue",
+                AppLocalizations.of(Get.context!)!.continueText,
                 style: GoogleFonts.fredoka(
                   fontSize: 18,
                   color: Colors.white,
