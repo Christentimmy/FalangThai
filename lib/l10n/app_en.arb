@@ -198,5 +198,31 @@
     "changePasswordConfirmHint": "Enter your confirm password",
     "changePasswordConfirmEmptyError": "Please enter your confirm password",
     "changePasswordConfirmMismatchError": "Password does not match",
-    "changePasswordButton": "Change Password"
+    "changePasswordButton": "Change Password",
+
+    "subscriptionTitle": "Subscription",
+    "subscriptionHeadline": "Premium Matches, Premium Love",
+    "subscriptionSubtitle": "Pick the best plan for you!",
+    "subscriptionPlanDuration": "{months} months",
+    "subscriptionGetStarted": "Get Started",
+    "subscriptionCancel": "Cancel",
+    "subscriptionReactivate": "Reactivate",
+    "subscriptionChoosePlanError": "Choose a plan above",
+
+    "supportTitle": "Get Help",
+    "supportTopicLabel": "Topic",
+    "supportTopicHint": "Enter topic name",
+    "supportMessageLabel": "Message",
+    "supportMessageHint": "Enter your message",
+    "supportBrowseImages": "Browse images or drop here",
+    "supportImageConstraints": "JPG, PNG , file size no more than 25MB",
+    "supportErrorNoImage": "Please select at least one image",
+    "supportErrorTooManyImages": "You can select maximum 5 images",
+    "supportErrorNoSubject": "Please enter a subject",
+    "supportErrorNoMessage": "Please enter a message",
+    "supportCreateButton": "Create",
+
+    "matchCongrats": "Congratulations\nYou have a match!",
+    "matchSendText": "Send a text",
+    "matchKeepSwiping": "Keep swiping"
 }

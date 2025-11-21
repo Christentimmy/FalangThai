@@ -593,4 +593,77 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get changePasswordButton => 'Changer le mot de passe';
+
+  @override
+  String get subscriptionTitle => 'Abonnement';
+
+  @override
+  String get subscriptionHeadline => 'Rencontres premium, amour premium';
+
+  @override
+  String get subscriptionSubtitle =>
+      'Choisissez l\'offre qui vous convient le mieux !';
+
+  @override
+  String subscriptionPlanDuration(Object months) {
+    return '$months mois';
+  }
+
+  @override
+  String get subscriptionGetStarted => 'Commencer';
+
+  @override
+  String get subscriptionCancel => 'Annuler';
+
+  @override
+  String get subscriptionReactivate => 'Réactiver';
+
+  @override
+  String get subscriptionChoosePlanError => 'Choisissez une offre ci-dessus';
+
+  @override
+  String get supportTitle => 'Obtenir de l\'aide';
+
+  @override
+  String get supportTopicLabel => 'Sujet';
+
+  @override
+  String get supportTopicHint => 'Entrez le sujet';
+
+  @override
+  String get supportMessageLabel => 'Message';
+
+  @override
+  String get supportMessageHint => 'Entrez votre message';
+
+  @override
+  String get supportBrowseImages => 'Parcourez ou déposez vos images ici';
+
+  @override
+  String get supportImageConstraints => 'JPG, PNG, taille maximale 25 Mo';
+
+  @override
+  String get supportErrorNoImage => 'Veuillez sélectionner au moins une image';
+
+  @override
+  String get supportErrorTooManyImages =>
+      'Vous pouvez sélectionner au maximum 5 images';
+
+  @override
+  String get supportErrorNoSubject => 'Veuillez entrer un sujet';
+
+  @override
+  String get supportErrorNoMessage => 'Veuillez entrer un message';
+
+  @override
+  String get supportCreateButton => 'Créer';
+
+  @override
+  String get matchCongrats => 'Félicitations\nVous avez un match !';
+
+  @override
+  String get matchSendText => 'Envoyer un message';
+
+  @override
+  String get matchKeepSwiping => 'Continuer à swiper';
 }

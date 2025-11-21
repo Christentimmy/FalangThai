@@ -583,4 +583,75 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get changePasswordButton => 'เปลี่ยนรหัสผ่าน';
+
+  @override
+  String get subscriptionTitle => 'การสมัครสมาชิก';
+
+  @override
+  String get subscriptionHeadline => 'แมตช์พรีเมียม ความรักพรีเมียม';
+
+  @override
+  String get subscriptionSubtitle => 'เลือกแพ็กเกจที่เหมาะกับคุณที่สุด!';
+
+  @override
+  String subscriptionPlanDuration(Object months) {
+    return '$months เดือน';
+  }
+
+  @override
+  String get subscriptionGetStarted => 'เริ่มต้นใช้งาน';
+
+  @override
+  String get subscriptionCancel => 'ยกเลิก';
+
+  @override
+  String get subscriptionReactivate => 'เปิดใช้งานอีกครั้ง';
+
+  @override
+  String get subscriptionChoosePlanError => 'กรุณาเลือกแพ็กเกจด้านบน';
+
+  @override
+  String get supportTitle => 'ติดต่อทีมงาน';
+
+  @override
+  String get supportTopicLabel => 'หัวข้อ';
+
+  @override
+  String get supportTopicHint => 'กรอกชื่อหัวข้อ';
+
+  @override
+  String get supportMessageLabel => 'ข้อความ';
+
+  @override
+  String get supportMessageHint => 'กรอกข้อความของคุณ';
+
+  @override
+  String get supportBrowseImages => 'เลือกหรือลากรูปภาพมาวางที่นี่';
+
+  @override
+  String get supportImageConstraints => 'ไฟล์ JPG, PNG ขนาดไม่เกิน 25MB';
+
+  @override
+  String get supportErrorNoImage => 'กรุณาเลือกรูปภาพอย่างน้อย 1 รูป';
+
+  @override
+  String get supportErrorTooManyImages => 'คุณสามารถเลือกรูปภาพได้สูงสุด 5 รูป';
+
+  @override
+  String get supportErrorNoSubject => 'กรุณากรอกหัวข้อ';
+
+  @override
+  String get supportErrorNoMessage => 'กรุณากรอกข้อความ';
+
+  @override
+  String get supportCreateButton => 'สร้างคำขอ';
+
+  @override
+  String get matchCongrats => 'ยินดีด้วย\nคุณได้แมตช์แล้ว!';
+
+  @override
+  String get matchSendText => 'ส่งข้อความ';
+
+  @override
+  String get matchKeepSwiping => 'ปัดต่อไป';
 }

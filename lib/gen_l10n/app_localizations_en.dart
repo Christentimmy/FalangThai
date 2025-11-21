@@ -586,4 +586,76 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get changePasswordButton => 'Change Password';
+
+  @override
+  String get subscriptionTitle => 'Subscription';
+
+  @override
+  String get subscriptionHeadline => 'Premium Matches, Premium Love';
+
+  @override
+  String get subscriptionSubtitle => 'Pick the best plan for you!';
+
+  @override
+  String subscriptionPlanDuration(Object months) {
+    return '$months months';
+  }
+
+  @override
+  String get subscriptionGetStarted => 'Get Started';
+
+  @override
+  String get subscriptionCancel => 'Cancel';
+
+  @override
+  String get subscriptionReactivate => 'Reactivate';
+
+  @override
+  String get subscriptionChoosePlanError => 'Choose a plan above';
+
+  @override
+  String get supportTitle => 'Get Help';
+
+  @override
+  String get supportTopicLabel => 'Topic';
+
+  @override
+  String get supportTopicHint => 'Enter topic name';
+
+  @override
+  String get supportMessageLabel => 'Message';
+
+  @override
+  String get supportMessageHint => 'Enter your message';
+
+  @override
+  String get supportBrowseImages => 'Browse images or drop here';
+
+  @override
+  String get supportImageConstraints =>
+      'JPG, PNG , file size no more than 25MB';
+
+  @override
+  String get supportErrorNoImage => 'Please select at least one image';
+
+  @override
+  String get supportErrorTooManyImages => 'You can select maximum 5 images';
+
+  @override
+  String get supportErrorNoSubject => 'Please enter a subject';
+
+  @override
+  String get supportErrorNoMessage => 'Please enter a message';
+
+  @override
+  String get supportCreateButton => 'Create';
+
+  @override
+  String get matchCongrats => 'Congratulations\nYou have a match!';
+
+  @override
+  String get matchSendText => 'Send a text';
+
+  @override
+  String get matchKeepSwiping => 'Keep swiping';
 }

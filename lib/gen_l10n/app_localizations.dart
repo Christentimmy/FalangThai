@@ -1215,6 +1215,144 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Change Password'**
   String get changePasswordButton;
+
+  /// No description provided for @subscriptionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscription'**
+  String get subscriptionTitle;
+
+  /// No description provided for @subscriptionHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Premium Matches, Premium Love'**
+  String get subscriptionHeadline;
+
+  /// No description provided for @subscriptionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick the best plan for you!'**
+  String get subscriptionSubtitle;
+
+  /// No description provided for @subscriptionPlanDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'{months} months'**
+  String subscriptionPlanDuration(Object months);
+
+  /// No description provided for @subscriptionGetStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Started'**
+  String get subscriptionGetStarted;
+
+  /// No description provided for @subscriptionCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get subscriptionCancel;
+
+  /// No description provided for @subscriptionReactivate.
+  ///
+  /// In en, this message translates to:
+  /// **'Reactivate'**
+  String get subscriptionReactivate;
+
+  /// No description provided for @subscriptionChoosePlanError.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a plan above'**
+  String get subscriptionChoosePlanError;
+
+  /// No description provided for @supportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Help'**
+  String get supportTitle;
+
+  /// No description provided for @supportTopicLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Topic'**
+  String get supportTopicLabel;
+
+  /// No description provided for @supportTopicHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter topic name'**
+  String get supportTopicHint;
+
+  /// No description provided for @supportMessageLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Message'**
+  String get supportMessageLabel;
+
+  /// No description provided for @supportMessageHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your message'**
+  String get supportMessageHint;
+
+  /// No description provided for @supportBrowseImages.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse images or drop here'**
+  String get supportBrowseImages;
+
+  /// No description provided for @supportImageConstraints.
+  ///
+  /// In en, this message translates to:
+  /// **'JPG, PNG , file size no more than 25MB'**
+  String get supportImageConstraints;
+
+  /// No description provided for @supportErrorNoImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select at least one image'**
+  String get supportErrorNoImage;
+
+  /// No description provided for @supportErrorTooManyImages.
+  ///
+  /// In en, this message translates to:
+  /// **'You can select maximum 5 images'**
+  String get supportErrorTooManyImages;
+
+  /// No description provided for @supportErrorNoSubject.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a subject'**
+  String get supportErrorNoSubject;
+
+  /// No description provided for @supportErrorNoMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a message'**
+  String get supportErrorNoMessage;
+
+  /// No description provided for @supportCreateButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Create'**
+  String get supportCreateButton;
+
+  /// No description provided for @matchCongrats.
+  ///
+  /// In en, this message translates to:
+  /// **'Congratulations\nYou have a match!'**
+  String get matchCongrats;
+
+  /// No description provided for @matchSendText.
+  ///
+  /// In en, this message translates to:
+  /// **'Send a text'**
+  String get matchSendText;
+
+  /// No description provided for @matchKeepSwiping.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep swiping'**
+  String get matchKeepSwiping;
 }
 
 class _AppLocalizationsDelegate

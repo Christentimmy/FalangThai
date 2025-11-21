@@ -6,6 +6,7 @@ import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -78,6 +79,7 @@ class _MatchScreenState extends State<MatchScreen> {
   }
 
   Padding buildContent() {
+    final l10n = AppLocalizations.of(Get.context!)!;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
       child: Column(
@@ -106,7 +108,7 @@ class _MatchScreenState extends State<MatchScreen> {
           SizedBox(height: Get.height * 0.02),
           Center(
             child: Text(
-              "Congratulations\nYou have a match!",
+              l10n.matchCongrats,
               textAlign: TextAlign.center,
               style: GoogleFonts.figtree(
                 fontSize: 28,
@@ -173,7 +175,7 @@ class _MatchScreenState extends State<MatchScreen> {
             },
             isLoading: false.obs,
             child: Text(
-              "Send a text",
+              l10n.matchSendText,
               style: GoogleFonts.figtree(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
@@ -190,7 +192,7 @@ class _MatchScreenState extends State<MatchScreen> {
             bgColor: Color(0xFF1A1625),
             isLoading: false.obs,
             child: Text(
-              "Keep swiping",
+              l10n.matchKeepSwiping,
               style: GoogleFonts.figtree(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,

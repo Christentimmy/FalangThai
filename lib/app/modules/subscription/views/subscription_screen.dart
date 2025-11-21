@@ -5,6 +5,7 @@ import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
 import 'package:falangthai/app/widgets/snack_bar.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,6 +36,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: buildAppBar(),
       body: Container(
@@ -47,7 +49,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Premium Matches, Premium Love',
+                l10n.subscriptionHeadline,
                 style: GoogleFonts.figtree(
                   fontSize: 20,
                   color: Colors.white,
@@ -55,7 +57,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                 ),
               ),
               Text(
-                'pick the best plan for you!',
+                l10n.subscriptionSubtitle,
                 style: GoogleFonts.figtree(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
@@ -103,14 +105,16 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                         subDetails?.cancelAtPeriodEnd == true) {
                       await subscriptionController.reactivateSubscription();
                     } else {
-                      CustomSnackbar.showErrorToast("Choose a plan above");
+                      CustomSnackbar.showErrorToast(
+                        l10n.subscriptionChoosePlanError,
+                      );
                     }
                   },
                   isLoading: subscriptionController.isLoadingCancel,
                   child: Text(
                     status == "active" && subDetails?.cancelAtPeriodEnd == false
-                        ? "Cancel"
-                        : "Reactivate",
+                        ? l10n.subscriptionCancel
+                        : l10n.subscriptionReactivate,
                     style: GoogleFonts.figtree(
                       fontSize: 16,
                       color: Colors.white,
@@ -127,6 +131,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
   }
 
   AppBar buildAppBar() {
+    final l10n = AppLocalizations.of(Get.context!)!;
     return AppBar(
       backgroundColor: Color(0xFF1A1625),
       leading: IconButton(
@@ -134,7 +139,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
         icon: Icon(Icons.arrow_back, color: AppColors.primaryColor),
       ),
       title: Text(
-        "Subscription",
+        l10n.subscriptionTitle,
         style: GoogleFonts.fredoka(
           fontSize: 22,
           fontWeight: FontWeight.w700,
@@ -145,6 +150,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
   }
 
   Widget buildSubCard({required SubscriptionModel plan, required int index}) {
+    final l10n = AppLocalizations.of(Get.context!)!;
     final userModel = userController.userModel;
     final status = userModel.value?.subscriptionDetails?.status;
     final subId = userModel.value?.subscriptionDetails?.planId;
@@ -185,7 +191,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
           ),
           Center(
             child: Text(
-              "${plan.billingCycle} months",
+              l10n.subscriptionPlanDuration(plan.billingCycle ?? 0),
               style: GoogleFonts.figtree(
                 fontSize: 16,
                 color: Colors.white,
@@ -208,7 +214,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                           selectedIndex.value == index)
                       .obs,
               child: Text(
-                'Get Started',
+                l10n.subscriptionGetStarted,
                 style: GoogleFonts.figtree(
                   fontSize: 16,
                   color: Colors.white,

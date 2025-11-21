@@ -5,6 +5,7 @@ import 'package:falangthai/app/utils/image_picker.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
 import 'package:falangthai/app/widgets/custom_textfield.dart';
 import 'package:falangthai/app/widgets/snack_bar.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -21,6 +22,7 @@ class SupportScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: _buildAppBar(),
@@ -31,23 +33,23 @@ class SupportScreen extends StatelessWidget {
             children: [
               SizedBox(height: Get.height * 0.02),
               Text(
-                "Topic",
+                l10n.supportTopicLabel,
                 style: Get.textTheme.bodyMedium?.copyWith(color: Colors.white),
               ),
               const SizedBox(height: 5),
               CustomTextField(
-                hintText: "Enter topic name",
+                hintText: l10n.supportTopicHint,
                 controller: subjectController,
                 // controller: controller.emailController,
               ),
               const SizedBox(height: 25),
               Text(
-                "Message",
+                l10n.supportMessageLabel,
                 style: Get.textTheme.bodyMedium?.copyWith(color: Colors.white),
               ),
               const SizedBox(height: 5),
               CustomTextField(
-                hintText: "Enter your message",
+                hintText: l10n.supportMessageHint,
                 minLines: 5,
                 maxLines: 6,
                 controller: messageController,
@@ -76,25 +78,28 @@ class SupportScreen extends StatelessWidget {
                         color: AppColors.primaryColor,
                         size: 40,
                       ),
-                      const SizedBox(width: 20),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Browse images or drop here",
-                            style: Get.textTheme.bodyMedium?.copyWith(
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white,
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              l10n.supportBrowseImages,
+                              style: Get.textTheme.bodyMedium?.copyWith(
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white,
+                                fontSize: 13,
+                              ),
                             ),
-                          ),
-                          Text(
-                            "JPG, PNG , file size no more than 25MB",
-                            style: Get.textTheme.bodyMedium!.copyWith(
-                              color: Colors.grey,
-                              fontSize: 10,
+                            Text(
+                              l10n.supportImageConstraints,
+                              style: Get.textTheme.bodyMedium!.copyWith(
+                                color: Colors.grey,
+                                fontSize: 10,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -108,22 +113,22 @@ class SupportScreen extends StatelessWidget {
                 ontap: () async {
                   if (selectedMedias.isEmpty) {
                     CustomSnackbar.showErrorToast(
-                      "Please select at least one image",
+                      l10n.supportErrorNoImage,
                     );
                     return;
                   }
                   if (selectedMedias.length > 5) {
                     CustomSnackbar.showErrorToast(
-                      "You can select maximum 5 images",
+                      l10n.supportErrorTooManyImages,
                     );
                     return;
                   }
                   if (subjectController.text.isEmpty) {
-                    CustomSnackbar.showErrorToast("Please enter a subject");
+                    CustomSnackbar.showErrorToast(l10n.supportErrorNoSubject);
                     return;
                   }
                   if (messageController.text.isEmpty) {
-                    CustomSnackbar.showErrorToast("Please enter a message");
+                    CustomSnackbar.showErrorToast(l10n.supportErrorNoMessage);
                     return;
                   }
                   await userController.createTicket(
@@ -134,7 +139,7 @@ class SupportScreen extends StatelessWidget {
                 },
                 isLoading: userController.isloading,
                 child: Text(
-                  "Create",
+                  l10n.supportCreateButton,
                   style: GoogleFonts.montserrat(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -207,12 +212,13 @@ class SupportScreen extends StatelessWidget {
   }
 
   AppBar _buildAppBar() {
+    final l10n = AppLocalizations.of(Get.context!)!;
     return AppBar(
       backgroundColor: AppColors.backgroundColor,
       centerTitle: true,
       elevation: 0,
       title: Text(
-        "Get Help",
+        l10n.supportTitle,
         style: GoogleFonts.montserrat(
           fontSize: 18,
           fontWeight: FontWeight.w600,
