@@ -544,4 +544,13 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get inviteErrorNoCode => 'ยังไม่มีรหัสเชิญ';
+
+  @override
+  String get inviteImpactTitle => 'ผลลัพธ์จากการเชิญของคุณ';
+
+  @override
+  String get inviteStatTotalInvitesLabel => 'จำนวนการเชิญทั้งหมด';
+
+  @override
+  String get inviteStatCreditsEarnedLabel => 'เครดิตที่ได้รับ';
 }

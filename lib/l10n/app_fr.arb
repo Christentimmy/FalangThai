@@ -173,5 +173,8 @@
   "inviteYourCode": "Votre code",
   "inviteTapToCopy": "Touchez pour copier",
   "inviteCopied": "Code copié dans le presse-papiers",
-  "inviteErrorNoCode": "Aucun code d'invitation disponible pour le moment"
+  "inviteErrorNoCode": "Aucun code d'invitation disponible pour le moment",
+  "inviteImpactTitle": "Votre impact",
+  "inviteStatTotalInvitesLabel": "Invitations totales",
+  "inviteStatCreditsEarnedLabel": "Crédits gagnés"
 }

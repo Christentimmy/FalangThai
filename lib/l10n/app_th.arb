@@ -173,5 +173,8 @@
   "inviteYourCode": "โค้ดของคุณ",
   "inviteTapToCopy": "แตะเพื่อคัดลอก",
   "inviteCopied": "คัดลอกโค้ดแล้ว",
-  "inviteErrorNoCode": "ยังไม่มีรหัสเชิญ"
+  "inviteErrorNoCode": "ยังไม่มีรหัสเชิญ",
+  "inviteImpactTitle": "ผลลัพธ์จากการเชิญของคุณ",
+  "inviteStatTotalInvitesLabel": "จำนวนการเชิญทั้งหมด",
+  "inviteStatCreditsEarnedLabel": "เครดิตที่ได้รับ"
 }

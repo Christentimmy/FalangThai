@@ -551,4 +551,13 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get inviteErrorNoCode =>
       'Aucun code d\'invitation disponible pour le moment';
+
+  @override
+  String get inviteImpactTitle => 'Votre impact';
+
+  @override
+  String get inviteStatTotalInvitesLabel => 'Invitations totales';
+
+  @override
+  String get inviteStatCreditsEarnedLabel => 'Crédits gagnés';
 }

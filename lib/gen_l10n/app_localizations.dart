@@ -1137,6 +1137,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No invite code available yet'**
   String get inviteErrorNoCode;
+
+  /// No description provided for @inviteImpactTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Impact'**
+  String get inviteImpactTitle;
+
+  /// No description provided for @inviteStatTotalInvitesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Invites'**
+  String get inviteStatTotalInvitesLabel;
+
+  /// No description provided for @inviteStatCreditsEarnedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Credits Earned'**
+  String get inviteStatCreditsEarnedLabel;
 }
 
 class _AppLocalizationsDelegate

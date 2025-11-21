@@ -287,6 +287,7 @@ class _InviteStatScreenState extends State<InviteStatScreen> {
   }
 
   Container buildContentCotainerHeader() {
+    final l10n = AppLocalizations.of(Get.context!)!;
     return Container(
       decoration: BoxDecoration(
         color: AppColors.primaryColor,
@@ -298,9 +299,9 @@ class _InviteStatScreenState extends State<InviteStatScreen> {
         children: [
           const Icon(Icons.emoji_events_rounded, color: Colors.white, size: 55),
           const SizedBox(height: 10),
-          const Text(
-            'Your Impact',
-            style: TextStyle(
+          Text(
+            l10n.inviteImpactTitle,
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 24,
               fontWeight: FontWeight.bold,
@@ -315,11 +316,11 @@ class _InviteStatScreenState extends State<InviteStatScreen> {
               children: [
                 buildStatBubble(
                   value: inviteModel.totalInvites.toString(),
-                  label: 'Total Invites',
+                  label: l10n.inviteStatTotalInvitesLabel,
                 ),
                 buildStatBubble(
                   value: inviteModel.premiumCredits.toString(),
-                  label: 'Credits Earned',
+                  label: l10n.inviteStatCreditsEarnedLabel,
                 ),
               ],
             );

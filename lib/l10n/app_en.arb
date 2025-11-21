@@ -184,5 +184,8 @@
     "inviteYourCode": "Your Code",
     "inviteTapToCopy": "Tap to copy",
     "inviteCopied": "Code copied to clipboard",
-    "inviteErrorNoCode": "No invite code available yet"
+    "inviteErrorNoCode": "No invite code available yet",
+    "inviteImpactTitle": "Your Impact",
+    "inviteStatTotalInvitesLabel": "Total Invites",
+    "inviteStatCreditsEarnedLabel": "Credits Earned"
 }
