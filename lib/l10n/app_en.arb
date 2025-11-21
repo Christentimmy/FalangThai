@@ -124,5 +124,22 @@
     "walletPaymentMethods": "Payment Methods",
     "walletPaymentMethodsSubtitle": "Manage your payment accounts",
     "walletTransactionHistory": "Transaction History",
-    "walletTransactionHistorySubtitle": "View all transactions"
+    "walletTransactionHistorySubtitle": "View all transactions",
+
+    "withdrawAmountLabel": "Withdrawal Amount",
+    "withdrawAmountHint": "Enter amount",
+    "withdrawMethodLabel": "Withdrawal Method",
+    "withdrawBankTransfer": "Bank Transfer",
+    "withdrawBankAccountNotSet": "Not set",
+    "withdrawNoPaymentMethods": "No payment methods available. Please add one first.",
+    "withdrawProcessingInfo": "Withdrawals typically process within 3-5 business days",
+    "withdrawAllLabel": "All",
+    "withdrawErrorTitle": "Error",
+    "withdrawErrorInvalidAmount": "Please enter a valid amount",
+    "withdrawErrorInsufficientBalance": "Insufficient balance",
+    "withdrawErrorNoMethod": "Please select a withdrawal method",
+    "withdrawConfirmTitle": "Confirm Withdrawal",
+    "withdrawConfirmMessage": "Withdraw {amount} to your {method} account?",
+    "withdrawCancel": "Cancel",
+    "withdrawConfirmButton": "Confirm"
 }

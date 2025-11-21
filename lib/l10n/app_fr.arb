@@ -119,5 +119,21 @@
   "walletPaymentMethods": "Moyens de paiement",
   "walletPaymentMethodsSubtitle": "Gérez vos comptes de paiement",
   "walletTransactionHistory": "Historique des transactions",
-  "walletTransactionHistorySubtitle": "Voir toutes les transactions"
+  "walletTransactionHistorySubtitle": "Voir toutes les transactions",
+  "withdrawAmountLabel": "Montant du retrait",
+  "withdrawAmountHint": "Saisissez le montant",
+  "withdrawMethodLabel": "Méthode de retrait",
+  "withdrawBankTransfer": "Virement bancaire",
+  "withdrawBankAccountNotSet": "Non défini",
+  "withdrawNoPaymentMethods": "Aucun moyen de paiement disponible. Veuillez en ajouter un d'abord.",
+  "withdrawProcessingInfo": "Les retraits sont généralement traités sous 3 à 5 jours ouvrables",
+  "withdrawAllLabel": "Tout",
+  "withdrawErrorTitle": "Erreur",
+  "withdrawErrorInvalidAmount": "Veuillez saisir un montant valide",
+  "withdrawErrorInsufficientBalance": "Solde insuffisant",
+  "withdrawErrorNoMethod": "Veuillez sélectionner une méthode de retrait",
+  "withdrawConfirmTitle": "Confirmer le retrait",
+  "withdrawConfirmMessage": "Retirer {amount} vers votre compte {method} ?",
+  "withdrawCancel": "Annuler",
+  "withdrawConfirmButton": "Confirmer"
 }

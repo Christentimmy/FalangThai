@@ -2,6 +2,7 @@ import 'package:falangthai/app/controller/user_controller.dart';
 import 'package:falangthai/app/controller/wallet_controller.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,6 +22,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final userController = Get.find<UserController>();
     final wallet = userController.userModel.value?.wallet;
     final paymentInfo = userController.userModel.value?.paymentInfo;
@@ -36,9 +38,9 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
           icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
           onPressed: () => Get.back(),
         ),
-        title: const Text(
-          'Withdraw Funds',
-          style: TextStyle(color: AppColors.textPrimary),
+        title: Text(
+          l10n.walletWithdrawFunds,
+          style: const TextStyle(color: AppColors.textPrimary),
         ),
       ),
       body: SingleChildScrollView(
@@ -58,7 +60,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Available Balance',
+                    l10n.walletAvailableBalance,
                     style: TextStyle(
                       color: AppColors.textSecondary,
                       fontSize: 14,
@@ -80,7 +82,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
 
             // Amount Input
             Text(
-              'Withdrawal Amount',
+              l10n.withdrawAmountLabel,
               style: TextStyle(
                 color: AppColors.textPrimary,
                 fontSize: 16,
@@ -98,7 +100,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
               decoration: InputDecoration(
                 filled: true,
                 fillColor: AppColors.cardColor,
-                hintText: 'Enter amount',
+                hintText: l10n.withdrawAmountHint,
                 hintStyle: TextStyle(color: AppColors.textSecondary),
                 prefixIcon: Icon(
                   Icons.attach_money,
@@ -145,7 +147,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                 _QuickAmountButton(
                   amount: balance,
                   currency: currency,
-                  label: 'All',
+                  label: l10n.withdrawAllLabel,
                   onTap: () => _amountController.text = balance.toString(),
                 ),
               ],
@@ -154,7 +156,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
 
             // Payment Method Selection
             Text(
-              'Withdrawal Method',
+              l10n.withdrawMethodLabel,
               style: TextStyle(
                 color: AppColors.textPrimary,
                 fontSize: 16,
@@ -166,8 +168,9 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
             if (paymentInfo?.bankTransfer != null)
               _PaymentMethodTile(
                 icon: Icons.account_balance,
-                title: 'Bank Transfer',
-                subtitle: paymentInfo!.bankTransfer!.accountNumber ?? 'Not set',
+                title: l10n.withdrawBankTransfer,
+                subtitle:
+                    paymentInfo!.bankTransfer!.accountNumber ?? l10n.withdrawBankAccountNotSet,
                 isSelected: selectedMethod == 'bank_transfer',
                 onTap: () => setState(() => selectedMethod = 'bank_transfer'),
               ),
@@ -205,7 +208,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                     const SizedBox(width: 12),
                     Expanded(
                       child: Text(
-                        'No payment methods available. Please add one first.',
+                        l10n.withdrawNoPaymentMethods,
                         style: TextStyle(color: AppColors.textSecondary),
                       ),
                     ),
@@ -235,7 +238,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
-                      'Withdrawals typically process within 3-5 business days',
+                      l10n.withdrawProcessingInfo,
                       style: TextStyle(
                         color: AppColors.textSecondary,
                         fontSize: 12,
@@ -248,19 +251,20 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: buildContinueButton(balance),
+      bottomNavigationBar: buildContinueButton(context, balance),
     );
   }
 
-  SafeArea buildContinueButton(int balance) {
+  SafeArea buildContinueButton(BuildContext context, int balance) {
+    final l10n = AppLocalizations.of(context)!;
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: CustomButton(
-          ontap: () => _handleWithdraw(balance),
+          ontap: () => _handleWithdraw(context, balance),
           isLoading: false.obs,
           child: Text(
-            'Withdraw',
+            l10n.walletWithdrawFunds,
             style: GoogleFonts.fredoka(
               color: Colors.black,
               fontSize: 16,
@@ -272,13 +276,14 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
     );
   }
 
-  void _handleWithdraw(int balance) {
+  void _handleWithdraw(BuildContext context, int balance) {
+    final l10n = AppLocalizations.of(context)!;
     final amount = int.tryParse(_amountController.text) ?? 0;
 
     if (amount <= 0) {
       Get.snackbar(
-        'Error',
-        'Please enter a valid amount',
+        l10n.withdrawErrorTitle,
+        l10n.withdrawErrorInvalidAmount,
         backgroundColor: Colors.red,
         colorText: Colors.white,
       );
@@ -287,8 +292,8 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
 
     if (amount > balance) {
       Get.snackbar(
-        'Error',
-        'Insufficient balance',
+        l10n.withdrawErrorTitle,
+        l10n.withdrawErrorInsufficientBalance,
         backgroundColor: Colors.red,
         colorText: Colors.white,
       );
@@ -297,8 +302,8 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
 
     if (selectedMethod == null) {
       Get.snackbar(
-        'Error',
-        'Please select a withdrawal method',
+        l10n.withdrawErrorTitle,
+        l10n.withdrawErrorNoMethod,
         backgroundColor: Colors.red,
         colorText: Colors.white,
       );
@@ -306,22 +311,37 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
     }
 
     // Show confirmation dialog
+    String methodLabel;
+    switch (selectedMethod) {
+      case 'bank_transfer':
+        methodLabel = l10n.withdrawBankTransfer;
+        break;
+      case 'paypal':
+        methodLabel = 'PayPal';
+        break;
+      case 'stripe':
+        methodLabel = 'Stripe';
+        break;
+      default:
+        methodLabel = selectedMethod!;
+    }
+
     Get.dialog(
       AlertDialog(
         backgroundColor: AppColors.cardColor,
-        title: const Text(
-          'Confirm Withdrawal',
-          style: TextStyle(color: AppColors.textPrimary),
+        title: Text(
+          l10n.withdrawConfirmTitle,
+          style: const TextStyle(color: AppColors.textPrimary),
         ),
         content: Text(
-          'Withdraw $amount to your $selectedMethod account?',
-          style: TextStyle(color: AppColors.textSecondary),
+          l10n.withdrawConfirmMessage(amount, methodLabel),
+          style: const TextStyle(color: AppColors.textSecondary),
         ),
         actions: [
           TextButton(
             onPressed: () => Get.back(),
             child: Text(
-              'Cancel',
+              l10n.withdrawCancel,
               style: TextStyle(color: AppColors.textSecondary),
             ),
           ),
@@ -337,7 +357,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
               },
               isLoading: walletController.isloading,
               child: Text(
-                'Confirm',
+                l10n.withdrawConfirmButton,
                 style: GoogleFonts.fredoka(
                   color: Colors.white,
                   fontSize: 16,

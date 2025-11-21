@@ -377,4 +377,56 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get walletTransactionHistorySubtitle => 'View all transactions';
+
+  @override
+  String get withdrawAmountLabel => 'Withdrawal Amount';
+
+  @override
+  String get withdrawAmountHint => 'Enter amount';
+
+  @override
+  String get withdrawMethodLabel => 'Withdrawal Method';
+
+  @override
+  String get withdrawBankTransfer => 'Bank Transfer';
+
+  @override
+  String get withdrawBankAccountNotSet => 'Not set';
+
+  @override
+  String get withdrawNoPaymentMethods =>
+      'No payment methods available. Please add one first.';
+
+  @override
+  String get withdrawProcessingInfo =>
+      'Withdrawals typically process within 3-5 business days';
+
+  @override
+  String get withdrawAllLabel => 'All';
+
+  @override
+  String get withdrawErrorTitle => 'Error';
+
+  @override
+  String get withdrawErrorInvalidAmount => 'Please enter a valid amount';
+
+  @override
+  String get withdrawErrorInsufficientBalance => 'Insufficient balance';
+
+  @override
+  String get withdrawErrorNoMethod => 'Please select a withdrawal method';
+
+  @override
+  String get withdrawConfirmTitle => 'Confirm Withdrawal';
+
+  @override
+  String withdrawConfirmMessage(Object amount, Object method) {
+    return 'Withdraw $amount to your $method account?';
+  }
+
+  @override
+  String get withdrawCancel => 'Cancel';
+
+  @override
+  String get withdrawConfirmButton => 'Confirm';
 }

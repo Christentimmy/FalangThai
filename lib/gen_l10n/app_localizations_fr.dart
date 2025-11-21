@@ -379,4 +379,57 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get walletTransactionHistorySubtitle => 'Voir toutes les transactions';
+
+  @override
+  String get withdrawAmountLabel => 'Montant du retrait';
+
+  @override
+  String get withdrawAmountHint => 'Saisissez le montant';
+
+  @override
+  String get withdrawMethodLabel => 'Méthode de retrait';
+
+  @override
+  String get withdrawBankTransfer => 'Virement bancaire';
+
+  @override
+  String get withdrawBankAccountNotSet => 'Non défini';
+
+  @override
+  String get withdrawNoPaymentMethods =>
+      'Aucun moyen de paiement disponible. Veuillez en ajouter un d\'abord.';
+
+  @override
+  String get withdrawProcessingInfo =>
+      'Les retraits sont généralement traités sous 3 à 5 jours ouvrables';
+
+  @override
+  String get withdrawAllLabel => 'Tout';
+
+  @override
+  String get withdrawErrorTitle => 'Erreur';
+
+  @override
+  String get withdrawErrorInvalidAmount => 'Veuillez saisir un montant valide';
+
+  @override
+  String get withdrawErrorInsufficientBalance => 'Solde insuffisant';
+
+  @override
+  String get withdrawErrorNoMethod =>
+      'Veuillez sélectionner une méthode de retrait';
+
+  @override
+  String get withdrawConfirmTitle => 'Confirmer le retrait';
+
+  @override
+  String withdrawConfirmMessage(Object amount, Object method) {
+    return 'Retirer $amount vers votre compte $method ?';
+  }
+
+  @override
+  String get withdrawCancel => 'Annuler';
+
+  @override
+  String get withdrawConfirmButton => 'Confirmer';
 }

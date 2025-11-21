@@ -377,4 +377,54 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get walletTransactionHistorySubtitle => 'ดูธุรกรรมทั้งหมด';
+
+  @override
+  String get withdrawAmountLabel => 'จำนวนเงินที่ต้องการถอน';
+
+  @override
+  String get withdrawAmountHint => 'กรอกจำนวนเงิน';
+
+  @override
+  String get withdrawMethodLabel => 'วิธีการถอนเงิน';
+
+  @override
+  String get withdrawBankTransfer => 'โอนผ่านธนาคาร';
+
+  @override
+  String get withdrawBankAccountNotSet => 'ยังไม่ได้ตั้งค่า';
+
+  @override
+  String get withdrawNoPaymentMethods => 'ยังไม่มีวิธีชำระเงิน กรุณาเพิ่มก่อน';
+
+  @override
+  String get withdrawProcessingInfo => 'โดยปกติการถอนใช้เวลา 3-5 วันทำการ';
+
+  @override
+  String get withdrawAllLabel => 'ทั้งหมด';
+
+  @override
+  String get withdrawErrorTitle => 'ข้อผิดพลาด';
+
+  @override
+  String get withdrawErrorInvalidAmount => 'กรุณากรอกจำนวนเงินให้ถูกต้อง';
+
+  @override
+  String get withdrawErrorInsufficientBalance => 'ยอดเงินคงเหลือไม่เพียงพอ';
+
+  @override
+  String get withdrawErrorNoMethod => 'กรุณาเลือกวิธีการถอนเงิน';
+
+  @override
+  String get withdrawConfirmTitle => 'ยืนยันการถอนเงิน';
+
+  @override
+  String withdrawConfirmMessage(Object amount, Object method) {
+    return 'ต้องการถอน $amount ไปยังบัญชี $method ของคุณหรือไม่?';
+  }
+
+  @override
+  String get withdrawCancel => 'ยกเลิก';
+
+  @override
+  String get withdrawConfirmButton => 'ยืนยัน';
 }

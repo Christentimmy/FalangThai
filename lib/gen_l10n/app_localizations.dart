@@ -813,6 +813,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'View all transactions'**
   String get walletTransactionHistorySubtitle;
+
+  /// No description provided for @withdrawAmountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Withdrawal Amount'**
+  String get withdrawAmountLabel;
+
+  /// No description provided for @withdrawAmountHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter amount'**
+  String get withdrawAmountHint;
+
+  /// No description provided for @withdrawMethodLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Withdrawal Method'**
+  String get withdrawMethodLabel;
+
+  /// No description provided for @withdrawBankTransfer.
+  ///
+  /// In en, this message translates to:
+  /// **'Bank Transfer'**
+  String get withdrawBankTransfer;
+
+  /// No description provided for @withdrawBankAccountNotSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not set'**
+  String get withdrawBankAccountNotSet;
+
+  /// No description provided for @withdrawNoPaymentMethods.
+  ///
+  /// In en, this message translates to:
+  /// **'No payment methods available. Please add one first.'**
+  String get withdrawNoPaymentMethods;
+
+  /// No description provided for @withdrawProcessingInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Withdrawals typically process within 3-5 business days'**
+  String get withdrawProcessingInfo;
+
+  /// No description provided for @withdrawAllLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get withdrawAllLabel;
+
+  /// No description provided for @withdrawErrorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get withdrawErrorTitle;
+
+  /// No description provided for @withdrawErrorInvalidAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid amount'**
+  String get withdrawErrorInvalidAmount;
+
+  /// No description provided for @withdrawErrorInsufficientBalance.
+  ///
+  /// In en, this message translates to:
+  /// **'Insufficient balance'**
+  String get withdrawErrorInsufficientBalance;
+
+  /// No description provided for @withdrawErrorNoMethod.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select a withdrawal method'**
+  String get withdrawErrorNoMethod;
+
+  /// No description provided for @withdrawConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Withdrawal'**
+  String get withdrawConfirmTitle;
+
+  /// No description provided for @withdrawConfirmMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Withdraw {amount} to your {method} account?'**
+  String withdrawConfirmMessage(Object amount, Object method);
+
+  /// No description provided for @withdrawCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get withdrawCancel;
+
+  /// No description provided for @withdrawConfirmButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get withdrawConfirmButton;
 }
 
 class _AppLocalizationsDelegate

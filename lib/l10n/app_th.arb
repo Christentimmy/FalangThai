@@ -119,5 +119,21 @@
   "walletPaymentMethods": "วิธีชำระเงิน",
   "walletPaymentMethodsSubtitle": "จัดการบัญชีการชำระเงินของคุณ",
   "walletTransactionHistory": "ประวัติธุรกรรม",
-  "walletTransactionHistorySubtitle": "ดูธุรกรรมทั้งหมด"
+  "walletTransactionHistorySubtitle": "ดูธุรกรรมทั้งหมด",
+  "withdrawAmountLabel": "จำนวนเงินที่ต้องการถอน",
+  "withdrawAmountHint": "กรอกจำนวนเงิน",
+  "withdrawMethodLabel": "วิธีการถอนเงิน",
+  "withdrawBankTransfer": "โอนผ่านธนาคาร",
+  "withdrawBankAccountNotSet": "ยังไม่ได้ตั้งค่า",
+  "withdrawNoPaymentMethods": "ยังไม่มีวิธีชำระเงิน กรุณาเพิ่มก่อน",
+  "withdrawProcessingInfo": "โดยปกติการถอนใช้เวลา 3-5 วันทำการ",
+  "withdrawAllLabel": "ทั้งหมด",
+  "withdrawErrorTitle": "ข้อผิดพลาด",
+  "withdrawErrorInvalidAmount": "กรุณากรอกจำนวนเงินให้ถูกต้อง",
+  "withdrawErrorInsufficientBalance": "ยอดเงินคงเหลือไม่เพียงพอ",
+  "withdrawErrorNoMethod": "กรุณาเลือกวิธีการถอนเงิน",
+  "withdrawConfirmTitle": "ยืนยันการถอนเงิน",
+  "withdrawConfirmMessage": "ต้องการถอน {amount} ไปยังบัญชี {method} ของคุณหรือไม่?",
+  "withdrawCancel": "ยกเลิก",
+  "withdrawConfirmButton": "ยืนยัน"
 }
