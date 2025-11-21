@@ -259,4 +259,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get matchesTitle => 'Matches';
+
+  @override
+  String get noConversationsYet => 'No conversations yet';
+
+  @override
+  String get startChattingWithYourMatches =>
+      'Start chatting with your matches!';
+
+  @override
+  String get chatsTitle => 'Chats';
 }

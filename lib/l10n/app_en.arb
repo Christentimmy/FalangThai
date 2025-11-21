@@ -83,5 +83,8 @@
     "noMatchesFound": "No matches found",
     "noUsersFound": "No users found",
     "likesTitle": "Likes",
-    "matchesTitle": "Matches"
+    "matchesTitle": "Matches",
+    "noConversationsYet": "No conversations yet",
+    "startChattingWithYourMatches": "Start chatting with your matches!",
+    "chatsTitle": "Chats"
 }

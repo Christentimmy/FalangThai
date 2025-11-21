@@ -3,6 +3,7 @@ import 'package:falangthai/app/data/models/chat_list_model.dart';
 import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -78,24 +79,27 @@ class _ChatListScreenState extends State<ChatListScreen> {
   }
 
   Widget _buildEmptyList(bool isDark) {
+    final text = AppLocalizations.of(Get.context!)!;
     return SizedBox(
       height: Get.height * 0.65,
       width: Get.width,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
-            'No conversations yet',
-            style: TextStyle(
+          Text(
+            text.noConversationsYet,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
               color: Colors.white,
             ),
           ),
           const SizedBox(height: 8),
-          const Text(
-            'Start chatting with your matches!',
-            style: TextStyle(
+          Text(
+            text.startChattingWithYourMatches,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w500,
               color: Colors.white,
@@ -157,7 +161,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
     return AppBar(
       backgroundColor: Color(0xFF1A1625),
       title: Text(
-        "Chats",
+        AppLocalizations.of(context)!.chatsTitle,
         style: GoogleFonts.figtree(
           fontSize: 25,
           fontWeight: FontWeight.w800,

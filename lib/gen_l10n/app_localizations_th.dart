@@ -259,4 +259,13 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get matchesTitle => 'คู่ที่ตรงกัน';
+
+  @override
+  String get noConversationsYet => 'ยังไม่มีการสนทนา';
+
+  @override
+  String get startChattingWithYourMatches => 'เริ่มแชทกับคู่แมตช์ของคุณได้เลย!';
+
+  @override
+  String get chatsTitle => 'แชท';
 }

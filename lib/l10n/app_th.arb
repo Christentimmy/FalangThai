@@ -80,5 +80,8 @@
   "noMatchesFound": "ไม่พบคู่ที่ตรงกัน",
   "noUsersFound": "ไม่พบผู้ใช้",
   "likesTitle": "รายการถูกใจ",
-  "matchesTitle": "คู่ที่ตรงกัน"
+  "matchesTitle": "คู่ที่ตรงกัน",
+  "noConversationsYet": "ยังไม่มีการสนทนา",
+  "startChattingWithYourMatches": "เริ่มแชทกับคู่แมตช์ของคุณได้เลย!",
+  "chatsTitle": "แชท"
 }

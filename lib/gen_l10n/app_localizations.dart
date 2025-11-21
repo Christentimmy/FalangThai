@@ -579,6 +579,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Matches'**
   String get matchesTitle;
+
+  /// No description provided for @noConversationsYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No conversations yet'**
+  String get noConversationsYet;
+
+  /// No description provided for @startChattingWithYourMatches.
+  ///
+  /// In en, this message translates to:
+  /// **'Start chatting with your matches!'**
+  String get startChattingWithYourMatches;
+
+  /// No description provided for @chatsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Chats'**
+  String get chatsTitle;
 }
 
 class _AppLocalizationsDelegate

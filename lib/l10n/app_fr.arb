@@ -80,5 +80,8 @@
   "noMatchesFound": "Aucune correspondance trouvée",
   "noUsersFound": "Aucun utilisateur trouvé",
   "likesTitle": "Mentions J'aime",
-  "matchesTitle": "Correspondances"
+  "matchesTitle": "Correspondances",
+  "noConversationsYet": "Aucune conversation pour le moment",
+  "startChattingWithYourMatches": "Commencez à discuter avec vos correspondances !",
+  "chatsTitle": "Discussions"
 }
