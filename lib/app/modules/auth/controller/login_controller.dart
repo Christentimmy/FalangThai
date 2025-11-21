@@ -2,6 +2,7 @@ import 'package:falangthai/app/controller/auth_controller.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
 import 'package:falangthai/app/widgets/snack_bar.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -85,6 +86,7 @@ class LoginController extends GetxController with GetTickerProviderStateMixin {
   }
 
   void _showForgotPasswordDialog() {
+    final text = AppLocalizations.of(Get.context!)!;
     Get.dialog(
       AlertDialog(
         backgroundColor: const Color(0xFF2D2438),
@@ -93,14 +95,14 @@ class LoginController extends GetxController with GetTickerProviderStateMixin {
           side: BorderSide(color: Colors.white.withOpacity(0.2)),
         ),
         title: Text(
-          'Forgot Password',
+          text.forgotPassword,
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
         ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'Enter your email address and we\'ll send you an  otp to reset your password.',
+              text.forgotPasswordDialogDescription,
               style: GoogleFonts.fredoka(color: Colors.white.withOpacity(0.8)),
             ),
             const SizedBox(height: 20),
@@ -108,7 +110,7 @@ class LoginController extends GetxController with GetTickerProviderStateMixin {
               style: GoogleFonts.fredoka(color: Colors.white),
               controller: emailController,
               decoration: InputDecoration(
-                hintText: 'Email Address',
+                hintText: text.emailAddress,
                 hintStyle: TextStyle(color: Colors.white.withOpacity(0.5)),
                 fillColor: Colors.white.withOpacity(0.1),
                 filled: true,
@@ -124,7 +126,7 @@ class LoginController extends GetxController with GetTickerProviderStateMixin {
           TextButton(
             onPressed: () => Get.back(),
             child: Text(
-              'Cancel',
+              text.cancel,
               style: TextStyle(color: Colors.white.withOpacity(0.7)),
             ),
           ),
@@ -134,7 +136,7 @@ class LoginController extends GetxController with GetTickerProviderStateMixin {
             child: CustomButton(
               ontap: () async {
                 if (emailController.text.isEmpty) {
-                  CustomSnackbar.showErrorToast("message");
+                  CustomSnackbar.showErrorToast(text.emailRequiredError);
                   return;
                 }
                 await authController.sendOtp(email: emailController.text);
@@ -154,7 +156,7 @@ class LoginController extends GetxController with GetTickerProviderStateMixin {
               },
               isLoading: authController.isloading,
               child: Text(
-                'Send Reset Link',
+                text.sendResetLink,
                 style: GoogleFonts.fredoka(
                   color: Colors.white,
                   fontSize: 13,
@@ -163,28 +165,6 @@ class LoginController extends GetxController with GetTickerProviderStateMixin {
               ),
             ),
           ),
-          // ElevatedButton(
-          // onPressed: () async {
-          // Get.back();
-          // Get.snackbar(
-          //   'Password Reset',
-          //   'Reset link sent to your email!',
-          //   snackPosition: SnackPosition.BOTTOM,
-          //   backgroundColor: Colors.green.withOpacity(0.9),
-          //   colorText: Colors.white,
-          // );
-          // },
-          // style: ElevatedButton.styleFrom(
-          //   backgroundColor: const Color(0xFFFF9EE6),
-          //   shape: RoundedRectangleBorder(
-          //     borderRadius: BorderRadius.circular(12),
-          //   ),
-          // ),
-          // child: const Text(
-          //   'Send Reset Link',
-          //   style: TextStyle(color: Colors.white),
-          // ),
-          // ),
         ],
       ),
     );

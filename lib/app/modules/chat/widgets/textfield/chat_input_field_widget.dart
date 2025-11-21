@@ -7,6 +7,7 @@ import 'package:falangthai/app/modules/chat/widgets/textfield/input_decoration.d
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
 import 'package:falangthai/app/widgets/custom_textfield.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
@@ -146,13 +147,14 @@ class NewChatInputFields extends StatelessWidget {
   }
 
   Widget buildTextField() {
+    final l10n = AppLocalizations.of(Get.context!)!;
     return Column(
       children: [
         Row(
           children: [
             Expanded(
               child: CustomTextField(
-                hintText: "Type something...",
+                hintText: l10n.chatInputHint,
                 suffixIcon: Icons.add,
                 prefixIcon: Icons.card_giftcard_rounded,
                 prefixIconColor: Colors.grey,
@@ -197,7 +199,7 @@ class NewChatInputFields extends StatelessWidget {
                                     ),
                                     // SizedBox(height: 5),
                                     Text(
-                                      "${index + 20} peeks",
+                                      l10n.chatPeeksLabel(index + 20),
                                       style: GoogleFonts.fredoka(
                                         fontSize: 12,
                                         color: Colors.white,
@@ -213,7 +215,7 @@ class NewChatInputFields extends StatelessWidget {
                             child: Row(
                               children: [
                                 Text(
-                                  "300 peeks",
+                                  l10n.chatTotalPeeks(300),
                                   style: GoogleFonts.fredoka(
                                     fontSize: 17,
                                     color: Colors.white,
@@ -226,7 +228,7 @@ class NewChatInputFields extends StatelessWidget {
                                   width: Get.width * 0.25,
                                   height: 35,
                                   child: Text(
-                                    "Send",
+                                    l10n.chatSend,
                                     style: GoogleFonts.fredoka(
                                       fontSize: 12,
                                       color: Colors.white,

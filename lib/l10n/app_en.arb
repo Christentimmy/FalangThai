@@ -11,6 +11,10 @@
     "facebook": "Facebook",
     "dontHaveAccount": "Don't have an account?",
     "signUp": "Sign Up",
+    "forgotPasswordDialogDescription": "Enter your email address and we'll send you an OTP to reset your password.",
+    "cancel": "Cancel",
+    "sendResetLink": "Send Reset Link",
+    "emailRequiredError": "Please enter your email address",
     "loading": "Loading...",
     "createAccountTitle": "Create Account",
     "createAccountSubtitle": "Join our community and start connecting",
@@ -237,5 +241,13 @@
     "swipeProfileReadMore": "Read more",
     "swipeProfileInterests": "Interests",
     "swipeProfilePreferences": "Preferences",
-    "swipeProfileChatCta": "Chat now"
+    "swipeProfileChatCta": "Chat now",
+
+    "chatStatusActiveNow": "Active now",
+    "chatStatusOffline": "Offline",
+    "chatNoMessages": "No Message",
+    "chatInputHint": "Type something...",
+    "chatPeeksLabel": "{count} peeks",
+    "chatTotalPeeks": "{count} peeks",
+    "chatSend": "Send"
 }

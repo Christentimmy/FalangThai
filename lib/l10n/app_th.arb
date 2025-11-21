@@ -11,6 +11,10 @@
   "facebook": "Facebook",
   "dontHaveAccount": "ยังไม่มีบัญชี?",
   "signUp": "สมัครสมาชิก",
+  "forgotPasswordDialogDescription": "กรุณากรอกอีเมลของคุณ แล้วเราจะส่งรหัส OTP เพื่อใช้รีเซ็ตรหัสผ่านให้คุณ",
+  "cancel": "ยกเลิก",
+  "sendResetLink": "ส่งลิงก์รีเซ็ตรหัสผ่าน",
+  "emailRequiredError": "กรุณากรอกที่อยู่อีเมลของคุณ",
   "loading": "กำลังโหลด...",
   "createAccountTitle": "สร้างบัญชี",
   "createAccountSubtitle": "เข้าร่วมชุมชนของเราและเริ่มเชื่อมต่อ",
@@ -221,5 +225,12 @@
   "swipeProfileReadMore": "อ่านต่อ",
   "swipeProfileInterests": "ความสนใจ",
   "swipeProfilePreferences": "การตั้งค่าคู่แมตช์",
-  "swipeProfileChatCta": "เริ่มแชทตอนนี้"
+  "swipeProfileChatCta": "เริ่มแชทตอนนี้",
+  "chatStatusActiveNow": "ออนไลน์อยู่",
+  "chatStatusOffline": "ออฟไลน์",
+  "chatNoMessages": "ยังไม่มีข้อความ",
+  "chatInputHint": "พิมพ์ข้อความ...",
+  "chatPeeksLabel": "{count} peeks",
+  "chatTotalPeeks": "{count} peeks",
+  "chatSend": "ส่ง"
 }

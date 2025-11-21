@@ -42,6 +42,19 @@ class AppLocalizationsFr extends AppLocalizations {
   String get signUp => 'Inscription';
 
   @override
+  String get forgotPasswordDialogDescription =>
+      'Saisissez votre adresse e-mail et nous vous enverrons un code OTP pour réinitialiser votre mot de passe.';
+
+  @override
+  String get cancel => 'Annuler';
+
+  @override
+  String get sendResetLink => 'Envoyer le lien de réinitialisation';
+
+  @override
+  String get emailRequiredError => 'Veuillez saisir votre adresse e-mail';
+
+  @override
   String get loading => 'Chargement...';
 
   @override
@@ -702,4 +715,29 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get swipeProfileChatCta => 'Discuter maintenant';
+
+  @override
+  String get chatStatusActiveNow => 'En ligne';
+
+  @override
+  String get chatStatusOffline => 'Hors ligne';
+
+  @override
+  String get chatNoMessages => 'Aucun message';
+
+  @override
+  String get chatInputHint => 'Écrivez quelque chose...';
+
+  @override
+  String chatPeeksLabel(Object count) {
+    return '$count peeks';
+  }
+
+  @override
+  String chatTotalPeeks(Object count) {
+    return '$count peeks';
+  }
+
+  @override
+  String get chatSend => 'Envoyer';
 }

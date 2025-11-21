@@ -11,6 +11,10 @@
   "facebook": "Facebook",
   "dontHaveAccount": "Vous n'avez pas de compte ?",
   "signUp": "Inscription",
+  "forgotPasswordDialogDescription": "Saisissez votre adresse e-mail et nous vous enverrons un code OTP pour réinitialiser votre mot de passe.",
+  "cancel": "Annuler",
+  "sendResetLink": "Envoyer le lien de réinitialisation",
+  "emailRequiredError": "Veuillez saisir votre adresse e-mail",
   "loading": "Chargement...",
   "createAccountTitle": "Créer un compte",
   "createAccountSubtitle": "Rejoignez notre communauté et commencez à vous connecter",
@@ -221,5 +225,12 @@
   "swipeProfileReadMore": "Lire plus",
   "swipeProfileInterests": "Centres d'intérêt",
   "swipeProfilePreferences": "Préférences",
-  "swipeProfileChatCta": "Discuter maintenant"
+  "swipeProfileChatCta": "Discuter maintenant",
+  "chatStatusActiveNow": "En ligne",
+  "chatStatusOffline": "Hors ligne",
+  "chatNoMessages": "Aucun message",
+  "chatInputHint": "Écrivez quelque chose...",
+  "chatPeeksLabel": "{count} peeks",
+  "chatTotalPeeks": "{count} peeks",
+  "chatSend": "Envoyer"
 }

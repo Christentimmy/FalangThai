@@ -328,17 +328,17 @@ class _SwipeProfileScreenState extends State<SwipeProfileScreen> {
       child: Column(
         children: [
           _buildPreferenceItem(
-            title: "Age Range",
+            title: l10n.profileAgeRange,
             value: userModel.value?.preferences?.ageRange?.join('-') ?? '',
             icon: Icons.cake_rounded,
           ),
           _buildPreferenceItem(
-            title: "Distance",
+            title: l10n.profileDistance,
             value: "${userModel.value?.preferences?.maxDistance?.toString()}Km",
             icon: Icons.location_on_rounded,
           ),
           _buildPreferenceItem(
-            title: "Looking for",
+            title: l10n.profileLookingFor,
             value: userModel.value?.interestedIn?.capitalizeFirst ?? '',
             icon: Icons.favorite_rounded,
           ),

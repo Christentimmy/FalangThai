@@ -166,6 +166,30 @@ abstract class AppLocalizations {
   /// **'Sign Up'**
   String get signUp;
 
+  /// No description provided for @forgotPasswordDialogDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email address and we\'ll send you an OTP to reset your password.'**
+  String get forgotPasswordDialogDescription;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @sendResetLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Send Reset Link'**
+  String get sendResetLink;
+
+  /// No description provided for @emailRequiredError.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your email address'**
+  String get emailRequiredError;
+
   /// No description provided for @loading.
   ///
   /// In en, this message translates to:
@@ -1425,6 +1449,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Chat now'**
   String get swipeProfileChatCta;
+
+  /// No description provided for @chatStatusActiveNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Active now'**
+  String get chatStatusActiveNow;
+
+  /// No description provided for @chatStatusOffline.
+  ///
+  /// In en, this message translates to:
+  /// **'Offline'**
+  String get chatStatusOffline;
+
+  /// No description provided for @chatNoMessages.
+  ///
+  /// In en, this message translates to:
+  /// **'No Message'**
+  String get chatNoMessages;
+
+  /// No description provided for @chatInputHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Type something...'**
+  String get chatInputHint;
+
+  /// No description provided for @chatPeeksLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} peeks'**
+  String chatPeeksLabel(Object count);
+
+  /// No description provided for @chatTotalPeeks.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} peeks'**
+  String chatTotalPeeks(Object count);
+
+  /// No description provided for @chatSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get chatSend;
 }
 
 class _AppLocalizationsDelegate

@@ -42,6 +42,19 @@ class AppLocalizationsTh extends AppLocalizations {
   String get signUp => 'สมัครสมาชิก';
 
   @override
+  String get forgotPasswordDialogDescription =>
+      'กรุณากรอกอีเมลของคุณ แล้วเราจะส่งรหัส OTP เพื่อใช้รีเซ็ตรหัสผ่านให้คุณ';
+
+  @override
+  String get cancel => 'ยกเลิก';
+
+  @override
+  String get sendResetLink => 'ส่งลิงก์รีเซ็ตรหัสผ่าน';
+
+  @override
+  String get emailRequiredError => 'กรุณากรอกที่อยู่อีเมลของคุณ';
+
+  @override
   String get loading => 'กำลังโหลด...';
 
   @override
@@ -690,4 +703,29 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get swipeProfileChatCta => 'เริ่มแชทตอนนี้';
+
+  @override
+  String get chatStatusActiveNow => 'ออนไลน์อยู่';
+
+  @override
+  String get chatStatusOffline => 'ออฟไลน์';
+
+  @override
+  String get chatNoMessages => 'ยังไม่มีข้อความ';
+
+  @override
+  String get chatInputHint => 'พิมพ์ข้อความ...';
+
+  @override
+  String chatPeeksLabel(Object count) {
+    return '$count peeks';
+  }
+
+  @override
+  String chatTotalPeeks(Object count) {
+    return '$count peeks';
+  }
+
+  @override
+  String get chatSend => 'ส่ง';
 }

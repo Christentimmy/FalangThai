@@ -9,9 +9,7 @@ import 'package:falangthai/app/modules/chat/widgets/sender_card.dart';
 // import 'package:falangthai/app/modules/chat/widgets/shimmer/chat_loader_shimmer.dart';
 import 'package:falangthai/app/modules/chat/widgets/textfield/chat_input_field_widget.dart';
 import 'package:falangthai/app/resources/colors.dart';
-import 'package:falangthai/app/routes/app_routes.dart';
-import 'package:falangthai/app/widgets/custom_button.dart';
-import 'package:falangthai/app/widgets/custom_textfield.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,16 +26,6 @@ class MessageScreen extends StatefulWidget {
 }
 
 class _MessageScreenState extends State<MessageScreen> {
-  final List giftList = [
-    "assets/images/1.png",
-    "assets/images/2.png",
-    "assets/images/3.png",
-    "assets/images/4.png",
-    "assets/images/5.png",
-    "assets/images/6.png",
-    "assets/images/7.png",
-    "assets/images/8.png",
-  ];
 
   late final ChatController _chatController;
 
@@ -163,122 +151,9 @@ class _MessageScreenState extends State<MessageScreen> {
     });
   }
 
-  Row buildTextField() {
-    return Row(
-      children: [
-        Expanded(
-          child: CustomTextField(
-            hintText: "Type something...",
-            suffixIcon: Icons.add,
-            prefixIcon: Icons.card_giftcard_rounded,
-            prefixIconColor: Colors.grey,
-            onPrefixTap: () {
-              Get.bottomSheet(
-                Container(
-                  height: Get.height * 0.35,
-                  width: Get.width,
-                  decoration: const BoxDecoration(
-                    color: Color(0xFF1F1B2E),
-                    borderRadius: BorderRadius.vertical(
-                      top: Radius.circular(25),
-                    ),
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const SizedBox(height: 12),
-                      Container(
-                        width: 40,
-                        height: 4,
-                        decoration: BoxDecoration(
-                          color: Colors.white.withValues(alpha: 0.3),
-                          borderRadius: BorderRadius.circular(2),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Expanded(
-                        child: GridView.builder(
-                          itemCount: giftList.length,
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 4,
-                              ),
-                          itemBuilder: (context, index) {
-                            return Column(
-                              children: [
-                                Image.asset(
-                                  giftList[index],
-                                  width: 50,
-                                  height: 50,
-                                ),
-                                // SizedBox(height: 5),
-                                Text(
-                                  "${index + 20} peeks",
-                                  style: GoogleFonts.fredoka(
-                                    fontSize: 12,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ],
-                            );
-                          },
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Row(
-                          children: [
-                            Text(
-                              "300 peeks",
-                              style: GoogleFonts.fredoka(
-                                fontSize: 17,
-                                color: Colors.white,
-                              ),
-                            ),
-                            const Spacer(),
-                            CustomButton(
-                              ontap: () {},
-                              isLoading: false.obs,
-                              width: Get.width * 0.25,
-                              height: 35,
-                              child: Text(
-                                "Send",
-                                style: GoogleFonts.fredoka(
-                                  fontSize: 12,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                    ],
-                  ),
-                ),
-                backgroundColor: Colors.transparent,
-              );
-            },
-            hintStyle: GoogleFonts.fredoka(fontSize: 14, color: Colors.grey),
-          ),
-        ),
-        SizedBox(width: 5),
-        CircleAvatar(
-          radius: 23,
-          backgroundColor: AppColors.primaryColor,
-          child: Transform.rotate(
-            angle: -0.4,
-            child: IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.send, color: Colors.black),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
 
   AppBar buildAppBar() {
+    final l10n = AppLocalizations.of(Get.context!)!;
     return AppBar(
       automaticallyImplyLeading: false,
       backgroundColor: Color(0xFF1A1625),
@@ -304,7 +179,9 @@ class _MessageScreenState extends State<MessageScreen> {
                     ),
                   ),
                   Text(
-                    widget.chatHead.online == true ? "Active now" : "Offline",
+                    widget.chatHead.online == true
+                        ? l10n.chatStatusActiveNow
+                        : l10n.chatStatusOffline,
                     style: GoogleFonts.figtree(
                       fontSize: 12,
                       fontWeight: FontWeight.w400,
@@ -320,18 +197,18 @@ class _MessageScreenState extends State<MessageScreen> {
         ],
       ),
       actions: [
-        IconButton(
-          onPressed: () => Get.toNamed(AppRoutes.videoCall),
-          icon: Icon(Icons.video_call, color: Colors.white),
-        ),
-        IconButton(
-          onPressed: () => Get.toNamed(AppRoutes.audioCall),
-          icon: Icon(Icons.call, color: Colors.white),
-        ),
-        IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.more_vert, color: Colors.white),
-        ),
+        // IconButton(
+        //   onPressed: () => Get.toNamed(AppRoutes.videoCall),
+        //   icon: Icon(Icons.video_call, color: Colors.white),
+        // ),
+        // IconButton(
+        //   onPressed: () => Get.toNamed(AppRoutes.audioCall),
+        //   icon: Icon(Icons.call, color: Colors.white),
+        // ),
+        // IconButton(
+        //   onPressed: () {},
+        //   icon: Icon(Icons.more_vert, color: Colors.white),
+        // ),
       ],
     );
   }
@@ -435,6 +312,7 @@ class _MessageScreenState extends State<MessageScreen> {
   }
 
   Widget _buildMessageList() {
+    final l10n = AppLocalizations.of(Get.context!)!;
     return Obx(() {
       final messageController = _chatController.messageController;
       final savedChatToAvoidLoading = messageController.savedChatToAvoidLoading;
@@ -462,7 +340,7 @@ class _MessageScreenState extends State<MessageScreen> {
       if (chatHistoryAndLiveMessage.isEmpty && oldChats.isEmpty) {
         return Center(
           child: Text(
-            "No Message",
+            l10n.chatNoMessages,
             style: GoogleFonts.figtree(
               fontSize: 16,
               fontWeight: FontWeight.w500,
