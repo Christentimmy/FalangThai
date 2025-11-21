@@ -909,6 +909,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Confirm'**
   String get withdrawConfirmButton;
+
+  /// No description provided for @paymentConfigured.
+  ///
+  /// In en, this message translates to:
+  /// **'Configured'**
+  String get paymentConfigured;
+
+  /// No description provided for @paymentNotConfigured.
+  ///
+  /// In en, this message translates to:
+  /// **'Not configured'**
+  String get paymentNotConfigured;
+
+  /// No description provided for @paymentStatusActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get paymentStatusActive;
+
+  /// No description provided for @paymentStatusSetup.
+  ///
+  /// In en, this message translates to:
+  /// **'Setup'**
+  String get paymentStatusSetup;
+
+  /// No description provided for @paymentDetailsAccountHolder.
+  ///
+  /// In en, this message translates to:
+  /// **'Account Holder'**
+  String get paymentDetailsAccountHolder;
+
+  /// No description provided for @paymentDetailsAccountNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Account Number'**
+  String get paymentDetailsAccountNumber;
+
+  /// No description provided for @paymentDetailsBankName.
+  ///
+  /// In en, this message translates to:
+  /// **'Bank Name'**
+  String get paymentDetailsBankName;
+
+  /// No description provided for @paymentDetailsEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get paymentDetailsEmail;
+
+  /// No description provided for @paymentEditDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Details'**
+  String get paymentEditDetails;
+
+  /// No description provided for @paymentAddMethod.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Method'**
+  String get paymentAddMethod;
 }
 
 class _AppLocalizationsDelegate

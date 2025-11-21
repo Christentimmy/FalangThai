@@ -432,4 +432,34 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get withdrawConfirmButton => 'Confirmer';
+
+  @override
+  String get paymentConfigured => 'Configuré';
+
+  @override
+  String get paymentNotConfigured => 'Non configuré';
+
+  @override
+  String get paymentStatusActive => 'Actif';
+
+  @override
+  String get paymentStatusSetup => 'Configurer';
+
+  @override
+  String get paymentDetailsAccountHolder => 'Titulaire du compte';
+
+  @override
+  String get paymentDetailsAccountNumber => 'Numéro de compte';
+
+  @override
+  String get paymentDetailsBankName => 'Nom de la banque';
+
+  @override
+  String get paymentDetailsEmail => 'E-mail';
+
+  @override
+  String get paymentEditDetails => 'Modifier les détails';
+
+  @override
+  String get paymentAddMethod => 'Ajouter une méthode';
 }

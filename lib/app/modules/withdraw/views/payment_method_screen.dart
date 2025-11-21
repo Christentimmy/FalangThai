@@ -1,6 +1,7 @@
 import 'package:falangthai/app/controller/user_controller.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,6 +10,7 @@ class PaymentMethodScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final userController = Get.find<UserController>();
     final userModel = userController.userModel;
 
@@ -30,15 +32,16 @@ class PaymentMethodScreen extends StatelessWidget {
                     .split(" ")
                     .first;
                 details = {
-                  'Account Holder': accounName,
-                  'Account Number':
+                  l10n.paymentDetailsAccountHolder: accounName,
+                  l10n.paymentDetailsAccountNumber:
                       paymentInfo.bankTransfer!.accountNumber ?? "",
-                  'Bank Name': paymentInfo.bankTransfer!.bankName ?? "",
+                  l10n.paymentDetailsBankName:
+                      paymentInfo.bankTransfer!.bankName ?? "",
                 };
               }
               return _PaymentMethodCard(
                 icon: Icons.account_balance,
-                title: 'Bank Transfer',
+                title: l10n.withdrawBankTransfer,
                 isConfigured: paymentInfo?.bankTransfer != null,
                 details: details,
                 onEdit: () => Get.toNamed(AppRoutes.editBankTransferScreen),
@@ -52,7 +55,7 @@ class PaymentMethodScreen extends StatelessWidget {
               dynamic details;
               if (paymentInfo?.paypal != null &&
                   paymentInfo!.paypal!.isNotEmpty) {
-                details = {'Email': paymentInfo.paypal!};
+                details = {l10n.paymentDetailsEmail: paymentInfo.paypal!};
               }
               return _PaymentMethodCard(
                 icon: Icons.payment,
@@ -91,6 +94,7 @@ class PaymentMethodScreen extends StatelessWidget {
   }
 
   AppBar buildAppBar() {
+    final l10n = AppLocalizations.of(Get.context!)!;
     return AppBar(
       backgroundColor: AppColors.backgroundColor,
       elevation: 0,
@@ -98,9 +102,9 @@ class PaymentMethodScreen extends StatelessWidget {
         icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
         onPressed: () => Get.back(),
       ),
-      title: const Text(
-        'Payment Methods',
-        style: TextStyle(color: AppColors.textPrimary),
+      title: Text(
+        l10n.walletPaymentMethods,
+        style: const TextStyle(color: AppColors.textPrimary),
       ),
     );
   }
@@ -123,6 +127,7 @@ class _PaymentMethodCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -157,7 +162,9 @@ class _PaymentMethodCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      isConfigured ? 'Configured' : 'Not configured',
+                      isConfigured
+                          ? l10n.paymentConfigured
+                          : l10n.paymentNotConfigured,
                       style: TextStyle(
                         color: isConfigured
                             ? Colors.green
@@ -180,7 +187,9 @@ class _PaymentMethodCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(
-                  isConfigured ? 'Active' : 'Setup',
+                  isConfigured
+                      ? l10n.paymentStatusActive
+                      : l10n.paymentStatusSetup,
                   style: TextStyle(
                     color: isConfigured ? Colors.green : AppColors.primaryColor,
                     fontSize: 12,
@@ -240,7 +249,9 @@ class _PaymentMethodCard extends StatelessWidget {
                 size: 18,
               ),
               label: Text(
-                isConfigured ? 'Edit Details' : 'Add Method',
+                isConfigured
+                    ? l10n.paymentEditDetails
+                    : l10n.paymentAddMethod,
                 style: const TextStyle(color: AppColors.primaryColor),
               ),
               style: OutlinedButton.styleFrom(

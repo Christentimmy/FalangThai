@@ -427,4 +427,34 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get withdrawConfirmButton => 'ยืนยัน';
+
+  @override
+  String get paymentConfigured => 'ตั้งค่าแล้ว';
+
+  @override
+  String get paymentNotConfigured => 'ยังไม่ได้ตั้งค่า';
+
+  @override
+  String get paymentStatusActive => 'ใช้งานอยู่';
+
+  @override
+  String get paymentStatusSetup => 'ตั้งค่า';
+
+  @override
+  String get paymentDetailsAccountHolder => 'ชื่อเจ้าของบัญชี';
+
+  @override
+  String get paymentDetailsAccountNumber => 'เลขที่บัญชี';
+
+  @override
+  String get paymentDetailsBankName => 'ชื่อธนาคาร';
+
+  @override
+  String get paymentDetailsEmail => 'อีเมล';
+
+  @override
+  String get paymentEditDetails => 'แก้ไขรายละเอียด';
+
+  @override
+  String get paymentAddMethod => 'เพิ่มวิธีชำระเงิน';
 }

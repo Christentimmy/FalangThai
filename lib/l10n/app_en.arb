@@ -141,5 +141,16 @@
     "withdrawConfirmTitle": "Confirm Withdrawal",
     "withdrawConfirmMessage": "Withdraw {amount} to your {method} account?",
     "withdrawCancel": "Cancel",
-    "withdrawConfirmButton": "Confirm"
+    "withdrawConfirmButton": "Confirm",
+
+    "paymentConfigured": "Configured",
+    "paymentNotConfigured": "Not configured",
+    "paymentStatusActive": "Active",
+    "paymentStatusSetup": "Setup",
+    "paymentDetailsAccountHolder": "Account Holder",
+    "paymentDetailsAccountNumber": "Account Number",
+    "paymentDetailsBankName": "Bank Name",
+    "paymentDetailsEmail": "Email",
+    "paymentEditDetails": "Edit Details",
+    "paymentAddMethod": "Add Method"
 }

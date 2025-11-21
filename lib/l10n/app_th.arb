@@ -135,5 +135,15 @@
   "withdrawConfirmTitle": "ยืนยันการถอนเงิน",
   "withdrawConfirmMessage": "ต้องการถอน {amount} ไปยังบัญชี {method} ของคุณหรือไม่?",
   "withdrawCancel": "ยกเลิก",
-  "withdrawConfirmButton": "ยืนยัน"
+  "withdrawConfirmButton": "ยืนยัน",
+  "paymentConfigured": "ตั้งค่าแล้ว",
+  "paymentNotConfigured": "ยังไม่ได้ตั้งค่า",
+  "paymentStatusActive": "ใช้งานอยู่",
+  "paymentStatusSetup": "ตั้งค่า",
+  "paymentDetailsAccountHolder": "ชื่อเจ้าของบัญชี",
+  "paymentDetailsAccountNumber": "เลขที่บัญชี",
+  "paymentDetailsBankName": "ชื่อธนาคาร",
+  "paymentDetailsEmail": "อีเมล",
+  "paymentEditDetails": "แก้ไขรายละเอียด",
+  "paymentAddMethod": "เพิ่มวิธีชำระเงิน"
 }

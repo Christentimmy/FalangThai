@@ -135,5 +135,15 @@
   "withdrawConfirmTitle": "Confirmer le retrait",
   "withdrawConfirmMessage": "Retirer {amount} vers votre compte {method} ?",
   "withdrawCancel": "Annuler",
-  "withdrawConfirmButton": "Confirmer"
+  "withdrawConfirmButton": "Confirmer",
+  "paymentConfigured": "Configuré",
+  "paymentNotConfigured": "Non configuré",
+  "paymentStatusActive": "Actif",
+  "paymentStatusSetup": "Configurer",
+  "paymentDetailsAccountHolder": "Titulaire du compte",
+  "paymentDetailsAccountNumber": "Numéro de compte",
+  "paymentDetailsBankName": "Nom de la banque",
+  "paymentDetailsEmail": "E-mail",
+  "paymentEditDetails": "Modifier les détails",
+  "paymentAddMethod": "Ajouter une méthode"
 }
