@@ -209,5 +209,17 @@
   "supportCreateButton": "Créer",
   "matchCongrats": "Félicitations\nVous avez un match !",
   "matchSendText": "Envoyer un message",
-  "matchKeepSwiping": "Continuer à swiper"
+  "matchKeepSwiping": "Continuer à swiper",
+  "swipeProfileNoData": "Aucune donnée trouvée",
+  "swipeProfileBasicInfo": "Informations de base",
+  "swipeProfileNameLabel": "Nom",
+  "swipeProfileAgeLabel": "Âge",
+  "swipeProfileGenderLabel": "Genre",
+  "swipeProfileLocationLabel": "Lieu",
+  "swipeProfileBioLabel": "Bio",
+  "swipeProfileShowLess": "Afficher moins",
+  "swipeProfileReadMore": "Lire plus",
+  "swipeProfileInterests": "Centres d'intérêt",
+  "swipeProfilePreferences": "Préférences",
+  "swipeProfileChatCta": "Discuter maintenant"
 }

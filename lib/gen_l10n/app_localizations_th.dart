@@ -654,4 +654,40 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get matchKeepSwiping => 'ปัดต่อไป';
+
+  @override
+  String get swipeProfileNoData => 'ไม่พบข้อมูล';
+
+  @override
+  String get swipeProfileBasicInfo => 'ข้อมูลพื้นฐาน';
+
+  @override
+  String get swipeProfileNameLabel => 'ชื่อ';
+
+  @override
+  String get swipeProfileAgeLabel => 'อายุ';
+
+  @override
+  String get swipeProfileGenderLabel => 'เพศ';
+
+  @override
+  String get swipeProfileLocationLabel => 'สถานที่';
+
+  @override
+  String get swipeProfileBioLabel => 'แนะนำตัว';
+
+  @override
+  String get swipeProfileShowLess => 'แสดงน้อยลง';
+
+  @override
+  String get swipeProfileReadMore => 'อ่านต่อ';
+
+  @override
+  String get swipeProfileInterests => 'ความสนใจ';
+
+  @override
+  String get swipeProfilePreferences => 'การตั้งค่าคู่แมตช์';
+
+  @override
+  String get swipeProfileChatCta => 'เริ่มแชทตอนนี้';
 }

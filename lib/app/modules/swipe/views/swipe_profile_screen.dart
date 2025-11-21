@@ -6,6 +6,7 @@ import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:falangthai/app/utils/age_calculator.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -43,6 +44,7 @@ class _SwipeProfileScreenState extends State<SwipeProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Color(0xFF1A1625),
       body: Container(
@@ -53,18 +55,18 @@ class _SwipeProfileScreenState extends State<SwipeProfileScreen> {
             return buildLoader();
           }
           if (!isloading.value && userModel.value == null) {
-            return buildNoData();
+            return buildNoData(l10n);
           }
-          return buildContent();
+          return buildContent(l10n);
         }),
       ),
     );
   }
 
-  Center buildNoData() {
+  Center buildNoData(AppLocalizations l10n) {
     return Center(
       child: Text(
-        "No data found",
+        l10n.swipeProfileNoData,
         style: GoogleFonts.figtree(
           fontSize: 22,
           fontWeight: FontWeight.w600,
@@ -80,13 +82,13 @@ class _SwipeProfileScreenState extends State<SwipeProfileScreen> {
     );
   }
 
-  SafeArea buildContent() {
+  SafeArea buildContent(AppLocalizations l10n) {
     return SafeArea(
-      child: Stack(children: [buildGallerySection(), buildUserDetails()]),
+      child: Stack(children: [buildGallerySection(), buildUserDetails(l10n)]),
     );
   }
 
-  Align buildUserDetails() {
+  Align buildUserDetails(AppLocalizations l10n) {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
@@ -97,11 +99,11 @@ class _SwipeProfileScreenState extends State<SwipeProfileScreen> {
         child: ListView(
           shrinkWrap: true,
           children: [
-            _buildBasicInfoSection(),
+            _buildBasicInfoSection(l10n),
             const SizedBox(height: 20),
-            _buildInterestsSection(),
+            _buildInterestsSection(l10n),
             const SizedBox(height: 25),
-            _buildPreferencesSection(),
+            _buildPreferencesSection(l10n),
             const SizedBox(height: 25),
           ],
         ),
@@ -161,7 +163,21 @@ class _SwipeProfileScreenState extends State<SwipeProfileScreen> {
               child: CircleAvatar(
                 radius: 25,
                 backgroundColor: Color(0xFFD586D3),
-                child: Icon(Icons.chat_bubble, color: Colors.white, size: 25),
+                child: IconButton(
+                  icon: Icon(Icons.chat_bubble, color: Colors.white, size: 25),
+                  onPressed: () {
+                    final chatHead = ChatListModel(
+                      userId: userModel.value?.id,
+                      fullName: userModel.value?.fullName,
+                      avatar: userModel.value?.avatar,
+                      online: false,
+                    );
+                    Get.toNamed(
+                      AppRoutes.message,
+                      arguments: {"chatHead": chatHead},
+                    );
+                  },
+                ),
               ),
             ),
           ),
@@ -183,15 +199,15 @@ class _SwipeProfileScreenState extends State<SwipeProfileScreen> {
     );
   }
 
-  Widget _buildBasicInfoSection() {
+  Widget _buildBasicInfoSection(AppLocalizations l10n) {
     return _buildSection(
-      title: "Basic Info",
+      title: l10n.swipeProfileBasicInfo,
       icon: Icons.person_4_rounded,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Name",
+            l10n.swipeProfileNameLabel,
             style: GoogleFonts.fredoka(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -207,7 +223,7 @@ class _SwipeProfileScreenState extends State<SwipeProfileScreen> {
             ),
           ),
           Text(
-            "Age",
+            l10n.swipeProfileAgeLabel,
             style: GoogleFonts.fredoka(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -223,7 +239,7 @@ class _SwipeProfileScreenState extends State<SwipeProfileScreen> {
             ),
           ),
           Text(
-            "Gender",
+            l10n.swipeProfileGenderLabel,
             style: GoogleFonts.fredoka(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -239,7 +255,7 @@ class _SwipeProfileScreenState extends State<SwipeProfileScreen> {
             ),
           ),
           Text(
-            "Location",
+            l10n.swipeProfileLocationLabel,
             style: GoogleFonts.fredoka(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -256,7 +272,7 @@ class _SwipeProfileScreenState extends State<SwipeProfileScreen> {
           ),
 
           Text(
-            "Bio",
+            l10n.swipeProfileBioLabel,
             style: GoogleFonts.fredoka(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -284,30 +300,30 @@ class _SwipeProfileScreenState extends State<SwipeProfileScreen> {
               ),
             );
           }),
-          InkWell(
-            onTap: () {
+          TextButton(
+            onPressed: () {
               isBioExpanded.value = !isBioExpanded.value;
             },
-            child: Obx(() {
-              return Text(
-                isBioExpanded.value ? "Show Less" : "Show More",
-                style: GoogleFonts.fredoka(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
-                  fontStyle: FontStyle.italic,
-                  color: AppColors.primaryColor,
-                ),
-              );
-            }),
+            child: Text(
+              isBioExpanded.value
+                  ? l10n.swipeProfileShowLess
+                  : l10n.swipeProfileReadMore,
+              style: GoogleFonts.fredoka(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                fontStyle: FontStyle.italic,
+                color: AppColors.primaryColor,
+              ),
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildPreferencesSection() {
+  Widget _buildPreferencesSection(AppLocalizations l10n) {
     return _buildSection(
-      title: "Preferences",
+      title: l10n.swipeProfilePreferences,
       icon: Icons.tune_rounded,
       child: Column(
         children: [
@@ -373,9 +389,9 @@ class _SwipeProfileScreenState extends State<SwipeProfileScreen> {
     );
   }
 
-  Widget _buildInterestsSection() {
+  Widget _buildInterestsSection(AppLocalizations l10n) {
     return _buildSection(
-      title: "Interests",
+      title: l10n.swipeProfileInterests,
       icon: Icons.interests_rounded,
       child: Obx(
         () => Wrap(
@@ -432,6 +448,61 @@ class _SwipeProfileScreenState extends State<SwipeProfileScreen> {
   }
 
   Widget _buildInterestChip(String interest) {
+    final text = AppLocalizations.of(Get.context!)!;
+    String label;
+    switch (interest) {
+      case 'reading':
+        label = text.reading;
+        break;
+      case 'music':
+        label = text.music;
+        break;
+      case 'cooking':
+        label = text.cooking;
+        break;
+      case 'travel':
+        label = text.travel;
+        break;
+      case 'photography':
+        label = text.photography;
+        break;
+      case 'sports':
+        label = text.sports;
+        break;
+      case 'gaming':
+        label = text.gaming;
+        break;
+      case 'art':
+        label = text.art;
+        break;
+      case 'fitness':
+        label = text.fitness;
+        break;
+      case 'movies':
+        label = text.movies;
+        break;
+      case 'dancing':
+        label = text.dancing;
+        break;
+      case 'gardening':
+        label = text.gardening;
+        break;
+      case 'writing':
+        label = text.writing;
+        break;
+      case 'tech':
+        label = text.tech;
+        break;
+      case 'fashion':
+        label = text.fashion;
+        break;
+      case 'volunteering':
+        label = text.volunteering;
+        break;
+      default:
+        label = interest.capitalizeFirst ?? "";
+    }
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
@@ -443,7 +514,7 @@ class _SwipeProfileScreenState extends State<SwipeProfileScreen> {
         ),
       ),
       child: Text(
-        interest,
+        label,
         style: GoogleFonts.fredoka(
           fontSize: 14,
           color: Colors.white,

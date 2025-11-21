@@ -666,4 +666,40 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get matchKeepSwiping => 'Continuer à swiper';
+
+  @override
+  String get swipeProfileNoData => 'Aucune donnée trouvée';
+
+  @override
+  String get swipeProfileBasicInfo => 'Informations de base';
+
+  @override
+  String get swipeProfileNameLabel => 'Nom';
+
+  @override
+  String get swipeProfileAgeLabel => 'Âge';
+
+  @override
+  String get swipeProfileGenderLabel => 'Genre';
+
+  @override
+  String get swipeProfileLocationLabel => 'Lieu';
+
+  @override
+  String get swipeProfileBioLabel => 'Bio';
+
+  @override
+  String get swipeProfileShowLess => 'Afficher moins';
+
+  @override
+  String get swipeProfileReadMore => 'Lire plus';
+
+  @override
+  String get swipeProfileInterests => 'Centres d\'intérêt';
+
+  @override
+  String get swipeProfilePreferences => 'Préférences';
+
+  @override
+  String get swipeProfileChatCta => 'Discuter maintenant';
 }

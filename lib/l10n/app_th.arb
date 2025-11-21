@@ -209,5 +209,17 @@
   "supportCreateButton": "สร้างคำขอ",
   "matchCongrats": "ยินดีด้วย\nคุณได้แมตช์แล้ว!",
   "matchSendText": "ส่งข้อความ",
-  "matchKeepSwiping": "ปัดต่อไป"
+  "matchKeepSwiping": "ปัดต่อไป",
+  "swipeProfileNoData": "ไม่พบข้อมูล",
+  "swipeProfileBasicInfo": "ข้อมูลพื้นฐาน",
+  "swipeProfileNameLabel": "ชื่อ",
+  "swipeProfileAgeLabel": "อายุ",
+  "swipeProfileGenderLabel": "เพศ",
+  "swipeProfileLocationLabel": "สถานที่",
+  "swipeProfileBioLabel": "แนะนำตัว",
+  "swipeProfileShowLess": "แสดงน้อยลง",
+  "swipeProfileReadMore": "อ่านต่อ",
+  "swipeProfileInterests": "ความสนใจ",
+  "swipeProfilePreferences": "การตั้งค่าคู่แมตช์",
+  "swipeProfileChatCta": "เริ่มแชทตอนนี้"
 }

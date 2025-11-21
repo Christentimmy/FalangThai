@@ -1353,6 +1353,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Keep swiping'**
   String get matchKeepSwiping;
+
+  /// No description provided for @swipeProfileNoData.
+  ///
+  /// In en, this message translates to:
+  /// **'No data found'**
+  String get swipeProfileNoData;
+
+  /// No description provided for @swipeProfileBasicInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Basic Info'**
+  String get swipeProfileBasicInfo;
+
+  /// No description provided for @swipeProfileNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get swipeProfileNameLabel;
+
+  /// No description provided for @swipeProfileAgeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Age'**
+  String get swipeProfileAgeLabel;
+
+  /// No description provided for @swipeProfileGenderLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender'**
+  String get swipeProfileGenderLabel;
+
+  /// No description provided for @swipeProfileLocationLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get swipeProfileLocationLabel;
+
+  /// No description provided for @swipeProfileBioLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Bio'**
+  String get swipeProfileBioLabel;
+
+  /// No description provided for @swipeProfileShowLess.
+  ///
+  /// In en, this message translates to:
+  /// **'Show less'**
+  String get swipeProfileShowLess;
+
+  /// No description provided for @swipeProfileReadMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Read more'**
+  String get swipeProfileReadMore;
+
+  /// No description provided for @swipeProfileInterests.
+  ///
+  /// In en, this message translates to:
+  /// **'Interests'**
+  String get swipeProfileInterests;
+
+  /// No description provided for @swipeProfilePreferences.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferences'**
+  String get swipeProfilePreferences;
+
+  /// No description provided for @swipeProfileChatCta.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat now'**
+  String get swipeProfileChatCta;
 }
 
 class _AppLocalizationsDelegate

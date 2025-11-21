@@ -224,5 +224,18 @@
 
     "matchCongrats": "Congratulations\nYou have a match!",
     "matchSendText": "Send a text",
-    "matchKeepSwiping": "Keep swiping"
+    "matchKeepSwiping": "Keep swiping",
+
+    "swipeProfileNoData": "No data found",
+    "swipeProfileBasicInfo": "Basic Info",
+    "swipeProfileNameLabel": "Name",
+    "swipeProfileAgeLabel": "Age",
+    "swipeProfileGenderLabel": "Gender",
+    "swipeProfileLocationLabel": "Location",
+    "swipeProfileBioLabel": "Bio",
+    "swipeProfileShowLess": "Show less",
+    "swipeProfileReadMore": "Read more",
+    "swipeProfileInterests": "Interests",
+    "swipeProfilePreferences": "Preferences",
+    "swipeProfileChatCta": "Chat now"
 }
