@@ -79,5 +79,6 @@
   "prefEveryone": "Tout le monde",
   "noMatchesFound": "Aucune correspondance trouvée",
   "noUsersFound": "Aucun utilisateur trouvé",
-  "likesTitle": "Mentions J'aime"
+  "likesTitle": "Mentions J'aime",
+  "matchesTitle": "Correspondances"
 }

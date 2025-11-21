@@ -573,6 +573,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Likes'**
   String get likesTitle;
+
+  /// No description provided for @matchesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Matches'**
+  String get matchesTitle;
 }
 
 class _AppLocalizationsDelegate

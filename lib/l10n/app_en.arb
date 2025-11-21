@@ -82,5 +82,6 @@
     "prefEveryone": "Everyone",
     "noMatchesFound": "No matches found",
     "noUsersFound": "No users found",
-    "likesTitle": "Likes"
+    "likesTitle": "Likes",
+    "matchesTitle": "Matches"
 }

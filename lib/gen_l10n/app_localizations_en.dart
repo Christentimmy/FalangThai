@@ -256,4 +256,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get likesTitle => 'Likes';
+
+  @override
+  String get matchesTitle => 'Matches';
 }

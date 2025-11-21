@@ -257,4 +257,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get likesTitle => 'Mentions J\'aime';
+
+  @override
+  String get matchesTitle => 'Correspondances';
 }

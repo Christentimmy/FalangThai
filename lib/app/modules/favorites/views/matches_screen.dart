@@ -6,6 +6,7 @@ import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:falangthai/app/utils/age_calculator.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -54,7 +55,7 @@ class _MatchesScreenState extends State<MatchesScreen> {
             if (userController.matchesList.isEmpty) {
               return Center(
                 child: Text(
-                  "No users found",
+                  AppLocalizations.of(context)!.noUsersFound,
                   style: GoogleFonts.figtree(
                     fontSize: 22,
                     color: AppColors.primaryColor,
@@ -192,7 +193,7 @@ class _MatchesScreenState extends State<MatchesScreen> {
       automaticallyImplyLeading: false,
       backgroundColor: Color(0xFF1A1625),
       title: Text(
-        "Matches",
+        AppLocalizations.of(context)!.matchesTitle,
         style: GoogleFonts.fredoka(
           fontSize: 22,
           color: AppColors.primaryColor,

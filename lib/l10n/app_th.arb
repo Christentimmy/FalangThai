@@ -79,5 +79,6 @@
   "prefEveryone": "ทุกคน",
   "noMatchesFound": "ไม่พบคู่ที่ตรงกัน",
   "noUsersFound": "ไม่พบผู้ใช้",
-  "likesTitle": "รายการถูกใจ"
+  "likesTitle": "รายการถูกใจ",
+  "matchesTitle": "คู่ที่ตรงกัน"
 }

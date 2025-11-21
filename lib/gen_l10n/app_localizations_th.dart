@@ -256,4 +256,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get likesTitle => 'รายการถูกใจ';
+
+  @override
+  String get matchesTitle => 'คู่ที่ตรงกัน';
 }
