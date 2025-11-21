@@ -160,5 +160,11 @@
     "bankTransferAccountNumberHint": "Enter account number",
     "bankTransferBankNameLabel": "Bank Name",
     "bankTransferBankNameHint": "Enter bank name",
-    "bankTransferSaveChanges": "Save Changes"
+    "bankTransferSaveChanges": "Save Changes",
+
+    "paypalAccountTitle": "PayPal Account",
+    "paypalEmailLabel": "PayPal Email",
+    "paypalEmailHint": "Enter PayPal email address",
+    "paypalInfoVerified": "Make sure this email is verified with your PayPal account",
+    "paypalSaveChanges": "Save Changes"
 }

@@ -1011,6 +1011,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Save Changes'**
   String get bankTransferSaveChanges;
+
+  /// No description provided for @paypalAccountTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'PayPal Account'**
+  String get paypalAccountTitle;
+
+  /// No description provided for @paypalEmailLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'PayPal Email'**
+  String get paypalEmailLabel;
+
+  /// No description provided for @paypalEmailHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter PayPal email address'**
+  String get paypalEmailHint;
+
+  /// No description provided for @paypalInfoVerified.
+  ///
+  /// In en, this message translates to:
+  /// **'Make sure this email is verified with your PayPal account'**
+  String get paypalInfoVerified;
+
+  /// No description provided for @paypalSaveChanges.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Changes'**
+  String get paypalSaveChanges;
 }
 
 class _AppLocalizationsDelegate

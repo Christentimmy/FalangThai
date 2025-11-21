@@ -480,4 +480,20 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get bankTransferSaveChanges => 'Save Changes';
+
+  @override
+  String get paypalAccountTitle => 'PayPal Account';
+
+  @override
+  String get paypalEmailLabel => 'PayPal Email';
+
+  @override
+  String get paypalEmailHint => 'Enter PayPal email address';
+
+  @override
+  String get paypalInfoVerified =>
+      'Make sure this email is verified with your PayPal account';
+
+  @override
+  String get paypalSaveChanges => 'Save Changes';
 }

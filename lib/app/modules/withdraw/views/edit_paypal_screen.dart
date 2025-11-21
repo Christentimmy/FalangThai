@@ -2,6 +2,7 @@ import 'package:falangthai/app/controller/wallet_controller.dart';
 import 'package:falangthai/app/modules/withdraw/widgets/input_field_widget.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,6 +22,7 @@ class _EditPayPalScreenState extends State<EditPayPalScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: buildAppBar(),
@@ -33,8 +35,8 @@ class _EditPayPalScreenState extends State<EditPayPalScreen> {
               key: formkey,
               child: InputField(
                 controller: _emailController,
-                label: 'PayPal Email',
-                hint: 'Enter PayPal email address',
+                label: l10n.paypalEmailLabel,
+                hint: l10n.paypalEmailHint,
                 icon: Icons.email,
                 keyboardType: TextInputType.emailAddress,
               ),
@@ -59,7 +61,7 @@ class _EditPayPalScreenState extends State<EditPayPalScreen> {
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
-                      'Make sure this email is verified with your PayPal account',
+                      l10n.paypalInfoVerified,
                       style: TextStyle(
                         color: AppColors.textSecondary,
                         fontSize: 12,
@@ -77,6 +79,7 @@ class _EditPayPalScreenState extends State<EditPayPalScreen> {
   }
 
   SafeArea buildContinueButton() {
+    final l10n = AppLocalizations.of(Get.context!)!;
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(20),
@@ -90,7 +93,7 @@ class _EditPayPalScreenState extends State<EditPayPalScreen> {
           },
           isLoading: walletController.isloading,
           child: Text(
-            'Save Changes',
+            l10n.paypalSaveChanges,
             style: GoogleFonts.fredoka(
               color: Colors.black,
               fontSize: 16,
@@ -103,6 +106,7 @@ class _EditPayPalScreenState extends State<EditPayPalScreen> {
   }
 
   AppBar buildAppBar() {
+    final l10n = AppLocalizations.of(Get.context!)!;
     return AppBar(
       backgroundColor: AppColors.backgroundColor,
       elevation: 0,
@@ -110,9 +114,9 @@ class _EditPayPalScreenState extends State<EditPayPalScreen> {
         icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
         onPressed: () => Get.back(),
       ),
-      title: const Text(
-        'PayPal Account',
-        style: TextStyle(color: AppColors.textPrimary),
+      title: Text(
+        l10n.paypalAccountTitle,
+        style: const TextStyle(color: AppColors.textPrimary),
       ),
     );
   }

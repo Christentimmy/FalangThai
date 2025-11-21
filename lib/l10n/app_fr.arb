@@ -152,5 +152,10 @@
   "bankTransferAccountNumberHint": "Entrez le numéro de compte",
   "bankTransferBankNameLabel": "Nom de la banque",
   "bankTransferBankNameHint": "Entrez le nom de la banque",
-  "bankTransferSaveChanges": "Enregistrer les modifications"
+  "bankTransferSaveChanges": "Enregistrer les modifications",
+  "paypalAccountTitle": "Compte PayPal",
+  "paypalEmailLabel": "E-mail PayPal",
+  "paypalEmailHint": "Entrez l'adresse e-mail PayPal",
+  "paypalInfoVerified": "Assurez-vous que cet e-mail est vérifié sur votre compte PayPal",
+  "paypalSaveChanges": "Enregistrer les modifications"
 }
