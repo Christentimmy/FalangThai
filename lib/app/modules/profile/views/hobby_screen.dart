@@ -1,6 +1,7 @@
 import 'package:falangthai/app/modules/profile/controllers/hobby_controller.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -347,7 +348,7 @@ class HobbiesSelectionScreen extends StatelessWidget {
 
   Widget _buildTitle() {
     return Text(
-      "What are your hobbies?",
+      AppLocalizations.of(Get.context!)!.whatAreYourHobbies,
       style: GoogleFonts.fredoka(
         fontSize: 28,
         color: Colors.white,
@@ -359,7 +360,7 @@ class HobbiesSelectionScreen extends StatelessWidget {
 
   Widget _buildSubtitle() {
     return Text(
-      "Help others discover what makes you unique!\nSelect activities you love and enjoy",
+      AppLocalizations.of(Get.context!)!.hobbiesSubtitle,
       style: GoogleFonts.fredoka(
         fontSize: 15,
         color: Colors.white.withOpacity(0.7),
@@ -384,7 +385,9 @@ class HobbiesSelectionScreen extends StatelessWidget {
           ),
         ),
         child: Text(
-          hobbiesController.selectionText,
+          AppLocalizations.of(Get.context!)!.hobbiesSelectionCounter(
+            hobbiesController.selectedHobbies.length,
+          ),
           style: GoogleFonts.fredoka(
             fontSize: 13,
             color: AppColors.primaryColor,
@@ -402,7 +405,7 @@ class HobbiesSelectionScreen extends StatelessWidget {
         childAspectRatio: 2.8,
         crossAxisSpacing: 12,
       ),
-      initialItemCount: hobbiesController.availableHobbies.length,
+      initialItemCount: hobbiesController.getAvailableList().length,
       itemBuilder: (context, index, animation) {
         return SlideTransition(
           position: animation.drive(
@@ -411,7 +414,8 @@ class HobbiesSelectionScreen extends StatelessWidget {
           child: FadeTransition(
             opacity: animation,
             child: _buildHobbyCard(
-              hobby: hobbiesController.availableHobbies[index],
+              // hobby: hobbiesController.availableHobbies[index],
+              hobby: hobbiesController.getAvailableList()[index],
               index: index,
             ),
           ),
@@ -481,7 +485,7 @@ class HobbiesSelectionScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Continue",
+                AppLocalizations.of(Get.context!)!.continueText,
                 style: GoogleFonts.fredoka(
                   fontSize: 18,
                   color: Colors.white,

@@ -3,6 +3,7 @@ import 'package:falangthai/app/modules/profile/widgets/profile_upload_widget.dar
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
 import 'package:falangthai/app/widgets/custom_textfield.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,6 +18,7 @@ class ProfileUploadScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final text = AppLocalizations.of(context)!;
     return Scaffold(
       body: Container(
         decoration: profileUploadWidget.buildBackgroundDecoration(),
@@ -24,7 +26,7 @@ class ProfileUploadScreen extends StatelessWidget {
           child: Stack(
             children: [
               profileUploadWidget.buildAnimatedBackground(),
-              _buildContent(),
+              _buildContent(text),
               profileUploadWidget.buildHeader(),
             ],
           ),
@@ -33,7 +35,7 @@ class ProfileUploadScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildContent() {
+  Widget _buildContent(AppLocalizations text) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: ListView(
@@ -41,9 +43,9 @@ class ProfileUploadScreen extends StatelessWidget {
           SizedBox(height: Get.height * 0.12),
           profileUploadWidget.buildProgressIndicator(),
           const SizedBox(height: 40),
-          _buildTitle(),
+          _buildTitle(text),
           const SizedBox(height: 12),
-          _buildSubtitle(),
+          _buildSubtitle(text),
           const SizedBox(height: 60),
           _buildProfileUploadSection(),
           const SizedBox(height: 10),
@@ -54,9 +56,9 @@ class ProfileUploadScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTitle() {
+  Widget _buildTitle(AppLocalizations text) {
     return Text(
-      "Add your photo",
+      text.addYourPhotoTitle,
       style: GoogleFonts.fredoka(
         fontSize: 32,
         color: Colors.white,
@@ -66,9 +68,9 @@ class ProfileUploadScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSubtitle() {
+  Widget _buildSubtitle(AppLocalizations text) {
     return Text(
-      "Show the world your beautiful smile!\nThis helps others recognize you",
+      text.addYourPhotoSubtitle,
       style: GoogleFonts.fredoka(
         fontSize: 16,
         color: Colors.white.withOpacity(0.7),
@@ -80,6 +82,7 @@ class ProfileUploadScreen extends StatelessWidget {
   }
 
   Widget _buildProfileUploadSection() {
+    final text = AppLocalizations.of(Get.context!)!;
     return Obx(() {
       return Column(
         children: [
@@ -153,7 +156,7 @@ class ProfileUploadScreen extends StatelessWidget {
               readOnly: true,
               hintText: dateOfBirth != null
                   ? DateFormat('dd MMM yyyy').format(dateOfBirth)
-                  : "Date of birth",
+                  : text.dateOfBirthPlaceholder,
               hintStyle: GoogleFonts.fredoka(
                 color: Colors.white.withValues(alpha: 0.5),
                 fontSize: 16,
@@ -168,7 +171,7 @@ class ProfileUploadScreen extends StatelessWidget {
             bgColor: Colors.white.withValues(alpha: 0.05),
             prefixIcon: Icons.person,
             prefixIconColor: AppColors.primaryColor,
-            hintText: "Bio",
+            hintText: text.bioPlaceholder,
             hintStyle: GoogleFonts.fredoka(
               color: Colors.white.withValues(alpha: 0.5),
               fontSize: 16,
@@ -248,7 +251,7 @@ class ProfileUploadScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Continue",
+               AppLocalizations.of(Get.context!)!.continueText,
                 style: GoogleFonts.fredoka(
                   fontSize: 18,
                   color: Colors.white,

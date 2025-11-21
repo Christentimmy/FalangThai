@@ -120,4 +120,132 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get preferNotToSay => 'Préfère ne pas le dire';
+
+  @override
+  String get locationRequestTitle => 'Demande de localisation';
+
+  @override
+  String get locationRequestBody =>
+      'Pour vous aider à trouver des rencontres pertinentes à proximité, nous avons besoin d\'accéder à votre localisation. Notre algorithme de rencontre utilise votre position pour :\n\n• Vous montrer des profils potentiels dans votre zone\n• Calculer la distance exacte entre vous et les autres utilisateurs\n• Proposer de meilleures suggestions en fonction de la proximité\n• Activer les fonctionnalités et événements basés sur la localisation\n\nVos données de localisation restent toujours privées et protégées.';
+
+  @override
+  String get allowLocation => 'Autoriser la localisation';
+
+  @override
+  String get addYourPhotoTitle => 'Ajoutez votre photo';
+
+  @override
+  String get addYourPhotoSubtitle =>
+      'Montrez votre plus beau sourire au monde !\nCela aide les autres à vous reconnaître';
+
+  @override
+  String get dateOfBirthPlaceholder => 'Date de naissance';
+
+  @override
+  String get bioPlaceholder => 'Bio';
+
+  @override
+  String get whatAreYourHobbies => 'Quels sont vos loisirs ?';
+
+  @override
+  String get hobbiesSubtitle =>
+      'Aidez les autres à découvrir ce qui vous rend unique !\nSélectionnez les activités que vous aimez';
+
+  @override
+  String hobbiesSelectionCounter(Object count) {
+    return '$count loisirs sélectionnés';
+  }
+
+  @override
+  String get reading => 'Lecture';
+
+  @override
+  String get music => 'Musique';
+
+  @override
+  String get cooking => 'Cuisine';
+
+  @override
+  String get travel => 'Voyage';
+
+  @override
+  String get photography => 'Photographie';
+
+  @override
+  String get sports => 'Sports';
+
+  @override
+  String get gaming => 'Jeux vidéo';
+
+  @override
+  String get art => 'Art';
+
+  @override
+  String get fitness => 'Fitness';
+
+  @override
+  String get movies => 'Films';
+
+  @override
+  String get dancing => 'Danse';
+
+  @override
+  String get gardening => 'Jardinage';
+
+  @override
+  String get writing => 'Écriture';
+
+  @override
+  String get tech => 'Technologie';
+
+  @override
+  String get fashion => 'Mode';
+
+  @override
+  String get volunteering => 'Bénévolat';
+
+  @override
+  String get selectAtLeast3Hobbies => 'Sélectionnez au moins 3 loisirs';
+
+  @override
+  String selectMoreHobbies(Object count) {
+    return 'Sélectionnez encore $count loisirs';
+  }
+
+  @override
+  String hobbiesSelected(Object count) {
+    return '$count/8 loisirs sélectionnés';
+  }
+
+  @override
+  String get maximumSelection => 'Sélection maximale';
+
+  @override
+  String get youCanSelectUpTo8HobbiesOnly =>
+      'Vous pouvez sélectionner jusqu\'à 8 loisirs seulement';
+
+  @override
+  String get editHobbies => 'Modifier les loisirs';
+
+  @override
+  String get relationshipTitle => 'Qui vous intéresse ?';
+
+  @override
+  String get relationshipSubtitle =>
+      'Sélectionnez les préférences qui s\'appliquent pour nous aider\nà trouver vos correspondances idéales';
+
+  @override
+  String get prefMen => 'Hommes';
+
+  @override
+  String get prefWomen => 'Femmes';
+
+  @override
+  String get prefNonBinary => 'Non-binaire';
+
+  @override
+  String get prefTransgender => 'Transgenre';
+
+  @override
+  String get prefEveryone => 'Tout le monde';
 }

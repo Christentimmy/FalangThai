@@ -44,7 +44,7 @@ class _MainAppState extends State<MainApp> {
       defaultTransition: Transition.fadeIn,
       initialBinding: AppBindings(),
       locale: Locale("fr"),
-      fallbackLocale: Locale("fr"),
+      fallbackLocale: Locale("en"),
       localizationsDelegates: [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

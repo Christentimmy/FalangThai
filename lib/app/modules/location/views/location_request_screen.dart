@@ -2,6 +2,7 @@ import 'package:falangthai/app/controller/location_controller.dart';
 import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,6 +15,7 @@ class LocationRequestScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final text = AppLocalizations.of(context)!;
     return Scaffold(
       body: Container(
         width: Get.width,
@@ -23,7 +25,7 @@ class LocationRequestScreen extends StatelessWidget {
           children: [
             SizedBox(height: Get.height * 0.02),
             Text(
-              "Location Request",
+              text.locationRequestTitle,
               style: GoogleFonts.fredoka(
                 fontSize: 24,
                 color: AppColors.primaryColor,
@@ -32,13 +34,7 @@ class LocationRequestScreen extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Text(
-              'To help you find meaningful connections nearby, we need access to your location. Our dating algorithm uses your location to:\n\n' 
-              '• Show you potential matches in your area\n'
-              '• Calculate accurate distance between you and other users\n'
-              '• Provide better match suggestions based on proximity\n'
-              '• Enable location-based features and events\n\n'
-              'Your location data is always kept private and encoded.',
-
+              text.locationRequestBody,
               style: GoogleFonts.fredoka(
                 fontSize: 14,
                 color: Colors.white,
@@ -53,7 +49,7 @@ class LocationRequestScreen extends StatelessWidget {
               },
               isLoading: locationController.isloading,
               child: Text(
-                "Allow Location",
+                text.allowLocation,
                 style: GoogleFonts.fredoka(
                   fontSize: 16,
                   color: Colors.white,

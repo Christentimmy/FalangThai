@@ -321,6 +321,240 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Prefer not to say'**
   String get preferNotToSay;
+
+  /// No description provided for @locationRequestTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Location Request'**
+  String get locationRequestTitle;
+
+  /// No description provided for @locationRequestBody.
+  ///
+  /// In en, this message translates to:
+  /// **'To help you find meaningful connections nearby, we need access to your location. Our dating algorithm uses your location to:\n\n• Show you potential matches in your area\n• Calculate accurate distance between you and other users\n• Provide better match suggestions based on proximity\n• Enable location-based features and events\n\nYour location data is always kept private and encoded.'**
+  String get locationRequestBody;
+
+  /// No description provided for @allowLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow Location'**
+  String get allowLocation;
+
+  /// No description provided for @addYourPhotoTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your photo'**
+  String get addYourPhotoTitle;
+
+  /// No description provided for @addYourPhotoSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Show the world your beautiful smile!\nThis helps others recognize you'**
+  String get addYourPhotoSubtitle;
+
+  /// No description provided for @dateOfBirthPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Date of birth'**
+  String get dateOfBirthPlaceholder;
+
+  /// No description provided for @bioPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Bio'**
+  String get bioPlaceholder;
+
+  /// No description provided for @whatAreYourHobbies.
+  ///
+  /// In en, this message translates to:
+  /// **'What are your hobbies?'**
+  String get whatAreYourHobbies;
+
+  /// No description provided for @hobbiesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Help others discover what makes you unique!\nSelect activities you love and enjoy'**
+  String get hobbiesSubtitle;
+
+  /// No description provided for @hobbiesSelectionCounter.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} hobbies selected'**
+  String hobbiesSelectionCounter(Object count);
+
+  /// No description provided for @reading.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading'**
+  String get reading;
+
+  /// No description provided for @music.
+  ///
+  /// In en, this message translates to:
+  /// **'Music'**
+  String get music;
+
+  /// No description provided for @cooking.
+  ///
+  /// In en, this message translates to:
+  /// **'Cooking'**
+  String get cooking;
+
+  /// No description provided for @travel.
+  ///
+  /// In en, this message translates to:
+  /// **'Travel'**
+  String get travel;
+
+  /// No description provided for @photography.
+  ///
+  /// In en, this message translates to:
+  /// **'Photography'**
+  String get photography;
+
+  /// No description provided for @sports.
+  ///
+  /// In en, this message translates to:
+  /// **'Sports'**
+  String get sports;
+
+  /// No description provided for @gaming.
+  ///
+  /// In en, this message translates to:
+  /// **'Gaming'**
+  String get gaming;
+
+  /// No description provided for @art.
+  ///
+  /// In en, this message translates to:
+  /// **'Art'**
+  String get art;
+
+  /// No description provided for @fitness.
+  ///
+  /// In en, this message translates to:
+  /// **'Fitness'**
+  String get fitness;
+
+  /// No description provided for @movies.
+  ///
+  /// In en, this message translates to:
+  /// **'Movies'**
+  String get movies;
+
+  /// No description provided for @dancing.
+  ///
+  /// In en, this message translates to:
+  /// **'Dancing'**
+  String get dancing;
+
+  /// No description provided for @gardening.
+  ///
+  /// In en, this message translates to:
+  /// **'Gardening'**
+  String get gardening;
+
+  /// No description provided for @writing.
+  ///
+  /// In en, this message translates to:
+  /// **'Writing'**
+  String get writing;
+
+  /// No description provided for @tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Technology'**
+  String get tech;
+
+  /// No description provided for @fashion.
+  ///
+  /// In en, this message translates to:
+  /// **'Fashion'**
+  String get fashion;
+
+  /// No description provided for @volunteering.
+  ///
+  /// In en, this message translates to:
+  /// **'Volunteering'**
+  String get volunteering;
+
+  /// No description provided for @selectAtLeast3Hobbies.
+  ///
+  /// In en, this message translates to:
+  /// **'Select at least 3 hobbies'**
+  String get selectAtLeast3Hobbies;
+
+  /// No description provided for @selectMoreHobbies.
+  ///
+  /// In en, this message translates to:
+  /// **'Select {count} more hobbies'**
+  String selectMoreHobbies(Object count);
+
+  /// No description provided for @hobbiesSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}/8 hobbies selected'**
+  String hobbiesSelected(Object count);
+
+  /// No description provided for @maximumSelection.
+  ///
+  /// In en, this message translates to:
+  /// **'Maximum Selection'**
+  String get maximumSelection;
+
+  /// No description provided for @youCanSelectUpTo8HobbiesOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'You can select up to 8 hobbies only'**
+  String get youCanSelectUpTo8HobbiesOnly;
+
+  /// No description provided for @editHobbies.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Hobbies'**
+  String get editHobbies;
+
+  /// No description provided for @relationshipTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Who interests you?'**
+  String get relationshipTitle;
+
+  /// No description provided for @relationshipSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Select preferences that apply to help us\nfind your perfect matches'**
+  String get relationshipSubtitle;
+
+  /// No description provided for @prefMen.
+  ///
+  /// In en, this message translates to:
+  /// **'Men'**
+  String get prefMen;
+
+  /// No description provided for @prefWomen.
+  ///
+  /// In en, this message translates to:
+  /// **'Women'**
+  String get prefWomen;
+
+  /// No description provided for @prefNonBinary.
+  ///
+  /// In en, this message translates to:
+  /// **'Non-binary'**
+  String get prefNonBinary;
+
+  /// No description provided for @prefTransgender.
+  ///
+  /// In en, this message translates to:
+  /// **'Transgender'**
+  String get prefTransgender;
+
+  /// No description provided for @prefEveryone.
+  ///
+  /// In en, this message translates to:
+  /// **'Everyone'**
+  String get prefEveryone;
 }
 
 class _AppLocalizationsDelegate

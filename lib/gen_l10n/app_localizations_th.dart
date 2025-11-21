@@ -119,4 +119,132 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get preferNotToSay => 'ไม่ต้องการระบุ';
+
+  @override
+  String get locationRequestTitle => 'คำขอใช้ตำแหน่งที่ตั้ง';
+
+  @override
+  String get locationRequestBody =>
+      'เพื่อช่วยให้คุณพบคนรู้จักใกล้ตัวได้ดีขึ้น เราจำเป็นต้องเข้าถึงตำแหน่งที่ตั้งของคุณ อัลกอริทึมจับคู่ของเราใช้ตำแหน่งของคุณเพื่อ:\n\n• แสดงโปรไฟล์ที่อยู่ในบริเวณใกล้เคียง\n• คำนวณระยะห่างที่แม่นยำระหว่างคุณกับผู้ใช้คนอื่น\n• แนะนำคู่ที่เหมาะสมยิ่งขึ้นตามระยะทาง\n• เปิดใช้ฟีเจอร์และกิจกรรมต่าง ๆ ตามตำแหน่งที่ตั้ง\n\nข้อมูลตำแหน่งของคุณจะถูกเก็บเป็นความลับและเข้ารหัสเสมอ.';
+
+  @override
+  String get allowLocation => 'อนุญาตตำแหน่งที่ตั้ง';
+
+  @override
+  String get addYourPhotoTitle => 'เพิ่มรูปภาพของคุณ';
+
+  @override
+  String get addYourPhotoSubtitle =>
+      'แสดงรอยยิ้มที่สวยงามของคุณให้ทุกคนได้เห็น!\nสิ่งนี้ช่วยให้ผู้อื่นจดจำคุณได้';
+
+  @override
+  String get dateOfBirthPlaceholder => 'วันเดือนปีเกิด';
+
+  @override
+  String get bioPlaceholder => 'แนะนำตัว';
+
+  @override
+  String get whatAreYourHobbies => 'งานอดิเรกของคุณคืออะไร?';
+
+  @override
+  String get hobbiesSubtitle =>
+      'ช่วยให้คนอื่นรู้จักตัวตนของคุณมากขึ้น!\nเลือกกิจกรรมที่คุณชอบและสนุกกับมัน';
+
+  @override
+  String hobbiesSelectionCounter(Object count) {
+    return 'เลือกแล้ว $count งานอดิเรก';
+  }
+
+  @override
+  String get reading => 'การอ่านหนังสือ';
+
+  @override
+  String get music => 'ดนตรี';
+
+  @override
+  String get cooking => 'ทำอาหาร';
+
+  @override
+  String get travel => 'ท่องเที่ยว';
+
+  @override
+  String get photography => 'ถ่ายภาพ';
+
+  @override
+  String get sports => 'กีฬา';
+
+  @override
+  String get gaming => 'เล่นเกม';
+
+  @override
+  String get art => 'ศิลปะ';
+
+  @override
+  String get fitness => 'ออกกำลังกาย';
+
+  @override
+  String get movies => 'ดูหนัง';
+
+  @override
+  String get dancing => 'เต้น';
+
+  @override
+  String get gardening => 'จัดสวน';
+
+  @override
+  String get writing => 'การเขียน';
+
+  @override
+  String get tech => 'เทคโนโลยี';
+
+  @override
+  String get fashion => 'แฟชั่น';
+
+  @override
+  String get volunteering => 'อาสาสมัคร';
+
+  @override
+  String get selectAtLeast3Hobbies => 'โปรดเลือกงานอดิเรกอย่างน้อย 3 อย่าง';
+
+  @override
+  String selectMoreHobbies(Object count) {
+    return 'เลือกเพิ่มอีก $count งานอดิเรก';
+  }
+
+  @override
+  String hobbiesSelected(Object count) {
+    return 'เลือกแล้ว $count/8 งานอดิเรก';
+  }
+
+  @override
+  String get maximumSelection => 'จำนวนสูงสุด';
+
+  @override
+  String get youCanSelectUpTo8HobbiesOnly =>
+      'คุณสามารถเลือกงานอดิเรกได้สูงสุด 8 อย่างเท่านั้น';
+
+  @override
+  String get editHobbies => 'แก้ไขงานอดิเรก';
+
+  @override
+  String get relationshipTitle => 'คุณสนใจใคร?';
+
+  @override
+  String get relationshipSubtitle =>
+      'เลือกตัวเลือกที่ตรงกับคุณเพื่อช่วยให้เราค้นหาคู่ที่ใช่ให้คุณ';
+
+  @override
+  String get prefMen => 'ผู้ชาย';
+
+  @override
+  String get prefWomen => 'ผู้หญิง';
+
+  @override
+  String get prefNonBinary => 'นอนไบนารี';
+
+  @override
+  String get prefTransgender => 'ทรานส์เจนเดอร์';
+
+  @override
+  String get prefEveryone => 'ทุกคน';
 }

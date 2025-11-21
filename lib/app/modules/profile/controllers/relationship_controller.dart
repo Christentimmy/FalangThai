@@ -1,4 +1,5 @@
 import 'package:falangthai/app/controller/user_controller.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -28,25 +29,36 @@ class RelationshipPreferenceController extends GetxController
   // Observable States
   final RxString selectedPreference = ''.obs;
 
-  final List<PreferenceItem> genderPreferences = [
-    PreferenceItem(id: 'men', title: 'Men', icon: Icons.male_rounded),
-    PreferenceItem(id: 'women', title: 'Women', icon: Icons.female_rounded),
-    PreferenceItem(
-      id: 'non-binary',
-      title: 'Non-binary',
-      icon: Icons.transgender_rounded,
-    ),
-    PreferenceItem(
-      id: 'transgender',
-      title: 'Transgender',
-      icon: Icons.wc_rounded,
-    ),
-    PreferenceItem(
-      id: 'everyone',
-      title: 'Everyone',
-      icon: Icons.favorite_rounded,
-    ),
-  ];
+  List<PreferenceItem> get genderPreferences {
+    final text = AppLocalizations.of(Get.context!);
+    return [
+      PreferenceItem(
+        id: 'men',
+        title: text!.prefMen,
+        icon: Icons.male_rounded,
+      ),
+      PreferenceItem(
+        id: 'women',
+        title: text.prefWomen,
+        icon: Icons.female_rounded,
+      ),
+      PreferenceItem(
+        id: 'non-binary',
+        title: text.prefNonBinary,
+        icon: Icons.transgender_rounded,
+      ),
+      PreferenceItem(
+        id: 'transgender',
+        title: text.prefTransgender,
+        icon: Icons.wc_rounded,
+      ),
+      PreferenceItem(
+        id: 'everyone',
+        title: text.prefEveryone,
+        icon: Icons.favorite_rounded,
+      ),
+    ];
+  }
 
   @override
   void onInit() {

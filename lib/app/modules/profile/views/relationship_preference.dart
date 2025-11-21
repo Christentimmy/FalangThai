@@ -1,6 +1,7 @@
 import 'package:falangthai/app/modules/profile/controllers/relationship_controller.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -287,6 +288,7 @@ class RelationshipPreferenceScreen extends StatelessWidget {
   }
 
   Widget _buildContent() {
+    final text = AppLocalizations.of(Get.context!)!;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
@@ -294,9 +296,9 @@ class RelationshipPreferenceScreen extends StatelessWidget {
           SizedBox(height: Get.height * 0.12),
           _buildProgressIndicator(),
           const SizedBox(height: 30),
-          _buildTitle(),
+          _buildTitle(text),
           const SizedBox(height: 8),
-          _buildSubtitle(),
+          _buildSubtitle(text),
           const SizedBox(height: 40),
           // Expanded(child: _buildCurrentStep()),
           Expanded(child: _buildGenderPreferenceSelection()),
@@ -358,9 +360,9 @@ class RelationshipPreferenceScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTitle() {
+  Widget _buildTitle(AppLocalizations text) {
     return Text(
-      "Who interests you?",
+      text.relationshipTitle,
       style: GoogleFonts.fredoka(
         fontSize: 28,
         color: Colors.white,
@@ -370,9 +372,9 @@ class RelationshipPreferenceScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSubtitle() {
+  Widget _buildSubtitle(AppLocalizations text) {
     return Text(
-      "Select preference that apply to help us\nfind your perfect matches",
+      text.relationshipSubtitle,
       style: GoogleFonts.fredoka(
         fontSize: 15,
         color: Colors.white.withOpacity(0.7),
@@ -462,7 +464,7 @@ class RelationshipPreferenceScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Continue",
+                AppLocalizations.of(Get.context!)!.continueText,
                 style: GoogleFonts.fredoka(
                   fontSize: 18,
                   color: Colors.white,

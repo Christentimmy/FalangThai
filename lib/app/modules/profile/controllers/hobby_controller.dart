@@ -1,4 +1,5 @@
 import 'package:falangthai/app/controller/user_controller.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -33,105 +34,108 @@ class HobbiesSelectionController extends GetxController
   final RxBool isloading = false.obs;
   final RxInt animationDelay = 0.obs;
 
-  // Available hobbies with beautiful colors
-  final List<HobbyItem> availableHobbies = [
-    HobbyItem(
-      id: 'reading',
-      name: 'Reading',
-      icon: Icons.menu_book_rounded,
-      color: const Color(0xFF6366F1),
-    ),
-    HobbyItem(
-      id: 'music',
-      name: 'Music',
-      icon: Icons.music_note_rounded,
-      color: const Color(0xFFEC4899),
-    ),
-    HobbyItem(
-      id: 'cooking',
-      name: 'Cooking',
-      icon: Icons.restaurant_rounded,
-      color: const Color(0xFFF59E0B),
-    ),
-    HobbyItem(
-      id: 'travel',
-      name: 'Travel',
-      icon: Icons.flight_rounded,
-      color: const Color(0xFF10B981),
-    ),
-    HobbyItem(
-      id: 'photography',
-      name: 'Photography',
-      icon: Icons.camera_alt_rounded,
-      color: const Color(0xFF8B5CF6),
-    ),
-    HobbyItem(
-      id: 'sports',
-      name: 'Sports',
-      icon: Icons.sports_soccer_rounded,
-      color: const Color(0xFFEF4444),
-    ),
-    HobbyItem(
-      id: 'gaming',
-      name: 'Gaming',
-      icon: Icons.sports_esports_rounded,
-      color: const Color(0xFF06B6D4),
-    ),
-    HobbyItem(
-      id: 'art',
-      name: 'Art',
-      icon: Icons.palette_rounded,
-      color: const Color(0xFFF97316),
-    ),
-    HobbyItem(
-      id: 'fitness',
-      name: 'Fitness',
-      icon: Icons.fitness_center_rounded,
-      color: const Color(0xFF84CC16),
-    ),
-    HobbyItem(
-      id: 'movies',
-      name: 'Movies',
-      icon: Icons.movie_rounded,
-      color: const Color(0xFF3B82F6),
-    ),
-    HobbyItem(
-      id: 'dancing',
-      name: 'Dancing',
-      icon: Icons.music_video_rounded,
-      color: const Color(0xFFE11D48),
-    ),
-    HobbyItem(
-      id: 'gardening',
-      name: 'Gardening',
-      icon: Icons.local_florist_rounded,
-      color: const Color(0xFF059669),
-    ),
-    HobbyItem(
-      id: 'writing',
-      name: 'Writing',
-      icon: Icons.edit_rounded,
-      color: const Color(0xFF7C3AED),
-    ),
-    HobbyItem(
-      id: 'tech',
-      name: 'Technology',
-      icon: Icons.computer_rounded,
-      color: const Color(0xFF0891B2),
-    ),
-    HobbyItem(
-      id: 'fashion',
-      name: 'Fashion',
-      icon: Icons.checkroom_rounded,
-      color: const Color(0xFFDB2777),
-    ),
-    HobbyItem(
-      id: 'volunteering',
-      name: 'Volunteering',
-      icon: Icons.volunteer_activism_rounded,
-      color: const Color(0xFF16A34A),
-    ),
-  ];
+
+  List<HobbyItem> getAvailableList() {
+    final text = AppLocalizations.of(Get.context!);
+    return [
+      HobbyItem(
+        id: 'reading',
+        name: text!.reading,
+        icon: Icons.menu_book_rounded,
+        color: const Color(0xFF6366F1),
+      ),
+      HobbyItem(
+        id: 'music',
+        name: text.music,
+        icon: Icons.music_note_rounded,
+        color: const Color(0xFFEC4899),
+      ),
+      HobbyItem(
+        id: 'cooking',
+        name: text.cooking,
+        icon: Icons.restaurant_rounded,
+        color: const Color(0xFFF59E0B),
+      ),
+      HobbyItem(
+        id: 'travel',
+        name: text.travel,
+        icon: Icons.flight_rounded,
+        color: const Color(0xFF10B981),
+      ),
+      HobbyItem(
+        id: 'photography',
+        name: text.photography,
+        icon: Icons.camera_alt_rounded,
+        color: const Color(0xFF8B5CF6),
+      ),
+      HobbyItem(
+        id: 'sports',
+        name: text.sports,
+        icon: Icons.sports_soccer_rounded,
+        color: const Color(0xFFEF4444),
+      ),
+      HobbyItem(
+        id: 'gaming',
+        name: text.gaming,
+        icon: Icons.sports_esports_rounded,
+        color: const Color(0xFF06B6D4),
+      ),
+      HobbyItem(
+        id: 'art',
+        name: text.art,
+        icon: Icons.palette_rounded,
+        color: const Color(0xFFF97316),
+      ),
+      HobbyItem(
+        id: 'fitness',
+        name: text.fitness,
+        icon: Icons.fitness_center_rounded,
+        color: const Color(0xFF84CC16),
+      ),
+      HobbyItem(
+        id: 'movies',
+        name: text.movies,
+        icon: Icons.movie_rounded,
+        color: const Color(0xFF3B82F6),
+      ),
+      HobbyItem(
+        id: 'dancing',
+        name: text.dancing,
+        icon: Icons.music_video_rounded,
+        color: const Color(0xFFE11D48),
+      ),
+      HobbyItem(
+        id: 'gardening',
+        name: text.gardening,
+        icon: Icons.local_florist_rounded,
+        color: const Color(0xFF059669),
+      ),
+      HobbyItem(
+        id: 'writing',
+        name: text.writing,
+        icon: Icons.edit_rounded,
+        color: const Color(0xFF7C3AED),
+      ),
+      HobbyItem(
+        id: 'tech',
+        name: text.tech,
+        icon: Icons.computer_rounded,
+        color: const Color(0xFF0891B2),
+      ),
+      HobbyItem(
+        id: 'fashion',
+        name: text.fashion,
+        icon: Icons.checkroom_rounded,
+        color: const Color(0xFFDB2777),
+      ),
+      HobbyItem(
+        id: 'volunteering',
+        name: text.volunteering,
+        icon: Icons.volunteer_activism_rounded,
+        color: const Color(0xFF16A34A),
+      ),
+    ];
+  }
 
   @override
   void onInit() {
@@ -196,9 +200,10 @@ class HobbiesSelectionController extends GetxController
 
   void _showMaxSelectionSnackbar() {
     HapticFeedback.mediumImpact();
+    final text = AppLocalizations.of(Get.context!);
     Get.snackbar(
-      "Maximum Selection",
-      "You can select up to 8 hobbies only",
+      text!.maximumSelection,
+      text.youCanSelectUpTo8HobbiesOnly,
       backgroundColor: const Color(0xFF6366F1).withOpacity(0.9),
       colorText: Colors.white,
       snackPosition: SnackPosition.TOP,
@@ -222,10 +227,11 @@ class HobbiesSelectionController extends GetxController
   bool get canContinue => selectedHobbies.length >= 3;
 
   String get selectionText {
+    final text = AppLocalizations.of(Get.context!);
     final count = selectedHobbies.length;
-    if (count == 0) return "Select at least 3 hobbies";
-    if (count < 3) return "Select ${3 - count} more hobbies";
-    return "$count/8 hobbies selected";
+    if (count == 0) return text!.selectAtLeast3Hobbies;
+    if (count < 3) return text!.selectMoreHobbies(3 - count);
+    return text!.hobbiesSelected(count);
   }
 
   Future<void> updateHobbies({VoidCallback? nextScreen}) async {
