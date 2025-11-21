@@ -269,4 +269,46 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get chatsTitle => 'Chats';
+
+  @override
+  String get settingsTitle => 'Settings';
+
+  @override
+  String get settingsSectionGeneral => 'General';
+
+  @override
+  String get settingsEditProfile => 'Edit Profile';
+
+  @override
+  String get settingsWallet => 'Wallet';
+
+  @override
+  String get settingsLanguage => 'Language';
+
+  @override
+  String get settingsInvite => 'Invite';
+
+  @override
+  String get settingsSecurity => 'Security';
+
+  @override
+  String get settingsSectionSupport => 'Support';
+
+  @override
+  String get settingsSubscription => 'Subscription';
+
+  @override
+  String get settingsPrivacy => 'Privacy';
+
+  @override
+  String get settingsTermsAndConditions => 'Terms & Conditions';
+
+  @override
+  String get settingsSectionAccount => 'Account';
+
+  @override
+  String get settingsReportProblem => 'Report a problem';
+
+  @override
+  String get settingsLogout => 'Logout';
 }

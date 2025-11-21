@@ -83,5 +83,19 @@
   "matchesTitle": "คู่ที่ตรงกัน",
   "noConversationsYet": "ยังไม่มีการสนทนา",
   "startChattingWithYourMatches": "เริ่มแชทกับคู่แมตช์ของคุณได้เลย!",
-  "chatsTitle": "แชท"
+  "chatsTitle": "แชท",
+  "settingsTitle": "การตั้งค่า",
+  "settingsSectionGeneral": "ทั่วไป",
+  "settingsEditProfile": "แก้ไขโปรไฟล์",
+  "settingsWallet": "กระเป๋าเงิน",
+  "settingsLanguage": "ภาษา",
+  "settingsInvite": "เชิญเพื่อน",
+  "settingsSecurity": "ความปลอดภัย",
+  "settingsSectionSupport": "การช่วยเหลือ",
+  "settingsSubscription": "การสมัครสมาชิก",
+  "settingsPrivacy": "ความเป็นส่วนตัว",
+  "settingsTermsAndConditions": "เงื่อนไขและข้อตกลง",
+  "settingsSectionAccount": "บัญชี",
+  "settingsReportProblem": "รายงานปัญหา",
+  "settingsLogout": "ออกจากระบบ"
 }

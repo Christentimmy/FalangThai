@@ -83,5 +83,19 @@
   "matchesTitle": "Correspondances",
   "noConversationsYet": "Aucune conversation pour le moment",
   "startChattingWithYourMatches": "Commencez à discuter avec vos correspondances !",
-  "chatsTitle": "Discussions"
+  "chatsTitle": "Discussions",
+  "settingsTitle": "Paramètres",
+  "settingsSectionGeneral": "Général",
+  "settingsEditProfile": "Modifier le profil",
+  "settingsWallet": "Portefeuille",
+  "settingsLanguage": "Langue",
+  "settingsInvite": "Inviter",
+  "settingsSecurity": "Sécurité",
+  "settingsSectionSupport": "Assistance",
+  "settingsSubscription": "Abonnement",
+  "settingsPrivacy": "Confidentialité",
+  "settingsTermsAndConditions": "Conditions générales",
+  "settingsSectionAccount": "Compte",
+  "settingsReportProblem": "Signaler un problème",
+  "settingsLogout": "Se déconnecter"
 }

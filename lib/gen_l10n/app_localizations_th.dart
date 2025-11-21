@@ -268,4 +268,46 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get chatsTitle => 'แชท';
+
+  @override
+  String get settingsTitle => 'การตั้งค่า';
+
+  @override
+  String get settingsSectionGeneral => 'ทั่วไป';
+
+  @override
+  String get settingsEditProfile => 'แก้ไขโปรไฟล์';
+
+  @override
+  String get settingsWallet => 'กระเป๋าเงิน';
+
+  @override
+  String get settingsLanguage => 'ภาษา';
+
+  @override
+  String get settingsInvite => 'เชิญเพื่อน';
+
+  @override
+  String get settingsSecurity => 'ความปลอดภัย';
+
+  @override
+  String get settingsSectionSupport => 'การช่วยเหลือ';
+
+  @override
+  String get settingsSubscription => 'การสมัครสมาชิก';
+
+  @override
+  String get settingsPrivacy => 'ความเป็นส่วนตัว';
+
+  @override
+  String get settingsTermsAndConditions => 'เงื่อนไขและข้อตกลง';
+
+  @override
+  String get settingsSectionAccount => 'บัญชี';
+
+  @override
+  String get settingsReportProblem => 'รายงานปัญหา';
+
+  @override
+  String get settingsLogout => 'ออกจากระบบ';
 }

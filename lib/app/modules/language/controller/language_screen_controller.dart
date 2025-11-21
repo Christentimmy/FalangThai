@@ -2,36 +2,23 @@ import 'package:falangthai/app/controller/language_controller.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 
-class LanguageScreenController extends GetxController with GetSingleTickerProviderStateMixin {
+class LanguageScreenController extends GetxController
+    with GetSingleTickerProviderStateMixin {
   late AnimationController animationController;
   late Animation<double> floatAnimation;
-  
+
   final RxString selectedLanguage = ''.obs;
   final RxBool isLoading = false.obs;
-  
+
   final List<Map<String, String>> languages = [
-    {
-      'code': 'en',
-      'name': 'English',
-      'nativeName': 'English',
-      'flag': '🇺🇸',
-    },
-    {
-      'code': 'th',
-      'name': 'Thai',
-      'nativeName': 'ภาษาไทย',
-      'flag': '🇹🇭',
-    },
-    {
-      'code': 'fr',
-      'name': 'French',
-      'nativeName': 'Français',
-      'flag': '🇫🇷',
-    },
+    {'code': 'en', 'name': 'English', 'nativeName': 'English', 'flag': '🇺🇸'},
+    {'code': 'th', 'name': 'Thai', 'nativeName': 'ภาษาไทย', 'flag': '🇹🇭'},
+    {'code': 'fr', 'name': 'French', 'nativeName': 'Français', 'flag': '🇫🇷'},
   ];
-  
+
   final List<String> backgroundImages = [
     'assets/images/pic1.jpeg',
     'assets/images/pic2.jpg',
@@ -67,26 +54,25 @@ class LanguageScreenController extends GetxController with GetSingleTickerProvid
       duration: const Duration(seconds: 3),
       vsync: this,
     );
-    
-    floatAnimation = Tween<double>(
-      begin: -1.0,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: animationController,
-      curve: Curves.easeInOut,
-    ));
-    
+
+    floatAnimation = Tween<double>(begin: -1.0, end: 1.0).animate(
+      CurvedAnimation(parent: animationController, curve: Curves.easeInOut),
+    );
+
     animationController.repeat(reverse: true);
   }
 
-  void _detectSystemLanguage() {
-    // Auto-select based on system locale
-    final systemLocale = Get.deviceLocale?.languageCode ?? 'en';
-    final supportedLanguage = languages.firstWhere(
-      (lang) => lang['code'] == systemLocale,
-      orElse: () => languages.first,
-    );
-    selectedLanguage.value = supportedLanguage['code']!;
+  void _detectSystemLanguage() async {
+    final FlutterSecureStorage secureStorage = const FlutterSecureStorage();
+    final String? value = await secureStorage.read(key: "language");
+    if (value == null) return;
+    selectedLanguage.value = value;
+    // final systemLocale = Get.deviceLocale?.languageCode ?? 'en';
+    // final supportedLanguage = languages.firstWhere(
+    //   (lang) => lang['code'] == systemLocale,
+    //   orElse: () => languages.first,
+    // );
+    // selectedLanguage.value = supportedLanguage['code']!;
   }
 
   void selectLanguage(String languageCode) {
@@ -109,7 +95,7 @@ class LanguageScreenController extends GetxController with GetSingleTickerProvid
     // Save to SharedPreferences or local database
     // final prefs = await SharedPreferences.getInstance();
     // await prefs.setString('selected_language', selectedLanguage.value);
-    
+
     // For now, just simulate the save operation
     await Future.delayed(const Duration(milliseconds: 500));
   }
@@ -118,7 +104,7 @@ class LanguageScreenController extends GetxController with GetSingleTickerProvid
     final selectedLang = languages.firstWhere(
       (lang) => lang['code'] == selectedLanguage.value,
     );
-    
+
     // Update GetX locale
     final locale = Locale(selectedLang['code']!);
     await Get.updateLocale(locale);

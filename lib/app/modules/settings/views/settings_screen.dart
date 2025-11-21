@@ -2,6 +2,7 @@ import 'package:falangthai/app/controller/auth_controller.dart';
 import 'package:falangthai/app/modules/auth/widgets/auth_widgets.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -12,42 +13,31 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final text = AppLocalizations.of(context)!;
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Settings",
-          style: GoogleFonts.fredoka(
-            fontSize: 28,
-            fontWeight: FontWeight.w800,
-            color: AppColors.primaryColor,
-          ),
-        ),
-        automaticallyImplyLeading: false,
-        backgroundColor: Color(0xFF1A1625),
-        centerTitle: true,
-      ),
+      appBar: buildAppBar(),
       body: SafeArea(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
           decoration: AuthWidgets().buildBackgroundDecoration(),
           child: ListView(
             children: [
-              buildTitle(icon: Icons.person, title: "General"),
+              buildTitle(icon: Icons.person, title: text.settingsSectionGeneral),
 
               buildText(
-                title: "Edit Profile",
+                title: text.settingsEditProfile,
                 icon: Icons.person,
                 onTap: () => Get.toNamed(AppRoutes.profile),
               ),
 
               buildText(
-                title: "Wallet",
+                title: text.settingsWallet,
                 icon: Icons.wallet,
                 onTap: () => Get.toNamed(AppRoutes.walletScreen),
               ),
 
               buildText(
-                title: "Language",
+                title: text.settingsLanguage,
                 icon: FontAwesomeIcons.language,
                 onTap: () => Get.toNamed(
                   AppRoutes.language,
@@ -56,7 +46,7 @@ class SettingsScreen extends StatelessWidget {
               ),
 
               buildText(
-                title: "Invite",
+                title: text.settingsInvite,
                 icon: FontAwesomeIcons.usersRays,
                 onTap: () => Get.toNamed(AppRoutes.inviteStat),
               ),
@@ -67,37 +57,37 @@ class SettingsScreen extends StatelessWidget {
               //   onTap: () => Get.toNamed(AppRoutes.notification),
               // ),
               buildText(
-                title: "Security",
+                title: text.settingsSecurity,
                 icon: Icons.security,
                 onTap: () => Get.toNamed(AppRoutes.changePasswordScreen),
               ),
               SizedBox(height: 20),
-              buildTitle(title: "Support", icon: Icons.support),
+              buildTitle(title: text.settingsSectionSupport, icon: Icons.support),
               buildText(
-                title: "Subscription",
+                title: text.settingsSubscription,
                 icon: Icons.subscript,
                 onTap: () => Get.toNamed(AppRoutes.subscription),
               ),
               buildText(
-                title: "Privacy",
+                title: text.settingsPrivacy,
                 icon: Icons.privacy_tip,
                 onTap: () => Get.toNamed(AppRoutes.privacyPolicyScreen),
               ),
               buildText(
-                title: "Terms & Conditions",
+                title: text.settingsTermsAndConditions,
                 icon: Icons.policy,
                 onTap: () => Get.toNamed(AppRoutes.termsAndConditionScreen),
               ),
               // buildText(title: "Help Center", icon: Icons.help_center),
               SizedBox(height: 20),
-              buildTitle(icon: Icons.manage_accounts, title: "Account"),
+              buildTitle(icon: Icons.manage_accounts, title: text.settingsSectionAccount),
               buildText(
-                title: "Report a problem",
+                title: text.settingsReportProblem,
                 icon: Icons.report,
                 onTap: () => Get.toNamed(AppRoutes.supportScreen),
               ),
               buildText(
-                title: "Logout",
+                title: text.settingsLogout,
                 icon: Icons.logout,
                 prefixColor: Colors.red,
                 onTap: () async {
@@ -109,6 +99,22 @@ class SettingsScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  AppBar buildAppBar() {
+    return AppBar(
+      title: Text(
+        AppLocalizations.of(Get.context!)!.settingsTitle,
+        style: GoogleFonts.fredoka(
+          fontSize: 28,
+          fontWeight: FontWeight.w800,
+          color: AppColors.primaryColor,
+        ),
+      ),
+      automaticallyImplyLeading: false,
+      backgroundColor: Color(0xFF1A1625),
+      centerTitle: true,
     );
   }
 

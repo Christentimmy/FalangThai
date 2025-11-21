@@ -270,4 +270,46 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get chatsTitle => 'Discussions';
+
+  @override
+  String get settingsTitle => 'Paramètres';
+
+  @override
+  String get settingsSectionGeneral => 'Général';
+
+  @override
+  String get settingsEditProfile => 'Modifier le profil';
+
+  @override
+  String get settingsWallet => 'Portefeuille';
+
+  @override
+  String get settingsLanguage => 'Langue';
+
+  @override
+  String get settingsInvite => 'Inviter';
+
+  @override
+  String get settingsSecurity => 'Sécurité';
+
+  @override
+  String get settingsSectionSupport => 'Assistance';
+
+  @override
+  String get settingsSubscription => 'Abonnement';
+
+  @override
+  String get settingsPrivacy => 'Confidentialité';
+
+  @override
+  String get settingsTermsAndConditions => 'Conditions générales';
+
+  @override
+  String get settingsSectionAccount => 'Compte';
+
+  @override
+  String get settingsReportProblem => 'Signaler un problème';
+
+  @override
+  String get settingsLogout => 'Se déconnecter';
 }
