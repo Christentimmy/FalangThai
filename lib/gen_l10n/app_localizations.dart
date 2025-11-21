@@ -1155,6 +1155,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Credits Earned'**
   String get inviteStatCreditsEarnedLabel;
+
+  /// No description provided for @changePasswordTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Password'**
+  String get changePasswordTitle;
+
+  /// No description provided for @changePasswordCurrentLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Password'**
+  String get changePasswordCurrentLabel;
+
+  /// No description provided for @changePasswordCurrentHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your current password'**
+  String get changePasswordCurrentHint;
+
+  /// No description provided for @changePasswordNewLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'New Password'**
+  String get changePasswordNewLabel;
+
+  /// No description provided for @changePasswordNewHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your new password'**
+  String get changePasswordNewHint;
+
+  /// No description provided for @changePasswordConfirmLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Password'**
+  String get changePasswordConfirmLabel;
+
+  /// No description provided for @changePasswordConfirmHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your confirm password'**
+  String get changePasswordConfirmHint;
+
+  /// No description provided for @changePasswordConfirmEmptyError.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your confirm password'**
+  String get changePasswordConfirmEmptyError;
+
+  /// No description provided for @changePasswordConfirmMismatchError.
+  ///
+  /// In en, this message translates to:
+  /// **'Password does not match'**
+  String get changePasswordConfirmMismatchError;
+
+  /// No description provided for @changePasswordButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Password'**
+  String get changePasswordButton;
 }
 
 class _AppLocalizationsDelegate

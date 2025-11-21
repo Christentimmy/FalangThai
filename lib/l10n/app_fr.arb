@@ -176,5 +176,15 @@
   "inviteErrorNoCode": "Aucun code d'invitation disponible pour le moment",
   "inviteImpactTitle": "Votre impact",
   "inviteStatTotalInvitesLabel": "Invitations totales",
-  "inviteStatCreditsEarnedLabel": "Crédits gagnés"
+  "inviteStatCreditsEarnedLabel": "Crédits gagnés",
+  "changePasswordTitle": "Changer le mot de passe",
+  "changePasswordCurrentLabel": "Mot de passe actuel",
+  "changePasswordCurrentHint": "Entrez votre mot de passe actuel",
+  "changePasswordNewLabel": "Nouveau mot de passe",
+  "changePasswordNewHint": "Entrez votre nouveau mot de passe",
+  "changePasswordConfirmLabel": "Confirmer le mot de passe",
+  "changePasswordConfirmHint": "Entrez la confirmation du mot de passe",
+  "changePasswordConfirmEmptyError": "Veuillez confirmer votre mot de passe",
+  "changePasswordConfirmMismatchError": "Les mots de passe ne correspondent pas",
+  "changePasswordButton": "Changer le mot de passe"
 }

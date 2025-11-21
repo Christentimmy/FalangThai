@@ -555,4 +555,35 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get inviteStatCreditsEarnedLabel => 'Credits Earned';
+
+  @override
+  String get changePasswordTitle => 'Change Password';
+
+  @override
+  String get changePasswordCurrentLabel => 'Current Password';
+
+  @override
+  String get changePasswordCurrentHint => 'Enter your current password';
+
+  @override
+  String get changePasswordNewLabel => 'New Password';
+
+  @override
+  String get changePasswordNewHint => 'Enter your new password';
+
+  @override
+  String get changePasswordConfirmLabel => 'Confirm Password';
+
+  @override
+  String get changePasswordConfirmHint => 'Enter your confirm password';
+
+  @override
+  String get changePasswordConfirmEmptyError =>
+      'Please enter your confirm password';
+
+  @override
+  String get changePasswordConfirmMismatchError => 'Password does not match';
+
+  @override
+  String get changePasswordButton => 'Change Password';
 }

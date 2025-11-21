@@ -176,5 +176,15 @@
   "inviteErrorNoCode": "ยังไม่มีรหัสเชิญ",
   "inviteImpactTitle": "ผลลัพธ์จากการเชิญของคุณ",
   "inviteStatTotalInvitesLabel": "จำนวนการเชิญทั้งหมด",
-  "inviteStatCreditsEarnedLabel": "เครดิตที่ได้รับ"
+  "inviteStatCreditsEarnedLabel": "เครดิตที่ได้รับ",
+  "changePasswordTitle": "เปลี่ยนรหัสผ่าน",
+  "changePasswordCurrentLabel": "รหัสผ่านปัจจุบัน",
+  "changePasswordCurrentHint": "กรอกรหัสผ่านปัจจุบันของคุณ",
+  "changePasswordNewLabel": "รหัสผ่านใหม่",
+  "changePasswordNewHint": "กรอกรหัสผ่านใหม่ของคุณ",
+  "changePasswordConfirmLabel": "ยืนยันรหัสผ่าน",
+  "changePasswordConfirmHint": "กรอกยืนยันรหัสผ่าน",
+  "changePasswordConfirmEmptyError": "กรุณากรอกยืนยันรหัสผ่าน",
+  "changePasswordConfirmMismatchError": "รหัสผ่านไม่ตรงกัน",
+  "changePasswordButton": "เปลี่ยนรหัสผ่าน"
 }

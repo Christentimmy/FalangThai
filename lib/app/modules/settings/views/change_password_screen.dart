@@ -2,6 +2,7 @@ import 'package:falangthai/app/controller/auth_controller.dart';
 import 'package:falangthai/app/modules/withdraw/widgets/input_field_widget.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,6 +20,7 @@ class ChangePasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: buildAppBar(),
@@ -33,29 +35,29 @@ class ChangePasswordScreen extends StatelessWidget {
                 children: [
                   InputField(
                     controller: oldPasswordController,
-                    label: "Current Password",
-                    hint: "Enter your current password",
+                    label: l10n.changePasswordCurrentLabel,
+                    hint: l10n.changePasswordCurrentHint,
                     icon: Icons.lock,
                   ),
                   SizedBox(height: Get.height * 0.02),
                   InputField(
                     controller: newPasswordController,
-                    label: "New Password",
-                    hint: "Enter your new password",
+                    label: l10n.changePasswordNewLabel,
+                    hint: l10n.changePasswordNewHint,
                     icon: Icons.lock,
                   ),
                   SizedBox(height: Get.height * 0.02),
                   InputField(
                     controller: confirmPasswordController,
-                    label: "Confirm Password",
-                    hint: "Enter your confirm password",
+                    label: l10n.changePasswordConfirmLabel,
+                    hint: l10n.changePasswordConfirmHint,
                     icon: Icons.lock,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return "Please enter your confirm password";
+                        return l10n.changePasswordConfirmEmptyError;
                       }
                       if (value != newPasswordController.text) {
-                        return "Password does not match";
+                        return l10n.changePasswordConfirmMismatchError;
                       }
                       return null;
                     },
@@ -75,7 +77,7 @@ class ChangePasswordScreen extends StatelessWidget {
               },
               isLoading: authController.isloading,
               child: Text(
-                "Change Password",
+                l10n.changePasswordButton,
                 style: GoogleFonts.fredoka(
                   color: Colors.white,
                   fontSize: 15,
@@ -90,11 +92,12 @@ class ChangePasswordScreen extends StatelessWidget {
   }
 
   AppBar buildAppBar() {
+    final l10n = AppLocalizations.of(Get.context!)!;
     return AppBar(
       backgroundColor: AppColors.backgroundColor,
       foregroundColor: Colors.white,
       title: Text(
-        "Change Password",
+        l10n.changePasswordTitle,
         style: GoogleFonts.fredoka(color: AppColors.primaryColor, fontSize: 20),
       ),
     );

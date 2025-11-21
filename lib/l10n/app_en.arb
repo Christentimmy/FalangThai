@@ -187,5 +187,16 @@
     "inviteErrorNoCode": "No invite code available yet",
     "inviteImpactTitle": "Your Impact",
     "inviteStatTotalInvitesLabel": "Total Invites",
-    "inviteStatCreditsEarnedLabel": "Credits Earned"
+    "inviteStatCreditsEarnedLabel": "Credits Earned",
+
+    "changePasswordTitle": "Change Password",
+    "changePasswordCurrentLabel": "Current Password",
+    "changePasswordCurrentHint": "Enter your current password",
+    "changePasswordNewLabel": "New Password",
+    "changePasswordNewHint": "Enter your new password",
+    "changePasswordConfirmLabel": "Confirm Password",
+    "changePasswordConfirmHint": "Enter your confirm password",
+    "changePasswordConfirmEmptyError": "Please enter your confirm password",
+    "changePasswordConfirmMismatchError": "Password does not match",
+    "changePasswordButton": "Change Password"
 }

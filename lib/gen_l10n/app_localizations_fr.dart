@@ -560,4 +560,37 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get inviteStatCreditsEarnedLabel => 'Crédits gagnés';
+
+  @override
+  String get changePasswordTitle => 'Changer le mot de passe';
+
+  @override
+  String get changePasswordCurrentLabel => 'Mot de passe actuel';
+
+  @override
+  String get changePasswordCurrentHint => 'Entrez votre mot de passe actuel';
+
+  @override
+  String get changePasswordNewLabel => 'Nouveau mot de passe';
+
+  @override
+  String get changePasswordNewHint => 'Entrez votre nouveau mot de passe';
+
+  @override
+  String get changePasswordConfirmLabel => 'Confirmer le mot de passe';
+
+  @override
+  String get changePasswordConfirmHint =>
+      'Entrez la confirmation du mot de passe';
+
+  @override
+  String get changePasswordConfirmEmptyError =>
+      'Veuillez confirmer votre mot de passe';
+
+  @override
+  String get changePasswordConfirmMismatchError =>
+      'Les mots de passe ne correspondent pas';
+
+  @override
+  String get changePasswordButton => 'Changer le mot de passe';
 }

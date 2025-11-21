@@ -553,4 +553,34 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get inviteStatCreditsEarnedLabel => 'เครดิตที่ได้รับ';
+
+  @override
+  String get changePasswordTitle => 'เปลี่ยนรหัสผ่าน';
+
+  @override
+  String get changePasswordCurrentLabel => 'รหัสผ่านปัจจุบัน';
+
+  @override
+  String get changePasswordCurrentHint => 'กรอกรหัสผ่านปัจจุบันของคุณ';
+
+  @override
+  String get changePasswordNewLabel => 'รหัสผ่านใหม่';
+
+  @override
+  String get changePasswordNewHint => 'กรอกรหัสผ่านใหม่ของคุณ';
+
+  @override
+  String get changePasswordConfirmLabel => 'ยืนยันรหัสผ่าน';
+
+  @override
+  String get changePasswordConfirmHint => 'กรอกยืนยันรหัสผ่าน';
+
+  @override
+  String get changePasswordConfirmEmptyError => 'กรุณากรอกยืนยันรหัสผ่าน';
+
+  @override
+  String get changePasswordConfirmMismatchError => 'รหัสผ่านไม่ตรงกัน';
+
+  @override
+  String get changePasswordButton => 'เปลี่ยนรหัสผ่าน';
 }
