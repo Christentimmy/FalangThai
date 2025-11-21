@@ -459,4 +459,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get paymentAddMethod => 'Add Method';
+
+  @override
+  String get bankTransferAccountHolderLabel => 'Account Holder Name';
+
+  @override
+  String get bankTransferAccountHolderHint => 'Enter full name';
+
+  @override
+  String get bankTransferAccountNumberLabel => 'Account Number';
+
+  @override
+  String get bankTransferAccountNumberHint => 'Enter account number';
+
+  @override
+  String get bankTransferBankNameLabel => 'Bank Name';
+
+  @override
+  String get bankTransferBankNameHint => 'Enter bank name';
+
+  @override
+  String get bankTransferSaveChanges => 'Save Changes';
 }

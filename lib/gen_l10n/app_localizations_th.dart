@@ -457,4 +457,25 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get paymentAddMethod => 'เพิ่มวิธีชำระเงิน';
+
+  @override
+  String get bankTransferAccountHolderLabel => 'ชื่อเจ้าของบัญชี';
+
+  @override
+  String get bankTransferAccountHolderHint => 'กรอกชื่อ-นามสกุลเต็ม';
+
+  @override
+  String get bankTransferAccountNumberLabel => 'เลขที่บัญชี';
+
+  @override
+  String get bankTransferAccountNumberHint => 'กรอกเลขที่บัญชี';
+
+  @override
+  String get bankTransferBankNameLabel => 'ชื่อธนาคาร';
+
+  @override
+  String get bankTransferBankNameHint => 'กรอกชื่อธนาคาร';
+
+  @override
+  String get bankTransferSaveChanges => 'บันทึกการเปลี่ยนแปลง';
 }

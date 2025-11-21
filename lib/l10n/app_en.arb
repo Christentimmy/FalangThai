@@ -152,5 +152,13 @@
     "paymentDetailsBankName": "Bank Name",
     "paymentDetailsEmail": "Email",
     "paymentEditDetails": "Edit Details",
-    "paymentAddMethod": "Add Method"
+    "paymentAddMethod": "Add Method",
+
+    "bankTransferAccountHolderLabel": "Account Holder Name",
+    "bankTransferAccountHolderHint": "Enter full name",
+    "bankTransferAccountNumberLabel": "Account Number",
+    "bankTransferAccountNumberHint": "Enter account number",
+    "bankTransferBankNameLabel": "Bank Name",
+    "bankTransferBankNameHint": "Enter bank name",
+    "bankTransferSaveChanges": "Save Changes"
 }

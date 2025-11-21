@@ -145,5 +145,12 @@
   "paymentDetailsBankName": "Nom de la banque",
   "paymentDetailsEmail": "E-mail",
   "paymentEditDetails": "Modifier les détails",
-  "paymentAddMethod": "Ajouter une méthode"
+  "paymentAddMethod": "Ajouter une méthode",
+  "bankTransferAccountHolderLabel": "Nom du titulaire du compte",
+  "bankTransferAccountHolderHint": "Entrez le nom complet",
+  "bankTransferAccountNumberLabel": "Numéro de compte",
+  "bankTransferAccountNumberHint": "Entrez le numéro de compte",
+  "bankTransferBankNameLabel": "Nom de la banque",
+  "bankTransferBankNameHint": "Entrez le nom de la banque",
+  "bankTransferSaveChanges": "Enregistrer les modifications"
 }

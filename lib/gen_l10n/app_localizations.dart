@@ -969,6 +969,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Add Method'**
   String get paymentAddMethod;
+
+  /// No description provided for @bankTransferAccountHolderLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Account Holder Name'**
+  String get bankTransferAccountHolderLabel;
+
+  /// No description provided for @bankTransferAccountHolderHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter full name'**
+  String get bankTransferAccountHolderHint;
+
+  /// No description provided for @bankTransferAccountNumberLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Account Number'**
+  String get bankTransferAccountNumberLabel;
+
+  /// No description provided for @bankTransferAccountNumberHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter account number'**
+  String get bankTransferAccountNumberHint;
+
+  /// No description provided for @bankTransferBankNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Bank Name'**
+  String get bankTransferBankNameLabel;
+
+  /// No description provided for @bankTransferBankNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter bank name'**
+  String get bankTransferBankNameHint;
+
+  /// No description provided for @bankTransferSaveChanges.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Changes'**
+  String get bankTransferSaveChanges;
 }
 
 class _AppLocalizationsDelegate

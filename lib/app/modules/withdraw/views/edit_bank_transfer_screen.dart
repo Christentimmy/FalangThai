@@ -2,6 +2,7 @@ import 'package:falangthai/app/controller/wallet_controller.dart';
 import 'package:falangthai/app/modules/withdraw/widgets/input_field_widget.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/widgets/custom_button.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,6 +24,7 @@ class _EditBankTransferScreenState extends State<EditBankTransferScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
@@ -32,9 +34,9 @@ class _EditBankTransferScreenState extends State<EditBankTransferScreen> {
           icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
           onPressed: () => Get.back(),
         ),
-        title: const Text(
-          'Bank Transfer',
-          style: TextStyle(color: AppColors.textPrimary),
+        title: Text(
+          l10n.withdrawBankTransfer,
+          style: const TextStyle(color: AppColors.textPrimary),
         ),
       ),
       body: SingleChildScrollView(
@@ -46,23 +48,23 @@ class _EditBankTransferScreenState extends State<EditBankTransferScreen> {
             children: [
               InputField(
                 controller: _holderController,
-                label: 'Account Holder Name',
-                hint: 'Enter full name',
+                label: l10n.bankTransferAccountHolderLabel,
+                hint: l10n.bankTransferAccountHolderHint,
                 icon: Icons.person,
               ),
               const SizedBox(height: 16),
               InputField(
                 controller: _accountController,
-                label: 'Account Number',
-                hint: 'Enter account number',
+                label: l10n.bankTransferAccountNumberLabel,
+                hint: l10n.bankTransferAccountNumberHint,
                 icon: Icons.numbers,
                 keyboardType: TextInputType.number,
               ),
               const SizedBox(height: 16),
               InputField(
                 controller: _bankController,
-                label: 'Bank Name',
-                hint: 'Enter bank name',
+                label: l10n.bankTransferBankNameLabel,
+                hint: l10n.bankTransferBankNameHint,
                 icon: Icons.account_balance,
               ),
             ],
@@ -74,6 +76,7 @@ class _EditBankTransferScreenState extends State<EditBankTransferScreen> {
   }
 
   SafeArea continueButton() {
+    final l10n = AppLocalizations.of(Get.context!)!;
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(20),
@@ -92,7 +95,7 @@ class _EditBankTransferScreenState extends State<EditBankTransferScreen> {
           },
           isLoading: walletController.isloading,
           child: Text(
-            'Save Changes',
+            l10n.bankTransferSaveChanges,
             style: GoogleFonts.fredoka(
               color: Colors.black,
               fontSize: 16,
