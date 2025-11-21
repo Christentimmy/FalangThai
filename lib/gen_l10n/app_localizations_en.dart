@@ -347,4 +347,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profileBioPlaceholder => 'Tell us about yourself...';
+
+  @override
+  String get walletTitle => 'Wallet';
+
+  @override
+  String get walletAvailableBalance => 'Available Balance';
+
+  @override
+  String get walletTotalEarned => 'Total Earned';
+
+  @override
+  String get walletWithdrawn => 'Withdrawn';
+
+  @override
+  String get walletWithdrawFunds => 'Withdraw Funds';
+
+  @override
+  String get walletWithdrawFundsSubtitle => 'Transfer money to your account';
+
+  @override
+  String get walletPaymentMethods => 'Payment Methods';
+
+  @override
+  String get walletPaymentMethodsSubtitle => 'Manage your payment accounts';
+
+  @override
+  String get walletTransactionHistory => 'Transaction History';
+
+  @override
+  String get walletTransactionHistorySubtitle => 'View all transactions';
 }

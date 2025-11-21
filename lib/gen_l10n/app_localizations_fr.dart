@@ -348,4 +348,35 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get profileBioPlaceholder => 'Parlez-nous de vous...';
+
+  @override
+  String get walletTitle => 'Portefeuille';
+
+  @override
+  String get walletAvailableBalance => 'Solde disponible';
+
+  @override
+  String get walletTotalEarned => 'Total gagné';
+
+  @override
+  String get walletWithdrawn => 'Retiré';
+
+  @override
+  String get walletWithdrawFunds => 'Retirer des fonds';
+
+  @override
+  String get walletWithdrawFundsSubtitle =>
+      'Transférez l\'argent sur votre compte';
+
+  @override
+  String get walletPaymentMethods => 'Moyens de paiement';
+
+  @override
+  String get walletPaymentMethodsSubtitle => 'Gérez vos comptes de paiement';
+
+  @override
+  String get walletTransactionHistory => 'Historique des transactions';
+
+  @override
+  String get walletTransactionHistorySubtitle => 'Voir toutes les transactions';
 }

@@ -753,6 +753,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Tell us about yourself...'**
   String get profileBioPlaceholder;
+
+  /// No description provided for @walletTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Wallet'**
+  String get walletTitle;
+
+  /// No description provided for @walletAvailableBalance.
+  ///
+  /// In en, this message translates to:
+  /// **'Available Balance'**
+  String get walletAvailableBalance;
+
+  /// No description provided for @walletTotalEarned.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Earned'**
+  String get walletTotalEarned;
+
+  /// No description provided for @walletWithdrawn.
+  ///
+  /// In en, this message translates to:
+  /// **'Withdrawn'**
+  String get walletWithdrawn;
+
+  /// No description provided for @walletWithdrawFunds.
+  ///
+  /// In en, this message translates to:
+  /// **'Withdraw Funds'**
+  String get walletWithdrawFunds;
+
+  /// No description provided for @walletWithdrawFundsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Transfer money to your account'**
+  String get walletWithdrawFundsSubtitle;
+
+  /// No description provided for @walletPaymentMethods.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Methods'**
+  String get walletPaymentMethods;
+
+  /// No description provided for @walletPaymentMethodsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage your payment accounts'**
+  String get walletPaymentMethodsSubtitle;
+
+  /// No description provided for @walletTransactionHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Transaction History'**
+  String get walletTransactionHistory;
+
+  /// No description provided for @walletTransactionHistorySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'View all transactions'**
+  String get walletTransactionHistorySubtitle;
 }
 
 class _AppLocalizationsDelegate

@@ -109,5 +109,15 @@
   "profileLikesStat": "Mentions J'aime",
   "profileViewsStat": "Vues",
   "profileMatchesStat": "Correspondances",
-  "profileBioPlaceholder": "Parlez-nous de vous..."
+  "profileBioPlaceholder": "Parlez-nous de vous...",
+  "walletTitle": "Portefeuille",
+  "walletAvailableBalance": "Solde disponible",
+  "walletTotalEarned": "Total gagné",
+  "walletWithdrawn": "Retiré",
+  "walletWithdrawFunds": "Retirer des fonds",
+  "walletWithdrawFundsSubtitle": "Transférez l'argent sur votre compte",
+  "walletPaymentMethods": "Moyens de paiement",
+  "walletPaymentMethodsSubtitle": "Gérez vos comptes de paiement",
+  "walletTransactionHistory": "Historique des transactions",
+  "walletTransactionHistorySubtitle": "Voir toutes les transactions"
 }

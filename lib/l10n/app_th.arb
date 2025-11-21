@@ -109,5 +109,15 @@
   "profileLikesStat": "ถูกใจ",
   "profileViewsStat": "เข้าชม",
   "profileMatchesStat": "คู่แมตช์",
-  "profileBioPlaceholder": "เล่าเกี่ยวกับตัวคุณให้เรารู้จักมากขึ้น..."
+  "profileBioPlaceholder": "เล่าเกี่ยวกับตัวคุณให้เรารู้จักมากขึ้น...",
+  "walletTitle": "กระเป๋าเงิน",
+  "walletAvailableBalance": "ยอดเงินคงเหลือ",
+  "walletTotalEarned": "รายได้รวม",
+  "walletWithdrawn": "ที่ถอนออกไปแล้ว",
+  "walletWithdrawFunds": "ถอนเงิน",
+  "walletWithdrawFundsSubtitle": "โอนเงินเข้าบัญชีของคุณ",
+  "walletPaymentMethods": "วิธีชำระเงิน",
+  "walletPaymentMethodsSubtitle": "จัดการบัญชีการชำระเงินของคุณ",
+  "walletTransactionHistory": "ประวัติธุรกรรม",
+  "walletTransactionHistorySubtitle": "ดูธุรกรรมทั้งหมด"
 }

@@ -1,6 +1,7 @@
 import 'package:falangthai/app/controller/user_controller.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,6 +11,7 @@ class WalletScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final text = AppLocalizations.of(context)!;
     final userController = Get.find<UserController>();
     final userModel = userController.userModel;
     final currency = userModel.value?.wallet?.currency ?? 'USD';
@@ -41,7 +43,7 @@ class WalletScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Available Balance',
+                    text.walletAvailableBalance,
                     style: TextStyle(
                       color: AppColors.textSecondary,
                       fontSize: 14,
@@ -69,7 +71,7 @@ class WalletScreen extends StatelessWidget {
                 Expanded(
                   child: Obx(() {
                     return _StatCard(
-                      title: 'Total Earned',
+                      title: text.walletTotalEarned,
                       amount: userModel.value?.wallet?.totalEarned ?? 0,
                       currency: currency,
                       icon: Icons.trending_up,
@@ -81,7 +83,7 @@ class WalletScreen extends StatelessWidget {
                 Expanded(
                   child: Obx(() {
                     return _StatCard(
-                      title: 'Withdrawn',
+                      title: text.walletWithdrawn,
                       amount: userModel.value?.wallet?.totalWithdrawn ?? 0,
                       currency: currency,
                       icon: Icons.trending_down,
@@ -95,22 +97,22 @@ class WalletScreen extends StatelessWidget {
 
             _ActionButton(
               icon: Icons.account_balance_wallet,
-              title: 'Withdraw Funds',
-              subtitle: 'Transfer money to your account',
+              title: text.walletWithdrawFunds,
+              subtitle: text.walletWithdrawFundsSubtitle,
               onTap: () => Get.toNamed(AppRoutes.withdrawScreen),
             ),
             const SizedBox(height: 12),
             _ActionButton(
               icon: Icons.payment,
-              title: 'Payment Methods',
-              subtitle: 'Manage your payment accounts',
+              title: text.walletPaymentMethods,
+              subtitle: text.walletPaymentMethodsSubtitle,
               onTap: () => Get.toNamed(AppRoutes.paymentMethodScreen),
             ),
             const SizedBox(height: 12),
             _ActionButton(
               icon: Icons.history,
-              title: 'Transaction History',
-              subtitle: 'View all transactions',
+              title: text.walletTransactionHistory,
+              subtitle: text.walletTransactionHistorySubtitle,
               onTap: () => Get.toNamed(AppRoutes.transactionHistoryScreen),
             ),
           ],
@@ -120,12 +122,13 @@ class WalletScreen extends StatelessWidget {
   }
 
   AppBar buildAppBar() {
+    final text = AppLocalizations.of(Get.context!)!;
     return AppBar(
       backgroundColor: AppColors.backgroundColor,
       foregroundColor: Colors.white,
       elevation: 0,
       title: Text(
-        'Wallet',
+        text.walletTitle,
         style: GoogleFonts.fredoka(color: AppColors.textPrimary),
       ),
       actions: [

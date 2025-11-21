@@ -113,5 +113,16 @@
     "profileLikesStat": "Likes",
     "profileViewsStat": "Views",
     "profileMatchesStat": "Matches",
-    "profileBioPlaceholder": "Tell us about yourself..."
+    "profileBioPlaceholder": "Tell us about yourself...",
+
+    "walletTitle": "Wallet",
+    "walletAvailableBalance": "Available Balance",
+    "walletTotalEarned": "Total Earned",
+    "walletWithdrawn": "Withdrawn",
+    "walletWithdrawFunds": "Withdraw Funds",
+    "walletWithdrawFundsSubtitle": "Transfer money to your account",
+    "walletPaymentMethods": "Payment Methods",
+    "walletPaymentMethodsSubtitle": "Manage your payment accounts",
+    "walletTransactionHistory": "Transaction History",
+    "walletTransactionHistorySubtitle": "View all transactions"
 }

@@ -347,4 +347,34 @@ class AppLocalizationsTh extends AppLocalizations {
   @override
   String get profileBioPlaceholder =>
       'เล่าเกี่ยวกับตัวคุณให้เรารู้จักมากขึ้น...';
+
+  @override
+  String get walletTitle => 'กระเป๋าเงิน';
+
+  @override
+  String get walletAvailableBalance => 'ยอดเงินคงเหลือ';
+
+  @override
+  String get walletTotalEarned => 'รายได้รวม';
+
+  @override
+  String get walletWithdrawn => 'ที่ถอนออกไปแล้ว';
+
+  @override
+  String get walletWithdrawFunds => 'ถอนเงิน';
+
+  @override
+  String get walletWithdrawFundsSubtitle => 'โอนเงินเข้าบัญชีของคุณ';
+
+  @override
+  String get walletPaymentMethods => 'วิธีชำระเงิน';
+
+  @override
+  String get walletPaymentMethodsSubtitle => 'จัดการบัญชีการชำระเงินของคุณ';
+
+  @override
+  String get walletTransactionHistory => 'ประวัติธุรกรรม';
+
+  @override
+  String get walletTransactionHistorySubtitle => 'ดูธุรกรรมทั้งหมด';
 }
