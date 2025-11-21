@@ -5,6 +5,7 @@ import 'package:falangthai/app/modules/profile/controllers/profile_controller.da
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/routes/app_routes.dart';
 import 'package:falangthai/app/widgets/custom_textfield.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -28,6 +29,7 @@ class ProfileScreen extends StatelessWidget {
   }
 
   AppBar buildAppBar() {
+    final text = AppLocalizations.of(Get.context!)!;
     return AppBar(
       backgroundColor: Color(0xFF0F0D15),
       elevation: 0,
@@ -37,7 +39,7 @@ class ProfileScreen extends StatelessWidget {
         icon: Icon(Icons.arrow_back_ios_new, color: Colors.white),
       ),
       title: Text(
-        "Profile",
+        text.profileTitle,
         style: GoogleFonts.fredoka(
           fontSize: 20,
           color: Colors.white,
@@ -209,6 +211,7 @@ class ProfileScreen extends StatelessWidget {
   }
 
   Widget _buildProfileInfo() {
+    final text = AppLocalizations.of(Get.context!)!;
     final userModel = userController.userModel.value;
     return Obx(
       () => Column(
@@ -259,7 +262,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 )
               : Text(
-                  userModel?.bio ?? "Tell us about yourself...",
+                  userModel?.bio ?? text.profileBioPlaceholder,
                   style: GoogleFonts.fredoka(
                     fontSize: 16,
                     color: Colors.white.withValues(alpha: 0.8),
@@ -286,25 +289,26 @@ class ProfileScreen extends StatelessWidget {
   }
 
   Widget buildStatsRow() {
+    final text = AppLocalizations.of(Get.context!)!;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         _buildStatItem(
           icon: Icons.favorite_rounded,
           value: "127",
-          label: "Likes",
+          label: text.profileLikesStat,
           color: const Color(0xFFEC4899),
         ),
         _buildStatItem(
           icon: Icons.visibility_rounded,
           value: "234",
-          label: "Views",
+          label: text.profileViewsStat,
           color: const Color(0xFF8B5CF6),
         ),
         _buildStatItem(
           icon: Icons.chat_bubble_rounded,
           value: "45",
-          label: "Matches",
+          label: text.profileMatchesStat,
           color: const Color(0xFF06B6D4),
         ),
       ],
@@ -350,13 +354,14 @@ class ProfileScreen extends StatelessWidget {
   }
 
   Widget _buildInterestsSection() {
+    final text = AppLocalizations.of(Get.context!)!;
     return InkWell(
       onTap: () {
         if (!profileController.isEditMode.value) return;
         Get.toNamed(AppRoutes.editHobbies);
       },
       child: _buildSection(
-        title: "Interests",
+        title: text.profileInterestsSection,
         icon: Icons.interests_rounded,
         child: Obx(() {
           final userModel = userController.userModel.value;
@@ -374,6 +379,60 @@ class ProfileScreen extends StatelessWidget {
   }
 
   Widget _buildInterestChip(String interest) {
+    final text = AppLocalizations.of(Get.context!)!;
+    String label;
+    switch (interest) {
+      case 'reading':
+        label = text.reading;
+        break;
+      case 'music':
+        label = text.music;
+        break;
+      case 'cooking':
+        label = text.cooking;
+        break;
+      case 'travel':
+        label = text.travel;
+        break;
+      case 'photography':
+        label = text.photography;
+        break;
+      case 'sports':
+        label = text.sports;
+        break;
+      case 'gaming':
+        label = text.gaming;
+        break;
+      case 'art':
+        label = text.art;
+        break;
+      case 'fitness':
+        label = text.fitness;
+        break;
+      case 'movies':
+        label = text.movies;
+        break;
+      case 'dancing':
+        label = text.dancing;
+        break;
+      case 'gardening':
+        label = text.gardening;
+        break;
+      case 'writing':
+        label = text.writing;
+        break;
+      case 'tech':
+        label = text.tech;
+        break;
+      case 'fashion':
+        label = text.fashion;
+        break;
+      case 'volunteering':
+        label = text.volunteering;
+        break;
+      default:
+        label = interest.capitalizeFirst ?? "";
+    }
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
@@ -385,7 +444,7 @@ class ProfileScreen extends StatelessWidget {
         ),
       ),
       child: Text(
-        interest.capitalizeFirst ?? "",
+        label,
         style: GoogleFonts.fredoka(
           fontSize: 14,
           color: Colors.white,
@@ -396,8 +455,9 @@ class ProfileScreen extends StatelessWidget {
   }
 
   Widget _buildPhotosSection() {
+    final text = AppLocalizations.of(Get.context!)!;
     return _buildSection(
-      title: "Photos",
+      title: text.profilePhotosSection,
       icon: Icons.photo_library_rounded,
       child: SizedBox(
         height: 100,
@@ -500,8 +560,9 @@ class ProfileScreen extends StatelessWidget {
   }
 
   Widget _buildPreferencesSection() {
+    final text = AppLocalizations.of(Get.context!)!;
     return _buildSection(
-      title: "Preferences",
+      title: text.profilePreferencesSection,
       icon: Icons.tune_rounded,
       child: Obx(() {
         final isEditMode = profileController.isEditMode.value;
@@ -513,22 +574,22 @@ class ProfileScreen extends StatelessWidget {
         return Column(
           children: [
             _buildPreferenceItem(
-              title: "Age Range",
+              title: text.profileAgeRange,
               value: userModel?.preferences?.ageRange?.join("-") ?? "",
               icon: Icons.cake_rounded,
             ),
             _buildPreferenceItem(
-              title: "Distance",
+              title: text.profileDistance,
               value: "${userModel?.preferences?.maxDistance?.toString()} km",
               icon: Icons.location_on_rounded,
             ),
             _buildPreferenceItem(
-              title: "Looking for",
+              title: text.profileLookingFor,
               value: userModel?.relationshipPreference ?? "",
               icon: Icons.favorite_rounded,
             ),
             _buildPreferenceItem(
-              title: "Interested In",
+              title: text.profileInterestedIn,
               value: profileController.interestedIn.value.capitalizeFirst ?? "",
               icon: Icons.favorite_rounded,
             ),
@@ -621,10 +682,11 @@ class ProfileScreen extends StatelessWidget {
   }
 
   Widget _buildPreferencesEditMode() {
+    final text = AppLocalizations.of(Get.context!)!;
     return Column(
       children: [
         _buildEditItemContainer(
-          title: "Age Range",
+          title: text.profileAgeRange,
           icon: Icons.cake_rounded,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -652,7 +714,7 @@ class ProfileScreen extends StatelessWidget {
         ),
 
         _buildEditItemContainer(
-          title: "Max Distance",
+          title: text.profileDistance,
           icon: Icons.location_on_rounded,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -680,7 +742,7 @@ class ProfileScreen extends StatelessWidget {
         ),
 
         _buildEditItemContainer(
-          title: "Looking for",
+          title: text.profileLookingFor,
           icon: Icons.favorite_rounded,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -716,7 +778,7 @@ class ProfileScreen extends StatelessWidget {
         ),
 
         _buildEditItemContainer(
-          title: "Interested In",
+          title: text.profileInterestedIn,
           icon: Icons.favorite_rounded,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),

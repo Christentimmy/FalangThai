@@ -97,5 +97,17 @@
   "settingsTermsAndConditions": "เงื่อนไขและข้อตกลง",
   "settingsSectionAccount": "บัญชี",
   "settingsReportProblem": "รายงานปัญหา",
-  "settingsLogout": "ออกจากระบบ"
+  "settingsLogout": "ออกจากระบบ",
+  "profileTitle": "โปรไฟล์",
+  "profileInterestsSection": "ความสนใจ",
+  "profilePhotosSection": "รูปภาพ",
+  "profilePreferencesSection": "การตั้งค่าคู่แมตช์",
+  "profileAgeRange": "ช่วงอายุ",
+  "profileDistance": "ระยะทาง",
+  "profileLookingFor": "กำลังมองหา",
+  "profileInterestedIn": "สนใจ",
+  "profileLikesStat": "ถูกใจ",
+  "profileViewsStat": "เข้าชม",
+  "profileMatchesStat": "คู่แมตช์",
+  "profileBioPlaceholder": "เล่าเกี่ยวกับตัวคุณให้เรารู้จักมากขึ้น..."
 }

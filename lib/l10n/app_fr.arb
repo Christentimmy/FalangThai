@@ -97,5 +97,17 @@
   "settingsTermsAndConditions": "Conditions générales",
   "settingsSectionAccount": "Compte",
   "settingsReportProblem": "Signaler un problème",
-  "settingsLogout": "Se déconnecter"
+  "settingsLogout": "Se déconnecter",
+  "profileTitle": "Profil",
+  "profileInterestsSection": "Centres d'intérêt",
+  "profilePhotosSection": "Photos",
+  "profilePreferencesSection": "Préférences",
+  "profileAgeRange": "Tranche d'âge",
+  "profileDistance": "Distance",
+  "profileLookingFor": "Recherche",
+  "profileInterestedIn": "Intéressé(e) par",
+  "profileLikesStat": "Mentions J'aime",
+  "profileViewsStat": "Vues",
+  "profileMatchesStat": "Correspondances",
+  "profileBioPlaceholder": "Parlez-nous de vous..."
 }

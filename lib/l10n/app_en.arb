@@ -100,5 +100,18 @@
     "settingsTermsAndConditions": "Terms & Conditions",
     "settingsSectionAccount": "Account",
     "settingsReportProblem": "Report a problem",
-    "settingsLogout": "Logout"
+    "settingsLogout": "Logout",
+
+    "profileTitle": "Profile",
+    "profileInterestsSection": "Interests",
+    "profilePhotosSection": "Photos",
+    "profilePreferencesSection": "Preferences",
+    "profileAgeRange": "Age Range",
+    "profileDistance": "Distance",
+    "profileLookingFor": "Looking for",
+    "profileInterestedIn": "Interested In",
+    "profileLikesStat": "Likes",
+    "profileViewsStat": "Views",
+    "profileMatchesStat": "Matches",
+    "profileBioPlaceholder": "Tell us about yourself..."
 }

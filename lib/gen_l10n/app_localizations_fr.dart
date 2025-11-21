@@ -312,4 +312,40 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsLogout => 'Se déconnecter';
+
+  @override
+  String get profileTitle => 'Profil';
+
+  @override
+  String get profileInterestsSection => 'Centres d\'intérêt';
+
+  @override
+  String get profilePhotosSection => 'Photos';
+
+  @override
+  String get profilePreferencesSection => 'Préférences';
+
+  @override
+  String get profileAgeRange => 'Tranche d\'âge';
+
+  @override
+  String get profileDistance => 'Distance';
+
+  @override
+  String get profileLookingFor => 'Recherche';
+
+  @override
+  String get profileInterestedIn => 'Intéressé(e) par';
+
+  @override
+  String get profileLikesStat => 'Mentions J\'aime';
+
+  @override
+  String get profileViewsStat => 'Vues';
+
+  @override
+  String get profileMatchesStat => 'Correspondances';
+
+  @override
+  String get profileBioPlaceholder => 'Parlez-nous de vous...';
 }

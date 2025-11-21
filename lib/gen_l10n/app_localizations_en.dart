@@ -311,4 +311,40 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsLogout => 'Logout';
+
+  @override
+  String get profileTitle => 'Profile';
+
+  @override
+  String get profileInterestsSection => 'Interests';
+
+  @override
+  String get profilePhotosSection => 'Photos';
+
+  @override
+  String get profilePreferencesSection => 'Preferences';
+
+  @override
+  String get profileAgeRange => 'Age Range';
+
+  @override
+  String get profileDistance => 'Distance';
+
+  @override
+  String get profileLookingFor => 'Looking for';
+
+  @override
+  String get profileInterestedIn => 'Interested In';
+
+  @override
+  String get profileLikesStat => 'Likes';
+
+  @override
+  String get profileViewsStat => 'Views';
+
+  @override
+  String get profileMatchesStat => 'Matches';
+
+  @override
+  String get profileBioPlaceholder => 'Tell us about yourself...';
 }

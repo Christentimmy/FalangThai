@@ -681,6 +681,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Logout'**
   String get settingsLogout;
+
+  /// No description provided for @profileTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profileTitle;
+
+  /// No description provided for @profileInterestsSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Interests'**
+  String get profileInterestsSection;
+
+  /// No description provided for @profilePhotosSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos'**
+  String get profilePhotosSection;
+
+  /// No description provided for @profilePreferencesSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferences'**
+  String get profilePreferencesSection;
+
+  /// No description provided for @profileAgeRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Age Range'**
+  String get profileAgeRange;
+
+  /// No description provided for @profileDistance.
+  ///
+  /// In en, this message translates to:
+  /// **'Distance'**
+  String get profileDistance;
+
+  /// No description provided for @profileLookingFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Looking for'**
+  String get profileLookingFor;
+
+  /// No description provided for @profileInterestedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Interested In'**
+  String get profileInterestedIn;
+
+  /// No description provided for @profileLikesStat.
+  ///
+  /// In en, this message translates to:
+  /// **'Likes'**
+  String get profileLikesStat;
+
+  /// No description provided for @profileViewsStat.
+  ///
+  /// In en, this message translates to:
+  /// **'Views'**
+  String get profileViewsStat;
+
+  /// No description provided for @profileMatchesStat.
+  ///
+  /// In en, this message translates to:
+  /// **'Matches'**
+  String get profileMatchesStat;
+
+  /// No description provided for @profileBioPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us about yourself...'**
+  String get profileBioPlaceholder;
 }
 
 class _AppLocalizationsDelegate

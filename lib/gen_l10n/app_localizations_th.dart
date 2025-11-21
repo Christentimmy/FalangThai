@@ -310,4 +310,41 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get settingsLogout => 'ออกจากระบบ';
+
+  @override
+  String get profileTitle => 'โปรไฟล์';
+
+  @override
+  String get profileInterestsSection => 'ความสนใจ';
+
+  @override
+  String get profilePhotosSection => 'รูปภาพ';
+
+  @override
+  String get profilePreferencesSection => 'การตั้งค่าคู่แมตช์';
+
+  @override
+  String get profileAgeRange => 'ช่วงอายุ';
+
+  @override
+  String get profileDistance => 'ระยะทาง';
+
+  @override
+  String get profileLookingFor => 'กำลังมองหา';
+
+  @override
+  String get profileInterestedIn => 'สนใจ';
+
+  @override
+  String get profileLikesStat => 'ถูกใจ';
+
+  @override
+  String get profileViewsStat => 'เข้าชม';
+
+  @override
+  String get profileMatchesStat => 'คู่แมตช์';
+
+  @override
+  String get profileBioPlaceholder =>
+      'เล่าเกี่ยวกับตัวคุณให้เรารู้จักมากขึ้น...';
 }
