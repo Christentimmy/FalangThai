@@ -561,6 +561,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No matches found'**
   String get noMatchesFound;
+
+  /// No description provided for @noUsersFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No users found'**
+  String get noUsersFound;
+
+  /// No description provided for @likesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Likes'**
+  String get likesTitle;
 }
 
 class _AppLocalizationsDelegate

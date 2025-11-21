@@ -250,4 +250,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noMatchesFound => 'No matches found';
+
+  @override
+  String get noUsersFound => 'No users found';
+
+  @override
+  String get likesTitle => 'Likes';
 }

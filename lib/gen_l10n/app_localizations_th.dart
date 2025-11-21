@@ -250,4 +250,10 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get noMatchesFound => 'ไม่พบคู่ที่ตรงกัน';
+
+  @override
+  String get noUsersFound => 'ไม่พบผู้ใช้';
+
+  @override
+  String get likesTitle => 'รายการถูกใจ';
 }

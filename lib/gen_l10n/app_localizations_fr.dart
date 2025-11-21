@@ -251,4 +251,10 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get noMatchesFound => 'Aucune correspondance trouvée';
+
+  @override
+  String get noUsersFound => 'Aucun utilisateur trouvé';
+
+  @override
+  String get likesTitle => 'Mentions J\'aime';
 }

@@ -80,5 +80,7 @@
     "prefNonBinary": "Non-binary",
     "prefTransgender": "Transgender",
     "prefEveryone": "Everyone",
-    "noMatchesFound": "No matches found"
+    "noMatchesFound": "No matches found",
+    "noUsersFound": "No users found",
+    "likesTitle": "Likes"
 }

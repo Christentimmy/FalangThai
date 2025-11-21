@@ -77,5 +77,7 @@
   "prefNonBinary": "Non-binaire",
   "prefTransgender": "Transgenre",
   "prefEveryone": "Tout le monde",
-  "noMatchesFound": "Aucune correspondance trouvée"
+  "noMatchesFound": "Aucune correspondance trouvée",
+  "noUsersFound": "Aucun utilisateur trouvé",
+  "likesTitle": "Mentions J'aime"
 }
