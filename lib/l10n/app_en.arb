@@ -174,5 +174,15 @@
     "transactionStatusPending": "Pending",
     "transactionFilterRecent": "Recent",
     "transactionFilterWithdrawals": "Withdrawals",
-    "transactionFilterCommissions": "Commissions"
+    "transactionFilterCommissions": "Commissions",
+
+    "inviteStatsTitle": "Invitation Statistics",
+    "inviteRecentInvites": "Recent Invites",
+    "inviteTotalInvites": "{count} total",
+    "inviteEmptyTitle": "No invites yet",
+    "inviteEmptySubtitle": "Start inviting friends to earn rewards!",
+    "inviteYourCode": "Your Code",
+    "inviteTapToCopy": "Tap to copy",
+    "inviteCopied": "Code copied to clipboard",
+    "inviteErrorNoCode": "No invite code available yet"
 }

@@ -164,5 +164,14 @@
   "transactionStatusPending": "En attente",
   "transactionFilterRecent": "Récentes",
   "transactionFilterWithdrawals": "Retraits",
-  "transactionFilterCommissions": "Commissions"
+  "transactionFilterCommissions": "Commissions",
+  "inviteStatsTitle": "Statistiques d'invitation",
+  "inviteRecentInvites": "Invitations récentes",
+  "inviteTotalInvites": "{count} au total",
+  "inviteEmptyTitle": "Aucune invitation pour le moment",
+  "inviteEmptySubtitle": "Commencez à inviter vos amis pour gagner des récompenses !",
+  "inviteYourCode": "Votre code",
+  "inviteTapToCopy": "Touchez pour copier",
+  "inviteCopied": "Code copié dans le presse-papiers",
+  "inviteErrorNoCode": "Aucun code d'invitation disponible pour le moment"
 }

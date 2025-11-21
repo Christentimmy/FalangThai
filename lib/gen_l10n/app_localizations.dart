@@ -1083,6 +1083,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Commissions'**
   String get transactionFilterCommissions;
+
+  /// No description provided for @inviteStatsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Invitation Statistics'**
+  String get inviteStatsTitle;
+
+  /// No description provided for @inviteRecentInvites.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent Invites'**
+  String get inviteRecentInvites;
+
+  /// No description provided for @inviteTotalInvites.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} total'**
+  String inviteTotalInvites(Object count);
+
+  /// No description provided for @inviteEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No invites yet'**
+  String get inviteEmptyTitle;
+
+  /// No description provided for @inviteEmptySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start inviting friends to earn rewards!'**
+  String get inviteEmptySubtitle;
+
+  /// No description provided for @inviteYourCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Code'**
+  String get inviteYourCode;
+
+  /// No description provided for @inviteTapToCopy.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to copy'**
+  String get inviteTapToCopy;
+
+  /// No description provided for @inviteCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Code copied to clipboard'**
+  String get inviteCopied;
+
+  /// No description provided for @inviteErrorNoCode.
+  ///
+  /// In en, this message translates to:
+  /// **'No invite code available yet'**
+  String get inviteErrorNoCode;
 }
 
 class _AppLocalizationsDelegate

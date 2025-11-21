@@ -3,6 +3,7 @@ import 'package:falangthai/app/controller/user_controller.dart';
 import 'package:falangthai/app/data/models/invite_model.dart';
 import 'package:falangthai/app/resources/colors.dart';
 import 'package:falangthai/app/widgets/snack_bar.dart';
+import 'package:falangthai/gen_l10n/app_localizations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -48,12 +49,13 @@ class _InviteStatScreenState extends State<InviteStatScreen> {
   }
 
   AppBar buildAppBar() {
+    final l10n = AppLocalizations.of(Get.context!)!;
     return AppBar(
       elevation: 0,
       backgroundColor: Color(0xFF1A1625),
       foregroundColor: Colors.white,
       title: Text(
-        'Invitation Statistics',
+        l10n.inviteStatsTitle,
         style: GoogleFonts.poppins(fontWeight: FontWeight.w600, fontSize: 16),
       ),
       centerTitle: true,
@@ -67,6 +69,7 @@ class _InviteStatScreenState extends State<InviteStatScreen> {
   }
 
   Widget buildContent() {
+    final l10n = AppLocalizations.of(Get.context!)!;
     return RefreshIndicator(
       color: AppColors.primaryColor,
       onRefresh: () async {
@@ -84,9 +87,9 @@ class _InviteStatScreenState extends State<InviteStatScreen> {
             const SizedBox(height: 24),
             Row(
               children: [
-                const Text(
-                  'Recent Invites',
-                  style: TextStyle(
+                Text(
+                  l10n.inviteRecentInvites,
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -106,7 +109,7 @@ class _InviteStatScreenState extends State<InviteStatScreen> {
                     final inviteModel = inviteController.inviteModel.value;
                     if (inviteModel == null) return const SizedBox();
                     return Text(
-                      '${inviteModel.totalInvites} total',
+                      l10n.inviteTotalInvites(inviteModel.totalInvites ?? 0),
                       style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w600,
@@ -190,6 +193,7 @@ class _InviteStatScreenState extends State<InviteStatScreen> {
   }
 
   Widget buildEmptyRecentInvite() {
+    final l10n = AppLocalizations.of(Get.context!)!;
     return SizedBox(
       height: Get.height * 0.25,
       child: Column(
@@ -198,7 +202,7 @@ class _InviteStatScreenState extends State<InviteStatScreen> {
           Icon(Icons.people_outline_rounded, size: 50, color: Colors.grey[300]),
           const SizedBox(height: 10),
           Text(
-            'No invites yet',
+            l10n.inviteEmptyTitle,
             style: TextStyle(
               fontSize: 16,
               color: Colors.white,
@@ -206,7 +210,8 @@ class _InviteStatScreenState extends State<InviteStatScreen> {
             ),
           ),
           Text(
-            'Start inviting friends to earn rewards!',
+            l10n.inviteEmptySubtitle,
+            textAlign: TextAlign.center,
             style: TextStyle(fontSize: 14, color: Colors.white),
           ),
         ],
@@ -215,6 +220,7 @@ class _InviteStatScreenState extends State<InviteStatScreen> {
   }
 
   Card buildCodeCard() {
+    final l10n = AppLocalizations.of(Get.context!)!;
     return Card(
       elevation: 3,
       color: const Color.fromARGB(255, 36, 31, 30),
@@ -242,7 +248,7 @@ class _InviteStatScreenState extends State<InviteStatScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Your Code',
+                    l10n.inviteYourCode,
                     style: TextStyle(fontSize: 12, color: Colors.white),
                   ),
                   const SizedBox(height: 4),
@@ -269,7 +275,7 @@ class _InviteStatScreenState extends State<InviteStatScreen> {
                 await Clipboard.setData(
                   ClipboardData(text: inviteModel.myInviteCode!),
                 );
-                CustomSnackbar.showSuccessToast("Copied to clipboard");
+                CustomSnackbar.showSuccessToast(l10n.inviteCopied);
               },
               icon: const Icon(Icons.copy),
               color: AppColors.primaryColor,

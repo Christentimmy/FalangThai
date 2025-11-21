@@ -517,4 +517,33 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get transactionFilterCommissions => 'Commissions';
+
+  @override
+  String get inviteStatsTitle => 'Invitation Statistics';
+
+  @override
+  String get inviteRecentInvites => 'Recent Invites';
+
+  @override
+  String inviteTotalInvites(Object count) {
+    return '$count total';
+  }
+
+  @override
+  String get inviteEmptyTitle => 'No invites yet';
+
+  @override
+  String get inviteEmptySubtitle => 'Start inviting friends to earn rewards!';
+
+  @override
+  String get inviteYourCode => 'Your Code';
+
+  @override
+  String get inviteTapToCopy => 'Tap to copy';
+
+  @override
+  String get inviteCopied => 'Code copied to clipboard';
+
+  @override
+  String get inviteErrorNoCode => 'No invite code available yet';
 }

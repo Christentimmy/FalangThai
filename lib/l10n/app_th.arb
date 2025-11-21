@@ -164,5 +164,14 @@
   "transactionStatusPending": "รอดำเนินการ",
   "transactionFilterRecent": "ล่าสุด",
   "transactionFilterWithdrawals": "การถอนเงิน",
-  "transactionFilterCommissions": "ค่าคอมมิชชั่น"
+  "transactionFilterCommissions": "ค่าคอมมิชชั่น",
+  "inviteStatsTitle": "สถิติการเชิญ",
+  "inviteRecentInvites": "การเชิญล่าสุด",
+  "inviteTotalInvites": "ทั้งหมด {count} คน",
+  "inviteEmptyTitle": "ยังไม่มีการเชิญ",
+  "inviteEmptySubtitle": "เริ่มเชิญเพื่อนเพื่อรับรางวัลกันเถอะ!",
+  "inviteYourCode": "โค้ดของคุณ",
+  "inviteTapToCopy": "แตะเพื่อคัดลอก",
+  "inviteCopied": "คัดลอกโค้ดแล้ว",
+  "inviteErrorNoCode": "ยังไม่มีรหัสเชิญ"
 }

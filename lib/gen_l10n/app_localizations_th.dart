@@ -515,4 +515,33 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get transactionFilterCommissions => 'ค่าคอมมิชชั่น';
+
+  @override
+  String get inviteStatsTitle => 'สถิติการเชิญ';
+
+  @override
+  String get inviteRecentInvites => 'การเชิญล่าสุด';
+
+  @override
+  String inviteTotalInvites(Object count) {
+    return 'ทั้งหมด $count คน';
+  }
+
+  @override
+  String get inviteEmptyTitle => 'ยังไม่มีการเชิญ';
+
+  @override
+  String get inviteEmptySubtitle => 'เริ่มเชิญเพื่อนเพื่อรับรางวัลกันเถอะ!';
+
+  @override
+  String get inviteYourCode => 'โค้ดของคุณ';
+
+  @override
+  String get inviteTapToCopy => 'แตะเพื่อคัดลอก';
+
+  @override
+  String get inviteCopied => 'คัดลอกโค้ดแล้ว';
+
+  @override
+  String get inviteErrorNoCode => 'ยังไม่มีรหัสเชิญ';
 }

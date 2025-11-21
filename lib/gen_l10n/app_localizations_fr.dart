@@ -520,4 +520,35 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get transactionFilterCommissions => 'Commissions';
+
+  @override
+  String get inviteStatsTitle => 'Statistiques d\'invitation';
+
+  @override
+  String get inviteRecentInvites => 'Invitations récentes';
+
+  @override
+  String inviteTotalInvites(Object count) {
+    return '$count au total';
+  }
+
+  @override
+  String get inviteEmptyTitle => 'Aucune invitation pour le moment';
+
+  @override
+  String get inviteEmptySubtitle =>
+      'Commencez à inviter vos amis pour gagner des récompenses !';
+
+  @override
+  String get inviteYourCode => 'Votre code';
+
+  @override
+  String get inviteTapToCopy => 'Touchez pour copier';
+
+  @override
+  String get inviteCopied => 'Code copié dans le presse-papiers';
+
+  @override
+  String get inviteErrorNoCode =>
+      'Aucun code d\'invitation disponible pour le moment';
 }
