@@ -38,7 +38,7 @@ By using FalangThai, you agree to the collection and use of information in accor
 **Contact Information:**  
 FalangThai  
 Michigan, USA  
-Email: example@gmail.com
+Email: darak.withoon@gmail.com
 
 ## 2. Information We Collect
 
@@ -207,7 +207,7 @@ If you are a California resident, you have additional rights under the Californi
 - Right to opt out of the sale of personal information (we do not sell personal information)
 - Right to non-discrimination for exercising your privacy rights
 
-To exercise these rights, contact us at example@gmail.com.
+To exercise these rights, contact us at darak.withoon@gmail.com.
 
 ## 11. Changes to This Privacy Policy
 
@@ -226,9 +226,9 @@ Our App may contain links to third-party websites or services. We are not respon
 
 If you have questions, concerns, or requests regarding this Privacy Policy or our privacy practices, please contact us at:
 
-**Email:** example@gmail.com  
-**Company:** FalangThai  
-**Location:** Michigan, USA
+**Email:** darak.withoon@gmail.com  
+**Company:** Withoon DARAK Entreprise  
+**Location:** 70 RESIDENCE LA DEMOISELLE 85500 Les Herbiers FRANCE
 
 ---
 

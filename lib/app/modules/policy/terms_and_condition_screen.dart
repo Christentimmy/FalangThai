@@ -39,7 +39,7 @@ By creating an account, accessing, or using FalangThai, you agree to be bound by
 **Contact Information:**  
 FalangThai  
 Michigan, USA  
-Email: example@gmail.com
+Email: darak.withoon@gmail.com
 
 ## 2. Eligibility
 
@@ -141,7 +141,7 @@ All content you post must:
 ### 6.4 Refund Policy
 - All sales are final
 - Refunds may be provided at our sole discretion in exceptional circumstances
-- To request a refund, contact us at example@gmail.com with your order details
+- To request a refund, contact us at darak.withoon@gmail.com with your order details
 
 ## 7. Location-Based Services
 
@@ -232,7 +232,7 @@ Any dispute arising from these Terms or your use of FalangThai shall be resolved
 By using FalangThai, you waive your right to a jury trial and class action lawsuits.
 
 ### 12.3 Informal Resolution
-Before initiating arbitration, you agree to contact us at example@gmail.com to attempt to resolve the dispute informally for at least 30 days.
+Before initiating arbitration, you agree to contact us at darak.withoon@gmail.com to attempt to resolve the dispute informally for at least 30 days.
 
 ### 12.4 Jurisdiction
 For matters not subject to arbitration, you consent to the exclusive jurisdiction of courts located in Michigan, USA.
@@ -266,9 +266,9 @@ We are not liable for delays or failures caused by circumstances beyond our reas
 
 If you have questions about these Terms, please contact us:
 
-**Email:** example@gmail.com  
-**Company:** FalangThai  
-**Location:** Michigan, USA
+**Email:** darak.withoon@gmail.com 
+**Company:** Withoon DARAK Entreprise  
+**Location:** 70 RESIDENCE LA DEMOISELLE 85500 Les Herbiers FRANCE
 
 ---
 
