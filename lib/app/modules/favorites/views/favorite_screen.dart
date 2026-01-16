@@ -22,7 +22,7 @@ class FavoriteScreen extends StatefulWidget {
 
 class _FavoriteScreenState extends State<FavoriteScreen> {
   final userController = Get.find<UserController>();
-  
+
   @override
   void initState() {
     super.initState();
@@ -202,11 +202,10 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
       ),
       actions: [
         IconButton(
-          onPressed: () {},
+          onPressed: () => Get.toNamed(AppRoutes.notification),
           icon: Icon(Icons.notifications, color: AppColors.primaryColor),
         ),
       ],
     );
   }
-
 }

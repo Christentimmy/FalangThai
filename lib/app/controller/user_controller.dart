@@ -322,6 +322,11 @@ class UserController extends GetxController {
       if (response == null) return;
       final decoded = json.decode(response.body);
 
+      if (response.statusCode == 403) {
+        Get.toNamed(AppRoutes.subscription);
+        return;
+      }
+
       if (response.statusCode != 200) {
         CustomSnackbar.showErrorToast(decoded["message"]);
         return;
